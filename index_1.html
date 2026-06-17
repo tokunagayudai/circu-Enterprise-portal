@@ -1,0 +1,2486 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>エンタープライズチーム GTM 統合フロー</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* ── Design tokens (Re:Skilling Portal compatible) ── */
+:root{
+  --f:'M PLUS Rounded 1c','Hiragino Maru Gothic ProN',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --primary:#0079C0; --primary-deep:#003d5e; --primary-mid:#5599be;
+  --bg:#e8f6ff; --bg-card:#fff; --bg-mid:#d0eaf9; --bg-light:#f0faff;
+  --green:#22a047; --green-light:#e6f7ee; --green-mid:#a5d6a7;
+  --orange:#ed7d31; --orange-light:#fff3e0; --orange-deep:#7a3a00;
+  --gold:#C9930A; --gold-light:rgba(201,147,10,.1);
+  --text:#003d5e; --text2:#5599be; --text3:#333;
+  --border:#5599be; --border-light:#b3d6ee;
+  /* Layer colors */
+  --l1-bg:linear-gradient(135deg,#2A2000,#3A3000);
+  --l2-bg:linear-gradient(135deg,#001A3A,#002A50);
+  --l3-bg:linear-gradient(135deg,#0F3A10,#1A4A20);
+  --navy:#0E2340;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{font-family:var(--f);background:var(--bg);overflow:hidden;height:100%}
+.app{display:flex;flex-direction:column;height:100vh}
+
+/* ── TOP BAR (Re:Skilling style) ── */
+.topbar{
+  background:var(--primary);
+  padding:12px 24px;
+  display:flex;align-items:center;gap:14px;
+  border-bottom:none;
+  flex-shrink:0;
+  box-shadow:0 2px 12px rgba(0,121,192,.3);
+}
+.topbar h1{
+  font-size:16px;font-weight:700;color:#fff;
+  display:flex;align-items:center;gap:8px;
+}
+.topbar-badge{
+  background:rgba(255,255,255,.2);
+  border-radius:20px;padding:2px 10px;
+  font-size:11px;font-weight:500;color:#fff;
+}
+.topbar-r{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.chip{
+  background:rgba(255,255,255,.15);color:#fff;
+  padding:4px 12px;border-radius:20px;
+  font-size:11px;font-weight:700;
+  border:1px solid rgba(255,255,255,.3);
+}
+.chip b{color:#FFD066}
+.tbtn{
+  font-size:11px;font-weight:700;padding:5px 14px;
+  border-radius:20px;
+  border:1.5px solid rgba(255,255,255,.35);
+  cursor:pointer;color:#fff;background:transparent;
+  font-family:var(--mono);transition:all .15s;
+  display:flex;align-items:center;gap:5px;
+}
+.tbtn:hover{background:rgba(255,255,255,.2)}
+.tbtn.tobe-on{background:rgba(255,255,255,.25);border-color:#fff}
+
+/* ── MAIN BODY ── */
+.body{display:flex;flex:1;overflow:hidden}
+.left-col{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:0;background:var(--bg)}
+
+/* L1+L3 横並び行 */
+.row-l1l3{display:flex;gap:0;flex-shrink:0;align-items:stretch;overflow-x:auto}
+.row-l1l3 .layer-block{flex:0 0 auto;min-width:500px;width:50%}
+.row-l1l3 .layer-block:first-child{border-radius:16px 0 0 16px}
+.row-l1l3 .layer-block:last-child{border-radius:0 16px 16px 0}
+.row-l1l3 .layer-content{overflow-x:auto}
+
+/* 縦コネクター */
+.conn-v{display:flex;align-items:center;justify-content:center;height:44px;position:relative;flex-shrink:0}
+.conn-v-line{position:absolute;left:50%;top:0;width:2px;height:100%;transform:translateX(-50%)}
+
+/* ── LAYER ACCORDION (Re:Skilling card style) ── */
+.layer-block{border-radius:16px;overflow:hidden;flex-shrink:0;box-shadow:0 4px 16px rgba(0,121,192,.1)}
+.layer-hdr{
+  display:flex;align-items:center;gap:12px;padding:16px 20px;
+  cursor:pointer;user-select:none;transition:filter .15s;position:relative;
+}
+.layer-hdr:hover{filter:brightness(1.08)}
+.layer-icon{font-size:22px;flex-shrink:0}
+.layer-info{flex:1}
+.layer-title{font-size:14px;font-weight:700;color:#fff;line-height:1.3}
+.layer-sub{font-size:11px;color:rgba(255,255,255,.65);margin-top:3px;font-family:var(--mono)}
+.layer-stats{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.lstat{
+  font-size:9px;font-weight:700;padding:3px 10px;
+  border-radius:20px;font-family:var(--mono);
+}
+.layer-toggle{font-size:16px;color:rgba(255,255,255,.5);transition:transform .2s;flex-shrink:0}
+.layer-block.open .layer-toggle{transform:rotate(180deg)}
+.layer-content{display:none;background:var(--bg-light);border-top:1px solid rgba(0,0,0,.06)}
+.layer-block.open .layer-content{display:block}
+
+/* ── SIDE PANEL ── */
+.sp{
+  width:0;flex-shrink:0;
+  background:#fff;
+  border-left:3px solid var(--primary);
+  overflow:hidden;transition:width .22s;
+  display:flex;flex-direction:column;
+}
+.sp.open{width:400px}
+.sp-hdr{background:var(--navy);padding:12px 16px;display:flex;align-items:flex-start;gap:8px;flex-shrink:0}
+.sp-icon{font-size:18px;flex-shrink:0}
+.sp-meta{flex:1}
+.sp-title{font-size:13px;font-weight:700;color:#fff;line-height:1.3}
+.sp-who{
+  font-size:8px;font-family:var(--mono);font-weight:700;
+  padding:2px 8px;border-radius:20px;margin-top:4px;display:inline-block;
+}
+.w-mkt{background:rgba(201,147,10,.3);color:#FFD066}
+.w-is{background:rgba(85,153,190,.3);color:#b3d6ee}
+.w-fs{background:rgba(0,121,192,.3);color:#7CC8F8}
+.w-ass{background:rgba(192,116,32,.25);color:#FFB366}
+.w-ai{background:rgba(34,160,71,.25);color:#a5d6a7}
+.sp-x{
+  font-size:10px;cursor:pointer;color:rgba(255,255,255,.4);
+  padding:3px 8px;border:1px solid rgba(255,255,255,.15);
+  border-radius:20px;background:transparent;font-family:var(--mono);
+  transition:.12s;
+}
+.sp-x:hover{color:#fff;background:rgba(255,255,255,.1)}
+
+/* ─── テンプレートモーダル (Re:Skilling style) ─── */
+#tmpl-overlay{display:none;position:fixed;inset:0;background:rgba(0,61,94,.65);z-index:2000;align-items:center;justify-content:center}
+#tmpl-overlay.open{display:flex}
+#tmpl-modal{
+  background:#fff;
+  border:2px solid var(--border);
+  border-radius:20px;
+  width:min(820px,95vw);max-height:88vh;
+  overflow:hidden;display:flex;flex-direction:column;
+  box-shadow:0 24px 64px rgba(0,61,94,.25);
+}
+.tmpl-hdr{
+  background:linear-gradient(135deg,var(--primary-deep),var(--primary));
+  padding:16px 20px;display:flex;align-items:center;gap:10px;
+}
+.tmpl-hdr-icon{font-size:22px}
+.tmpl-hdr-title{flex:1;font-weight:700;font-size:15px;color:#fff;}
+.tmpl-hdr-close{
+  background:rgba(255,255,255,.2);border:none;color:#fff;
+  font-size:16px;cursor:pointer;padding:6px 10px;
+  border-radius:20px;transition:.15s;
+}
+.tmpl-hdr-close:hover{background:rgba(255,255,255,.35)}
+.tmpl-body{padding:20px;overflow-y:auto;flex:1;background:var(--bg)}
+.tmpl-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.tmpl-tab{
+  padding:6px 16px;border-radius:20px;font-size:12px;
+  font-family:var(--mono);cursor:pointer;
+  border:1.5px solid var(--border);
+  background:#fff;color:var(--text2);transition:.15s;font-weight:600;
+}
+.tmpl-tab.active,.tmpl-tab:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.tmpl-content-area{
+  background:#fff;
+  border:1.5px solid var(--border);
+  border-radius:14px;padding:16px;position:relative;
+}
+.tmpl-text{
+  font-size:12px;line-height:1.9;color:var(--text3);
+  font-family:var(--mono);white-space:pre-wrap;word-break:break-word;margin-top:8px;
+}
+.tmpl-copy-btn{
+  position:absolute;top:12px;right:12px;
+  background:var(--primary);border:none;color:#fff;
+  padding:6px 14px;border-radius:20px;
+  font-size:11px;font-family:var(--mono);cursor:pointer;
+  transition:.2s;font-weight:700;
+  display:flex;align-items:center;gap:5px;
+}
+.tmpl-copy-btn:hover{background:#005fa0}
+.tmpl-copy-btn.copied{background:var(--green)}
+
+/* ── SIDE PANEL BODY ── */
+.sp-body{flex:1;overflow-y:auto;padding:0;background:var(--bg-light)}
+.sp-sec{padding:14px 16px;border-bottom:1px solid var(--border-light)}
+.sp-sec:last-child{border-bottom:none}
+.sp-sec-title{
+  font-size:9px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--text2);
+  font-family:var(--mono);margin-bottom:10px;
+  display:flex;align-items:center;gap:6px;
+}
+.sp-sec-title::before{content:'';display:block;width:10px;height:2px;background:var(--border);border-radius:1px}
+
+/* Step flow in panel */
+.vflow{display:flex;flex-direction:column;position:relative;padding-left:28px}
+.vflow::before{content:'';position:absolute;left:12px;top:16px;bottom:16px;width:2px;background:var(--border-light)}
+.vstep{position:relative;margin-bottom:4px}
+.vstep-dot{position:absolute;left:-22px;top:12px;width:12px;height:12px;border-radius:50%;border:2px solid white;z-index:1}
+.vd-human{background:#C07420}.vd-ai{background:var(--green)}.vd-auto{background:var(--primary)}
+.vstep-card{border-radius:10px;border:1.5px solid;padding:10px 12px}
+.vc-human{background:rgba(192,116,32,.06);border-color:rgba(192,116,32,.2)}
+.vc-ai{background:var(--green-light);border-color:var(--green-mid)}
+.vc-auto{background:var(--bg-light);border-color:var(--border-light)}
+.vc-new{box-shadow:0 0 0 2px rgba(34,160,71,.35)!important;border-color:var(--green)!important;background:var(--green-light)!important}
+.vstep-who{
+  display:inline-flex;align-items:center;gap:3px;
+  padding:2px 8px;border-radius:20px;
+  font-size:9px;font-weight:700;margin-bottom:4px;font-family:var(--mono);
+}
+.vw-human{background:rgba(192,116,32,.12);color:#C07420}
+.vw-ai{background:var(--green-light);color:var(--green)}
+.vw-auto{background:var(--bg-mid);color:var(--primary)}
+.vstep-new-badge{
+  font-size:7.5px;font-weight:700;padding:1px 6px;border-radius:20px;
+  background:var(--green-light);color:var(--green);
+  border:1px solid var(--green-mid);font-family:var(--mono);margin-left:5px;
+}
+.vstep-label{font-size:12px;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:3px}
+.vstep-detail{font-size:11px;color:#555;line-height:1.6}
+.vstep-tools{display:flex;flex-wrap:wrap;gap:3px;margin-top:5px}
+.vstep-arrow{text-align:center;font-size:13px;color:var(--border-light);padding:1px 0;margin-left:-28px}
+.issue-box{
+  background:var(--orange-light);border:1px solid #f5c99a;
+  border-radius:8px;padding:10px 12px;
+  font-size:11px;color:var(--orange-deep);line-height:1.7;margin-top:4px;
+}
+.ai-box{
+  background:var(--green-light);border:1px solid var(--green-mid);
+  border-radius:8px;padding:10px 12px;
+  font-size:11px;color:var(--green);line-height:1.7;font-family:var(--mono);margin-top:4px;
+}
+
+/* Tool chips */
+.tc{display:inline-flex;align-items:center;gap:2px;padding:2px 7px;border-radius:20px;font-size:9.5px;font-weight:600;white-space:nowrap}
+.tc-sf{background:#E3F2FD;color:#1456A0;border:.5px solid #90CAF9}
+.tc-pardot{background:#E0F7FA;color:#006064;border:.5px solid #80DEEA}
+.tc-gmail{background:#FEF2F2;color:#C0392B;border:.5px solid #FECACA}
+.tc-slack{background:#FDF0FF;color:#611F69;border:.5px solid #CC99FF}
+.tc-claude{background:var(--green-light);color:#0F5132;border:.5px solid var(--green-mid)}
+.tc-zoom{background:#EEF5FF;color:#0E72ED;border:.5px solid #90B8F8}
+.tc-gemini{background:#E8F0FE;color:#1A73E8;border:.5px solid #A8C7FA}
+.tc-slides{background:var(--orange-light);color:#B34700;border:.5px solid #FFD08A}
+.tc-n8n{background:var(--green-light);color:#155724;border:.5px solid var(--green-mid)}
+.tc-pro{background:#F3E8FC;color:#6B35A3;border:.5px solid #C9A8F0}
+.tc-gas{background:#FFFDE7;color:#7B6000;border:.5px solid #F9D900}
+</style>
+</head>
+<body>
+  <!-- ─── テンプレートモーダル ─── -->
+  <div id="tmpl-overlay" onclick="if(event.target===this)closeTmpl()">
+    <div id="tmpl-modal">
+      <div class="tmpl-hdr">
+        <span class="tmpl-hdr-icon">📄</span>
+        <div class="tmpl-hdr-title" id="tmpl-title">テンプレート</div>
+        <button class="tmpl-hdr-close" onclick="closeTmpl()">✕</button>
+      </div>
+      <div class="tmpl-body">
+        <div class="tmpl-tabs" id="tmpl-tabs"></div>
+        <div class="tmpl-content-area">
+          <button class="tmpl-copy-btn" id="tmpl-copy-btn" onclick="copyTmpl()">📋 コピー</button>
+          <div class="tmpl-text" id="tmpl-text"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="app">
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <h1>
+    <i class="ti ti-sitemap" style="font-size:20px"></i>
+    エンタープライズチーム GTM 統合フロー
+    <span class="topbar-badge">CIRCULATION</span>
+  </h1>
+  <div class="topbar-r">
+    <button class="tbtn" id="btn-view" onclick="toggleView()">
+      <i class="ti ti-robot" style="font-size:12px"></i> AS-IS 表示中
+    </button>
+    <button class="tbtn" onclick="expandAll()">
+      <i class="ti ti-chevrons-down" style="font-size:12px"></i> すべて展開
+    </button>
+    <button class="tbtn" onclick="collapseAll()">
+      <i class="ti ti-chevrons-up" style="font-size:12px"></i> すべて閉じる
+    </button>
+  </div>
+</div>
+
+<div class="body">
+<div class="left-col" id="left-col">
+
+  <!-- ═══ 上段：Layer 1（左）＋ Layer 3（右）═══ -->
+  <div class="row-l1l3">
+
+    <!-- Layer 1 -->
+    <div class="layer-block open" id="block-l1">
+      <div class="layer-hdr" style="background:linear-gradient(135deg,#0079C0,#005A92);border-radius:16px 0 0 0" onclick="toggle('l1')">
+        <span class="layer-icon">🌱</span>
+        <div class="layer-info">
+          <div class="layer-title">Layer 1 — 商談獲得</div>
+        </div>
+        <span class="layer-toggle">▲</span>
+      </div>
+      <div class="layer-content" id="content-l1">
+        <canvas id="cv-l1" style="display:block;cursor:pointer"></canvas>
+      </div>
+    </div>
+
+    <!-- Layer 3 -->
+    <div class="layer-block open" id="block-l3">
+      <div class="layer-hdr" style="background:linear-gradient(135deg,#0A6E8C,#084E64);border-radius:0 16px 0 0" onclick="toggle('l3')">
+        <span class="layer-icon">⭐</span>
+        <div class="layer-info">
+          <div class="layer-title">Layer 3 — CS・スターリード（稼働中）</div>
+        </div>
+        <span class="layer-toggle">▲</span>
+      </div>
+      <div class="layer-content" id="content-l3">
+        <canvas id="cv-l3" style="display:block;cursor:pointer"></canvas>
+      </div>
+    </div>
+
+  </div><!-- row-l1l3 -->
+
+  <!-- CONNECTOR （上段）→ Layer 2 -->
+  <div class="conn-v" style="height:24px">
+    <div class="conn-v-line" style="background:linear-gradient(to bottom,rgba(0,121,192,.5),rgba(26,141,192,.6))"></div>
+  </div>
+
+  <!-- ═══ 下段：Layer 2（全幅）═══ -->
+  <div class="layer-block open" id="block-l2" style="border-radius:16px">
+    <div class="layer-hdr" style="background:linear-gradient(135deg,#003D5E,#002A42);border-radius:16px 16px 0 0" onclick="toggle('l2')">
+      <span class="layer-icon">⚡</span>
+      <div class="layer-info">
+        <div class="layer-title">Layer 2 — パイプライン Ph.01 → 07</div>
+      </div>
+      <span class="layer-toggle">▲</span>
+    </div>
+    <div class="layer-content" id="content-l2">
+      <canvas id="cv-l2" style="display:block;cursor:pointer"></canvas>
+    </div>
+  </div>
+
+  <div style="height:40px"></div>
+</div><!-- left-col -->
+
+<!-- SIDE PANEL -->
+<div class="sp" id="sp">
+  <div class="sp-hdr">
+    <span class="sp-icon" id="sp-icon">📌</span>
+    <div class="sp-meta">
+      <div class="sp-title" id="sp-title">詳細</div>
+      <span class="sp-who" id="sp-who"></span>
+    </div>
+    <button class="sp-x" onclick="closeP()">✕</button>
+  </div>
+  <div class="sp-body" id="sp-body"></div>
+</div>
+</div><!-- body -->
+</div><!-- app -->
+
+<script>
+// ══════════════════════════════════════
+// UTILS
+// ══════════════════════════════════════
+function rr(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.lineTo(x+w-r,y);c.arcTo(x+w,y,x+w,y+r,r);c.lineTo(x+w,y+h-r);c.arcTo(x+w,y+h,x+w-r,y+h,r);c.lineTo(x+r,y+h);c.arcTo(x,y+h,x,y+h-r,r);c.lineTo(x,y+r);c.arcTo(x,y,x+r,y,r);c.closePath();}
+
+// ── ミニノード（ジャンプリンク用） ──
+// drawMiniNode(ctx, x, y, label, sublabel, fill, stroke, id, layer)
+// clickedMiniId が一致した場合はハイライト
+const MINI_NODES = [];  // 描画済みミニノードのヒットエリア登録
+
+function drawMiniNode(ctx, x, y, w, h, label, sublabel, fill, stroke, id, layer) {
+  const isCl = clickedNode && clickedNode.id === id;
+  // 薄い背景（白ベース＋ストローク色を薄く重ねる）
+  ctx.fillStyle = 'rgba(255,255,255,0.85)';
+  rr(ctx, x, y, w, h, 6); ctx.fill();
+  // ストロークで枠線（破線にしてミニノードであることを視覚的に示す）
+  ctx.strokeStyle = isCl ? '#FF8C00' : stroke;
+  ctx.lineWidth = isCl ? 2.5 : 1.5;
+  ctx.setLineDash(isCl ? [] : [4,2]);
+  rr(ctx, x, y, w, h, 6); ctx.stroke();
+  ctx.setLineDash([]);
+  // 「↗」バッジ（ストローク色で小さく）
+  ctx.fillStyle = stroke;
+  ctx.font = `bold 8px 'JetBrains Mono'`;
+  ctx.textAlign = 'right';
+  ctx.fillText('↗', x + w - 4, y + 12);
+  // ラベル（ストローク色で濃いめに）
+  ctx.fillStyle = stroke;
+  ctx.textAlign = 'center';
+  ctx.font = `bold 10px 'Noto Sans JP'`;
+  ctx.fillText(label, x + w/2, y + h/2 - (sublabel ? 3 : 0));
+  if(sublabel) {
+    ctx.fillStyle = stroke + '99';
+    ctx.font = `7.5px 'JetBrains Mono'`;
+    ctx.fillText(sublabel, x + w/2, y + h/2 + 10);
+  }
+  MINI_NODES.push({id, layer, x, y, w, h});
+}
+
+let currentView = 'asis';
+let clickedNode = null;
+
+function toggleView(){
+  currentView = currentView==='asis'?'tobe':'asis';
+  const btn = document.getElementById('btn-view');
+  btn.textContent = currentView==='tobe'?'🟢 TO-BE 表示中':'🔀 AS-IS 表示中';
+  btn.classList.toggle('tobe-on', currentView==='tobe');
+  drawAll();
+  if(clickedNode) openPanel(clickedNode.id, clickedNode.layer);
+}
+function expandAll(){ ['l1','l2','l3'].forEach(l=>{ document.getElementById('block-'+l).classList.add('open'); }); drawAll(); }
+function collapseAll(){ ['l1','l2','l3'].forEach(l=>{ document.getElementById('block-'+l).classList.remove('open'); }); }
+function toggle(l){
+  document.getElementById('block-'+l).classList.toggle('open');
+  setTimeout(()=>drawAll(),20);
+}
+
+// ══════════════════════════════════════
+// TOOL CHIPS HTML
+// ══════════════════════════════════════
+const T={
+  sf:'<span class="tc tc-sf">⚙ SF</span>',
+  pardot:'<span class="tc tc-pardot">◈ Pardot</span>',
+  gmail:'<span class="tc tc-gmail">✉ Gmail</span>',
+  slack:'<span class="tc tc-slack"># Slack</span>',
+  claude:'<span class="tc tc-claude">◉ Claude</span>',
+  zoom:'<span class="tc tc-zoom">📹 Zoom</span>',
+  gemini:'<span class="tc tc-gemini">✦ Gemini</span>',
+  slides:'<span class="tc tc-slides">▣ Slides</span>',
+  n8n:'<span class="tc tc-n8n">⟳ n8n</span>',
+  pro:'<span class="tc tc-pro">👤 ProSachiko</span>',
+  gas:'<span class="tc tc-gas">⚡ GAS</span>',
+};
+
+// ══════════════════════════════════════
+// LAYER 1 CANVAS
+// ══════════════════════════════════════
+// ══════════════════════════════════════
+// LAYER 1 - 再設計 v4
+// 横レーン：担当者（マーケ部門/エンプラ/IS/FS）
+// 縦レーン：リード特性（リサイクル/休眠/テーマ/IB・ABM）
+// ──────────────────────────────────────
+
+// カラー
+// ── Circulation ブランドカラー（ガイドライン準拠）──
+// PRIMARY: BLUE #0079C0 / BLACK #2F2725
+// SUB: RED #E94820 / PINK #E281A0 / ORANGE #F39312 / PURPLE #7057A3
+//      YELLOW #F6D600 / BLUE-GRAY #5BA6D5 / Y-GREEN #ABCD03 / GRAY #B8B5B4 / GREEN #00A33B
+const BRAND = {
+  blue:'#0079C0', blueDeep:'#005A92', blueLight:'#E8F4FB', blueMid:'#5BA6D5',
+  black:'#2F2725', green:'#00A33B', greenLight:'#E6F5EC',
+  orange:'#F39312', orangeLight:'#FDF0DC', purple:'#7057A3',
+  gray:'#B8B5B4', grayDeep:'#6B6864', ink:'#1A2A38',
+};
+// 各チャネルの配色（塗り=濃, stroke=ブランド色）
+const COL = {
+  // ① マーケ施策（オレンジ系）
+  mkt:     {fill:'#7A4A08', stroke:'#F39312'},
+  // ② IS（ブルーグレー）
+  is:      {fill:'#2A4458', stroke:'#5BA6D5'},
+  // ③ FS（ブランドブルー）
+  fs:      {fill:'#0A3A5C', stroke:'#0079C0'},
+  // ④ インバウンド（グリーン）
+  ib:      {fill:'#0A4A2A', stroke:'#00A33B'},
+  // リードプール（ニュートラル濃紺）
+  pool:    {fill:'#1A2A38', stroke:'#5BA6D5'},
+  // 旧キー互換（PANEL等で参照される可能性）
+  mkt_out: {fill:'#7A2A50', stroke:'#E281A0'},
+  mkt_in:  {fill:'#7A4A08', stroke:'#F39312'},
+  ai:      {fill:'#0A4A2A', stroke:'#00A33B'},
+};
+
+// ─────────────────────────────────────
+// レイアウト定数
+// ═══════════════════════════════════════════════
+// LAYER 1  — 商談獲得（因果フロー：ナーチャリング → 商談）
+// 主軸：ナーチャリング（文脈維持）が2つの動線を生む
+//   (A) 通常動線：MQL/SQL → 商談（件数の多くはこちら）
+//   (B) 最高品質動線：⭐インバウンド相談（稼働中/稼働後の濃い接点が起点・受注率45%）→ 商談
+// 左に「Tier × リード状態」マトリクスを脇役として添える。
+// ═══════════════════════════════════════════════
+
+// ノードサイズ
+const L1_NW = 176, L1_NH = 56;
+
+// 座標はdrawL1内で動的計算。ヒットテスト用に保持。
+let L1_HIT = {};
+function nodeXY(n){ const h=L1_HIT[n.id]; return h?{x:h.x,y:h.y}:{x:0,y:0}; }
+
+// 後方互換（旧トグル機構の残骸。未使用）
+let L1_EXPAND = {};
+
+// ── Layer1 レーン定義：リード状態が起点 ──
+// 各レーン = リード状態。起点担当・目的・アクション・出口が左→右に流れる。
+const L1_LANES = [
+  {id:'recycle', label:'リサイクルリード', sub:'予定日が紐づく案件',
+   origin:'IS起点', goal:'アポを取りに行く', goalCol:'#F39312', col:'#F39312', fill:'#7A4A08'},
+  {id:'sleep',   label:'休眠リード', sub:'予定日なし・過去商談/取引',
+   origin:'IS / マーケ', goal:'文脈・変化把握（アポ強制しない）', goalCol:'#5BA6D5', col:'#5BA6D5', fill:'#2A4458'},
+  {id:'new',     label:'未提案リード', sub:'商談歴なし・ハウスリスト内',
+   origin:'マーケ / IS', goal:'第一想起づくり → ホット化', goalCol:'#7057A3', col:'#9B7FC4', fill:'#3A2A55'},
+  {id:'abm',     label:'Tier1（ABM）', sub:'最重要・FSがアカウント責任者',
+   origin:'FS起点', goal:'関係維持・第一想起 ＋ 案件創出', goalCol:'#0079C0', col:'#0079C0', fill:'#0A3A5C'},
+];
+
+// Tier × リード状態 マトリクス定義（リード管理ボックスのポップアップ用）
+const L1_TIERS = [
+  {t:'Tier1', rel:'最重要・FSがアカウント責任者', own:'FS', motion:'ABM（外部環境トリガーで動く型）', tid:'abm', col:'#0079C0'},
+  {t:'Tier2', rel:'準開拓・引き上げ対象',         own:'IS/マーケ', motion:'大量アポ→最重要へ引き上げ', tid:'tier2', col:'#3E7CB1'},
+  {t:'Tier3', rel:'ほぼ関係なし',                 own:'部門リード', motion:'マーケ施策でコールド→ホット', tid:'tier3', col:'#5BA6D5'},
+  {t:'Tier4', rel:'履歴なし',                     own:'部門リード', motion:'オペレーション配信のみ', tid:'tier4', col:'#8FC4E3'},
+];
+const L1_STATES = [
+  {s:'リサイクル', d:'予定日入り→ISが連絡', sid:'lead_recycle', col:'#F39312'},
+  {s:'休眠',       d:'予定日なし→文脈再接触', sid:'lead_sleep',   col:'#B8B5B4'},
+  {s:'未提案',     d:'商談歴なし→基本リーチ', sid:'lead_new',     col:'#5BA6D5'},
+  {s:'過去稼働後', d:'満了→3ヶ月後自動投入', sid:'lead_ob',      col:'#00A33B'},
+];
+
+// 各レーンのアクション・ステップ定義（リード状態ごと）
+// stage: 'origin'(起点) / 'act'(アクション) / 'out'(出口)
+const L1_FLOW = {
+  recycle: {
+    origin: {who:'IS', label:'IS起点', d:'予定日にアラート'},
+    acts: [
+      {id:'rc_check', label:'前回文脈の確認(SF)', d:'前回商談内容・DEAD理由・フック文を読む', who:'IS', tmpl:true},
+      {id:'rc_call',  label:'予定日に文脈ありコール', d:'「前回の〇〇の件で」から始める', who:'IS', tmpl:true},
+    ],
+    out:'apo',  // アポ→商談
+  },
+  sleep: {
+    origin: {who:'IS / マーケ', label:'IS / マーケ', d:'予定日なし・要掘り起こし'},
+    acts: [
+      {id:'sl_context', label:'過去情報で文脈づくり', d:'過去商談/取引の履歴を確認', who:'IS', tmpl:true},
+      {id:'sl_touch',   label:'変化ヒアリング再接触', d:'アポ強制せず「前回からの変化」を聞く', who:'IS', tmpl:true},
+    ],
+    out:'apo_soft',  // 必要に応じてアポ
+  },
+  new: {
+    origin: {who:'マーケ / IS', label:'マーケ / IS', d:'商談歴なし'},
+    acts: [
+      {id:'nw_theme', label:'テーマ切り口で訴求', d:'月次テーマで潜在課題を示唆', who:'マーケ', tmpl:true},
+      {id:'nw_call',  label:'ISコールでホット化', d:'反応者へコール。第一想起づくり', who:'IS', tmpl:true},
+    ],
+    out:'apo',
+  },
+  abm: {
+    origin: {who:'FS', label:'FS起点', d:'アカウント責任者'},
+    acts: [
+      {id:'abm_trigger', label:'外部環境トリガー検知', d:'人事異動・決算・中計・IRを監視', who:'FS', tmpl:true},
+      {id:'abm_content', label:'カスタムコンテンツ作成', d:'その企業向けに事例・提案を仕立てる', who:'FS', tmpl:true},
+      {id:'abm_contact', label:'週1コンタクト / MTG', d:'関係維持しつつ案件機会を探る', who:'FS', tmpl:true},
+    ],
+    out:'both',  // インバウンド誘発 ＋ 案件創出
+  },
+};
+
+function drawL1(tobe){
+  const cv   = document.getElementById('cv-l1');
+  const wrap = document.getElementById('content-l1');
+  cv.width  = Math.max(620, wrap.clientWidth);
+  const W = cv.width;
+  // 高さ：見出し + リード管理 + ナーチャ帯 + レーン4本
+  const headerH = 64;       // 見出し
+  const mgmtH   = 52;       // リード管理ボックス
+  const nurtBandH = 76;     // ナーチャ帯
+  const colLabH = 22;       // 列ラベル
+  const laneH   = 92;       // 各レーン高
+  cv.height = headerH + mgmtH + 14 + nurtBandH + 14 + colLabH + L1_LANES.length*laneH + 24;
+  const ctx = cv.getContext('2d');
+  ctx.clearRect(0,0,W,cv.height);
+  MINI_NODES.length = 0;
+  L1_HIT = {};
+
+  // 背景
+  ctx.fillStyle='rgba(232,244,251,.5)'; ctx.fillRect(0,0,W,cv.height);
+  ctx.fillStyle=BRAND.blue; ctx.fillRect(0,0,3,cv.height);
+
+  // ── 列のX座標（起点 / アクション / 出口）──
+  const L = 20, R = W-16;
+  const originX = L+8;          // 起点列 左端
+  const originW = 116;
+  const actX = originX+originW+24;  // アクション列 左端
+  const outW = 150;
+  const outX = R-outW;             // 出口列 左端
+  const actW = outX - actX - 24;   // アクション列 幅
+
+  // ── ヘルパー：角丸ノード ──
+  function fitText(s, maxW, font){
+    ctx.font=font;
+    if(ctx.measureText(s).width<=maxW) return s;
+    let t=s;
+    while(t.length>1 && ctx.measureText(t+'…').width>maxW) t=t.slice(0,-1);
+    return t+'…';
+  }
+  function node(id, x, y, w, h, fill, stroke, label, sub, opt){
+    opt=opt||{};
+    const isCl=clickedNode&&clickedNode.id===id;
+    ctx.shadowColor='rgba(26,42,56,.13)'; ctx.shadowBlur=5; ctx.shadowOffsetY=1.5;
+    if(opt.grad){const g=ctx.createLinearGradient(x,y,x,y+h);g.addColorStop(0,opt.grad[0]);g.addColorStop(1,opt.grad[1]);ctx.fillStyle=g;}
+    else ctx.fillStyle=fill;
+    rr(ctx,x,y,w,h,10); ctx.fill();
+    ctx.shadowColor='transparent'; ctx.shadowBlur=0; ctx.shadowOffsetY=0;
+    ctx.strokeStyle=isCl?'#F39312':stroke; ctx.lineWidth=isCl?3:1.8; ctx.setLineDash(opt.dash?[5,3]:[]);
+    rr(ctx,x,y,w,h,10); ctx.stroke(); ctx.setLineDash([]);
+    ctx.textAlign='left';
+    const lblFont=`bold ${opt.fs||10.5}px 'M PLUS Rounded 1c','Noto Sans JP'`;
+    const labelMaxW = w-18-(opt.tmpl?12:0);
+    ctx.fillStyle='#fff'; ctx.font=lblFont;
+    ctx.fillText(fitText(label,labelMaxW,lblFont), x+10, sub?y+h/2-3:y+h/2+4);
+    if(sub){ const sf=`8px 'M PLUS Rounded 1c','Noto Sans JP'`; ctx.fillStyle='rgba(255,255,255,.78)'; ctx.font=sf; ctx.fillText(fitText(sub,w-18,sf), x+10, y+h/2+12); }
+    if(opt.tmpl){ ctx.fillStyle='rgba(255,235,180,.95)'; ctx.font='9px monospace'; ctx.textAlign='right'; ctx.fillText('📄', x+w-7, y+14); }
+    L1_HIT[id]={x,y,w,h};
+  }
+  function arR(x1,y,x2,col,lw){  // 右向き矢印
+    ctx.strokeStyle=col; ctx.lineWidth=lw||2; ctx.setLineDash([]);
+    ctx.beginPath(); ctx.moveTo(x1,y); ctx.lineTo(x2-7,y); ctx.stroke();
+    ctx.fillStyle=col; ctx.beginPath(); ctx.moveTo(x2,y); ctx.lineTo(x2-8,y-4); ctx.lineTo(x2-8,y+4); ctx.closePath(); ctx.fill();
+  }
+
+  // ── 見出し ──
+  ctx.fillStyle=BRAND.blue; ctx.font=`bold 13px 'M PLUS Rounded 1c','Noto Sans JP'`; ctx.textAlign='left';
+  ctx.fillText('リード状態が起点 — 誰が・何の目的で・どう動くか', L, 24);
+  ctx.fillStyle=BRAND.grayDeep; ctx.font=`9px 'M PLUS Rounded 1c','Noto Sans JP'`;
+  ctx.fillText('各ボックス＝クリックで手順/プロンプト。リード状態ごとに起点・目的・出口が異なる。', L, 40);
+
+  // ── ① リード管理（母集団・クリックでTier×状態マトリクス）──
+  let cursorY = 52;
+  node('lead_mgmt', L, cursorY, R-L, mgmtH, '#243A4E', '#5BA6D5',
+    '🗂 リード管理（母集団）', 'Tier1〜4（企業）× リサイクル/休眠/未提案/過去稼働後（担当者）— クリックで優先度マトリクス',
+    {grad:['#2A4458','#1A2E3E'], fs:12, tmpl:true});
+  cursorY += mgmtH + 14;
+
+  // 矢印 リード管理 → ナーチャ
+  arDownL1(CX0(), cursorY-14, cursorY-2, BRAND.blueMid);
+
+  // ── ② ナーチャリング・エンジン帯（全Tier共通の土台）──
+  const ny = cursorY;
+  const ngrad=ctx.createLinearGradient(L,0,R,0); ngrad.addColorStop(0,'#0079C0'); ngrad.addColorStop(1,'#00609A');
+  ctx.shadowColor='rgba(0,121,192,.2)'; ctx.shadowBlur=8; ctx.shadowOffsetY=2;
+  ctx.fillStyle=ngrad; rr(ctx, L, ny, R-L, nurtBandH, 12); ctx.fill();
+  ctx.shadowColor='transparent'; ctx.shadowBlur=0; ctx.shadowOffsetY=0;
+  ctx.strokeStyle='#7CC3E8'; ctx.lineWidth=2; rr(ctx,L,ny,R-L,nurtBandH,12); ctx.stroke();
+  ctx.fillStyle='#fff'; ctx.textAlign='left'; ctx.font=`bold 12px 'M PLUS Rounded 1c','Noto Sans JP'`;
+  ctx.fillText('🌱 ナーチャリング・エンジン（全Tier共通の土台）', L+16, ny+24);
+  ctx.fillStyle='rgba(255,255,255,.9)'; ctx.font=`8.5px 'M PLUS Rounded 1c','Noto Sans JP'`;
+  ctx.fillText('マーケ：月1テーマ配信 ／ 週2プロ人材紹介 ／ 月1事例（PKSHA）　＝　文脈維持・第一想起づくり', L+16, ny+44);
+  ctx.fillText('全レーンの土台。ここが効くほど「インバウンド相談（最大レバー）」が増える。', L+16, ny+62);
+  ctx.fillStyle='rgba(255,235,180,.95)'; ctx.font='9px monospace'; ctx.textAlign='right'; ctx.fillText('📄', R-14, ny+18);
+  L1_HIT['nurture']={x:L,y:ny,w:R-L,h:nurtBandH};
+  cursorY += nurtBandH + 14;
+
+  // ── 列ラベル ──
+  const colLabY = cursorY + 6;
+  ctx.font=`bold 9px 'JetBrains Mono'`; ctx.textAlign='center';
+  ctx.fillStyle='#6B6864';
+  ctx.fillText('起点（誰から）', originX+originW/2, colLabY);
+  ctx.fillText('アクション（目的つき）', actX+actW/2, colLabY);
+  ctx.fillText('出口', outX+outW/2, colLabY);
+  ctx.strokeStyle='rgba(0,121,192,.2)'; ctx.lineWidth=1; ctx.setLineDash([3,3]);
+  ctx.beginPath(); ctx.moveTo(L, colLabY+8); ctx.lineTo(R, colLabY+8); ctx.stroke(); ctx.setLineDash([]);
+  const top0 = colLabY + 14;
+
+  // ── ③ 各レーン描画（リサイクル/休眠/未提案/Tier1）──
+  L1_LANES.forEach((lane,i)=>{
+    const ly = top0 + i*laneH;
+    const flow = L1_FLOW[lane.id];
+
+    // レーン背景
+    ctx.fillStyle = `${hexA(lane.col,0.05)}`;
+    ctx.fillRect(L, ly+4, R-L, laneH-8);
+    // レーン左カラーバー＋ラベル
+    ctx.fillStyle=lane.col; rr(ctx, L, ly+10, 3, laneH-20, 2); ctx.fill();
+    ctx.textAlign='left'; ctx.fillStyle=lane.col; ctx.font=`bold 10px 'M PLUS Rounded 1c','Noto Sans JP'`;
+    ctx.fillText(lane.label, L+10, ly+20);
+    ctx.fillStyle=BRAND.grayDeep; ctx.font=`7.5px 'M PLUS Rounded 1c','Noto Sans JP'`;
+    ctx.fillText(lane.sub, L+10, ly+31);
+
+    // 目的バッジ
+    ctx.font=`bold 8px 'M PLUS Rounded 1c','Noto Sans JP'`;
+    const gw = ctx.measureText('目的：'+lane.goal).width + 16;
+    ctx.fillStyle=hexA(lane.goalCol,0.16); rr(ctx, actX, ly+8, Math.min(gw,actW), 16, 8); ctx.fill();
+    ctx.fillStyle=lane.goalCol; ctx.textAlign='left';
+    ctx.fillText('目的：'+lane.goal, actX+8, ly+19);
+
+    const nodeY = ly+34, nodeH=40;
+
+    // 起点ノード
+    node(lane.id+'_origin', originX, nodeY, originW, nodeH, lane.fill, lane.col,
+      flow.origin.label, flow.origin.d, {fs:10});
+
+    // アクションノード（複数を横に並べる）
+    const acts=flow.acts;
+    const agap=14;
+    const aw=(actW-(acts.length-1)*agap)/acts.length;
+    arR(originX+originW, nodeY+nodeH/2, actX, lane.col, 2);
+    acts.forEach((a,j)=>{
+      const ax=actX+j*(aw+agap);
+      node(a.id, ax, nodeY, aw, nodeH, lane.fill, lane.col, a.label, a.d, {fs:9.5, tmpl:a.tmpl});
+      if(j<acts.length-1) arR(ax+aw, nodeY+nodeH/2, ax+aw+agap, lane.col, 1.8);
+    });
+    arR(actX+actW, nodeY+nodeH/2, outX, lane.col, 2);
+
+    // 出口ノード
+    if(flow.out==='apo'){
+      node(lane.id+'_out', outX, nodeY, outW, nodeH, '#0A3A5C', '#0079C0', 'アポ獲得 → 商談', 'Layer2 Ph.01へ', {fs:10});
+      MINI_NODES.push({id:'mtg', layer:'l2', x:outX, y:nodeY, w:outW, h:nodeH});
+    } else if(flow.out==='apo_soft'){
+      node(lane.id+'_out', outX, nodeY, outW, nodeH, '#2A4458', '#5BA6D5', '必要に応じアポ', '無理に取らない', {fs:9.5});
+    } else if(flow.out==='both'){
+      node(lane.id+'_out', outX, nodeY, outW, nodeH, '#0A5A2A', '#00A33B', 'インバウンド誘発', '＋案件創出→商談', {fs:9.5});
+    }
+
+    // レーン区切り
+    if(i<L1_LANES.length-1){ ctx.strokeStyle='rgba(0,0,0,.06)'; ctx.lineWidth=1; ctx.setLineDash([2,3]);
+      ctx.beginPath(); ctx.moveTo(L, ly+laneH); ctx.lineTo(R, ly+laneH); ctx.stroke(); ctx.setLineDash([]); }
+  });
+
+  // 内部ヘルパー
+  function CX0(){ return (L+R)/2; }
+  function arDownL1(cx,y1,y2,col){
+    ctx.strokeStyle=col; ctx.lineWidth=2; ctx.setLineDash([]);
+    ctx.beginPath(); ctx.moveTo(cx,y1); ctx.lineTo(cx,y2-6); ctx.stroke();
+    ctx.fillStyle=col; ctx.beginPath(); ctx.moveTo(cx,y2); ctx.lineTo(cx-4,y2-7); ctx.lineTo(cx+4,y2-7); ctx.closePath(); ctx.fill();
+  }
+}
+
+// hexA: hex色 + alpha → rgba文字列
+function hexA(hex,a){
+  const h=hex.replace('#',''); const r=parseInt(h.slice(0,2),16),g=parseInt(h.slice(2,4),16),b=parseInt(h.slice(4,6),16);
+  return `rgba(${r},${g},${b},${a})`;
+}
+
+document.getElementById('cv-l1').addEventListener('mousemove',e=>{
+  const cv=e.currentTarget, r=cv.getBoundingClientRect();
+  const mx=e.clientX-r.left, my=e.clientY-r.top;
+  const on=Object.values(L1_HIT).some(h=>mx>=h.x&&mx<=h.x+h.w&&my>=h.y&&my<=h.y+h.h)
+        || MINI_NODES.some(mn=>mx>=mn.x&&mx<=mn.x+mn.w&&my>=mn.y&&my<=mn.y+mn.h);
+  cv.style.cursor=on?'pointer':'default';
+});
+
+document.getElementById('cv-l1').addEventListener('click',e=>{
+  const cv=e.currentTarget, r=cv.getBoundingClientRect();
+  const mx=e.clientX-r.left, my=e.clientY-r.top;
+  // ミニノード（出口→Layer2など）優先
+  for(const mn of MINI_NODES){
+    if(mx>=mn.x&&mx<=mn.x+mn.w&&my>=mn.y&&my<=mn.y+mn.h){
+      document.getElementById('block-'+mn.layer).classList.add('open');
+      setTimeout(()=>{clickedNode={id:mn.id,layer:mn.layer}; openPanel(mn.id,mn.layer); drawAll();},50);
+      return;
+    }
+  }
+  for(const id in L1_HIT){
+    const h=L1_HIT[id];
+    if(mx>=h.x&&mx<=h.x+h.w&&my>=h.y&&my<=h.y+h.h){
+      if(TMPL_DATA[id]){ openTmpl(id); return; }
+      clickedNode={id,layer:'l1'}; openPanel(id,'l1'); drawAll(); return;
+    }
+  }
+});
+
+
+// ══════════════════════════════════════
+// LAYER 2 CANVAS
+// ══════════════════════════════════════
+const NW=140, NH_N=58, GR=32, GAP=34;
+const _m=50;
+const _q1=_m+NW+GAP+GR, _sf=_q1+GR+GAP, _qs=_sf+NW+GAP+GR, _pr=_qs+GR+GAP;
+const _q3=_pr+NW+GAP+GR, _iv=_q3+GR+GAP, _q4=_iv+NW+GAP+GR, _ng=_q4+GR+GAP, _ct=_ng+NW+GAP, _cl=_ct+NW+GAP;
+const L2X={mtg:_m,q1:_q1,sf:_sf,qs:_qs,propose:_pr,q3:_q3,interview:_iv,q4:_q4,nego:_ng,contract:_ct,close:_cl,
+  select:_sf,secure:_pr,sched:_iv};
+const FY=160, AY=300;
+const L2C={fs:{fill:'#0A3A5C',stroke:'#1A8DC0'},ass:{fill:'#3A1A00',stroke:'#C07420'},
+           ai:{fill:'#082A1A',stroke:'#1D9E75'},close:{fill:'#0A3A5C',stroke:'#1A8DC0'},
+           tmpl:{fill:'#1A0A3A',stroke:'#7B4FD4'}};
+
+const L2_NODES=[
+  {id:'mtg',      label:'商談実施',           type:'fs',    x:L2X.mtg,       lane:'fs'},
+  {id:'q1',       label:'提案合意',            type:'gate',  x:L2X.q1,        lane:'fs'},
+  {id:'sf',       label:'要件整理\n(SF入力)',  type:'fs',    x:L2X.sf,        lane:'fs'},
+  {id:'qs',       label:'稼働合意',            type:'gate',  x:L2X.qs,        lane:'fs'},
+  {id:'propose',  label:'提案書作成\n送付',    type:'fs',    x:L2X.propose,   lane:'fs'},
+  {id:'q3',       label:'面談合意',            type:'gate',  x:L2X.q3,        lane:'fs'},
+  {id:'interview',label:'面談実施',            type:'fs',    x:L2X.interview, lane:'fs'},
+  {id:'q4',       label:'活用合意',            type:'gate',  x:L2X.q4,        lane:'fs'},
+  {id:'nego',     label:'見積・要件定義\n稟議',type:'fs',    x:L2X.nego,      lane:'fs'},
+  {id:'close',    label:'契約締結',            type:'close', x:L2X.close,     lane:'fs'},
+  {id:'contract',  label:'契約手続き\nPROBASE', type:'tmpl',  x:L2X.contract,  lane:'fs'},
+  {id:'select',   label:'人選\n案件相談',      type:'ass',   x:L2X.select,    lane:'ass'},
+  {id:'secure',   label:'稼働確保\nプロ連絡', type:'ass',   x:L2X.secure,    lane:'ass'},
+  {id:'sched',    label:'面談調整\n追加人選', type:'ass',   x:L2X.sched,     lane:'ass'},
+];
+const GATES=['q1','qs','q3','q4'];
+
+function drawL2(tobe){
+  const cv=document.getElementById('cv-l2');
+  const wrap=document.getElementById('content-l2');
+  cv.width=Math.max(_cl+NW+120, wrap.clientWidth);
+  cv.height=430;
+  const ctx=cv.getContext('2d');
+  ctx.clearRect(0,0,cv.width,cv.height);
+
+  const PH=30, DZ=44;
+  // phase hdr
+  ctx.fillStyle='#1A3A5C'; ctx.fillRect(0,0,cv.width,PH);
+  ctx.fillStyle='#7CC8F8'; ctx.font=`bold 9px 'JetBrains Mono'`; ctx.textAlign='center';
+  ctx.fillText('Ph.01 アポ獲得',_m+NW/2,20);
+  ctx.fillText('Ph.02 案件化',_sf+NW/2,20);
+  ctx.fillText('Ph.03 提案',_pr+NW/2,20);
+  ctx.fillText('Ph.04 面談',_iv+NW/2,20);
+  ctx.fillText('Ph.05-07 契約',(_ng+_cl+NW)/2,20);
+  // dead zone
+  ctx.fillStyle='rgba(253,235,235,.9)'; ctx.fillRect(0,PH,cv.width,DZ);
+  ctx.fillStyle='#E24B4A'; ctx.fillRect(0,PH,3,DZ);
+  ctx.fillStyle='#E24B4A'; ctx.font=`bold 8.5px 'JetBrains Mono'`; ctx.textAlign='left';
+  ctx.fillText('DEAD ZONE — 各合意ゲートで合意なし → ナーチャ / リサイクル → Layer 1 へ戻る', 10, PH+20);
+  ctx.fillStyle='rgba(180,60,60,.8)'; ctx.font='8px sans-serif';
+  ctx.fillText('リサイクルあり → Layer1「リサイクルリード」へ　|　リサイクル不要 → Layer1「休眠リード」へ', 10, PH+36);
+  ctx.fillStyle='rgba(232,119,34,.6)'; ctx.font='8px sans-serif';
+  ctx.fillText('← Layer 1 ナーチャゾーンへ戻る', cv.width-260, PH+28);
+  // FS lane
+  ctx.fillStyle='rgba(200,225,245,.5)'; ctx.fillRect(0,PH+DZ,cv.width,FY+NH_N/2+20-(PH+DZ));
+  ctx.fillStyle='#1A8DC0'; ctx.fillRect(0,PH+DZ,3,FY+NH_N/2+20-(PH+DZ));
+  // ASS lane
+  ctx.fillStyle='rgba(255,240,220,.6)'; ctx.fillRect(0,FY+NH_N/2+20,cv.width,AY+NH_N/2+20-(FY+NH_N/2+20));
+  ctx.fillStyle='#C07420'; ctx.fillRect(0,FY+NH_N/2+20,3,AY+NH_N/2+20-(FY+NH_N/2+20));
+
+  // Lane labels
+  [['FS（中村/岡部/栫/福本）','#0A5A8A',FY],['アソシエイト — 星','#8B5000',AY]].forEach(([t,c,y])=>{
+    ctx.save(); ctx.translate(16,y); ctx.rotate(-Math.PI/2);
+    ctx.fillStyle=c; ctx.font=`bold 9px 'Noto Sans JP'`; ctx.textAlign='center';
+    ctx.fillText(t,0,0); ctx.restore();
+  });
+
+  // Phase separators
+  [_q1-GR-10,_sf+NW+10,_q3-GR-10,_iv+NW+10,_q4-GR-10].forEach(sx=>{
+    ctx.strokeStyle='rgba(255,255,255,.06)'; ctx.lineWidth=1; ctx.setLineDash([4,4]);
+    ctx.beginPath(); ctx.moveTo(sx,PH+DZ); ctx.lineTo(sx,AY+NH_N/2+20); ctx.stroke();
+    ctx.setLineDash([]);
+  });
+
+  const deadY=PH+DZ/2+8;
+  // FS flow arrows
+  const hflows=[
+    [_m+NW,_q1-GR,'#5A8AA8'],[_q1+GR,_sf,'#1D9E75'],
+    [_sf+NW,_qs-GR,'#5A8AA8'],[_qs+GR,_pr,'#1D9E75'],
+    [_pr+NW,_q3-GR,'#5A8AA8'],[_q3+GR,_iv,'#1D9E75'],
+    [_iv+NW,_q4-GR,'#5A8AA8'],[_q4+GR,_ng,'#1D9E75'],
+    [_ng+NW,_ct,'#5A8AA8'],[_ct+NW,_cl,'#5A8AA8'],
+  ];
+  hflows.forEach(([x1,x2,col])=>{
+    ctx.strokeStyle=col; ctx.lineWidth=2; ctx.setLineDash([]);
+    ctx.beginPath(); ctx.moveTo(x1,FY); ctx.lineTo(x2-7,FY); ctx.stroke();
+    ctx.fillStyle=col; ctx.beginPath();
+    ctx.moveTo(x2,FY); ctx.lineTo(x2-9,FY-4); ctx.lineTo(x2-9,FY+4); ctx.closePath(); ctx.fill();
+  });
+  // Yes labels
+  ctx.font='bold 8.5px sans-serif'; ctx.textAlign='center'; ctx.fillStyle='#1D9E75';
+  [(_q1+GR+_sf)/2,(_qs+GR+_pr)/2,(_q3+GR+_iv)/2,(_q4+GR+_ng)/2].forEach(x=>ctx.fillText('Yes',x,FY-10));
+  // No arrows ↑ DEAD
+  GATES.forEach(gid=>{
+    const gx=L2X[gid];
+    ctx.strokeStyle='#E24B4A'; ctx.lineWidth=1.8; ctx.setLineDash([5,3]);
+    ctx.beginPath(); ctx.moveTo(gx,FY-GR-2); ctx.lineTo(gx,deadY+8); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle='#E24B4A'; ctx.beginPath();
+    ctx.moveTo(gx,deadY); ctx.lineTo(gx-5,deadY+9); ctx.lineTo(gx+5,deadY+9); ctx.closePath(); ctx.fill();
+    ctx.fillStyle='#E24B4A'; ctx.font='bold 8px sans-serif'; ctx.textAlign='left';
+    ctx.fillText('No',gx+5,FY-GR-5);
+  });
+  // Contract → L3 ↓
+  const clcx=_cl+NW/2;
+  ctx.strokeStyle='#1D9E75'; ctx.lineWidth=2.5; ctx.setLineDash([]);
+  ctx.beginPath(); ctx.moveTo(clcx,FY+NH_N/2+2); ctx.lineTo(clcx,FY+NH_N/2+38); ctx.stroke();
+  ctx.fillStyle='#1D9E75'; ctx.beginPath();
+  ctx.moveTo(clcx,FY+NH_N/2+46); ctx.lineTo(clcx-6,FY+NH_N/2+38); ctx.lineTo(clcx+6,FY+NH_N/2+38); ctx.closePath(); ctx.fill();
+  ctx.fillStyle='#1D9E75'; ctx.font='bold 9px sans-serif'; ctx.textAlign='center';
+  ctx.fillText('→ Layer 3',clcx,FY+NH_N/2+58);
+  // ASS parallel
+  const sfcx=_sf+NW/2;
+  ctx.strokeStyle='#C07420'; ctx.lineWidth=1.8; ctx.setLineDash([4,3]);
+  ctx.beginPath(); ctx.moveTo(sfcx,FY+NH_N/2+2); ctx.lineTo(sfcx,AY-NH_N/2-2); ctx.stroke(); ctx.setLineDash([]);
+  ctx.fillStyle='#C07420'; ctx.beginPath();
+  ctx.moveTo(sfcx,AY-NH_N/2); ctx.lineTo(sfcx-5,AY-NH_N/2+8); ctx.lineTo(sfcx+5,AY-NH_N/2+8); ctx.closePath(); ctx.fill();
+  ctx.fillStyle='#C07420'; ctx.font='bold 7.5px monospace'; ctx.textAlign='left';
+  ctx.fillText('並行発火',sfcx+5,(FY+NH_N/2+AY-NH_N/2)/2+3);
+  // ASS horizontal
+  [(_sf+NW),(_pr+NW)].forEach((x1,i)=>{
+    const x2=i===0?_pr:_iv;
+    ctx.strokeStyle='#C07420'; ctx.lineWidth=1.8; ctx.setLineDash([]);
+    ctx.beginPath(); ctx.moveTo(x1,AY); ctx.lineTo(x2-7,AY); ctx.stroke();
+    ctx.fillStyle='#C07420'; ctx.beginPath();
+    ctx.moveTo(x2,AY); ctx.lineTo(x2-9,AY-4); ctx.lineTo(x2-9,AY+4); ctx.closePath(); ctx.fill();
+  });
+  // Secure→Propose ↑
+  const seccx=_pr+NW/2;
+  ctx.strokeStyle='#1D9E75'; ctx.lineWidth=1.8; ctx.setLineDash([4,3]);
+  ctx.beginPath(); ctx.moveTo(seccx,AY-NH_N/2-2); ctx.lineTo(seccx,FY+NH_N/2+6); ctx.stroke(); ctx.setLineDash([]);
+  ctx.fillStyle='#1D9E75'; ctx.beginPath();
+  ctx.moveTo(seccx,FY+NH_N/2); ctx.lineTo(seccx-5,FY+NH_N/2+8); ctx.lineTo(seccx+5,FY+NH_N/2+8); ctx.closePath(); ctx.fill();
+  ctx.fillStyle='#1D9E75'; ctx.font='bold 7.5px monospace'; ctx.textAlign='center';
+  ctx.fillText('FS提案書へ',seccx,(AY-NH_N/2+FY+NH_N/2)/2);
+
+  // Draw nodes
+  L2_NODES.forEach(n=>{
+    const cy=n.lane==='ass'?AY:FY;
+    const isCl=clickedNode&&clickedNode.id===n.id;
+    if(n.type==='gate'){
+      const col=(tobe&&(n.id==='sf'))?'#1D9E75':'#0079C0';
+      ctx.fillStyle='#FFFFFF'; ctx.beginPath();
+      ctx.moveTo(n.x,cy-GR); ctx.lineTo(n.x+GR,cy); ctx.lineTo(n.x,cy+GR); ctx.lineTo(n.x-GR,cy); ctx.closePath(); ctx.fill();
+      ctx.strokeStyle=isCl?'#FFD066':col; ctx.lineWidth=isCl?3:2.5;
+      ctx.beginPath(); ctx.moveTo(n.x,cy-GR); ctx.lineTo(n.x+GR,cy); ctx.lineTo(n.x,cy+GR); ctx.lineTo(n.x-GR,cy); ctx.closePath(); ctx.stroke();
+      ctx.fillStyle='#0E2340'; ctx.font='bold 9px sans-serif'; ctx.textAlign='center';
+      ctx.fillText(n.label,n.x,cy+3);
+      return;
+    }
+    const tobeGlow=tobe&&(n.id==='sf'||n.id==='propose'||n.id==='select');
+    const col=tobeGlow?{fill:'#082A1A',stroke:'#1D9E75'}:L2C[n.type]||L2C.fs;
+    ctx.fillStyle=col.fill; rr(ctx,n.x,cy-NH_N/2,NW,NH_N,9); ctx.fill();
+    ctx.strokeStyle=isCl?'white':col.stroke; ctx.lineWidth=isCl?3:1.8; ctx.setLineDash([]);
+    if(tobeGlow){ctx.shadowColor='#1D9E75'; ctx.shadowBlur=10;}
+    rr(ctx,n.x,cy-NH_N/2,NW,NH_N,9); ctx.stroke(); ctx.shadowBlur=0;
+    ctx.fillStyle='white'; ctx.textAlign='center';
+    const lines=n.label.split('\n');
+    ctx.font=`bold ${lines.length>1?11:13}px sans-serif`;
+    if(lines.length===1){ctx.fillText(lines[0],n.x+NW/2,cy+4);}
+    else{ctx.fillText(lines[0],n.x+NW/2,cy-5); ctx.fillText(lines[1],n.x+NW/2,cy+9);}
+    // テンプレートありのノードに 📄 バッジ
+    if(TMPL_DATA[n.id]){
+      ctx.font='bold 9px monospace'; ctx.textAlign='right';
+      ctx.fillStyle='rgba(255,220,255,0.9)';
+      ctx.fillText('📄',n.x+NW-4,cy-NH_N/2+12);
+    }
+  });
+}
+
+document.getElementById('cv-l2').addEventListener('click',e=>{
+  const cv=e.currentTarget, r=cv.getBoundingClientRect();
+  const mx=e.clientX-r.left, my=e.clientY-r.top;
+  // テンプレートノード（tmplタイプ + sf + select）のヒットテスト
+  for(const n of L2_NODES){
+    if(TMPL_DATA[n.id]){
+      const lane = n.lane==='ass' ? AY : FY;
+      const ny = lane - NH_N/2;
+      if(mx>=n.x&&mx<=n.x+NW&&my>=ny&&my<=ny+NH_N){
+        openTmpl(n.id); return;
+      }
+    }
+  }
+  for(const n of L2_NODES){
+    const cy=n.lane==='ass'?AY:FY;
+    if(n.type==='gate'){
+      if(Math.abs(mx-n.x)+Math.abs(my-cy)<GR+4){
+        clickedNode={id:n.id,layer:'l2'}; openPanel(n.id,'l2'); drawAll(); return;
+      }
+    } else {
+      if(mx>=n.x&&mx<=n.x+NW&&my>=cy-NH_N/2&&my<=cy+NH_N/2){
+        clickedNode={id:n.id,layer:'l2'}; openPanel(n.id,'l2'); drawAll(); return;
+      }
+    }
+  }
+});
+
+// ══════════════════════════════════════
+// LAYER 3 CANVAS
+// ══════════════════════════════════════
+// Layout (top→down):
+//  row0 y=40:  キックオフMTG（中央）
+//  row1 y=130: CSアクション3ボックス
+//               (定期連絡 / 深耕営業 / 支援同席)
+//  row2 y=230: 追加案件/ロール | 追加部署/担当者
+//  row3 y=320: ①案件管理（品質・満足度）
+//  row4 y=420: 案件継続 | 案件満了
+//  row5 y=510: 継続→L2 | アンケート回収
+//  row6 y=600: 事例/ロゴ(TOBE) | リサイクル→L1
+// ══════════════════════════════════════
+const L3_NW = 145, L3_NH = 52;
+
+const L3_NODES_DEF = [
+  // row0
+  {id:'cs_kickoff',  label:'キックオフMTG',                    x:310, y:44,  fill:'#0A3A5C',stroke:'#1A8DC0'},
+  // row1 CSアクション（3タイプ）
+  {id:'cs_support',  label:'支援同席',                          x:120, y:144, fill:'#0A3A5C',stroke:'#1A8DC0', w:155},
+  {id:'cs_contact',  label:'定例レビューMTG\n定期連絡(1/3/半年)', x:295, y:144, fill:'#0A3A5C',stroke:'#1A8DC0', w:215},
+  {id:'cs_deepen',   label:'深耕営業\nPJT資料/提案',            x:530, y:144, fill:'#0A3A5C',stroke:'#1A8DC0', w:155},
+  // row2 拡大機会・案件管理
+  {id:'cs_quality',  label:'①案件管理\n満足度・品質・解約防止', x:160, y:264, fill:'#0A3A5C',stroke:'#1A8DC0'},
+  {id:'cs_expand',   label:'③追加案件\n追加ロール獲得',         x:380, y:264, fill:'#0A4A30',stroke:'#1D9E75'},
+  {id:'cs_dept',     label:'④追加部署\n担当者紹介獲得',         x:540, y:264, fill:'#0A4A30',stroke:'#1D9E75'},
+  // row3 分岐
+  {id:'cs_renew',    label:'案件継続\n契約更新',                 x:120, y:430, fill:'#0A4A30',stroke:'#1D9E75'},
+  {id:'cs_expire',   label:'案件満了\n満了レポート(FS)',         x:360, y:430, fill:'#2A2000',stroke:'#C9930A'},
+  // row4 アウトカム
+  {id:'cs_pipe',     label:'継続案件\n契約更新・追加',     x:120, y:550, fill:'#0A4A30',stroke:'#1D9E75'},
+  {id:'cs_recycle',  label:'過去稼働後リードへ\nマーケが3ヶ月後リサイクル自動投入',    x:285, y:550, fill:'#0A4A2A',stroke:'#00A33B', w:200},
+  {id:'cs_survey',   label:'アンケート評価回収',                  x:560, y:550, fill:'#0A3A5C',stroke:'#1A8DC0'},
+  // row5 事例ロゴ
+  {id:'cs_case',     label:'事例・ロゴ依頼\n(高評価時 TO-BE)',  x:560, y:670, fill:'#082A1A',stroke:'#1D9E75'},
+];
+
+function drawL3(tobe) {
+  const cv  = document.getElementById('cv-l3');
+  const wrap = document.getElementById('content-l3');
+  cv.width  = Math.max(800, wrap.clientWidth);
+  cv.height = 880;
+  const ctx = cv.getContext('2d');
+  ctx.clearRect(0, 0, cv.width, cv.height);
+  MINI_NODES.length = 0;
+
+  // BG
+  ctx.fillStyle = 'rgba(220,245,228,.4)';
+  ctx.fillRect(0, 0, cv.width, cv.height);
+  ctx.fillStyle = '#1D9E75';
+  ctx.fillRect(0, 0, 3, cv.height);
+
+  // ゾーン区切り
+  [[28,'キックオフ'],[128,'CSアクション（3タイプ）'],[248,'拡大機会・案件管理'],[414,'案件分岐'],[534,'アウトカム'],[654,'満了後処理']].forEach(([y,lbl])=>{
+    ctx.fillStyle='rgba(29,158,117,.05)'; ctx.fillRect(0,y,cv.width,95);
+    ctx.strokeStyle='rgba(29,158,117,.15)'; ctx.lineWidth=1; ctx.setLineDash([4,4]);
+    ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(cv.width,y); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle='rgba(29,158,117,.6)'; ctx.font=`bold 8px 'JetBrains Mono'`; ctx.textAlign='left';
+    ctx.fillText(lbl,10,y+13);
+  });
+
+  // ── 矢印ヘルパー（水平・垂直のみ。斜めなし）──
+  // 垂直矢印（下向き）
+  function arDown(cx, y1, y2, col, lw=1.8, dash=false) {
+    ctx.strokeStyle=col; ctx.lineWidth=lw; ctx.setLineDash(dash?[4,3]:[]);
+    ctx.beginPath(); ctx.moveTo(cx,y1); ctx.lineTo(cx,y2-7); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle=col; ctx.beginPath();
+    ctx.moveTo(cx,y2); ctx.lineTo(cx-5,y2-9); ctx.lineTo(cx+5,y2-9); ctx.closePath(); ctx.fill();
+  }
+  // 水平線（矢印なし・接続線）
+  function hline(x1, x2, y, col, lw=1.8, dash=false) {
+    ctx.strokeStyle=col; ctx.lineWidth=lw; ctx.setLineDash(dash?[4,3]:[]);
+    ctx.beginPath(); ctx.moveTo(x1,y); ctx.lineTo(x2,y); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+  // 垂直線（矢印なし・接続線）
+  function vline(cx, y1, y2, col, lw=1.8) {
+    ctx.strokeStyle=col; ctx.lineWidth=lw; ctx.setLineDash([]);
+    ctx.beginPath(); ctx.moveTo(cx,y1); ctx.lineTo(cx,y2); ctx.stroke();
+  }
+
+  // ── 中心X定数（計算済み）──
+  const KO_CX  = 382.5;  // キックオフ cx=310+145/2
+  const SP_CX  = 197.5;  // cs_support  cx=120+155/2
+  const CS1_CX = 402.5;  // cs_contact cx=295+215/2
+  const CS2_CX = 607.5;  // cs_deepen  cx=530+155/2
+  const QL_CX  = 232.5;  // cs_quality cx=160+145/2
+  const EX_CX  = 452.5;  // cs_expand  cx=380+145/2
+  const DP_CX  = 612.5;  // cs_dept    cx=540+145/2
+  const RN_CX  = 192.5;  // cs_renew   cx=120+145/2
+  const EP_CX  = 432.5;  // cs_expire  cx=360+145/2
+  const PP_CX  = 192.5;  // cs_pipe    cx=120+145/2
+  const RC_CX  = 385.0;  // cs_recycle cx=285+200/2
+  const SV_CX  = 632.5;  // cs_survey  cx=560+145/2
+  const CA_CX  = 632.5;  // cs_case    cx=560+145/2
+
+  // ── 矢印描画（全て水平・垂直のみ）──
+
+  // 【1】キックオフ → 3つのCSアクション（支援同席/定例レビュー/深耕営業）
+  const midY1 = 116;  // 96+20
+  vline(KO_CX, 96, midY1, '#1A8DC0');
+  hline(SP_CX, CS2_CX, midY1, '#1A8DC0');
+  arDown(SP_CX, midY1, 144, '#1A8DC0');
+  arDown(CS1_CX, midY1, 144, '#1A8DC0');
+  arDown(CS2_CX, midY1, 144, '#1A8DC0');
+
+  // 【2/3】cs_contact → cs_quality（実線）/ cs_expand（点線）
+  const midY2 = 230;  // 196+34
+  vline(CS1_CX, 196, midY2, '#1A8DC0');
+  hline(QL_CX, CS1_CX, midY2, '#1A8DC0');
+  arDown(QL_CX, midY2, 264, '#1A8DC0');
+  // cs_contact → cs_expand（点線）
+  hline(CS1_CX, EX_CX, midY2, '#1D9E75', 1.5, true);
+  arDown(EX_CX, midY2, 264, '#1D9E75', 1.5, true);
+  // cs_support → cs_quality（支援同席も品質管理に寄与・実線）
+  vline(SP_CX, 196, midY2, '#1A8DC0');
+  hline(SP_CX, QL_CX, midY2, '#1A8DC0');
+
+  // 【4/5】cs_deepen → cs_expand（実線）/ cs_dept（点線）
+  const midY3 = 230;  // same level
+  vline(CS2_CX, 196, midY3, '#1D9E75');
+  // cs_deepen → cs_expand（水平で左へ）
+  hline(EX_CX, CS2_CX, midY3, '#1D9E75');
+  // cs_deepen → cs_dept（点線・右へ）
+  hline(CS2_CX, DP_CX, midY3, '#1D9E75', 1.5, true);
+  arDown(DP_CX, midY3, 264, '#1D9E75', 1.5, true);
+
+  // 【mini: 追加案件 → 要件整理ミニ】
+  const miniExpY = 330;  // 316+14
+  arDown(EX_CX, 316, miniExpY-2, '#1A8DC0', 2, true);
+  drawMiniNode(ctx, EX_CX-72, miniExpY, 144, 36,
+    '要件整理', 'Layer 2 → Ph.02', '#0A2A4A', '#1A8DC0', 'sf', 'l2');
+
+  // 【mini: 追加部署 → リード管理ミニ】
+  const miniDeptY = 330;  // 316+14
+  arDown(DP_CX, 316, miniDeptY-2, '#C9930A', 2, true);
+  drawMiniNode(ctx, DP_CX-72, miniDeptY, 144, 36,
+    'リード管理', 'Layer 1 → ハウスリスト', '#3A2800', '#C9930A', 'lead_pool', 'l1');
+
+  // 【6】cs_quality → cs_renew / cs_expire（水平バー共有）
+  const splitY = 393;  // ミニノード(y=330〜366)より下、cs_renew/expire(y=430)の手前
+  vline(QL_CX, 316, splitY, '#1A8DC0');
+  hline(RN_CX, EP_CX, splitY, '#1A8DC0');
+  arDown(RN_CX, splitY, 430, '#1D9E75');
+  arDown(EP_CX, splitY, 430, '#C9930A');
+  ctx.fillStyle='#1D9E75'; ctx.font='bold 8px sans-serif'; ctx.textAlign='center';
+  ctx.fillText('継続', RN_CX, splitY-4);
+  ctx.fillStyle='#C9930A';
+  ctx.fillText('満了', EP_CX, splitY-4);
+
+  // 【7】cs_renew → cs_pipe（直線: 同じX=192.5）
+  arDown(PP_CX, 482, 550, '#1D9E75');
+
+  // 【mini: cs_pipe → 見積・要件定義・稟議ミニ】
+  const miniNegoY = 616;  // cs_pipe下端(602)+14
+  arDown(PP_CX, 602, miniNegoY-2, '#1A8DC0', 1.8, true);
+  drawMiniNode(ctx, PP_CX-75, miniNegoY, 150, 36,
+    '見積・要件定義・稟議', 'Layer 2 → Ph.05-07', '#0A3A5C', '#1A8DC0', 'nego', 'l2');
+
+  // 【8】cs_expire → cs_recycle（過去稼働後・緑）/ cs_survey（青）（L字分岐）
+  const forkY = 516;  // 482+34
+  vline(EP_CX, 482, forkY, '#C9930A');
+  hline(RC_CX, SV_CX, forkY, '#C9930A');
+  arDown(RC_CX, forkY, 550, '#00A33B');
+  arDown(SV_CX, forkY, 550, '#1A8DC0');
+
+  // 過去稼働後リード → Layer1 再ナーチャ（緑の戻りループ・ミニノード）
+  const obLoopY = 626;  // cs_recycle下端(602)+24
+  arDown(RC_CX, 602, obLoopY-2, '#00A33B', 2, true);
+  drawMiniNode(ctx, RC_CX-78, obLoopY, 156, 36,
+    '過去稼働後リード', 'Layer 1 → 再ナーチャ', '#0A4A2A', '#00A33B', 'lead_ob', 'l1');
+
+  // 【9】cs_survey → cs_case（直線: 同じX=552.5）
+  arDown(SV_CX, 602, 670, tobe?'#1D9E75':'#AAAAAA', 1.8, !tobe);
+
+  // ── ノード描画（矢印の上書き）──
+  L3_NODES_DEF.forEach(n=>{
+    const isCl=clickedNode&&clickedNode.id===n.id;
+    const isTOBE=tobe&&(n.id==='cs_case');
+    let fill=n.fill, stroke=n.stroke;
+    if(isTOBE){fill='#082A1A'; stroke='#1D9E75';}
+    if(isCl){stroke='#FF8C00';}
+    const w=n.w||L3_NW;
+    ctx.fillStyle=fill; rr(ctx,n.x,n.y,w,L3_NH,9); ctx.fill();
+    ctx.strokeStyle=stroke; ctx.lineWidth=isCl?3:1.8; ctx.setLineDash([]);
+    if(isTOBE){ctx.shadowColor='#1D9E75'; ctx.shadowBlur=8;}
+    rr(ctx,n.x,n.y,w,L3_NH,9); ctx.stroke(); ctx.shadowBlur=0;
+    ctx.fillStyle='white'; ctx.textAlign='center';
+    const lines=n.label.split('\n');
+    const cy2=n.y+L3_NH/2;
+    ctx.font=`bold ${lines.length>1?9.5:12}px 'Noto Sans JP'`;
+    if(lines.length===1){ctx.fillText(lines[0],n.x+w/2,cy2+4);}
+    else{ctx.fillText(lines[0],n.x+w/2,cy2-4); ctx.fillText(lines[1],n.x+w/2,cy2+10);}
+    // テンプレートありのノードに 📄 バッジ
+    if(TMPL_DATA[n.id]){
+      ctx.font='bold 10px monospace'; ctx.textAlign='right';
+      ctx.fillStyle='rgba(255,235,180,0.95)';
+      ctx.fillText('📄',n.x+w-6,n.y+14);
+    }
+    if(tobe&&n.id==='cs_case'){
+      ctx.fillStyle='#52D4A6'; ctx.font='bold 7px monospace';
+      ctx.fillText('🆕 TO-BE',n.x+w/2,n.y-6);
+    }
+  });
+}
+
+document.getElementById('cv-l3').addEventListener('click',e=>{
+  const cv=e.currentTarget, r=cv.getBoundingClientRect();
+  const mx=e.clientX-r.left, my=e.clientY-r.top;
+  // ミニノードのヒットテスト（最優先）
+  for(const mn of MINI_NODES) {
+    if(mx >= mn.x && mx <= mn.x+mn.w && my >= mn.y && my <= mn.y+mn.h) {
+      document.getElementById('block-'+mn.layer).classList.add('open');
+      setTimeout(()=>{ clickedNode={id:mn.id,layer:mn.layer}; openPanel(mn.id,mn.layer); drawAll(); }, 50);
+      return;
+    }
+  }
+  for(const n of L3_NODES_DEF){
+    if(mx>=n.x&&mx<=n.x+(n.w||L3_NW)&&my>=n.y&&my<=n.y+L3_NH){
+      if(TMPL_DATA[n.id]){ openTmpl(n.id); return; }
+      clickedNode={id:n.id,layer:'l3'}; openPanel(n.id,'l3'); drawAll(); return;
+    }
+  }
+});
+
+
+// ══════════════════════════════════════
+// DRAW ALL
+// ══════════════════════════════════════
+function drawAll(){
+  const tobe=currentView==='tobe';
+  if(document.getElementById('block-l1').classList.contains('open')) drawL1(tobe);
+  if(document.getElementById('block-l2').classList.contains('open')) drawL2(tobe);
+  if(document.getElementById('block-l3').classList.contains('open')) drawL3(tobe);
+}
+
+// ══════════════════════════════════════
+// PANEL DATA
+// ══════════════════════════════════════
+// ── テンプレートデータ ──
+const TMPL_DATA = {
+  cs_contact: {
+    title: 'スターリード深耕レビュー設計（定例レビューMTG）',
+    tabs: [
+      {
+        label: '🎯 設計思想',
+        content: `【スターリード深耕レビュー設計】
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ 目的
+━━━━━━━━━━━━━━━━━━━━━━━━
+稼働中顧客（スターリード）に対し、FSが「営業させられている」と
+感じずに、①CS品質管理を主目的としながら②既顧客深耕
+（追加案件・隣部署/担当者開拓）の会話が自然に生まれる仕組みを作る。
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ 核となる考え方
+━━━━━━━━━━━━━━━━━━━━━━━━
+キックオフ時に1ヶ月・3ヶ月・半年のレビューMTGを「契約として」
+予約し、日程調整ツールで先に枠を取る。
+
+後から入れる接点は形骸化するが、最初から仕組みに
+組み込まれた接点は形骸化しない。
+
+・レビューMTGは①プロジェクト品質管理が主目的（FSが受け入れやすい）
+・②は後半に忍ばせる（他社事例・隣部署紹介）
+・枠（いつ会うか）は強制、中身（何を話すか）はFSに委ねる
+・②の弾（他社事例・隣部署紹介の切り口）はAIが事前準備
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ 各レビューの設計
+━━━━━━━━━━━━━━━━━━━━━━━━
+【1ヶ月レビュー】
+主目的：立ち上がり確認・期待値ズレのearly catch・プロ人材との相性確認
+②：まだ出さない（関係構築に専念）
+AIが準備：初月報告サマリ・想定論点
+
+【3ヶ月レビュー】
+主目的：中間成果レビュー。御礼も兼ねて少し上の層も同席
+②：他社事例の共有（情報提供の体で）
+AIが準備：類似業界の他社事例・出すべき事例の選定
+
+【半年レビュー】
+主目的：成果総括。更新意向の確認
+②：隣部署紹介の打診・追加ロールの示唆
+AIが準備：隣部署紹介の切り口・追加提案の構成案`
+      },
+      {
+        label: '📧 キックオフメール',
+        content: `件名：【プロジェクト開始のご案内とレビューMTGのご予約】〇〇株式会社様｜〇〇支援／サーキュレーション 徳永
+
+〇〇株式会社 〇〇様
+
+いつも大変お世話になっております。
+サーキュレーションの〇〇でございます。
+
+このたびはご契約をいただき誠にありがとうございました。
+プロジェクトを着実に前進させ、確実に成果を出すため、
+弊社では以下の通り定例レビューMTGをご用意しております。
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ 定例レビューMTG（品質管理のため必ず実施）
+━━━━━━━━━━━━━━━━━━━━━━━━
+プロジェクトの立ち上がり・中間・総括の各タイミングで、
+進捗と成果を一緒に振り返る場を設けております。
+
+・1ヶ月レビュー：立ち上がり状況の確認（〇月〇日 候補）
+・3ヶ月レビュー：中間成果の振り返り（〇月〇日 候補）
+・半年レビュー ：成果総括と今後のご相談（〇月〇日 候補）
+
+つきましては、先に日程を仮押さえさせていただけますと幸いです。
+以下より候補日をお選びください：
+（日程調整ツールURL）
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ プロジェクト推進体制
+━━━━━━━━━━━━━━━━━━━━━━━━
+・プロ人材：〇〇 様
+・弊社担当：徳永 雄大（yudai.tokunaga@circu.co.jp / 070-1305-8775）
+
+引き続き、どうぞよろしくお願い申し上げます。
+
+以上`
+      },
+      {
+        label: '🚩 ステータスフラグ',
+        content: `【全92件 軽量ステータスフラグ】
+
+FSを②開拓に追い込む道具ではなく、介入すべき案件を
+絞り込むトリアージとして設計する。
+FSは「②をやれ」と迫られるのではなく「今こういう状態です」と置くだけ。
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+🔴 ①不調
+状態：プロジェクトがうまくいっていない
+次アクション：②提案対象外。①の立て直しに集中
+
+🟡 ①安定・関係浅い
+状態：PJTは順調だがカウンターパートと関係が薄い
+次アクション：レビューMTGで接触頻度を積む。②はまだ出さない
+
+🟢 ①安定・関係良好
+状態：PJT順調かつキーマンと信頼がある
+次アクション：②の起点候補。レビュー後半で他社事例・隣部署を打診
+
+⭐ ②シグナルあり
+状態：AIまたはFSが②のタネを検出
+次アクション：徳永/松村も巻き込んで具体アクション
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+ポイント：🟢🟢⭐になった案件にだけ②の能動アクションを集中。
+全92件に②を期待しない。`
+      }
+    ]
+  },
+  sf: {
+    title: '要件整理 — GEM & SF入力ガイド',
+    tabs: [
+      {
+        label: '🤖 GEM（要件整理AI）を開く',
+        content: `GEM（要件整理自動化AI）を使って商談後の要件整理を行います。
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ GEM リンク
+━━━━━━━━━━━━━━━━━━━━━━━━
+以下のURLをクリックしてGEMを開いてください：
+
+https://gemini.google.com/gem/1VMuaczRb2h2OW7lrgXJV2VO38Cv1EyeC?usp=sharing
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ GEM の使い方
+━━━━━━━━━━━━━━━━━━━━━━━━
+1. 上記URLからGEMを開く
+2. Zoomの文字起こし（トランスクリプト）をペースト
+3. GEMが自動で以下を生成：
+   - SF入力用の要件整理
+   - ASIS/TOBE/GAP整理
+   - 人材要件
+   - マイルストーン
+   - 御礼メール下書き
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ SF（Salesforce）入力項目
+━━━━━━━━━━━━━━━━━━━━━━━━
+・企業名・担当者名
+・ASIS（現状と背景）
+・TOBE（目指す姿・ゴール）
+・GAP（解決すべき課題）
+・人材要件（求めるプロ人材のケイパビリティ）
+・期待する役割
+・稼働条件（期間・工数・場所・報酬）
+・マイルストーン
+・予算感・決裁フロー`
+      },
+      {
+        label: '📋 SF入力チェックリスト',
+        content: `【SF入力チェックリスト】商談後・要件整理時
+
+□ 企業名・担当者名・部署
+□ 商談日・次回アクション日
+□ ASIS（現状と背景）3〜10行
+□ TOBE（目指す姿・ゴール）3行以上
+□ GAP（解決すべき課題）3行以上
+□ 人材要件（ケイパビリティ）
+□ プロへの依頼内容（役割）
+□ 稼働期間（開始〜）
+□ 稼働工数（月〇回程度）
+□ 勤務場所（リモート可否）
+□ 稼働報酬（目安）
+□ 予算感・決裁フロー
+□ マイルストーン（キックオフ目安等）
+□ 次回アクション入力済み
+
+⚠️ GEMを使えば上記を自動生成できます`
+      }
+    ]
+  },
+  select: {
+    title: '人選・案件相談 — プロ人材への打診メール',
+    tabs: [
+      {
+        label: '📧 案件打診メール（プロ人材向け）',
+        content: `【案件打診テンプレート】プロ人材への案件相談メール
+
+件名：【案件ご相談】〇〇株式会社様｜〇〇支援／サーキュレーション〇〇（担当者名）
+
+〇〇様
+
+お世話になっております。
+サーキュレーション／エンタープライズチーム〇〇（担当者名）です。
+
+この度、表記案件のご相談にてご連絡いたしました。
+「〇〇株式会社様｜〇〇支援」の案件でございます。
+
+大変お手数ですが、案件概要について以下ご確認いただけますと幸いでございます。
+また、判断にあたって追加でご確認事項等がございましたら、お知らせくださいませ。
+
+【ご確認依頼事項】
+◯ 本案件へのご興味の有無
+◯ 捻出可能な稼働率・希望報酬（目安で構いません）
+◯ 直近のレジュメ（もしお手元にあればで構いません）
+◯ 本案件の類似の実績（簡単な内容で結構ですので複数いただけますと幸いです）
+
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
+企業名：〇〇株式会社：（企業URL）
+
+ASIS（現状と背景）：
+・〇〇
+・〇〇
+・〇〇
+
+TOBE（目指す姿・ゴール）：
+・〇〇
+・〇〇
+・〇〇
+
+GAP（解決すべき課題）：
+・〇〇
+・〇〇
+・〇〇
+
+人材要件（求めるプロ人材のケイパビリティ）：
+・〇〇
+・〇〇
+・〇〇
+
+プロ人材への依頼内容（期待する役割）：
+・〇〇
+・〇〇
+・〇〇
+
+稼働条件（想定）：
+・稼働期間：〇〇年〇月〜（まずは〇ヶ月スポットを想定、成果に応じて継続）
+・稼働工数：月〇〜〇回程度（定例会参加＋随時アドバイザリー）
+・勤務場所：リモート可（一部対面あり）
+・稼働報酬：応相談
+
+【今後の進め方】
+ご支援の可否をご確認後、クライアントとのオンライン面談の日程調整を進める予定です。
+
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
+その他ご不明点等ございましたらお気軽にご連絡ください。
+何卒よろしくお願い申し上げます。
+
+以上`
+      },
+      {
+        label: '💡 使い方メモ（チーム共有）',
+        content: `【案件打診メール 使い方メモ】チーム共有用
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ 件名の形式
+━━━━━━━━━━━━━━━━━━━━━━━━
+【案件ご相談】〇〇株式会社様｜〇〇支援／サーキュレーション 担当者名
+（「様」と「｜」「／」の使い方は既存メール通りに統一）
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ ASIS/TOBE/GAPの書き方
+━━━━━━━━━━━━━━━━━━━━━━━━
+箇条書きで簡潔に。商談メモをそのまま落とし込む形でOK。
+背景が多い場合はASISを7〜10行まで増やしてOK。
+
+■ ご確認依頼事項の4点
+この4点は固定で毎回記載する。
+
+■ 担当者が複数の場合
+送信担当者名で送り、他メンバーをCcに入れる。
+例：「Cc：弊社 徳永」
+
+■ 稼働報酬
+相場感がある場合は「月額〇〇万円〜（応相談）」と記載してもよいが、
+クライアントとの調整前は「応相談」が無難。`
+      }
+    ]
+  },
+  propose: {
+    title: '提案書作成 — Claudeプロジェクト自動生成',
+    tabs: [
+      {
+        label: '🤖 Claudeプロジェクトを開く',
+        content: `【提案書自動生成 Claudeプロジェクト】
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ Claudeプロジェクト リンク
+━━━━━━━━━━━━━━━━━━━━━━━━
+https://claude.ai/project/019eb570-d6d7-71a2-92fc-31f72a4e5bf8
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ 使い方（インプット2点を貼るだけ）
+━━━━━━━━━━━━━━━━━━━━━━━━
+① GEM（要件整理AI）で生成した要件整理テキストをコピー
+② プロ人材の経歴書（PDF or テキスト）を用意
+③ 上記Claudeプロジェクトを開く
+④ 以下のプロンプトとともに貼り付ける：
+
+---
+【要件整理】
+（GEMで出力した内容をここに貼る）
+
+【プロ人材経歴書】
+（経歴書の内容をここに貼る）
+
+上記をもとに提案書PPTXを作成してください。
+---
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ アウトプット（自動生成されるもの）
+━━━━━━━━━━━━━━━━━━━━━━━━
+・提案書PPTX（スライドデッキ）
+  - プロジェクト概要
+  - マイルストーン
+  - プロジェクト体制
+  - 候補者比較
+  - プロ人材プロフィール
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ フロー（全体像）
+━━━━━━━━━━━━━━━━━━━━━━━━
+商談（Zoom）
+  ↓
+GEM（要件整理AI）で文字起こし→要件整理
+  ↓
+人選・ASSが経歴書を送付
+  ↓
+Claudeプロジェクトで提案書自動生成（← ここ）
+  ↓
+提案書PPTXを顧客にメール送付`
+      },
+      {
+        label: '📧 提案書送付メール',
+        content: `【テンプレート】提案書送付メール（顧客向け）
+
+件名：【ご提案】〇〇株式会社様｜〇〇支援 プロ人材ご提案／サーキュレーション 徳永
+
+●●株式会社 〇〇様
+
+いつも大変お世話になっております。
+サーキュレーションの徳永でございます。
+
+先日のお打ち合わせを踏まえ、今回ご支援いただけるプロ人材のご提案資料をお送りいたします。
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ ご提案内容
+━━━━━━━━━━━━━━━━━━━━━━━━
+今回は〇名のプロ人材をご提案いたします。
+各候補者の実績・稼働条件などを資料にまとめておりますので、
+ご確認いただけますと幸いです。
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ 次のステップ（ご提案後）
+━━━━━━━━━━━━━━━━━━━━━━━━
+・ご興味いただいた候補者がいらっしゃいましたら、
+  オンラインでの面談日程を調整させていただきます。
+・複数名とのご面談も可能ですので、お気軽にお申し付けください。
+
+ご不明な点やご質問がございましたら、いつでもお申し付けください。
+引き続き、どうぞよろしくお願いいたします。
+
+以上`
+      }
+    ]
+  },
+  contract: {
+    title: '契約手続き テンプレート集',
+    tabs: [
+      {
+        label: '📧 契約書送付メール',
+        content: `【テンプレート】契約合意後・契約書送付時メール（顧客向け）
+
+件名：【契約にあたりご確認とご案内】〇〇様｜●●株式会社 ××支援｜株式会社サーキュレーション 徳永
+
+●●株式会社 〇〇様
+
+いつも大変お世話になっております。
+サーキュレーションの徳永でございます。
+
+このたびはご契約のご合意をいただき、誠にありがとうございました。
+以下の通りご連絡申し上げますので、ご確認いただけますと幸いです。
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ 契約書のご確認
+━━━━━━━━━━━━━━━━━━━━━━━━
+添付の契約書ドラフトをご確認ください。
+内容に問題がなければ、電子契約の手続きを進めさせていただきます。
+修正・ご不明点などございましたら、お気軽にお申し付けください。
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ 業務報告・請求管理システム「PROBASE」へのご登録依頼
+━━━━━━━━━━━━━━━━━━━━━━━━
+弊社では、業務報告書および請求書の確認・ダウンロードに「PROBASE」というシステムをご利用いただいております。
+別途、システムよりご招待のご案内をお送りいたしますので、ご登録をお願いできますでしょうか。
+つきましては、以下の情報をご教示いただけますと幸いです。
+
+・PROBASEご登録用メールアドレス
+　└ 業務報告書：
+　└ 請求書：
+・貴社の締め日（月末締め、20日締めなど）：
+締め日をもとに、プロ人材への業務報告書の提出期限を設定させていただきます。
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ コミュニケーションツールのご確認・ご登録
+━━━━━━━━━━━━━━━━━━━━━━━━
+プロジェクト推進にあたって使用するコミュニケーションツール（Teams・Slack等）についてご確認させてください。
+プロ人材のアカウント招待が必要な場合は、早めに準備を進めたいと考えております。
+
+・ご利用予定のツール：
+・登録いただきたいアドレス：
+　└ プロ人材：XXXX@XXX
+　└ 当社：yudai.tokunaga@circu.co.jp
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ 支援メンバーの情報
+━━━━━━━━━━━━━━━━━━━━━━━━
+担当プロ人材および弊社担当のメールアドレスをお伝えいたします。
+
+・プロ人材：〇〇 様（メール：●●●@xxx.com、電話：0X0-XXXX-XXXX）
+・弊社担当：徳永 雄大（メール：yudai.tokunaga@circu.co.jp、電話：070-1305-8775）
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ キックオフまでの共有資料
+━━━━━━━━━━━━━━━━━━━━━━━━
+キックオフMTGまでにプロ人材がインプットできるよう、可能な範囲で以下の資料をご共有いただけますと幸いです。
+（例）組織図、業務フロー図、プロジェクト概要資料、課題整理資料 など
+
+お手数をおかけしますが、何卒よろしくお願い申し上げます。
+ご不明な点がございましたら、いつでもお気軽にお申し付けください。
+引き続き、どうぞよろしくお願いいたします。
+
+以上`
+      }
+    ]
+  }
+};
+
+// ── テンプレートモーダル制御 ──
+let currentTmplTabIndex = 0;
+
+function openTmpl(id) {
+  const data = TMPL_DATA[id];
+  if (!data) return;
+  document.getElementById('tmpl-title').textContent = data.title;
+  const tabsEl = document.getElementById('tmpl-tabs');
+  tabsEl.innerHTML = data.tabs.map((t, i) =>
+    `<button class="tmpl-tab${i===0?' active':''}" onclick="switchTmplTab(${i})">${t.label}</button>`
+  ).join('');
+  currentTmplTabIndex = 0;
+  _currentTmplId = id;
+  renderTmplContent(data.tabs[0].content);
+  document.getElementById('tmpl-overlay').classList.add('open');
+  document.getElementById('tmpl-copy-btn').textContent = '📋 コピー';
+  document.getElementById('tmpl-copy-btn').classList.remove('copied');
+}
+
+let _currentTmplId = null;
+
+function switchTmplTab(i) {
+  const dataEntry = TMPL_DATA[_currentTmplId];
+  if (!dataEntry) return;
+  currentTmplTabIndex = i;
+  renderTmplContent(dataEntry.tabs[i].content);
+  document.querySelectorAll('.tmpl-tab').forEach((t,j) => t.classList.toggle('active', j===i));
+  document.getElementById('tmpl-copy-btn').textContent = '📋 コピー';
+  document.getElementById('tmpl-copy-btn').classList.remove('copied');
+}
+
+function renderTmplContent(text) {
+  const el = document.getElementById('tmpl-text');
+  // URLをクリック可能なリンクボタンに変換
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  const parts = text.split(urlRegex);
+  el.innerHTML = '';
+  parts.forEach(part => {
+    if (urlRegex.test(part)) {
+      const a = document.createElement('a');
+      a.href = part; a.target = '_blank'; a.rel = 'noopener';
+      a.textContent = part;
+      a.style.cssText = 'color:#9B6FF4;text-decoration:underline;word-break:break-all';
+      el.appendChild(a);
+      urlRegex.lastIndex = 0;
+    } else {
+      el.appendChild(document.createTextNode(part));
+    }
+  });
+}
+
+function closeTmpl() {
+  document.getElementById('tmpl-overlay').classList.remove('open');
+}
+
+function copyTmpl() {
+  const text = document.getElementById('tmpl-text').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('tmpl-copy-btn');
+    btn.textContent = '✓ コピー完了';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 コピー'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// キーボードでモーダルを閉じる
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeTmpl(); });
+
+
+const PANEL_DATA = {
+  // ═══ Layer 1 — リード状態レーン（新構成）═══
+  // リサイクルレーン
+  rc_check:{icon:'🔍',title:'リサイクル：前回文脈の確認（SF）',who:'IS：林',wc:'w-is',
+    asis:[{t:'human',w:'👤 IS',l:'SFで前回内容を読む',d:'前回商談の内容・DEAD理由・FSが残したフック文・リサイクルコメントを確認。文脈なし架電は禁止',tools:['sf']}],
+    tobe:[{t:'ai',w:'🤖 AI',l:'文脈サマリ自動提示',d:'予定日が来たリードの前回文脈をGEMが要約し、フック文付きで提示',tools:['claude','sf'],isNew:true}],
+    issue:'前回文脈を読まずに架電すると顧客体験が悪化し受注率が下がる',ai:'🔧 文脈サマリ自動提示（設計中）'},
+  rc_call:{icon:'📞',title:'リサイクル：予定日に文脈ありコール',who:'IS：林',wc:'w-is',
+    asis:[{t:'human',w:'👤 IS',l:'予定日にアポ目的でコール',d:'「前回伺った〇〇の件で」から始める。リサイクルはアポを取りに行くのが目的',tools:['gmail']},
+          {t:'human',w:'👤 IS',l:'アポ獲得→FSへトス',d:'商談アポが取れたらFSへ。NG時は次回予定日を再入力',tools:['sf']}],
+    tobe:[{t:'ai',w:'🤖 AI',l:'キラーメッセージ自動生成',d:'文脈に基づくトークスクリプト・メール文面を生成。ISは確認して実行',tools:['claude'],isNew:true}],
+    issue:'',ai:'🔧 トークスクリプト自動生成（設計中）'},
+  // 休眠レーン
+  sl_context:{icon:'🗂',title:'休眠：過去情報で文脈づくり',who:'IS / マーケ',wc:'w-is',
+    asis:[{t:'human',w:'👤 IS',l:'過去商談/取引の履歴を確認',d:'予定日が回っていない休眠リード。特に過去稼働顧客は最ももったいない',tools:['sf']}],
+    tobe:[{t:'ai',w:'🤖 AI',l:'休眠掘り起こしリスト自動生成',d:'過去履歴から再接触すべき休眠を抽出し、文脈とともに提示',tools:['claude','sf'],isNew:true}],
+    issue:'FS（案件管理）とIS（リード/アポ管理）が分かれ、間でエラー。過去稼働顧客の休眠が放置されがち',ai:'🔧 掘り起こしリスト自動化（設計中）'},
+  sl_touch:{icon:'✉️',title:'休眠：変化ヒアリングの再接触',who:'IS：林',wc:'w-is',
+    asis:[{t:'human',w:'👤 IS',l:'アポ強制しない再接触',d:'「前回からの変化はありますか」を聞くメール/電話だけでも可。必要に応じてアップデートのアポを設定。無理にアポを取らない'}],
+    tobe:[{t:'ai',w:'🤖 AI',l:'文脈ある再接触文を生成',d:'過去商談から一定期間後に、変化を尋ねる自然な文面を自動生成',tools:['claude'],isNew:true}],
+    issue:'これまで「プロ人材活用のアポください」と文脈なく連絡し顧客体験が悪かった',ai:'🔧 再接触文の自動生成（設計中）'},
+  // 未提案レーン
+  nw_theme:{icon:'📣',title:'未提案：テーマ切り口で訴求',who:'マーケ：松村',wc:'w-mkt',
+    asis:[{t:'human',w:'👤 松村',l:'月次テーマで潜在課題を示唆',d:'商談歴のない未提案リードへ、月次テーマで切り口・潜在課題を提示。第一想起づくりが目的',tools:['pardot']}],
+    tobe:[{t:'ai',w:'🤖 AI',l:'部署別の刺さる切り口を自動提案',d:'コンテンツネタ一覧×対象部署から、刺さる切り口を月次で提案',tools:['claude'],isNew:true}],
+    issue:'基本はリーチしておく。エンプラは異動があり、明確なターゲット外のみ除外',ai:'🔧 切り口自動提案（設計中）'},
+  nw_call:{icon:'📞',title:'未提案：ISコールでホット化',who:'IS：林',wc:'w-is',
+    asis:[{t:'human',w:'👤 IS',l:'反応者へコール',d:'配信に反応した未提案リードへコール。コールド→ホット化し、第一想起を取る'}],
+    tobe:[{t:'ai',w:'🤖 AI',l:'反応者の自動リスト化＋トーク提示',d:'反応シグナルを検知してISへ通知、トークスクリプトを添える',tools:['pardot','slack','claude'],isNew:true}],
+    issue:'マーケ配信だけでは限界。ISコールで第一想起化・インバウンド誘発を狙う',ai:'🔧 反応者自動通知（設計中）'},
+  // ABMレーン
+  abm_trigger:{icon:'🎯',title:'ABM：外部環境トリガー検知',who:'FS（アカウント責任者）＋Mgr',wc:'w-fs',
+    asis:[{t:'human',w:'👤 FS',l:'人事異動・決算・中計・IRを監視',d:'今は型がなくFSの自由度任せで進んでいない。顧客カレンダー（外部環境・企業動向）を起点に動くべき',tools:['sf']}],
+    tobe:[{t:'ai',w:'🤖 AI',l:'外部環境シグナルの自動検知',d:'人事異動・決算・中計・プレスを監視し、動くべきタイミングと切り口をFSへ通知。マーケカレンダーの【外部環境・企業動向】を型化',tools:['claude'],isNew:true}],
+    issue:'ABMの型がなく属人的。外部環境トリガーで動く型をつくる必要がある',ai:'💡 外部環境トリガー型（構想中）'},
+  abm_content:{icon:'📝',title:'ABM：カスタムコンテンツ作成',who:'FS＋Mgr',wc:'w-fs',
+    asis:[{t:'human',w:'👤 FS',l:'その企業向けに仕立てる',d:'カスタマイズした事例・支援実績・提案をメール/コールに添える。手段はメール/コールだが内容を個社最適化'}],
+    tobe:[{t:'ai',w:'🤖 AI',l:'個社カスタム素材を自動生成',d:'トリガー＋業界事例から、その企業向けの切り口・提案素材を生成。FSは確認のみ',tools:['claude'],isNew:true}],
+    issue:'素材づくりがFSの負荷。Mgrが事前に弾を用意する必要がある',ai:'💡 個社カスタム素材生成（構想中）'},
+  abm_contact:{icon:'🤝',title:'ABM：週1コンタクト / MTG',who:'FS（アカウント責任者）',wc:'w-fs',
+    asis:[{t:'human',w:'👤 FS',l:'関係維持しつつ案件機会を探る',d:'週1でコンタクト・MTG。関係維持・第一想起と案件創出の両方が目的。出口はインバウンド誘発＋案件創出'}],
+    tobe:[{t:'human',w:'👤 FS',l:'用意された弾で定期接触',d:'AIが用意したトリガー・素材を使い、週次定例で確実に接触'}],
+    issue:'週1の接点設計が回っていない。仕組みで接触を担保する',ai:'💡 アカウント接点の仕組み化（構想中）'},
+  lead_mgmt:{icon:'🗂',title:'リード管理：Tier（企業）× リード状態（担当者）',who:'マーケ・IS・FS 共通言語',wc:'w-is',matrix:true,
+    asis:[
+      {t:'human',w:'🏢 Tier1',l:'最重要・FSがアカウント責任者｜ABM',d:'外部環境（人事異動・決算・中計）をトリガーに動く「型」。週1コンテンツ供給・MTG。担当=FS'},
+      {t:'human',w:'🏢 Tier2',l:'準開拓・引き上げ対象｜IS/マーケ',d:'大量アポを設定・訴求して最重要顧客へ引き上げる。担当あり'},
+      {t:'human',w:'🏢 Tier3',l:'ほぼ関係なし｜部門リード',d:'マーケ施策でコールド→ホット化。担当なし（アポが取れたら担当を付与）'},
+      {t:'human',w:'🏢 Tier4',l:'履歴なし｜部門リード',d:'完全オペレーション配信のみ。担当なし'},
+      {t:'tool',w:'🔄 リサイクル',l:'予定日入り→ISが連絡',d:'商談後、FSがリサイクル「あり」を選択し予定日を入力。その日にISが文脈を持って連絡'},
+      {t:'tool',w:'💤 休眠',l:'予定日なし→文脈再接触',d:'過去商談したが予定日未設定。無理にアポを取らず「前回からの変化」を聞く再接触から'},
+      {t:'tool',w:'🆕 未提案',l:'商談歴なし→基本リーチ',d:'ウェビナー登録のみ/架電拒否/ターゲット外。明確なターゲット外のみ除外し基本はリーチ'},
+      {t:'tool',w:'◆ 過去稼働後',l:'満了→3ヶ月後自動投入',d:'Layer3満了から来る別状態。休眠とは別扱い。音信不通NG。マーケが全件リサイクル投入'},
+    ],
+    tobe:[
+      {t:'auto',w:'⚡ 自動',l:'Tier自動更新',d:'行動スコア・取引履歴からTierを自動再判定',tools:['sf','pardot'],isNew:true},
+      {t:'auto',w:'⚡ 自動',l:'状態遷移の自動管理',d:'DEAD→リサイクル/休眠、満了→過去稼働後 を自動で振り分け',tools:['sf','n8n'],isNew:true},
+    ],
+    issue:'これまでTHE MODEL型でFSにリード管理の認識がほぼない。Tierと状態を全員の共通言語にすることが第一歩',
+    ai:'🔧 Tier自動更新・状態遷移の自動化（設計中）。SF改修の原典'},
+  op_mkt:{icon:'📣',title:'マーケ施策：テーマ配信→反応→MQL',who:'エンプラマーケ：松村 × 徳永Mgr',wc:'w-mkt',
+    asis:[
+      {t:'human',w:'👤 松村/徳永',l:'テーマ設計・コンテンツ配信',d:'月次テーマ×対象部署。月1テーマ配信／週2プロ人材紹介／月1事例。提案でなく情報提供で第一想起を取る',tools:['pardot']},
+      {t:'human',w:'👤 松村',l:'反応スコアリング',d:'開封・クリック・DL・ウェビナー参加をPardotで把握',tools:['pardot','sf']},
+      {t:'human',w:'👤 松村/IS',l:'MQL引き上げ→IS連携',d:'閾値超え＝MQL。eeasy日程調整 or ISへトス'},
+    ],
+    tobe:[
+      {t:'ai',w:'🤖 AI',l:'テーマ切り口の自動生成',d:'コンテンツネタ一覧×顧客の外部環境から刺さる切り口を月次提案',tools:['claude'],isNew:true},
+      {t:'auto',w:'⚡ 自動',l:'反応スコア→IS自動通知',d:'閾値超えをISへSlack自動通知',tools:['pardot','slack'],isNew:true},
+    ],
+    issue:'配信後の反応をアポにつなげる導線が属人的。誰がいつ追うか曖昧',
+    ai:'🔧 テーマ自動生成＋反応スコアリング（設計中）'},
+  op_is:{icon:'📞',title:'IS：対象抽出→文脈→コール→SQL',who:'IS：林（＋来月から業務委託IS）',wc:'w-is',
+    asis:[
+      {t:'human',w:'👤 IS',l:'① 対象リード抽出',d:'Tier/リサイクル/休眠/未提案から当日の架電対象を抽出',tools:['sf']},
+      {t:'human',w:'👤 IS',l:'② 前回文脈の確認（SF）',d:'前回DEAD理由・フック文・リサイクルコメントを必ず読む。文脈なし架電は禁止',tools:['sf']},
+      {t:'human',w:'👤 IS',l:'③ 文脈ありコール／2M',d:'「前回伺った〇〇の件で」から始める'},
+      {t:'human',w:'👤 IS',l:'④ アポ獲得',d:'関心を引けたら商談アポを設定'},
+      {t:'human',w:'👤 IS',l:'⑤ FSへ商談トス→SQL',d:'商談化＝SQL。FSへ引き継ぎLayer2へ',tools:['sf']},
+      {t:'human',w:'👤 IS',l:'⑥ NG時：リサイクル日入力',d:'断られたら次回連絡日をSFに入力→リサイクルリードへ',tools:['sf']},
+    ],
+    tobe:[
+      {t:'ai',w:'🤖 AI',l:'対象抽出＋フック文を自動生成',d:'リサイクル日・前回文脈から対象を自動抽出し、文脈あるフック文をGEMが生成',tools:['claude','sf'],isNew:true},
+      {t:'human',w:'👤 IS',l:'確認して架電',d:'AI生成のフック文を確認→コール／2M。新ISでも初日から徳永品質で動ける'},
+    ],
+    issue:'文脈なしコールドアプローチが受注率を下げる。新IS（業務委託）が来月入るため、型化・教材化が急務',
+    ai:'🔧 対象抽出＋フック自動生成（設計中）。本ボックスがISオンボーディング教材'},
+  nurture:{icon:'🌱',title:'ナーチャリング・エンジン（文脈維持・第一想起）',who:'マーケ：松村 × IS：林 × FS',wc:'w-mkt',
+    asis:[
+      {t:'human',w:'👤 松村',l:'月1テーマ配信＋週2プロ人材紹介＋月1事例',d:'ハウスリストへテーマ別コンテンツ・直近登録プロ人材・PKSHAグループ事例を配信。提案でなく情報提供で脳内シェアを取る',tools:['pardot']},
+      {t:'human',w:'👤 IS',l:'文脈ある架電・2M',d:'配信反応や前回フックを起点に、文脈を持ってコール・メール',tools:['sf','gmail']},
+      {t:'human',w:'👤 FS',l:'Tier1関係構築（ABM）',d:'担当アカウントの外部環境を見て継続接触。第一想起を維持'},
+    ],
+    tobe:[
+      {t:'ai',w:'🤖 AI',l:'テーマ切り口の自動生成',d:'コンテンツネタ一覧×顧客の外部環境から「刺さる切り口」を月次で自動提案',tools:['claude'],isNew:true},
+      {t:'auto',w:'⚡ 自動',l:'反応スコア→IS自動通知',d:'開封・クリック・DLを検知し閾値超えをISへSlack通知',tools:['pardot','slack'],isNew:true},
+    ],
+    issue:'文脈維持が属人的。FSはLayer2に張り付くためLayer1にリソースを割けない＝マーケ＋ISの空中戦が要',
+    ai:'🔧 テーマ自動生成＋反応スコアリング（設計中）'},
+  mql_sql:{icon:'📈',title:'通常動線：MQL / SQL 創出 → 商談',who:'マーケ：松村 → IS：林',wc:'w-mkt',
+    asis:[
+      {t:'human',w:'👤 松村/IS',l:'反応リードをMQL/SQLに引き上げ',d:'配信・ウェビナー・広告への反応をMQL化、ISの架電・eeasy日程調整でSQL化して商談を作る。現在の主ボリューム',tools:['pardot','sf']},
+      {t:'human',w:'👤 IS',l:'eeasy日程調整から商談設定',d:'コンテンツ内のeeasyリンクから顧客が自己予約、または架電からアポ獲得'},
+    ],
+    tobe:[
+      {t:'auto',w:'⚡ 自動',l:'eeasy予約→SF自動起票→FS通知',d:'予約完了をトリガーにSF商談を自動作成し担当へ通知',tools:['sf','slack'],isNew:true},
+    ],
+    issue:'反応からアポ・商談化までの導線が属人的。誰がいつ追うか曖昧で取りこぼす',
+    ai:'🔧 予約→SF自動起票（設計中）'},
+  abm:{icon:'🎯',title:'Tier1 = ABM（外部環境トリガーで動く型）',who:'FS（アカウント責任者）＋Mgr',wc:'w-fs',
+    asis:[
+      {t:'human',w:'👤 FS',l:'カスタムコンテンツ・実績添付でメール/コール',d:'今は型がなくFSの自由度に任されている。手段はメール/コールだが進んでいない'},
+    ],
+    tobe:[
+      {t:'ai',w:'🤖 AI',l:'外部環境トリガーの自動検知',d:'人事異動・決算・中計・IRなど顧客の外部環境を監視し、動くべきタイミングと切り口をFSへ提示。マーケカレンダーの【外部環境・企業動向】を型化',tools:['claude'],isNew:true},
+      {t:'human',w:'👤 FS',l:'用意された型で接触',d:'AIが用意したトリガー＋切り口＋素材を使い、ゼロから考えずにアプローチ'},
+    ],
+    issue:'ABMの型がなく、属人的で進捗していない。顧客カレンダー（外部環境）を起点にする型が必要',
+    ai:'💡 外部環境トリガー型ABM（構想中）'},
+  lead_recycle:{icon:'🔄',title:'リード状態：リサイクルリード',who:'FS入力 → IS連絡',wc:'w-is',
+    asis:[
+      {t:'human',w:'👤 FS',l:'リサイクル予定日を入力',d:'商談後、次に連絡したい日をFSがSFに入力。これに紐づく顧客担当者がリサイクルリード',tools:['sf']},
+      {t:'human',w:'👤 IS',l:'予定日に文脈ある連絡',d:'リサイクル予定日にISが前回の文脈を持って連絡'},
+    ],
+    tobe:[{t:'ai',w:'🤖 AI',l:'リサイクル日・フック文を自動生成',d:'DEAD判定時に予定日とフック文を自動生成しSFへ',tools:['claude','sf'],isNew:true}],
+    issue:'FSのリサイクル入力が任意で抜け漏れる。ISが予定日を見落とすこともある',ai:'🔧 リサイクル自動生成（設計中）'},
+  lead_sleep:{icon:'💤',title:'リード状態：休眠リード',who:'マーケ／IS',wc:'w-mkt',
+    asis:[
+      {t:'human',w:'👤 IS',l:'文脈なしの掘り起こし（現状の課題）',d:'過去商談したがリサイクル未設定。これまでは「プロ人材活用のアポください」と文脈なく連絡し顧客体験が悪かった'},
+    ],
+    tobe:[
+      {t:'human',w:'👤 IS',l:'過去情報に基づく再接触',d:'無理にアポを取らない。例：前回商談から3ヶ月後に「前回からの変化」をメール/電話で聞くだけでも可。必要に応じてアップデートのアポ',tools:['gmail','sf']},
+      {t:'ai',w:'🤖 AI',l:'過去商談の文脈を自動要約',d:'過去商談履歴・DEAD理由をまとめ、文脈ある再接触文を生成',tools:['claude'],isNew:true},
+    ],
+    issue:'最ももったいない層。文脈なしアプローチが顧客体験を壊す。過去稼働後はここと別扱いにすべき',
+    ai:'🔧 文脈ベース再接触の自動化（設計中）'},
+  lead_new:{icon:'🆕',title:'リード状態：未提案リード',who:'マーケ／IS',wc:'w-is',
+    asis:[
+      {t:'human',w:'👤 松村/IS',l:'ハウスリスト内・商談歴なし',d:'ウェビナー登録だけ・架電拒否・ターゲットランク外などのリード'},
+    ],
+    tobe:[
+      {t:'human',w:'👤 FS/IS',l:'基本はリーチしておく',d:'エンプラは異動があり、キーマンと仲良ければ立ち話してくれる。明確なターゲット外のみ除外'},
+    ],
+    issue:'ターゲット外判定が粗い。異動・関係性で化ける可能性を取りこぼさない設計が要',ai:''},
+  lead_ob:{icon:'◆',title:'リード状態：過去稼働後リード（スターリードOB）',who:'FS（レポート）→ マーケ（投入）',wc:'w-fs',
+    asis:[
+      {t:'human',w:'👤 FS',l:'満了後に放置されがち（根本課題）',d:'プロジェクト情報がFSの中に閉じている。満了後の文脈が誰にも見えず音信不通になりやすい'},
+    ],
+    tobe:[
+      {t:'human',w:'👤 FS',l:'満了レポートを出す',d:'満了時にプロジェクトの結果・中身をレポート化（中身はFSしか知らないため）',tools:['sf']},
+      {t:'auto',w:'⚡ マーケ',l:'全件リサイクル3ヶ月後に自動投入',d:'FSに依頼すると止まるため、マーケが満了案件を全件リサイクル（3ヶ月後）として自動投入。休眠に落とさない',tools:['sf'],isNew:true},
+    ],
+    issue:'根本問題：プロジェクト情報がFSに閉じている。まずは満了レポート→リサイクル自動投入で音信不通を防ぐ',
+    ai:'💡 満了レポート→自動リサイクル投入（構想中）'},
+  // ═══ Layer 1 — 商談獲得チャネル（4経路）═══
+  // ① マーケ施策
+  mkt_content:{icon:'📨',title:'① マーケ施策：テーマメルマガ・コンテンツ配信',who:'エンプラマーケ：松村 × 徳永Mgr',wc:'w-mkt',
+    asis:[
+      {t:'human',w:'👤 松村/徳永',l:'月1テーマ配信・コンテンツマーケ',d:'ハウスリスト8,000件へテーマ別コンテンツを配信。提案ではなく情報提供で「第一想起」「文脈維持」を狙う',tools:['pardot']},
+      {t:'human',w:'👤 松村',l:'反応リードの抽出',d:'開封・クリック・資料DLなどの反応をPardotで把握し、ISへ連携',tools:['pardot','sf']},
+    ],
+    tobe:[
+      {t:'ai',w:'🤖 AI',l:'反応スコアリング→自動通知',d:'行動スコアが閾値を超えたリードを自動検出し、ISへSlack通知',tools:['pardot','slack'],isNew:true},
+    ],
+    issue:'配信後の反応をアポにつなげる導線が弱い。誰がいつ追うか曖昧',
+    ai:'🔧 反応スコア→IS自動通知（設計中）'},
+  mkt_eeasy:{icon:'📅',title:'① eeasy 日程調整から商談設定',who:'エンプラマーケ：松村',wc:'w-mkt',
+    asis:[
+      {t:'human',w:'👤 顧客',l:'eeasyから日程を自己予約',d:'コンテンツ内のeeasyリンクから、顧客が自分で商談日程を予約。アポ強制でなく「会話のきっかけ」として機能'},
+      {t:'human',w:'👤 FS',l:'予約された商談に対応',d:'eeasy経由で設定された商談にFSが入り、Layer 2へ'},
+    ],
+    tobe:[
+      {t:'auto',w:'⚡ 自動',l:'eeasy予約→SF自動起票→FS通知',d:'予約完了をトリガーにSF商談を自動作成し、担当FSへSlackとGmailで通知',tools:['sf','slack'],isNew:true},
+    ],
+    issue:'eeasy予約からSF起票・FS割当が手動。取りこぼしのリスク',
+    ai:'🔧 予約→SF自動起票（設計中）'},
+  // ② IS
+  is_list:{icon:'🗂️',title:'② IS：対象リード抽出',who:'IS：林',wc:'w-is',
+    asis:[
+      {t:'human',w:'👤 IS',l:'Tier・リサイクル・休眠から抽出',d:'ハウスリストからTier1〜4、リサイクル（DEAD後3ヶ月）、休眠/未提案を対象として抽出',tools:['sf']},
+      {t:'human',w:'👤 IS',l:'文脈（前回DEAD理由・フック）を確認',d:'文脈なしアプローチは厳禁。SFの前回コメント・フック文を必ず読む',tools:['sf']},
+    ],
+    tobe:[
+      {t:'ai',w:'🤖 AI',l:'対象抽出＋フック文を自動生成',d:'リサイクル日・DEAD理由から対象を自動抽出し、文脈あるフック文をGEMが生成',tools:['claude','sf'],isNew:true},
+    ],
+    issue:'抽出基準が属人的。文脈なしコールドアプローチが受注率を下げる',
+    ai:'🔧 対象抽出＋フック自動生成（設計中）'},
+  is_call:{icon:'📞',title:'② IS：コールアプローチ・2M＆アポ設定',who:'IS：林',wc:'w-is',
+    asis:[
+      {t:'human',w:'👤 IS',l:'文脈あるコール・メール',d:'「前回伺った〇〇の件で」という文脈から始める2M（メール）＆コール'},
+      {t:'human',w:'👤 IS',l:'アポ獲得→FSへ連携',d:'商談アポが取れたらFSへ引き継ぎ、Layer 2へ',tools:['sf']},
+    ],
+    tobe:[
+      {t:'ai',w:'🤖 AI',l:'キラーメッセージ自動生成',d:'GEMが生成したフック文をそのまま使える状態で提供。ISは確認して送信',tools:['claude'],isNew:true},
+    ],
+    issue:'IS経由の受注率が低い（文脈不足）。量は出るが質に課題',
+    ai:'🔧 キラーメッセージ自動生成（設計中）'},
+  // ③ FS
+  fs_account:{icon:'🏢',title:'③ FS：稼働顧客・関係先の深耕アカウント',who:'FS：中村/岡部/栫/福本',wc:'w-fs',
+    asis:[
+      {t:'human',w:'👤 FS',l:'稼働中・既存顧客の把握',d:'稼働中プロジェクトのカウンターパート、過去取引先など、関係性のあるアカウントを起点にする'},
+      {t:'human',w:'👤 FS',l:'②深耕レビューと連動',d:'Layer 3の定例レビューMTGで得たシグナルを起点に、追加案件・隣部署を狙う'},
+    ],
+    tobe:[
+      {t:'ai',w:'🤖 AI',l:'②シグナルを自動抽出',d:'PROBASE月次報告・チャットから「他部署名」「新たな悩み」を検出しFSへ通知',tools:['claude'],isNew:true},
+    ],
+    issue:'FSが開拓に動きにくい（関係構築が属人的）。件数が出ない',
+    ai:'💡 ②シグナル自動抽出（Layer3と連動）'},
+  fs_approach:{icon:'🤝',title:'③ FS訴求（深耕・紹介依頼）',who:'FS：中村/岡部/栫/福本',wc:'w-fs',
+    asis:[
+      {t:'human',w:'👤 FS',l:'追加提案・隣部署紹介の打診',d:'定例レビューMTGの後半で、他社事例の共有や隣部署紹介を打診。件数は少ない'},
+      {t:'human',w:'👤 FS',l:'商談化→Layer 2へ',d:'関心が得られたら商談を設定しLayer 2へ'},
+    ],
+    tobe:[
+      {t:'human',w:'👤 FS',l:'AIが用意した弾で打診',d:'AIが準備した他社事例・紹介切り口を使い、ゼロから考えずに訴求'},
+    ],
+    issue:'FSの能動的な開拓が全体的に弱い。最も件数が少ないチャネル',
+    ai:'💡 レビューMTG制度化で接点を仕組み化（Layer3）'},
+  // ④ インバウンド
+  ib_lp:{icon:'🌐',title:'④ インバウンド：LP/HP/問い合わせ',who:'顧客起点',wc:'w-ai',
+    asis:[
+      {t:'human',w:'👤 顧客',l:'LP/HP/PKSHA経由の問い合わせ',d:'過去のナーチャリング・コンテンツ・PKSHAグループ経由で、顧客側から問い合わせが発生'},
+      {t:'human',w:'👤 FS',l:'受信→対応',d:'問い合わせを受けてFSが対応。文脈を持った相談が多い',tools:['gmail']},
+    ],
+    tobe:[
+      {t:'ai',w:'🤖 AI',l:'過去コンテキスト自動提示',d:'SF上の過去商談履歴・DEAD理由をAIが瞬時にまとめて表示',tools:['sf','claude'],isNew:true},
+    ],
+    issue:'',ai:'🔧 過去コンテキスト自動提示（設計中）'},
+  ib_consult:{icon:'⭐',title:'最高品質動線：インバウンド相談（受注率45%）',who:'顧客起点（稼働中/稼働後が主）',wc:'w-ai',
+    asis:[
+      {t:'human',w:'👤 顧客',l:'顧客から「ご相談」の連絡',d:'稼働中・過去稼働顧客から新しい案件相談が来るケースがほとんど。稀に過去商談先から「別件で」「前回がうまくいってなくて」。最も受注率が高い'},
+      {t:'human',w:'👤 FS',l:'Layer 2へ直接流入',d:'アウトバウンドフローを経ず商談フェーズへ直接入る',tools:['gmail','sf']},
+    ],
+    tobe:[
+      {t:'human',w:'👤 企画/Mgr',l:'企画側で巻き取る',d:'徳永宛には月5件来ていたが他メンバーはほぼゼロ。FSに委ねず、稼働接点の仕組み化（Layer3）で全FSから発生させる'},
+      {t:'ai',w:'🤖 AI',l:'過去コンテキスト自動提示',d:'相談着信時にSF上の過去商談・稼働履歴を瞬時にまとめて表示',tools:['sf','claude'],isNew:true},
+    ],
+    issue:'量はインバウンドに依存しすぎない（現状の主ボリュームはMQL/SQL）。だが最大レバーはここ。源泉はLayer3の濃い接点',
+    ai:'最重要レバー。稼働接点の仕組み化で全FSから発生させるのが鍵'},
+  // ═══ 旧Layer1エントリ（後方互換）═══
+  gate_syodan:{icon:'◇',title:'商談合意 合意ゲート（L1→L2）',who:'FS / IS判断',wc:'w-fs',
+    asis:[
+      {t:'human',w:'👤 FS/IS',l:'商談合意の確認',d:'顧客が「話を聞きたい」という合意が取れた段階でLayer 2へ。インバウンド（LP/HP/ウェビナー等）からの直接問い合わせは日程調整ツール（eeasy等）を通じて直接パイプライン化'},
+    ],
+    tobe:[{t:'human',w:'👤 FS/IS',l:'変わらない',d:'合意ゲートのルールは変わらない。ただしインバウンド直接流入（受注率45%）を最優先で対応'}],
+    issue:'ISとFSで商談合意の基準がブレるケースがある',ai:''},
+  src_lp:{icon:'🌐',title:'エンプラLP・WP・コンテンツ',who:'エンプラ部門（徳永Mgr制作）',wc:'w-mkt',
+    asis:[
+      {t:'human',w:'👤 徳永Mgr',l:'LP作成（制作中）',d:'エンタープライズ向けLP: https://v0-2605-circulation-lp.vercel.app/ 35,000名超のプロ人材×PKSHAグループAI技術で、AX推進・新規事業・BPR実行支援を訴求'},
+      {t:'human',w:'👤 徳永Mgr',l:'コンテンツ制作（全て徳永作成）',d:'①対象企業でのプロジェクト実績資料 ②テーマ資料（AX/新規事業/BPR） ③事例資料（アプリで作成可能） ④類似テーマでのアプローチ（TOBE検討中）'},
+      {t:'human',w:'👤 徳永Mgr',l:'WP（ホワイトペーパー）制作',d:'年4本（4/6/9/12月）。WP→LP→Pardot配信→スコアリング の流れを構築'},
+    ],
+    tobe:[
+      {t:'ai',w:'🤖 AI',l:'コンテンツAI自動生成（設計中）',d:'テーマ入力→Claude/Geminiがコンテンツ骨子・事例スライドを自動生成。徳永Mgrは最終確認のみ',tools:['claude','gemini'],isNew:true},
+    ],
+    issue:'コンテンツ制作が徳永Mgr一人に依存。LP/WP/テーマ資料/事例資料の全てを作成しており工数が大きい',
+    ai:'🔧 コンテンツAI自動生成（設計中）'},
+  is_2m:{icon:'📞',title:'2M（メール）＆コール（テーマリード向け）',who:'IS（林）',wc:'w-is',
+    asis:[
+      {t:'human',w:'👤 IS',l:'対象テーマリードへのメール＆コール',d:'テーマアプローチ配信後の反応リード（クリック・閲覧）に対してISが追いメール＋コールでアポ獲得'},
+      {t:'human',w:'👤 IS',l:'前回コメント・フック文を確認してアプローチ',d:'文脈なしアプローチは厳禁。SFの前回DEAD理由・フック文を必ず読んでから連絡',tools:['sf']},
+    ],
+    tobe:[
+      {t:'auto',w:'⚡ 自動',l:'配信反応→ISへ自動通知',d:'配信翌日朝にクリック・閲覧リードリストをISへSlack自動配信。優先度順でアプローチ',tools:['pardot','slack','n8n'],isNew:true},
+    ],
+    issue:'配信後のフォローがISの確認待ち。反応が来ていてもタイムラグが発生している',
+    ai:'🔧 配信反応→IS自動通知（設計中）'},
+  abm_air:{icon:'✈️',title:'空中戦（ABM：ISカスタマイズ接触）',who:'IS（林）',wc:'w-is',
+    asis:[
+      {t:'human',w:'👤 IS',l:'スターリード外部署へのISからのカスタマイズコンテンツアプローチ',d:'稼働中案件のステークホルダー外（他部署）に対してISがカスタマイズされたコンテンツでアプローチ'},
+      {t:'human',w:'👤 徳永Mgr',l:'コンテンツ準備（全て徳永が制作）',d:'その対象企業でのプロジェクト実績資料・テーマ資料・事例資料をISに提供'},
+    ],
+    tobe:[
+      {t:'ai',w:'🤖 AI',l:'PJT資料→インテリジェンスカード自動生成',d:'稼働中PJT資料からAIが「次にアプローチすべき部署と切り口」を自動提示',tools:['claude','sf'],isNew:true},
+    ],
+    issue:'コンテンツが徳永Mgr頼み。スケールに限界がある',ai:'💡 横展開AI（構想中）'},
+  abm_land:{icon:'🤝',title:'FS深耕営業（地上戦）',who:'FS',wc:'w-fs',
+    asis:[
+      {t:'human',w:'👤 FS',l:'スターリードおよびその周辺への深耕営業',d:'稼働中顧客・スターリードのカウンターパートに深耕営業。追加ロール・上位層・横展開を提案'},
+      {t:'human',w:'👤 徳永Mgr',l:'アカプラMTGでターゲット選定・切り口検討',d:'IS林・マーケ松村・FSのアカプラMTGで週次にターゲット選定と提案コンテンツを議論'},
+    ],
+    tobe:[
+      {t:'ai',w:'🤖 AI',l:'顧客カルテ自動蓄積（5項目）',d:'①戦略優先領域②決裁構造③共通KPI④潜在課題⑤ホワイトスペースをAIが自動蓄積',tools:['claude','sf'],isNew:true},
+    ],
+    issue:'深耕が個人の関係値に依存。担当変更でコンテキストが消える',ai:'💡 顧客カルテ自動蓄積AI（構想中）'},
+  recycle_d:{icon:'🔄',title:'リサイクルリード（DEAD後・Layer3満了後）',who:'IS（林）',wc:'w-is',
+    asis:[
+      {t:'human',w:'👤 IS',l:'リサイクル日確認→コールアプローチ',d:'SFのリサイクル希望日にISが手動確認して連絡。確認漏れ多発',tools:['sf','gmail']},
+      {t:'human',w:'👤 松村',l:'Layer3満了案件：全て3ヶ月後にリサイクル処理',d:'松村さんが満了案件を確認してSFにリサイクル日を設定',tools:['sf','pardot']},
+    ],
+    tobe:[
+      {t:'auto',w:'⚡ 自動',l:'リサイクル日にSlack自動アラート＋メール下書き',d:'リサイクル日当日にISへSlack自動通知+「お節介メール」のGmail下書きを自動生成',tools:['claude','sf','slack','gmail'],isNew:true},
+    ],
+    issue:'リサイクル日の確認漏れが最大の損失。ここをゼロにするだけで受注率が大幅改善する',
+    ai:'✅ GEM DEAD判定実装済み / 🔧 リサイクル日自動アラート（設計中）'},
+  sleep_d:{icon:'💤',title:'休眠リード（リサイクル不要・Pardot配信）',who:'松村（マーケ）',wc:'w-mkt',
+    asis:[
+      {t:'human',w:'👤 松村',l:'Pardotハウスリストに残留・配信継続',d:'「今すぐニーズなし」「リサイクル不要」でも月1〜2回の配信で脳内シェアを維持し続ける',tools:['pardot']},
+    ],
+    tobe:[
+      {t:'auto',w:'⚡ 自動',l:'行動スコア→Tier自動昇格→IS通知',d:'開封・クリック・ウェビナー参加の積み上げで自動的にTierが上がりISへ通知',tools:['pardot','sf','n8n'],isNew:true},
+    ],
+    issue:'休眠からインバウンドに変わるタイミングを捉えきれていない',
+    ai:'🔧 スコア→Tier自動昇格（設計中）'},
+  cs_pipe:{icon:'⚡',title:'継続案件→Layer 2パイプラインへ',who:'FS',wc:'w-fs',
+    asis:[
+      {t:'human',w:'👤 FS',l:'継続案件をSFに作成してLayer 2へ',d:'契約更新が決まったらSFに継続案件を新規作成。Layer 2のパイプラインフローに載せる',tools:['sf']},
+    ],
+    tobe:[{t:'human',w:'👤 FS',l:'変わらない',d:'継続案件の作成はFSが担当'}],
+    issue:'継続タイミングのアラートが手動。期限直前まで気づかないケースがある',ai:'🔧 満了日から逆算して自動Slackアラート（設計中）'},
+  cs_recycle:{icon:'◆',title:'過去稼働後リードへ（満了後3ヶ月→Layer1再ナーチャ）',who:'FS（レポート）＋ 松村（マーケ投入）',wc:'w-ai',
+    asis:[
+      {t:'human',w:'👤 FS',l:'満了後に放置されがち（根本課題）',d:'プロジェクト情報がFSの中に閉じている。満了後の文脈が見えず、休眠化・音信不通になりやすい'},
+    ],
+    tobe:[
+      {t:'human',w:'👤 FS',l:'満了レポートを出す',d:'満了時にプロジェクトの結果・中身をレポート化（中身はFSしか知らないため、まずここを必須化）',tools:['sf']},
+      {t:'auto',w:'⚡ マーケ',l:'全件リサイクル3ヶ月後に自動投入',d:'FSに依頼すると止まるため、マーケが全満了案件を「過去稼働後リード」として3ヶ月後リサイクルに自動投入。Layer1へ戻し再ナーチャ。休眠に落とさない',tools:['sf','pardot','n8n'],isNew:true},
+    ],
+    issue:'根本問題：プロジェクト情報がFSに閉じている。過去稼働後は休眠と別扱いで、音信不通を絶対に防ぐ',
+    ai:'🔧 満了レポート→自動リサイクル投入（設計中）'},
+  src_ad:{icon:'📣',title:'広告（LinkedIn/Google）',who:'松村（マーケ）',wc:'w-mkt',
+    asis:[
+      {t:'human',w:'👤 松村',l:'LinkedIn広告・Google広告の運用',d:'重点3期（来期予算策定9〜10月・期末2〜3月・新年度4月）に集中投下。月8〜10万×4ヶ月=約35万。通年は月1万のGoogle最小限配信'},
+      {t:'human',w:'👤 松村',l:'リード登録→SFへ',d:'広告経由のリード（LP問い合わせ・WPダウンロード）をSFに登録してTierを付与',tools:['sf']},
+    ],
+    tobe:[
+      {t:'auto',w:'⚡ 自動',l:'広告反応→SF自動登録',d:'LP問い合わせ・WPダウンロードをトリガーにSFへ自動登録→Tier自動付与',tools:['sf','pardot'],isNew:true},
+    ],
+    issue:'広告予算が少なく年間14〜35万円程度。重点期に集中投下が必要',
+    ai:'🔧 LP→SF自動登録（検討中）'},
+  src_wb:{icon:'🎤',title:'ウェビナー・SEO・WP・展示会',who:'松村（マーケ）',wc:'w-mkt',
+    asis:[
+      {t:'human',w:'👤 松村',l:'月次ウェビナー（上半期毎月・下半期隔月）',d:'テーマは月次テーマアプローチに連動。録画→Pardot再配信でコスト削減。1回約7万'},
+      {t:'human',w:'👤 松村',l:'SEO記事・WP公開（月1〜2本）',d:'事例コンテンツと兼用で外注。WP→LP→Pardot配信→スコアリングの流れを構築'},
+      {t:'human',w:'👤 松村',l:'参加者・DLリードをSFに登録',d:'ウェビナー参加者・WPダウンロードリードをSFに登録してTier付与・Pardot配信対象に追加',tools:['sf','pardot']},
+    ],
+    tobe:[
+      {t:'auto',w:'⚡ 自動',l:'ウェビナー参加→SF自動登録→Pardot自動追加',d:'参加ログをSFに自動登録→Pardot配信対象に自動追加→IS優先通知',tools:['sf','pardot','n8n'],isNew:true},
+    ],
+    issue:'ウェビナー参加者のSF登録が手動。フォローまでにタイムラグがある',
+    ai:'🔧 参加→SF自動登録（設計中）'},
+  src_pksha:{icon:'🤝',title:'PKSHA・顧問紹介',who:'徳永Mgr＋FS',wc:'w-fs',
+    asis:[
+      {t:'human',w:'👤 徳永Mgr',l:'PKSHAグループ共同ウェビナー（年2回）',d:'PKSHA負担で実施。役割分担を明確化して進める'},
+      {t:'human',w:'👤 徳永Mgr',l:'顧問活用によるハイレイヤー紹介',d:'予算250万外で別途検討。紹介後は文脈あり提案セットで設計することが条件'},
+      {t:'human',w:'👤 FS',l:'紹介リードをSFに登録',d:'紹介経由のリードをSFに登録してTier1/2に分類',tools:['sf']},
+    ],
+    tobe:[{t:'human',w:'👤 徳永Mgr/FS',l:'変わらない（質の高いタッチポイント）',d:'紹介は人間が対応する価値が最も高い'}],
+    issue:'紹介後の対応スピードと文脈ある提案が成否を決める',
+    ai:''},
+  src_mkt:{icon:'📣',title:'全社マーケ流入',who:'松村（マーケ）',wc:'w-mkt',
+    asis:[{t:'human',w:'👤 松村',l:'ウェビナー企画・運営',d:'コンテンツ4テーマ（新規事業/マーケ/DX/人事）でウェビナー・事例資料を企画。参加者をSFに登録',tools:['pardot','sf']},
+          {t:'human',w:'👤 松村',l:'ISへホット通知',d:'イベント参加者・高スコアリードをSlackでISに優先通知',tools:['slack','sf']}],
+    tobe:[{t:'ai',w:'🤖 AI',l:'Pardot自動スコアリング',d:'参加・DL・開封行動を自動スコアリング→Tier自動更新',tools:['pardot','sf'],isNew:true},
+          {t:'auto',w:'⚡ 自動',l:'ISへSlack自動通知',d:'スコア閾値超えでISへSlack自動通知（優先リスト付き）',tools:['slack','n8n'],isNew:true}],
+    issue:'バトンタッチルールが未整備。ホットリードがISに届くまでにタイムラグがある',
+    ai:'✅ Pardot稼働中 / 🔧 スコアリング→IS自動通知（設計中）'},
+  src_ib:{icon:'✉️',title:'インバウンド相談（受注率45%の源泉）',who:'FS',wc:'w-fs',
+    asis:[{t:'human',w:'👤 FS',l:'「ご相談メール」の受信',d:'過去のナーチャリング積み上げが45%受注率を生む源泉。文脈を持った問い合わせ'},
+          {t:'human',w:'👤 FS',l:'Layer 2（Ph.01/02）に直接流入',d:'インバウンドはアウトバウンドフローを経ずに商談フェーズへ直接入る',tools:['gmail','sf']}],
+    tobe:[{t:'human',w:'👤 FS',l:'インバウンド受信・返信',d:'変わらない。人間が対応する価値が最も高いタッチポイント'},
+          {t:'ai',w:'🤖 AI',l:'過去コンテキスト自動提示',d:'SF上の過去商談履歴・DEAD理由・リサイクルコメントをAIが瞬時にまとめて表示',tools:['sf','claude'],isNew:true}],
+    issue:'',ai:'🔧 過去コンテキスト自動提示（設計中）'},
+  src_ob:{icon:'📞',title:'アウトバウンド流入（IS）',who:'IS（林＋業委）',wc:'w-is',
+    asis:[{t:'human',w:'👤 IS',l:'前回コメント・フック文を確認',d:'文脈なしアプローチは厳禁。SFの前回DEAD理由・フック文を必ず読む',tools:['sf']},
+          {t:'human',w:'👤 IS',l:'文脈あるアプローチメール送付',d:'「前回の商談で伺った〇〇の件で〜」という文脈から書き始める',tools:['gmail']}],
+    tobe:[{t:'ai',w:'🤖 AI',l:'キラーメッセージの自動生成',d:'GEMが生成したフック文・キラーメッセージをそのまま使える状態で提供',tools:['claude'],isNew:true},
+          {t:'human',w:'👤 IS',l:'確認して送信',d:'AI生成メールを確認→送信のみ',tools:['gmail']}],
+    issue:'IS経由受注率4%。文脈なしコールドアプローチが最大の原因',
+    ai:'🔧 キラーメッセージ自動生成（設計中）'},
+  src_dead:{icon:'🔄',title:'DEAD後リサイクルリード',who:'AI → IS',wc:'w-ai',
+    asis:[{t:'human',w:'👤 FS',l:'DEAD判定・SF入力',d:'フェーズをDEADに変更。リサイクル日・DEAD理由を手動入力（抜け漏れ多発）',tools:['sf']},
+          {t:'human',w:'👤 IS',l:'リサイクル日に手動確認',d:'リサイクル日が来てもISが確認しないとスルーされるケースが多い'}],
+    tobe:[{t:'auto',w:'🤖 GEM',l:'DEAD時に全情報を自動生成',d:'DEAD判定→リサイクル日・DEAD理由12分類・フック文・キラーメッセージ・お節介メールを自動生成',tools:['claude','sf'],isNew:true},
+          {t:'auto',w:'⚡ 自動',l:'リサイクル日にIS/マーケへ自動通知',d:'リサイクル日当日にISへSlack自動通知+Gmail下書き自動生成',tools:['slack','gmail','n8n'],isNew:true}],
+    issue:'DEAD後放置が最大の損失。インバウンド受注率45%の源泉が全てここから生まれている',
+    ai:'✅ GEM DEAD判定実装済み / 🔧 自動通知・お節介メール自動生成（設計中）'},
+  mkt_mail:{icon:'📨',title:'テーマメルマガ（月1配信）',who:'松村（マーケ）× 徳永Mgr（テーマ選定/コンテンツ制作）',wc:'w-mkt',
+    asis:[
+      {t:'human',w:'👤 徳永Mgr',l:'テーマ選定（顧客商談ヒアリングから）',d:'4月: AX推進「AI研修→AX推進」/ 5月: 新規事業「AI時代の新規事業」/ 6月: BPR×M365「M365×AIプロ人材によるBPR支援」/ 7月〜: 要協議。顧客商談でのヒアリング・ディスカッションを元に選定。課題：現場が減る中でテーマ切り口を引き上げる人材不在→AIで解決したい'},
+      {t:'human',w:'👤 徳永Mgr',l:'コンテンツ制作（全て徳永Mgr作成）',d:'テーマ資料・事例資料・アカプラ企業向けカスタム資料。4月:AI研修→AX推進 5月:AI時代の新規事業 6月:M365×AIプロ人材BPR支援。フロー図には記載せず右パネルで管理。'},
+      {t:'human',w:'👤 松村',l:'STEP2：コンテンツ制作',d:'①ベース資料：Geminiで資料作成→指定のGoogleスライドに格納 ②アカプラ企業向けカスタム資料：SFから支援テーマ・支援概要・プロ人材概要を抽出→Gemini（orClaude）で個社ごとにカスタム資料作成 ③メール文面：Geminiでメール文面を生成→徳永さんに確認・承認',tools:['gemini','sf']},
+      {t:'human',w:'👤 松村',l:'STEP3：配信リスト作成・配信準備',d:'①配信リスト：SFからターゲット企業・担当者抽出し送付リストを作成（ダッシュボードから） ②GASスクリプト作成：IS・FS・AS全員アプローチの場合スプシ6枚作成（FS用×5・IS用×1）→Geminiで作成・調整 ③アカプラ企業個別GAS・スプシ作成：企業ごとのGAS/スプシを個別作成→FSへのレクチャーも実施',tools:['sf','gas','gemini']},
+      {t:'human',w:'👤 IS/FS/松村',l:'STEP4：配信作業（3経路）',d:'①IS配信：Tier1.2のみ提案・Tier3の商談ありの場合→GAS（Gmailの下書きを100件ずつ手動送付）②FS配信：FSのアプローチメールにCC ③Pardot配信：Tier4・Tier3未提案はPardotで送付（リストどうつくるか要検討）',tools:['sf','gmail','pardot']},
+      {t:'human',w:'👤 IS/松村',l:'STEP5：効果測定・フォロー',d:'①資料閲覧検知→ISフォローコール依頼：Pardot等で開封・クリックを検知。ISに共有しフォローコールを依頼。ツール：Pardot。関係者：IS ②配信翌日の朝イチに、スプレッドシート形式でアプローチリストをISへ共有（仮）：対象はeeasyクリック・資料クリックをしたリード。ISの動き：リストを受け取る→eeasyクリック・資料クリックはリスト共有された当日中にフォロー（最優先）→温度感に合わせてアポ取得→アプローチ後、結果をSFに記録',tools:['pardot','sf','slack']},
+    ],
+    tobe:[
+      {t:'human',w:'👤 松村＋徳永Mgr',l:'テーマ選定（変わらない）',d:'月次テーマ決定・年間マーケカレンダー（4〜3月）に沿って実施'},
+      {t:'ai',w:'🤖 AI',l:'アカプラ企業向けカスタム資料をAIが自動生成',d:'SFから顧客情報を抽出→Claudeが個社別カスタム提案資料を自動生成。松村さんは確認・承認のみ',tools:['claude','sf'],isNew:true},
+      {t:'auto',w:'⚡ 自動',l:'GASスクリプト・配信リストの自動生成',d:'月次テーマと対象Tierを設定するだけでGASスクリプトとスプシが自動生成される',tools:['gas','sf'],isNew:true},
+      {t:'human',w:'👤 IS/FS',l:'配信作業（変わらない）',d:'IS配信・FS配信・Pardot配信の3経路は変わらない'},
+      {t:'auto',w:'⚡ 自動',l:'配信翌日：反応リードをISへ自動配布',d:'eeasyクリック・資料クリックを検知→当日中にISへSlack自動通知+スプシ自動生成。除外条件（直近商談中・他チームBANあり）も自動判定',tools:['pardot','slack','n8n','sf'],isNew:true},
+    ],
+    issue:'①IS・FS・松村さんの3者の動き方が属人化。②配信後の反応リードがISに即時共有されず、フォローが遅れる。③Tier1.2のアカプラ企業への個社別対応が手動で重い',
+    ai:'✅ Gemini+GAS活用中 / 🔧 個社別カスタマイズAI自動生成+反応自動通知（設計中）'},
+  mkt_teijo:{icon:'📬',title:'週1配信（稼働案件・プロ人材紹介）',who:'松村（マーケ）',wc:'w-mkt',
+    asis:[
+      {t:'human',w:'👤 松村',l:'STEP1：データ抽出',d:'既存SFレポートから対象のデータを抽出（松村さん）。ピックアップ人材レポート・開始プロジェクトレポートを使用',tools:['sf']},
+      {t:'human',w:'👤 松村',l:'STEP2：コンテンツ制作',d:'Geminiで資料作成（プロンプトあり）→完成した資料を指定のGoogleスライドに格納',tools:['gemini']},
+      {t:'human',w:'👤 松村',l:'STEP3：配信リスト作成（3パターン）',d:'①AE上の既存の動的リストを使用 ②AE上の既存の動的リストを組み合わせたセグメンテーションリストを作成 ③SFからターゲット企業・担当者を抽出しAE上でインポートしてセグメンテーションリストを作成 ／ メールドラフト作成：既存のメールテンプレートからメールドラフトを作成',tools:['sf','pardot']},
+      {t:'human',w:'👤 松村',l:'STEP4：配信テスト・送付実行',d:'AE上のメールから配信テストを実施。配信日時を予約し送付実行',tools:['pardot']},
+      {t:'human',w:'👤 IS/松村',l:'STEP5：効果測定・フォロー',d:'資料閲覧検知→ISフォローコール依頼。施策の効果測定・レポーティング（開封率・返信率・商談化率を施策ごとに集計・比較）。報告用に初めて、スプシを作成し、GASでWebアプリ化して管理。松村からスプレッドシート形式でアプローチリストをISへ共有',tools:['pardot','sf','gas']},
+    ],
+    tobe:[
+      {t:'human',w:'👤 松村',l:'データ抽出（変わらない）',d:'SFレポートからデータ抽出は継続'},
+      {t:'ai',w:'🤖 AI',l:'コンテンツ自動生成',d:'SF抽出データをインプットにGemini/Claudeが稼働案件サマリ・プロ人材紹介文を自動生成',tools:['gemini','claude'],isNew:true},
+      {t:'auto',w:'⚡ 自動',l:'動的リスト→配信→反応検知→IS自動通知',d:'Pardotの動的リストを使って自動配信。反応（無料相談ボタンクリック・事例詳細クリック）を自動検知→ISへSlack即時通知',tools:['pardot','slack','n8n'],isNew:true},
+    ],
+    issue:'定常配信（稼働案件・プロ人材紹介）の運用が松村さんに集中。データ抽出・資料作成・リスト作成・配信・効果測定まで全て手動',
+    ai:'✅ Gemini活用中 / 🔧 自動化設計中'},
+  recycle:{icon:'🔄',title:'リサイクルリード（DEAD→Layer1）',who:'AI → IS',wc:'w-ai',
+    asis:[{t:'human',w:'👤 IS',l:'リサイクル日を確認してアプローチ',d:'SFのリサイクル希望日にISが手動確認して連絡。確認漏れ多発',tools:['sf','gmail']}],
+    tobe:[{t:'auto',w:'🤖 GEM',l:'リサイクル日に自動アラート+メール下書き',d:'リサイクル日当日にSlack通知+「お節介メール」のGmail下書きを自動生成',tools:['claude','sf','slack','gmail'],isNew:true},
+          {t:'human',w:'👤 IS',l:'確認して送信',d:'AIが生成したメールを確認→送信のみ',tools:['gmail']}],
+    issue:'リサイクル日の確認漏れが最大の損失',
+    ai:'✅ GEM DEAD判定実装済み / 🔧 リサイクル日自動アラート（設計中）'},
+  lead_pool:{icon:'📊',title:'リードプール（8,000件 Tier管理）',who:'IS・マーケ共同管理',wc:'w-is',
+    asis:[
+      {t:'human',w:'👤 IS',l:'SF Tier1〜4のセグメント管理',d:'約8,000件をTier1〜4に分類。週次でダッシュボードを確認し優先度を更新',tools:['sf']},
+      {t:'human',w:'👤 IS',l:'週次確認：リサイクル対象・Tier1未アプローチ',d:'毎週月曜にSFダッシュボードを確認。滞留案件・リサイクル対象をリストアップ',tools:['sf']},
+    ],
+    tobe:[
+      {t:'auto',w:'⚡ 自動',l:'Pardot行動スコア→SF Tier自動更新',d:'ウェビナー参加・DL・開封の行動からTierが自動更新される',tools:['pardot','sf','n8n'],isNew:true},
+    ],
+    issue:'Tier管理ルールがISとFSで統一されていない。手動更新が属人化している',
+    ai:'🔄 Pardot→SF Tier自動更新（情シス連携待ち）'},
+  is_list:{icon:'📋',title:'リスト管理・Tier優先度付け',who:'IS（林＋業委）',wc:'w-is',
+    asis:[{t:'human',w:'👤 IS',l:'SFでリサイクル希望日・Tier確認',d:'週次でSFダッシュボードを確認。リサイクル対象・Tier1未アプローチリストを抽出',tools:['sf']}],
+    tobe:[{t:'auto',w:'⚡ 自動',l:'リサイクル日Slack自動アラート',d:'リサイクル希望日前日にIS担当者へSlack自動通知（フック文付き）',tools:['sf','slack','n8n'],isNew:true}],
+    issue:'リサイクル日の確認漏れ。ISのKPIが商談数→案件化率に変更が必要',
+    ai:'🔧 リサイクル日自動アラート（設計中）'},
+  is_call:{icon:'📞',title:'アプローチ（メール・コール）',who:'IS（林＋業委）',wc:'w-is',
+    asis:[{t:'human',w:'👤 IS',l:'前回商談コメント・フック文を確認',d:'文脈なしアプローチは厳禁。SFの前回DEAD理由・フック文を必ず読む',tools:['sf']},
+          {t:'human',w:'👤 IS',l:'文脈ある件名でアプローチ',d:'「前回の商談で伺った〇〇の件で〜」という文脈から書き始める',tools:['gmail']}],
+    tobe:[{t:'ai',w:'🤖 AI',l:'キラーメッセージの自動生成',d:'GEMが生成したフック文・キラーメッセージをそのまま使える状態で提供',tools:['claude'],isNew:true}],
+    issue:'IS経由受注率4%',ai:'🔧 キラーメッセージ自動生成（設計中）'},
+  is_apo:{icon:'📅',title:'アポ設定・商談日程調整',who:'IS → FS',wc:'w-is',
+    asis:[{t:'human',w:'👤 IS',l:'SFに商談情報入力・FSへ共有',d:'商談日・参加者・アジェンダをSFに入力。FSに商談ブリーフをSlackで共有',tools:['sf','slack']}],
+    tobe:[{t:'auto',w:'⚡ 自動',l:'商談前ブリーフAI自動生成',d:'Zoom招待をトリガーに顧客過去商談・業界動向・論点3つをAIが自動生成',tools:['claude','sf'],isNew:true}],
+    issue:'ISからFSへの情報引き継ぎが不十分',ai:'🔧 商談前ブリーフ自動生成（設計中）'},
+  is_hand:{icon:'🤝',title:'FSへ引き渡し',who:'IS → FS',wc:'w-fs',
+    asis:[{t:'human',w:'👤 IS',l:'アポ取得→FSに引き渡し',d:'商談ブリーフをSlackで共有してLayer 2（商談実施）へ'}],
+    tobe:[{t:'auto',w:'⚡ 自動',l:'商談前ブリーフAI自動配信',d:'AIが顧客コンテキストをFSに自動配信。ISは承認するだけ',isNew:true,tools:['claude','slack']}],
+    issue:'引き渡し品質がISの工数・意識に依存している',ai:'🔧 設計中'},
+  src_fs:{icon:'🤝',title:'FS/スターリード経由',who:'FS',wc:'w-fs',
+    asis:[{t:'human',w:'👤 FS',l:'稼働中PJT先からの追加相談',d:'スターリード80〜100件から「この件も相談したい」と直接連絡が来る'},
+          {t:'human',w:'👤 FS',l:'月次フォローコール',d:'「マイルストーン通り？追加ロール必要？」を月次で確認',tools:['sf']}],
+    tobe:[{t:'ai',w:'🤖 AI',l:'PJT資料→インテリジェンスカード自動生成',d:'稼働中PJT資料をAIが分析。潜在課題・ホワイトスペース・横展開仮説を自動提示',tools:['claude','sf'],isNew:true}],
+    issue:'追加相談は徳永Mgr個人への依頼が中心（属人化）',
+    ai:'💡 横展開AI構想中'},
+  mkt_abm:{icon:'🗺️',title:'ABM・アカプラMTG（Tier1）',who:'松村・IS・FS三者',wc:'w-mkt',
+    asis:[{t:'human',w:'👤 三者',l:'週次アカプラMTG',d:'マーケ・IS・FSが毎週Tier1アカウントの状況を議論。ホワイトスペース・深耕戦略を策定'}],
+    tobe:[{t:'ai',w:'🤖 AI',l:'顧客カルテ5項目の自動蓄積',d:'①戦略優先領域②決裁構造③共通KPI④潜在課題⑤ホワイトスペースをAIが自動蓄積',tools:['claude','sf'],isNew:true}],
+    issue:'アカウント情報が個人の記憶に依存',ai:'💡 顧客カルテ自動蓄積AI（構想中）'},
+  mkt_cont:{icon:'📚',title:'コンテンツ管理（4テーマ）',who:'松村（マーケ）',wc:'w-mkt',
+    asis:[{t:'human',w:'👤 松村',l:'4テーマコンテンツの作成・管理',d:'新規事業/マーケティング/DX/人事の4テーマで事例・提案スライドを管理'}],
+    tobe:[{t:'ai',w:'🤖 AI',l:'顧客別おすすめコンテンツの自動提案',d:'FSが顧客名を入力するとその顧客に最適な事例・資料をAIが提案（設計中）',tools:['claude'],isNew:true}],
+    issue:'FSがどのコンテンツをどの顧客に送るべきか判断しきれていない',ai:'🔧 顧客別コンテンツ自動提案（設計中）'},
+  mkt_nurt:{icon:'🌱',title:'ナーチャリングシナリオ',who:'松村＋Pardot',wc:'w-mkt',
+    asis:[{t:'human',w:'👤 松村',l:'Pardotシナリオの設計・管理',d:'リードのスコアリングシナリオ・自動配信ルールをPardotで設定',tools:['pardot']}],
+    tobe:[{t:'auto',w:'⚡ 自動',l:'DEAD後お節介メールAI自動生成',d:'「3〜6ヶ月後にぶつかる壁」を予測したメールをAIが自動生成→Gmail下書き',tools:['claude','gmail'],isNew:true}],
+    issue:'ナーチャリングがPardot一斉配信のみ。個社別の文脈ある接触は徳永Mgr個人に依存',
+    ai:'🔧 お節介メールAI自動生成（設計中）'},
+  tier1:{icon:'⭐',title:'Tier 1（大手エンプラ）',who:'FS主体・地上戦',wc:'w-fs',
+    asis:[{t:'human',w:'👤 FS',l:'FS1人あたり5社担当・深耕',d:'決裁権者×具体課題×予算が揃った最優先。ABM会議で戦略を毎週議論'}],
+    tobe:[{t:'ai',w:'🤖 AI',l:'顧客カルテ自動生成',d:'AIが①〜⑤の5項目を自動蓄積してFSの準備時間をゼロに',isNew:true,tools:['claude']}],
+    issue:'深耕が個人の関係値に依存',ai:'💡 顧客カルテ自動蓄積AI（構想中）'},
+  tier2:{icon:'🔵',title:'Tier 2（中堅企業）',who:'FS/IS協働',wc:'w-is',
+    asis:[{t:'human',w:'👤 FS/IS',l:'FS/IS協働でアプローチ',d:'特定テーマで課題が顕在化しているタイミングを捉えてアプローチ'}],
+    tobe:[{t:'auto',w:'🤖 自動',l:'テーマ反応→IS優先通知',d:'配信反応・ウェビナー参加をトリガーにIS自動通知',isNew:true}],
+    issue:'Tier1との区別・優先度付けが明確でない',ai:'🔧 スコアリング連動'},
+  tier3:{icon:'🟡',title:'Tier 3（中小企業）',who:'IS主体',wc:'w-is',
+    asis:[{t:'human',w:'👤 IS',l:'ISアプローチ経由',d:'Pardot配信・ウェビナーへの反応からアプローチ機会を探る'}],
+    tobe:[{t:'auto',w:'⚡ 自動',l:'Pardot反応→IS自動配布',d:'開封・クリックを検知してISへ自動配布',isNew:true}],
+    issue:'対応工数に対して受注率が低い',ai:'🔧 反応自動検知'},
+  tier4:{icon:'💤',title:'Tier 4（休眠・将来層）',who:'マーケ・Pardot自動',wc:'w-mkt',
+    asis:[{t:'human',w:'👤 松村',l:'Pardot一斉配信のみ',d:'今すぐニーズなし。メルマガ配信で脳内シェアを維持し続ける'}],
+    tobe:[{t:'auto',w:'⚡ 自動',l:'ナーチャシナリオ全自動化',d:'スコアリング→Tierアップ→IS通知まで全自動',isNew:true}],
+    issue:'将来的なインバウンドの種。放置せず脳内シェアを育て続けることが重要',ai:'🔧 シナリオ自動化'},
+  sleep:{icon:'💤',title:'休眠リード',who:'松村（マーケ）',wc:'w-mkt',
+    asis:[{t:'human',w:'👤 松村',l:'Pardotハウスリストに残留',d:'月1〜2回の配信で脳内シェアを維持。将来のインバウンドを育てる',tools:['pardot']}],
+    tobe:[{t:'auto',w:'⚡ 自動',l:'行動スコア→Tier自動昇格',d:'開封・クリック・ウェビナー参加の積み上げで自動的にTierが上がりISへ通知',tools:['pardot','sf','n8n'],isNew:true}],
+    issue:'休眠からインバウンドに変わるタイミングを捉えきれていない',ai:'🔧 スコア→Tier自動昇格（設計中）'},
+  ib_ret:{icon:'✉️',title:'インバウンド復活相談',who:'FS',wc:'w-fs',
+    asis:[{t:'human',w:'👤 FS',l:'突然のご相談メール',d:'過去DEAD→ナーチャリング積み上げ→「今まさに困っています」というメールが届く。受注率45%の源泉'}],
+    tobe:[{t:'human',w:'👤 FS',l:'変わらない（最重要タッチポイント）',d:'インバウンドは人間が最速・最高品質で対応すべき'}],
+    issue:'',ai:'🔧 過去コンテキスト自動提示（設計中）'},
+
+  // Layer 2
+  contract:{icon:'📄',title:'契約手続き（PROBASE・電子契約）',who:'FS',wc:'w-fs',
+    asis:[
+      {t:'human',w:'👤 FS',l:'契約書ドラフト送付・確認',d:'電子契約ツールで契約書を送付。顧客確認後、電子署名で完了'},
+      {t:'human',w:'👤 FS',l:'PROBASE招待・登録依頼',d:'業務報告書・請求書確認システム「PROBASE」への顧客登録。登録メールアドレスと締め日を確認'},
+      {t:'human',w:'👤 FS',l:'コミュニケーションツール確認',d:'Teams/Slack等のツール確認とプロ人材のアカウント招待依頼'},
+    ],
+    tobe:[
+      {t:'auto',w:'⚡ 自動',l:'契約締結→SF自動更新→初動メール自動生成',d:'契約書電子署名完了をトリガーにSFステータスを自動更新し契約手続きメールを自動下書き生成',isNew:true},
+    ],
+    issue:'契約後の初動（PROBASE・ツール確認）が属人化。抜け漏れが発生しやすい',
+    ai:'🔧 契約後アクションの自動化（設計中）'},
+  mtg:{icon:'💬',title:'商談実施',who:'FS',wc:'w-fs',
+    asis:[{t:'human',w:'👤 FS',l:'会社説明',d:'サーキュレーションのサービス・プロシェアリングの仕組みと活用事例を説明'},
+          {t:'human',w:'👤 FS',l:'ヒアリング',d:'部門ミッション・課題・予算・マイルストーン・スケジュール感を確認'},
+          {t:'human',w:'👤 FS',l:'ディスカッション',d:'課題解決の切り口提示・他社事例・未来ニーズの共通化'},
+          {t:'human',w:'👤 FS',l:'仮説提案・ネクストアクション確認',d:'プロ人材活用のイメージ提示。提案書送付の合意確認（=案件化の条件）'}],
+    tobe:[{t:'human',w:'👤 FS',l:'商談実施（変わらない）',d:'会社説明・ヒアリング・ディスカッション・仮説提案はそのまま'},
+          {t:'ai',w:'🤖 AI',l:'AI採点（自動）',d:'Zoom録画→8項目100点採点→即日SlackFB。60点未満→Mgr自動エスカレーション（実装済み）',tools:['zoom','claude','slack'],isNew:false}],
+    issue:'商談品質は担当者依存。FS4名の品質がバラバラ',
+    ai:'✅ AI採点実装済み'},
+  sf:{icon:'📝',title:'要件整理（SF入力）',who:'FS → AI全自動（TO-BE）',wc:'w-fs',
+    asis:[{t:'human',w:'👤 FS',l:'Zoom録画をGEMに入力',d:'商談後すぐにZoom録画またはテキストをGEMに貼り付け',tools:['zoom','claude']},
+          {t:'ai',w:'🤖 GEM',l:'GEMがアウトプット生成',d:'ASIS/TOBE/GAP・人材要件・DEAD判定・リサイクル情報・御礼メール文を自動生成',tools:['claude']},
+          {t:'human',w:'👤 FS',l:'SF案件詳細へ転記（手動30分）',d:'GEMアウトプットをコピペしてSFに入力',tools:['sf']},
+          {t:'human',w:'👤 FS',l:'SFの人選を「依頼済み」に変更',d:'アソシエイトへ人選依頼のSlack通知を送る',tools:['sf','slack']}],
+    tobe:[{t:'auto',w:'⚡ n8n',l:'Zoom完了→全自動実行',d:'Zoom録画完了→n8n自動検知→GEM自動実行→SF自動格納→Gmail下書き→ASS Slack通知',tools:['zoom','claude','sf','gmail','slack','n8n'],isNew:true}],
+    issue:'手動コピペ30分/件。後回しで失注',
+    ai:'✅ GEM実装済み / 🔄 SF自動格納：情シス対応中'},
+  q1:{icon:'✅',title:'提案合意 合意ゲート',who:'FS判断',wc:'w-fs',
+    asis:[{t:'human',w:'👤 FS',l:'案件化の2条件を確認',d:'①今すぐ解決したい具体的なペインが存在する ②プロ人材提案への合意が取れている → 両方でPhase2へ。迷ったら必ずDEAD'}],
+    tobe:[{t:'auto',w:'🤖 GEM',l:'GEM自動判定（実装済み）',d:'DEAD判定・リサイクル日・フック文を自動生成',tools:['claude'],isNew:false}],
+    issue:'「なんとなく前向き」で案件化してしまうケース',ai:'✅ GEMでDEAD判定実装済み'},
+  qs:{icon:'✅',title:'稼働合意 合意ゲート',who:'FS判断',wc:'w-fs',
+    asis:[{t:'human',w:'👤 FS',l:'稼働合意の確認',d:'プロ人材が稼働可能であることの合意。アソシエイトが稼働確保完了後に通過'}],
+    tobe:[{t:'human',w:'👤 FS',l:'変わらない',d:'合意ゲートのルールは変わらない'}],
+    issue:'',ai:''},
+  propose:{icon:'📊',title:'提案書作成・送付',who:'FS（TO-BE：AI自動生成）',wc:'w-fs',
+    asis:[{t:'human',w:'👤 FS',l:'Googleスライド提案書の作成',d:'Claudeで骨子作成 → Geminiで修正 → 手直し',tools:['claude','gemini','slides']},
+          {t:'human',w:'👤 FS',l:'顧客へ送付',d:'Gmail既存スレッドで返信送付。送付後に面談合意を確認',tools:['gmail']}],
+    tobe:[{t:'ai',w:'🤖 AI',l:'6章構成提案書を自動生成',d:'候補者の職歴書を貼るだけで①課題全体図②スコープ③プロ比較表④推薦理由3層⑤マイルストーン⑥稼働条件を自動生成',tools:['claude','gemini','slides'],isNew:true}],
+    issue:'後回し多発→失注。品質がFSによってバラバラ',
+    ai:'🔧 設計済み：Claude+Gemini+Slidesで6章構成を全自動生成'},
+  q3:{icon:'✅',title:'面談合意 合意ゲート',who:'FS判断',wc:'w-fs',
+    asis:[{t:'human',w:'👤 FS',l:'面談合意の確認',d:'提案書を見て面談したいという合意が取れた → Phase4へ。合意なし→DEAD'}],
+    tobe:[{t:'human',w:'👤 FS',l:'変わらない',d:''}],
+    issue:'提案書を送ったことを「面談合意」と誤認するケース',ai:''},
+  interview:{icon:'🎤',title:'面談実施',who:'FS（アソシエイト日程調整）',wc:'w-ass',
+    asis:[{t:'human',w:'👤 ASS',l:'3者日程調整・Zoom発行',d:'顧客・プロ・当社の日程をメールで手動調整。Zoomリンク発行・アジェンダ送付',tools:['zoom']},
+          {t:'human',w:'👤 FS',l:'面談ファシリテーション',d:'①案件概要10分②プロ自己紹介10分③質疑応答20〜30分④2社間協議20〜30分',tools:['zoom']},
+          {t:'human',w:'👤 FS',l:'クロージング・SF更新',d:'プロ人材の第三者評価。次ステップの合意確認。SF記録',tools:['sf']}],
+    tobe:[{t:'ai',w:'🤖 AI',l:'面談前アジェンダAI自動生成',d:'確認すべき論点リスト付きアジェンダをAIが事前自動生成',tools:['claude'],isNew:true},
+          {t:'human',w:'👤 FS',l:'面談ファシリテーション（変わらない）',d:'3者面談は人間が担当'},
+          {t:'auto',w:'⚡ 自動',l:'面談後：議事録AI自動生成',d:'Zoom録画→議事録自動生成→SF更新。追加要件検出→ASS自動通知',tools:['zoom','claude','sf','slack'],isNew:true}],
+    issue:'ファシリテーションが属人化',ai:'🔧 議事録AI設計中'},
+  q4:{icon:'✅',title:'活用合意 合意ゲート',who:'FS判断',wc:'w-fs',
+    asis:[{t:'human',w:'👤 FS',l:'活用合意の確認',d:'プロ人材活用の口頭合意が取れた → Phase5へ。合意なし→DEAD'}],
+    tobe:[{t:'human',w:'👤 FS',l:'変わらない',d:''}],
+    issue:'面談後の合意状態が曖昧なままクロージングに入るケース',ai:''},
+  nego:{icon:'📃',title:'見積・要件定義・稟議',who:'FS',wc:'w-fs',
+    asis:[{t:'human',w:'👤 FS',l:'見積書作成',d:'面談議事録をもとに見積書を作成。フォーマット未統一が課題'},
+          {t:'ai',w:'🤖 AI',l:'業務詳細をAIプロンプトで生成',d:'Zoomテキスト→業務詳細4行形式を自動生成（プロンプト設計済み）',tools:['claude']},
+          {t:'human',w:'👤 FS',l:'社内稟議・反社チェック',d:'粗利率確認・マネージャー承認・反社チェック'}],
+    tobe:[{t:'ai',w:'🤖 AI',l:'業務詳細AI自動生成（設計済み）',d:'面談録画→AIが業務詳細4行形式を自動生成。担当者によるバラつきをゼロ化',tools:['claude'],isNew:true}],
+    issue:'見積書フォーマット未統一。業務詳細の記載品質がFSによってバラバラ',
+    ai:'🔧 業務詳細AI自動生成設計済み'},
+  close:{icon:'🎉',title:'契約締結',who:'FS',wc:'w-fs',
+    asis:[{t:'human',w:'👤 FS',l:'電子契約・締結',d:'契約書を顧客・プロ人材双方に送付。双方の締結完了確認',tools:['sf']},
+          {t:'human',w:'👤 FS',l:'→ Layer 3（スターリード）へ移行',d:'PJT開始 → CS・追加案件フォローへ'}],
+    tobe:[{t:'human',w:'👤 FS',l:'変わらない',d:'電子契約完了 → Layer 3（スターリード）へ移行'}],
+    issue:'',ai:''},
+  select:{icon:'🔍',title:'人選・案件相談メール',who:'アソシエイト（星）※FS担当の場合あり',wc:'w-ass',
+    asis:[{t:'human',w:'👤 ASS/FS',l:'担当の振り分け（都度協議）',d:'難易度・星さんの対応中案件数により話し合いで決定'},
+          {t:'human',w:'👤 ASS',l:'ProSachiko検索（手動）',d:'35,000名からキーワードを試行錯誤しながら手動検索',tools:['pro']},
+          {t:'human',w:'👤 ASS',l:'案件相談メール作成',d:'プロページからGmail作成。SF案件詳細から案件概要をコピペ。情報量が薄いと言われる',tools:['gmail','sf']}],
+    tobe:[{t:'ai',w:'🤖 GEM',l:'人選KW5個を自動生成',d:'GEMが要件整理と同時に人選キーワードを5個生成（理由付き）',tools:['claude'],isNew:true},
+          {t:'auto',w:'⚡ 自動',l:'案件相談メール自動生成（6項目）',d:'①会社背景②担当者KPI③具体的課題④MS⑤期待役割⑥稼働条件をAIが自動作成',tools:['claude','gmail'],isNew:true}],
+    issue:'残業多発・逼迫。案件相談メールの情報量不足',
+    ai:'🔧 KW自動生成 / 案件相談メール自動生成（設計中）'},
+  secure:{icon:'📋',title:'稼働確保・プロ連絡',who:'アソシエイト（星）',wc:'w-ass',
+    asis:[{t:'human',w:'👤 ASS',l:'プロ人材への返信対応',d:'稼働可否・興味度・実績の確認。条件（工数・報酬）の仮合意',tools:['gmail']},
+          {t:'human',w:'👤 ASS',l:'候補者リストをFSへ連携',d:'FSへ候補者リストを連携。提案書用のプロ人材情報を整理'}],
+    tobe:[{t:'auto',w:'⚡ 自動',l:'返信ボタン化（中期）',d:'「応募する/確認する/辞退する」ボタンをメールに埋め込み。1クリックで返答→AI検知→提案書に自動反映',isNew:true}],
+    issue:'返信追跡・フォローが属人化',ai:'（自動化未対応）'},
+  sched:{icon:'📅',title:'面談調整・追加人選',who:'アソシエイト（星）',wc:'w-ass',
+    asis:[{t:'human',w:'👤 ASS',l:'3者日程調整・Zoom発行・アジェンダ送付',d:'メールで手動日程調整。Zoomリンク発行・事前アジェンダ送付',tools:['gmail','zoom']}],
+    tobe:[{t:'ai',w:'🤖 AI',l:'日程調整自動化（検討中）',d:'カレンダーAPI連携で自動候補日抽出',isNew:true}],
+    issue:'日程調整がメール手動',ai:'（自動化検討中）'},
+
+  // Layer 3
+  cs_kickoff:{icon:'🚀',title:'キックオフMTG',who:'FS',wc:'w-fs',
+    asis:[
+      {t:'human',w:'👤 FS',l:'3者キックオフMTG',d:'契約後すぐに顧客・プロ人材・当社の3者でキックオフ。期待値・スコープ・マイルストーン・役割分担を確認',tools:['zoom','sf']},
+      {t:'human',w:'👤 FS',l:'プロジェクト管理シートの整備',d:'PJT管理シートをGoogle Driveに作成。月次フォローコール・進捗確認の基盤を整える'},
+    ],
+    tobe:[
+      {t:'ai',w:'🤖 AI',l:'キックオフアジェンダAI自動生成',d:'契約内容から期待値・役割定義・マイルストーンをAIが自動生成。3者が同じ認識でスタートできる',tools:['claude'],isNew:true},
+      {t:'human',w:'👤 FS',l:'3者キックオフMTG（変わらない）',d:'人間が場をファシリテートする価値は変わらない'},
+    ],
+    issue:'キックオフ準備が属人化。FS担当者によってキックオフの質にバラつきがある',ai:'🔧 キックオフAI補助（検討中）'},
+  cs_support:{icon:'🤝',title:'支援同席',who:'FS',wc:'w-fs',
+    asis:[
+      {t:'human',w:'👤 FS',l:'プロ人材の支援に同席',d:'稼働中プロ人材の定例・MTGに同席し、プロジェクトの状況を直接把握。顧客との接点を保つ',tools:['zoom']},
+      {t:'human',w:'👤 FS',l:'関係性の維持',d:'同席を通じてカウンターパートとの関係を維持。やっている人とやっていない人で差がある'},
+    ],
+    tobe:[
+      {t:'human',w:'👤 FS',l:'同席は任意（変わらない）',d:'同席するFSの価値は残しつつ、同席しないFSも定例レビューMTGで接点を担保する'},
+    ],
+    issue:'支援同席が品質管理ではなく自由研究化するケース。同席しているFSほど追加案件が取れていない傾向（徳永は同席せず最多アップセル）',
+    ai:'💡 定例レビューMTGで接点を仕組み化（同席の属人性を補完）'},
+  cs_action:{icon:'📞',title:'日常CSアクション（定期連絡・深耕）',who:'FS',wc:'w-fs',
+    asis:[
+      {t:'human',w:'👤 FS',l:'月次フォローコール',d:'「マイルストーン通り？調整が必要？追加ロール必要？」を月次で確認。カウンターパートとの信頼関係を積み上げる',tools:['sf']},
+      {t:'human',w:'👤 FS',l:'深耕営業（支援同席・切り口提案）',d:'プロ人材の支援に同席して追加ロールを提案。上位・横へのエスカレーション依頼（切り口提案→上や横への展開依頼）'},
+      {t:'human',w:'👤 FS',l:'PJT資料・情報の収集・蓄積',d:'稼働中のPJT資料をGoogle Driveに保存。ステークホルダー全員をリードとしてSFに登録',tools:['sf']},
+    ],
+    tobe:[
+      {t:'human',w:'👤 FS',l:'月次フォローコール（変わらない）',d:'人間の関係構築が最も重要なタッチポイント'},
+      {t:'ai',w:'🤖 AI',l:'月次「次の課題予測」をAIが先出し',d:'過去PJT資料・商談履歴をAIが分析。「次にぶつかる壁」をFSに先出し提示→フォローコールの質を向上',tools:['claude'],isNew:true},
+      {t:'ai',w:'🤖 AI',l:'PJT資料→インテリジェンスカード生成',d:'稼働中PJT資料3万件をAIが分析。潜在課題・ホワイトスペース・横展開仮説を自動提示',tools:['claude','sf'],isNew:true},
+    ],
+    issue:'月次電話が個人の気合に依存。記録が残らないケースがある。3万件のPJT資料が活用されていない',
+    ai:'💡 月次予測AI＋横展開AI（構想中）'},
+  cs_quality:{icon:'✅',title:'①案件管理（満足度・品質担保・解約防止）',who:'FS',wc:'w-fs',
+    asis:[
+      {t:'human',w:'👤 FS',l:'月次PJT品質確認',d:'PROBASEレポートでPJT品質をモニタリング。問題の早期発見と解約防止が目的',tools:['sf']},
+      {t:'human',w:'👤 FS',l:'アンケート回収',d:'稼働中・完了後にアンケートを回収して満足度を定量把握'},
+    ],
+    tobe:[
+      {t:'human',w:'👤 FS',l:'品質確認（変わらない）',d:'人間が顧客の温度感を直接把握することが重要'},
+      {t:'auto',w:'⚡ 自動',l:'アンケート→自動集計→SFに記録',d:'アンケート回収後に自動集計してSFのPJTレコードに記録',tools:['sf','gas'],isNew:true},
+    ],
+    issue:'品質確認が担当者の気合に依存。アンケート回収率が低い',ai:'🔧 アンケート自動集計（設計中）'},
+  cs_renew:{icon:'🔄',title:'②案件継続・契約更新',who:'FS',wc:'w-fs',
+    asis:[
+      {t:'human',w:'👤 FS',l:'継続意向の確認',d:'期間終了の1〜2ヶ月前に継続意向を確認。タイミングが遅れると競合に取られる'},
+      {t:'human',w:'👤 FS',l:'継続案件をLayer 2パイプラインに載せる',d:'継続案件として新しい案件をSFに作成してLayer 2のパイプラインに載せる',tools:['sf']},
+    ],
+    tobe:[{t:'human',w:'👤 FS',l:'変わらない（タイミングアラート追加）',d:'継続判断は人間が担当。SFの満了日から自動逆算してFSにSlack通知（設計中）',tools:['sf','slack']}],
+    issue:'継続率の数値管理が弱い。継続判断のタイミングが遅いケースがある',
+    ai:'🔧 満了日から逆算して自動Slackアラート（設計中）'},
+  cs_expand:{icon:'🌿',title:'③追加案件・追加ロール獲得',who:'FS',wc:'w-fs',
+    asis:[
+      {t:'human',w:'👤 FS',l:'追加ロールの確認',d:'月次フォローコールで「追加のサポートが必要なロールはありますか？」を確認'},
+      {t:'human',w:'👤 FS',l:'支援同席→追加ロール提案',d:'プロ人材の支援に同席して不足しているロールを発見→追加提案'},
+      {t:'human',w:'👤 FS',l:'既顧客新規案件をLayer 2に載せる',d:'追加案件が決まったらSFに既顧客新規案件を作成してLayer 2のパイプラインに載せる',tools:['sf']},
+    ],
+    tobe:[
+      {t:'ai',w:'🤖 AI',l:'PJT資料→インテリジェンスカード生成',d:'稼働中PJT資料をAIが分析。潜在課題・ホワイトスペース・追加ロール仮説を自動提示',tools:['claude','sf'],isNew:true},
+      {t:'human',w:'👤 FS',l:'AI提案仮説をもとに深耕営業',d:'AIが出した「次の課題予測」を議題にフォローコール→追加提案'},
+    ],
+    issue:'追加相談は徳永Mgr個人への依頼が中心（属人化）。3万件のPJT資料が活用されていない',
+    ai:'💡 横展開AI構想中：PJT資料からインテリジェンスカードを自動生成'},
+  cs_dept:{icon:'🏢',title:'④追加部署・担当者紹介獲得',who:'FS',wc:'w-fs',
+    asis:[
+      {t:'human',w:'👤 FS',l:'切り口提案→上や横への展開依頼',d:'稼働中のカウンターパートに他部署・上位職・関連部門への紹介を依頼（エスカレーション）'},
+      {t:'human',w:'👤 FS',l:'紹介された担当者をSFに新規リード登録',d:'紹介された担当者をSFに登録してTier付与。商談が組めれば新規案件のパイプラインを作成',tools:['sf']},
+    ],
+    tobe:[
+      {t:'ai',w:'🤖 AI',l:'ステークホルダーマップAI生成',d:'稼働中PJT資料・組織図から「次にアプローチすべき部署・担当者」をAIが提示',tools:['claude'],isNew:true},
+      {t:'human',w:'👤 FS',l:'新規リード登録→Layer 1/2に流入',d:'紹介されたらSFに新規登録→Layer 1（Tier設定）またはLayer 2（商談設定）に流入'},
+    ],
+    issue:'横展開の提案が属人化。どの顧客にどの部署への展開依頼をすべきか体系化されていない',
+    ai:'💡 ステークホルダーマップAI（構想中）'},
+  cs_expire:{icon:'📦',title:'満了処理・SFリサイクル',who:'FS + 松村（マーケ）',wc:'w-ai',
+    asis:[
+      {t:'human',w:'👤 FS',l:'SF稼働ステータスを満了に変更',d:'PJT終了後にSFのステータスを更新。リサイクル処理のトリガー',tools:['sf']},
+      {t:'human',w:'👤 松村',l:'全満了案件を3ヶ月後にリサイクル処理',d:'松村さんが全ての満了案件を確認して3ヶ月後のリサイクル日を設定。Layer 1のナーチャゾーンへ戻す',tools:['sf','pardot']},
+    ],
+    tobe:[
+      {t:'auto',w:'⚡ 自動',l:'満了→SFが自動検知→3ヶ月後にSlack通知',d:'SF満了ステータス変更→自動で3ヶ月後にISへSlack通知→Layer 1のリードプールへ自動戻し',tools:['sf','slack','n8n'],isNew:true},
+    ],
+    issue:'満了後のリサイクル処理が手動で松村さんの工数を使っている',
+    ai:'🔧 満了後リサイクル自動化（設計中）'},
+  cs_survey:{icon:'📋',title:'アンケート回収・評価',who:'FS',wc:'w-fs',
+    asis:[
+      {t:'human',w:'👤 FS',l:'稼働中・完了後にアンケート送付',d:'顧客・プロ人材双方にアンケートを送付して満足度を定量把握'},
+      {t:'human',w:'👤 FS',l:'高評価の場合：事例・ロゴ依頼',d:'評価を上回る場合に事例作成依頼とロゴ使用許諾依頼を行う（現状は広報がBNで実現できていない）'},
+    ],
+    tobe:[
+      {t:'human',w:'👤 FS',l:'アンケート送付（変わらない）',d:'アンケート送付はFSが担当'},
+      {t:'auto',w:'⚡ 自動',l:'高評価検知→事例依頼・ロゴ依頼を自動トリガー',d:'アンケートスコアが閾値を超えたら自動で広報チームへSlack通知+事例依頼メール下書き生成',tools:['sf','slack','gmail'],isNew:true},
+    ],
+    issue:'広報チームがボトルネックで事例取得・ロゴ回収が進んでいない。高評価の顧客を逃している',
+    ai:'🔧 高評価→自動事例依頼（TO-BE設計中）'},
+  cs_case:{icon:'🏆',title:'事例・ロゴ依頼（TO-BE）',who:'広報チーム + FS',wc:'w-ai',
+    asis:[
+      {t:'human',w:'👤 FS',l:'手動で広報チームに依頼',d:'高評価が出た後にFSが広報チームに手動で事例作成を依頼。広報チームがBNになっている'},
+    ],
+    tobe:[
+      {t:'auto',w:'⚡ 自動',l:'高評価→広報チームへ自動Slack通知',d:'アンケートスコア閾値超え→広報チームへSlack自動通知。事例依頼メールの下書きも自動生成',tools:['slack','gmail','claude'],isNew:true},
+      {t:'human',w:'👤 広報',l:'事例作成・ロゴ回収の実施',d:'通知を受けて事例インタビューの設定・ロゴ使用許諾の取得を進める'},
+      {t:'human',w:'👤 松村',l:'コンテンツに活用',d:'完成した事例をマーケコンテンツ・配信素材に活用'},
+    ],
+    issue:'現状は広報チームがBNで事例取得が進んでいない。TO-BEでは自動通知で漏れをゼロにする',
+    ai:'🔧 高評価→自動事例依頼トリガー（TO-BEで新設）'},
+};
+
+// ══════════════════════════════════════
+// PANEL RENDER
+// ══════════════════════════════════════
+function openPanel(id, layer){
+  const d=PANEL_DATA[id]; if(!d) return;
+  document.getElementById('sp-icon').textContent=d.icon;
+  document.getElementById('sp-title').textContent=d.title;
+  const w=document.getElementById('sp-who');
+  w.textContent=d.who; w.className='sp-who '+d.wc;
+  document.getElementById('sp').classList.add('open');
+  renderPanel(d);
+}
+
+function renderPanel(d){
+  const isTobe=currentView==='tobe';
+  // リード管理：Tier×リード状態のマトリクス表を先頭に描画
+  let matrixHtml='';
+  if(d.matrix){
+    const tiers=L1_TIERS, states=L1_STATES;
+    let head='<tr><th style="background:#0079C0;color:#fff;font-size:10px;padding:6px 8px;border-radius:6px 0 0 0">Tier ＼ 状態</th>';
+    states.forEach((s,i)=>{ head+=`<th style="background:${s.col};color:#fff;font-size:9.5px;padding:6px 8px;${i===states.length-1?'border-radius:0 6px 0 0':''}">${s.s}<div style="font-weight:400;font-size:7.5px;opacity:.9">${s.d}</div></th>`; });
+    head+='</tr>';
+    let rows='';
+    tiers.forEach(tr=>{
+      rows+=`<tr><td style="background:${tr.col};color:#fff;font-size:10px;font-weight:700;padding:6px 8px;white-space:nowrap">${tr.t}<div style="font-weight:400;font-size:7.5px;opacity:.9">${tr.own}</div></td>`;
+      rows+=`<td colspan="${states.length}" style="padding:6px 10px;font-size:9px;color:#1A2A38;background:rgba(0,121,192,.04);line-height:1.5"><b>${tr.rel}</b> ／ ${tr.motion}</td></tr>`;
+    });
+    matrixHtml=`<div class="sp-sec"><div class="sp-sec-title" style="color:#0079C0">Tier（企業）× リード状態（担当者）</div>
+      <table style="border-collapse:separate;border-spacing:2px;width:100%">${head}${rows}</table>
+      <div style="font-size:8.5px;color:#6B6864;margin-top:8px;line-height:1.6">
+      <b>リード状態の定義</b><br>
+      🔄 <b>リサイクル</b>：商談後にFSがリサイクル「あり」を選び予定日を入力。その日にISが連絡<br>
+      💤 <b>休眠</b>：予定日なし。無理にアポ取らず「前回からの変化」を聞く文脈再接触から<br>
+      🆕 <b>未提案</b>：商談歴なし（ウェビナー登録/架電拒否/ターゲット外）。明確なターゲット外のみ除外<br>
+      ◆ <b>過去稼働後</b>：Layer3満了から来る別状態。休眠と別扱い・音信不通NG。マーケが全件リサイクル投入</div>
+    </div>`;
+  }
+  const steps=isTobe&&d.tobe&&d.tobe.length?d.tobe:d.asis;
+  const secColor=isTobe?'#0F6E56':'#5F5E5A';
+  const secLabel=isTobe?'TO-BE — 詳細ステップフロー':'AS-IS — 詳細ステップフロー';
+  const whoIcon={human:'👤',ai:'🤖',auto:'⚡',tool:'🔧'};
+  const dotCls={human:'vd-human',ai:'vd-ai',auto:'vd-auto',tool:'vd-auto'};
+  const cardCls={human:'vc-human',ai:'vc-ai',auto:'vc-auto',tool:'vc-auto'};
+  const badgeCls={human:'vw-human',ai:'vw-ai',auto:'vw-auto',tool:'vw-auto'};
+
+  let stepsHtml='';
+  steps.forEach((step,i)=>{
+    const isNew=isTobe&&step.isNew;
+    const icon=whoIcon[step.t]||'🔧';
+    const toolsHtml=step.tools&&step.tools.length
+      ?`<div class="vstep-tools">${step.tools.map(k=>T[k]||'').join('')}</div>`:'';
+    const newBadge=isNew?'<span class="vstep-new-badge">🆕 TO-BEで自動化</span>':'';
+    stepsHtml+=`
+    <div class="vstep">
+      <div class="vstep-dot ${dotCls[step.t]}"></div>
+      <div class="vstep-card ${cardCls[step.t]}${isNew?' vc-new':''}">
+        <div><span class="vstep-who ${badgeCls[step.t]}">${icon} ${step.w.replace(/👤 |🤖 |⚡ |🔧 /,'')}</span>${newBadge}</div>
+        <div class="vstep-label">${step.l}</div>
+        <div class="vstep-detail">${step.d}</div>
+        ${toolsHtml}
+      </div>
+    </div>
+    ${i<steps.length-1?'<div class="vstep-arrow">↓</div>':''}`;
+  });
+
+  let html=matrixHtml+`<div class="sp-sec"><div class="sp-sec-title" style="color:${secColor}">${secLabel}</div><div class="vflow">${stepsHtml}</div></div>`;
+  if(d.issue) html+=`<div class="sp-sec"><div class="sp-sec-title" style="color:#A32D2D">課題・ボトルネック</div><div class="issue-box">${d.issue}</div></div>`;
+  if(d.ai)    html+=`<div class="sp-sec"><div class="sp-sec-title" style="color:#0F6E56">AI活用ステータス</div><div class="ai-box">${d.ai}</div></div>`;
+  document.getElementById('sp-body').innerHTML=html;
+}
+
+function closeP(){
+  document.getElementById('sp').classList.remove('open');
+  clickedNode=null; drawAll();
+}
+
+// ══════════════════════════════════════
+// INIT
+// ══════════════════════════════════════
+window.addEventListener('resize', drawAll);
+setTimeout(drawAll, 100);
+</script>
+</body>
+</html>
