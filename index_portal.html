@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>エンタープライズ ポータル｜株式会社サーキュレーション</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.11.0/dist/tabler-icons.min.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+:root{
+  --blue:#0079c0; --blue-d:#003d5e; --blue-mid:#5599be; --blue-l:#e8f6ff;
+  --green:#22a047; --orange:#ed7d31; --purple:#7057a3; --ink:#1a2a38; --gray:#6b6864;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'M PLUS Rounded 1c','Hiragino Kaku Gothic ProN',sans-serif;
+  background:linear-gradient(160deg,#e8f6ff 0%,#d8eefb 100%);
+  color:var(--ink); min-height:100vh; padding:0 0 60px;
+}
+/* ── トップバー ── */
+.topbar{
+  background:linear-gradient(135deg,#0079c0,#005a92);
+  color:#fff; padding:16px 24px; display:flex; align-items:center; gap:12px;
+  box-shadow:0 2px 12px rgba(0,121,192,.25);
+}
+.topbar i{font-size:22px}
+.topbar h1{font-size:17px;font-weight:800;letter-spacing:.01em}
+.topbar-badge{
+  background:rgba(255,255,255,.2); border-radius:20px; padding:3px 12px;
+  font-size:11px; font-weight:500; margin-left:4px;
+}
+.topbar-spacer{flex:1}
+.topbar-meta{font-size:11px;opacity:.85;font-family:'JetBrains Mono',monospace}
+/* ── コンテナ ── */
+.wrap{max-width:960px;margin:0 auto;padding:28px 20px 0}
+/* ── ヒーロー ── */
+.hero{
+  background:linear-gradient(135deg,#fff,#e8f6ff);
+  border:2px solid var(--blue-mid); border-radius:20px;
+  padding:34px 30px 30px; margin-bottom:26px; text-align:center;
+  position:relative; overflow:hidden;
+}
+.hero::before{
+  content:''; position:absolute; width:200px; height:200px; border-radius:50%;
+  background:radial-gradient(circle,rgba(0,121,192,.08),transparent 70%);
+  top:-60px; right:-40px;
+}
+.hero::after{
+  content:''; position:absolute; width:150px; height:150px; border-radius:50%;
+  background:radial-gradient(circle,rgba(85,153,190,.1),transparent 70%);
+  bottom:-50px; left:-30px;
+}
+.hero-icon{
+  width:56px;height:56px;border-radius:16px;
+  background:linear-gradient(135deg,#0079c0,#5599be);
+  display:inline-flex;align-items:center;justify-content:center;
+  margin-bottom:14px;box-shadow:0 6px 16px rgba(0,121,192,.3);
+}
+.hero-icon i{font-size:28px;color:#fff}
+.hero h2{font-size:24px;font-weight:800;color:var(--blue);margin-bottom:10px;letter-spacing:.02em}
+.hero p{font-size:13px;color:var(--gray);line-height:1.7}
+/* ── セクション見出し ── */
+.sec-title{
+  display:flex;align-items:center;gap:8px;
+  font-size:14px;font-weight:700;color:var(--blue-d);margin:26px 4px 14px;
+}
+.sec-title i{font-size:18px;color:var(--blue)}
+/* ── カードグリッド ── */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+@media(max-width:680px){.grid{grid-template-columns:1fr}}
+.card{
+  background:#fff; border-radius:18px; border:1.5px solid #d6e8f5;
+  padding:24px 22px; text-decoration:none; color:inherit;
+  display:flex;flex-direction:column;gap:0;
+  transition:transform .15s, box-shadow .15s, border-color .15s;
+  position:relative; overflow:hidden;
+}
+.card::before{
+  content:''; position:absolute; top:0; left:0; right:0; height:4px;
+  background:linear-gradient(90deg,#5599be,#0079c0);
+  transform:scaleX(0); transform-origin:left; transition:transform .2s;
+}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,121,192,.16);border-color:var(--blue-mid)}
+.card:hover::before{transform:scaleX(1)}
+.card.green::before{background:linear-gradient(90deg,#5ab870,#22a047)}
+.card.orange::before{background:linear-gradient(90deg,#f5a623,#ed7d31)}
+.card.purple::before{background:linear-gradient(90deg,#9b7fc4,#7057a3)}
+.card-icon{
+  width:46px;height:46px;border-radius:13px;background:var(--blue-l);
+  display:inline-flex;align-items:center;justify-content:center;margin-bottom:14px;
+}
+.card-icon i{font-size:24px;color:var(--blue)}
+.card.green .card-icon{background:#e6f7ee}.card.green .card-icon i{color:var(--green)}
+.card.orange .card-icon{background:#fff3e0}.card.orange .card-icon i{color:var(--orange)}
+.card.purple .card-icon{background:#f1ecf8}.card.purple .card-icon i{color:var(--purple)}
+.card h3{font-size:16px;font-weight:700;margin-bottom:6px;color:var(--ink)}
+.card p{font-size:12px;color:var(--gray);line-height:1.6;margin-bottom:14px;flex:1}
+.card-link{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:12px;font-weight:600;color:var(--blue);
+}
+.card-badge{
+  position:absolute;top:14px;right:14px;
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;
+}
+.card-badge.live{background:#e6f7ee;color:var(--green);border:1.5px solid #5ab870}
+.card-badge.wip{background:#fff3e0;color:var(--orange);border:1.5px solid var(--orange)}
+.card-badge.ext{background:#e8f6ff;color:var(--blue);border:1.5px solid var(--blue-mid)}
+/* ── フッター ── */
+.foot{text-align:center;margin-top:36px;font-size:11px;color:var(--gray);font-family:'JetBrains Mono',monospace}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <i class="ti ti-building-skyscraper"></i>
+  <h1>エンタープライズ ポータル</h1>
+  <span class="topbar-badge">CIRCULATION</span>
+  <div class="topbar-spacer"></div>
+  <div class="topbar-meta">Enterprise Team</div>
+</div>
+
+<div class="wrap">
+
+  <!-- ヒーロー -->
+  <div class="hero">
+    <div class="hero-icon"><i class="ti ti-rocket"></i></div>
+    <h2>Enterprise Portal</h2>
+    <p>エンタープライズチームの GTM・営業オペレーション・ダッシュボードへの入口です。<br>確認したい項目を選んでください。</p>
+  </div>
+
+  <!-- 戦略・オペレーション -->
+  <div class="sec-title"><i class="ti ti-route"></i>戦略・オペレーション</div>
+  <div class="grid">
+
+    <a class="card" href="./gtm/">
+      <span class="card-badge live"><i class="ti ti-circle-filled" style="font-size:8px"></i> 公開中</span>
+      <div class="card-icon"><i class="ti ti-sitemap"></i></div>
+      <h3>GTM 統合フロー</h3>
+      <p>Layer1（商談獲得）・Layer2（パイプライン）・Layer3（CS/スターリード）の全体像。各アクションをクリックで手順・プロンプトを表示。</p>
+      <span class="card-link">フローを見る <i class="ti ti-arrow-right"></i></span>
+    </a>
+
+    <a class="card green" href="https://tokunagayudai.github.io/Circulation-Enterprise-dashboard/" target="_blank" rel="noopener">
+      <span class="card-badge ext"><i class="ti ti-external-link" style="font-size:10px"></i> 外部</span>
+      <div class="card-icon"><i class="ti ti-chart-bar"></i></div>
+      <h3>エンプラ ダッシュボード</h3>
+      <p>パイプライン・KPI・ファネル分析。Salesforce → G-Connector → GAS 連携の営業実績ダッシュボード。</p>
+      <span class="card-link">ダッシュボードを開く <i class="ti ti-arrow-right"></i></span>
+    </a>
+
+  </div>
+
+  <!-- 今後追加（プレースホルダ） -->
+  <div class="sec-title"><i class="ti ti-plus"></i>今後追加予定</div>
+  <div class="grid">
+
+    <a class="card orange" href="#" onclick="return false">
+      <span class="card-badge wip"><i class="ti ti-tools" style="font-size:10px"></i> 準備中</span>
+      <div class="card-icon"><i class="ti ti-calendar-event"></i></div>
+      <h3>マーケカレンダー</h3>
+      <p>年間マーケティングカレンダー・地上戦FSアクション設計・Tier別アプローチ。（リンク設定待ち）</p>
+      <span class="card-link">準備中 <i class="ti ti-dots"></i></span>
+    </a>
+
+    <a class="card purple" href="#" onclick="return false">
+      <span class="card-badge wip"><i class="ti ti-tools" style="font-size:10px"></i> 準備中</span>
+      <div class="card-icon"><i class="ti ti-file-text"></i></div>
+      <h3>提案書ジェネレータ</h3>
+      <p>Zoom商談 → 要件整理 → 提案書PPTX自動生成。Claudeプロジェクトで運用。（リンク設定待ち）</p>
+      <span class="card-link">準備中 <i class="ti ti-dots"></i></span>
+    </a>
+
+  </div>
+
+  <div class="foot">© 株式会社サーキュレーション　Enterprise Team Portal</div>
+
+</div>
+
+</body>
+</html>
