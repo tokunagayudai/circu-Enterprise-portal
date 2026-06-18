@@ -65,6 +65,7 @@ body{
   font-size:14px;font-weight:700;color:var(--blue-d);margin:26px 4px 14px;
 }
 .sec-title i{font-size:18px;color:var(--blue)}
+.sec-title small{font-weight:500;color:var(--gray);font-size:11px;letter-spacing:0}
 /* ── カードグリッド ── */
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
 @media(max-width:680px){.grid{grid-template-columns:1fr}}
@@ -127,11 +128,11 @@ body{
   <div class="hero">
     <div class="hero-icon"><i class="ti ti-rocket"></i></div>
     <h2>Enterprise Portal</h2>
-    <p>エンタープライズチームの GTM・営業オペレーション・ダッシュボードへの入口です。<br>確認したい項目を選んでください。</p>
+    <p>エンタープライズチームの入口です。<strong>戦略を見直すなら</strong>・<strong>商況を確認するなら</strong>・<strong>型を学ぶなら</strong>——目的から選んでください。</p>
   </div>
 
-  <!-- 戦略・オペレーション -->
-  <div class="sec-title"><i class="ti ti-route"></i>戦略・オペレーション</div>
+  <!-- ① 戦略・オペレーション -->
+  <div class="sec-title"><i class="ti ti-route"></i>戦略・オペレーション <small>― 戦略を見直すなら</small></div>
   <div class="grid">
 
     <a class="card" href="./gtm/" target="_blank" rel="noopener">
@@ -142,6 +143,20 @@ body{
       <span class="card-link">フローを見る <i class="ti ti-arrow-right"></i></span>
     </a>
 
+    <a class="card" href="#" onclick="return false">
+      <span class="card-badge wip"><i class="ti ti-tools" style="font-size:10px"></i> 準備中</span>
+      <div class="card-icon"><i class="ti ti-calendar-event"></i></div>
+      <h3>マーケカレンダー</h3>
+      <p>年間マーケティングカレンダー・地上戦FSアクション設計・Tier別アプローチ。（リンク設定待ち）</p>
+      <span class="card-link">準備中 <i class="ti ti-dots"></i></span>
+    </a>
+
+  </div>
+
+  <!-- ② 商況・数値 -->
+  <div class="sec-title"><i class="ti ti-chart-bar"></i>商況・数値 <small>― 商況を確認するなら</small></div>
+  <div class="grid">
+
     <a class="card green" href="https://tokunagayudai.github.io/Circulation-Enterprise-dashboard/" target="_blank" rel="noopener">
       <span class="card-badge ext"><i class="ti ti-external-link" style="font-size:10px"></i> 外部</span>
       <div class="card-icon"><i class="ti ti-chart-bar"></i></div>
@@ -150,17 +165,25 @@ body{
       <span class="card-link">ダッシュボードを開く <i class="ti ti-arrow-right"></i></span>
     </a>
 
+    <a class="card green" href="#" onclick="return false">
+      <span class="card-badge wip"><i class="ti ti-tools" style="font-size:10px"></i> 準備中</span>
+      <div class="card-icon"><i class="ti ti-address-book"></i></div>
+      <h3>リード管理</h3>
+      <p>リードの獲得・ステータス・ナーチャリング状況を一元管理。担当・確度・次アクションを可視化。（リンク設定待ち）</p>
+      <span class="card-link">準備中 <i class="ti ti-dots"></i></span>
+    </a>
+
   </div>
 
-  <!-- 今後追加（プレースホルダ） -->
-  <div class="sec-title"><i class="ti ti-plus"></i>今後追加予定</div>
+  <!-- ③ ナレッジ・型（虎の巻） -->
+  <div class="sec-title"><i class="ti ti-book-2"></i>ナレッジ・型（虎の巻） <small>― 型を学ぶ・提案を作るなら</small></div>
   <div class="grid">
 
-    <a class="card orange" href="#" onclick="return false">
+    <a class="card purple" href="#" onclick="return false">
       <span class="card-badge wip"><i class="ti ti-tools" style="font-size:10px"></i> 準備中</span>
-      <div class="card-icon"><i class="ti ti-calendar-event"></i></div>
-      <h3>マーケカレンダー</h3>
-      <p>年間マーケティングカレンダー・地上戦FSアクション設計・Tier別アプローチ。（リンク設定待ち）</p>
+      <div class="card-icon"><i class="ti ti-trophy"></i></div>
+      <h3>虎の巻 / 勝ちパターン</h3>
+      <p>標準営業プロセス・トークスクリプト・ヒアリング項目・勝ち筋ナレッジ。属人化を防ぎ品質を揃える型。（Notion連携予定）</p>
       <span class="card-link">準備中 <i class="ti ti-dots"></i></span>
     </a>
 
@@ -172,7 +195,7 @@ body{
       <span class="card-link">準備中 <i class="ti ti-dots"></i></span>
     </a>
 
-    <a class="card" href="#" onclick="return false">
+    <a class="card purple" href="#" onclick="return false">
       <span class="card-badge wip"><i class="ti ti-tools" style="font-size:10px"></i> 準備中</span>
       <div class="card-icon"><i class="ti ti-clipboard-text"></i></div>
       <h3>プロンプト/テンプレ集</h3>
@@ -180,11 +203,47 @@ body{
       <span class="card-link">準備中 <i class="ti ti-dots"></i></span>
     </a>
 
-    <a class="card green" href="#" onclick="return false">
+  </div>
+
+  <!-- ④ オンボーディング -->
+  <div class="sec-title"><i class="ti ti-rocket"></i>オンボーディング <small>― 新メンバーはまずここ</small></div>
+  <div class="grid">
+
+    <a class="card orange" href="#" onclick="return false">
       <span class="card-badge wip"><i class="ti ti-tools" style="font-size:10px"></i> 準備中</span>
-      <div class="card-icon"><i class="ti ti-address-book"></i></div>
-      <h3>リード管理</h3>
-      <p>リードの獲得・ステータス・ナーチャリング状況を一元管理。担当・確度・次アクションを可視化。（リンク設定待ち）</p>
+      <div class="card-icon"><i class="ti ti-map-2"></i></div>
+      <h3>オンボーディング ガイド</h3>
+      <p>新メンバーが最初に見る道しるべ。チームの動き方・ツール・初週やることリスト。（Notion連携予定）</p>
+      <span class="card-link">準備中 <i class="ti ti-dots"></i></span>
+    </a>
+
+  </div>
+
+  <!-- ⑤ ツール -->
+  <div class="sec-title"><i class="ti ti-plug"></i>ツール <small>― 各システムへの入口</small></div>
+  <div class="grid">
+
+    <a class="card" href="#" onclick="return false">
+      <span class="card-badge wip"><i class="ti ti-tools" style="font-size:10px"></i> 準備中</span>
+      <div class="card-icon"><i class="ti ti-cloud-data-connection"></i></div>
+      <h3>Salesforce</h3>
+      <p>商談・アカウント管理のCRM。パイプラインの一次情報。（リンク設定待ち）</p>
+      <span class="card-link">準備中 <i class="ti ti-dots"></i></span>
+    </a>
+
+    <a class="card" href="#" onclick="return false">
+      <span class="card-badge wip"><i class="ti ti-tools" style="font-size:10px"></i> 準備中</span>
+      <div class="card-icon"><i class="ti ti-brand-google-drive"></i></div>
+      <h3>共有ドライブ</h3>
+      <p>提案資料・契約・各種ファイルの実体。マイドライブから集約し属人化を解消。（リンク設定待ち）</p>
+      <span class="card-link">準備中 <i class="ti ti-dots"></i></span>
+    </a>
+
+    <a class="card" href="#" onclick="return false">
+      <span class="card-badge wip"><i class="ti ti-tools" style="font-size:10px"></i> 準備中</span>
+      <div class="card-icon"><i class="ti ti-brand-slack"></i></div>
+      <h3>Slack チャンネル</h3>
+      <p>日々の連絡・流れる情報。主要チャンネルへのショートカット。（リンク設定待ち）</p>
       <span class="card-link">準備中 <i class="ti ti-dots"></i></span>
     </a>
 
