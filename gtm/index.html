@@ -270,10 +270,12 @@ html,body{overflow:auto!important;height:auto!important;
 .row-l1l3{display:block!important}
 .layer-block{margin-bottom:16px;background:#fff;border-radius:18px!important;
   border:1.5px solid #d6e8f5;box-shadow:0 6px 22px rgba(0,121,192,.08);overflow:visible}
-.layer-hdr{display:flex;align-items:center;gap:12px;padding:13px 20px!important;cursor:pointer;border-radius:18px 18px 0 0!important}
-.layer-icon{font-size:21px}
-.layer-title{font-size:15px;font-weight:800;color:#fff;letter-spacing:.02em}
-.layer-sub{font-size:11px;color:rgba(255,255,255,.88);font-weight:500;margin-top:2px}
+.layer-hdr{display:flex;align-items:center;gap:11px;padding:11px 18px!important;cursor:pointer;border-radius:18px 18px 0 0!important}
+.layer-pill{font-size:15px;font-weight:800;color:var(--blue-deep);background:#fff;border-radius:999px;padding:5px 17px;
+  box-shadow:0 3px 0 rgba(0,0,0,.13),0 5px 12px rgba(0,0,0,.2);letter-spacing:.02em;white-space:nowrap}
+.layer-name{font-size:14px;font-weight:800;color:#fff;letter-spacing:.05em}
+.layer-icon{display:none}
+.layer-title,.layer-sub{display:none}
 .layer-toggle{margin-left:auto;color:#fff;font-size:13px;opacity:.9;transition:transform .2s}
 .layer-block:not(.open) .layer-toggle{transform:rotate(180deg)}
 .layer-content{padding:16px 20px 22px!important;background:#fbfdff;overflow-x:auto;display:block!important;max-height:none!important;border-radius:0 0 18px 18px}
@@ -283,8 +285,11 @@ html,body{overflow:auto!important;height:auto!important;
 .flow{position:relative}
 .flow > svg.conn{position:absolute;top:0;left:0;pointer-events:none;z-index:0;overflow:visible}
 .flow > :not(svg){position:relative;z-index:1}
-.pn-row{display:flex;gap:9px;flex-wrap:wrap;align-items:stretch}
-.pn-row > .pnode,.pn-row > .io-chip{flex:1 1 156px;min-width:156px}
+.pn-row{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch}
+.pn-row > .pnode{flex:0 0 198px;width:198px}
+.io-chip.dashed{border:2px dashed #d6f5e1}
+@keyframes flashb{0%,100%{box-shadow:0 0 0 0 rgba(0,121,192,0)}50%{box-shadow:0 0 0 6px rgba(0,121,192,.45)}}
+.flash{animation:flashb 1s ease 2}
 
 /* ── 戦略・方針フレーム（業務フローとは分離）── */
 .strat{display:flex;gap:14px;align-items:stretch;margin:2px 0 20px;border-left:6px solid var(--blue);
@@ -384,6 +389,13 @@ html,body{overflow:auto!important;height:auto!important;
 .mtx-cell b{color:var(--blue-d)}
 .mtx-hint{font-size:9.5px;color:var(--ink2);margin-top:10px;line-height:1.6}
 .mtx-hint b{color:var(--blue)}
+.mx-flex{display:flex;gap:22px;flex-wrap:wrap}
+.mx-col{flex:1;min-width:240px}
+.mx-h{font-size:11px;font-weight:800;margin-bottom:8px}
+.mx-chips{display:flex;flex-wrap:wrap;gap:7px}
+.mx-chip{font-size:10px;font-weight:700;color:#fff;border-radius:8px;padding:5px 11px;cursor:pointer;transition:.14s}
+.mx-chip:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.mx-chip b{font-weight:800}
 
 /* ── 見出し・注記 ── */
 .sec-cap{font-size:11.5px;font-weight:800;color:var(--blue-deep);margin:6px 2px 12px;display:flex;align-items:center;gap:6px;
@@ -487,11 +499,8 @@ html,body{overflow:auto!important;height:auto!important;
   <!-- ═══ Layer 1 — 商談獲得（リードを生み、商談に変える）═══ -->
   <div class="layer-block open" id="block-l1">
     <div class="layer-hdr" style="background:linear-gradient(135deg,#0079C0,#005A92)" onclick="toggle('l1')">
-      <span class="layer-icon">🌱</span>
-      <div class="layer-info">
-        <div class="layer-title">Layer 1 — 商談獲得</div>
-        <div class="layer-sub">リードを「状態」で管理し、文脈を持って商談化する（マーケ × IS × FS）</div>
-      </div>
+      <span class="layer-pill">Layer 1</span>
+      <span class="layer-name">商談獲得</span>
       <span class="layer-toggle">▲</span>
     </div>
     <div class="layer-content" id="content-l1"><div class="flow" id="flow-l1"></div></div>
@@ -503,11 +512,8 @@ html,body{overflow:auto!important;height:auto!important;
   <!-- ═══ Layer 2 — パイプライン（Salesforce準拠ステージ）═══ -->
   <div class="layer-block open" id="block-l2">
     <div class="layer-hdr" style="background:linear-gradient(135deg,#003D5E,#002A42)" onclick="toggle('l2')">
-      <span class="layer-icon">⚡</span>
-      <div class="layer-info">
-        <div class="layer-title">Layer 2 — パイプライン（Salesforceステージ準拠）</div>
-        <div class="layer-sub">商談 → 案件化 → 提案 → 面談 → 見積 → 稟議 → 契約 → 受注（FS × アシスタント）</div>
-      </div>
+      <span class="layer-pill">Layer 2</span>
+      <span class="layer-name">パイプライン</span>
       <span class="layer-toggle">▲</span>
     </div>
     <div class="layer-content" id="content-l2"><div class="flow" id="flow-l2"></div></div>
@@ -519,11 +525,8 @@ html,body{overflow:auto!important;height:auto!important;
   <!-- ═══ Layer 3 — CS・スターリード（稼働中の深耕）═══ -->
   <div class="layer-block open" id="block-l3">
     <div class="layer-hdr" style="background:linear-gradient(135deg,#0A6E8C,#084E64)" onclick="toggle('l3')">
-      <span class="layer-icon">⭐</span>
-      <div class="layer-info">
-        <div class="layer-title">Layer 3 — CS・スターリード（稼働中）</div>
-        <div class="layer-sub">品質担保で解約を防ぎ、継続・追加案件・部署紹介でLayer1/2へ還流（FS）</div>
-      </div>
+      <span class="layer-pill">Layer 3</span>
+      <span class="layer-name">CS・スターリード</span>
       <span class="layer-toggle">▲</span>
     </div>
     <div class="layer-content" id="content-l3"><div class="flow" id="flow-l3"></div></div>
@@ -645,35 +648,25 @@ function gate(id){const d=PANEL_DATA[id]||{};const ttl=(d.title||id).replace(/\s
 function roleCell(role,label,sub){return `<div class="role-cell" style="background:var(--c-${role})">${label}${sub?`<span class="rc-sub">${sub}</span>`:''}</div>`;}
 function ioChip(cls,t,sub,key){return `<div class="io-chip ${cls}"${key?` data-key="${key}"`:''}>${t}${sub?`<span class="ic-sub">${sub}</span>`:''}</div>`;}
 
-// ── リード管理マトリクス（デフォルト展開）──
-function matrixHtml(){
-  const states=[['lead_recycle','🔄 リサイクル','予定日入り→ISが連絡','#F39312'],['lead_sleep','💤 休眠','予定日なし→文脈再接触','#9aa0a6'],['lead_new','🆕 未提案','商談歴なし→基本リーチ','#5BA6D5'],['lead_ob','◆ 過去稼働後','満了→3ヶ月後に自動投入','#00A33B']];
-  let head=`<tr><th class="mtx-corner">Tier ＼ リード状態</th>`;
-  states.forEach(s=>head+=`<th class="mtx-state" style="background:${s[3]}" onclick="openPanel('${s[0]}')"><div class="mst-t">${s[1]}</div><div class="mst-d">${s[2]}</div></th>`);
-  head+=`</tr>`;
-  const tiers=[['tier1','Tier1','最重要・FSが責任者','#0079C0','決裁権者×具体課題×予算が揃う最優先。ABM（外部環境トリガー）で週1接触。担当＝FS'],
-    ['tier2','Tier2','準開拓・引き上げ','#3E7CB1','大量アポを設定して最重要顧客へ引き上げる。担当あり（IS/マーケ）'],
-    ['tier3','Tier3','ほぼ関係なし','#5BA6D5','マーケ施策でコールド→ホット化。担当なし（アポが取れたら担当付与）'],
-    ['tier4','Tier4','履歴なし','#8FC4E3','完全オペレーション配信のみ。担当なし']];
-  let rows='';
-  tiers.forEach(t=>rows+=`<tr><td class="mtx-tier" style="background:${t[3]}" onclick="openPanel('${t[0]}')"><div class="mt-t">${t[1]}</div><div class="mt-d">${t[2]}</div></td><td class="mtx-cell" colspan="4">${t[4]}</td></tr>`);
-  return `<details class="mtx" open><summary><span class="ms-ico">🗂</span><div><div class="ms-t">リード管理（母集団）｜Tier（企業）× リード状態（担当者）</div><div class="ms-d">全員の共通言語。各セル（リード状態・Tier）をクリックすると右側に定義が出ます</div></div><span class="ms-arrow">▲</span></summary><div class="mtx-body"><table class="mtx-table">${head}${rows}</table><div class="mtx-hint"><b>リード状態の定義</b>　🔄 リサイクル：商談後にFSが予定日を入力→その日にISが文脈を持って連絡／💤 休眠：予定日なし。無理にアポを取らず「前回からの変化」を聞く再接触／🆕 未提案：商談歴なし。明確なターゲット外のみ除外し基本リーチ／◆ 過去稼働後：満了から来る別状態。音信不通NG。マーケが全件3ヶ月後リサイクルに自動投入</div></div></details>`;
-}
+// ── レイヤー間ワープ ──
+function jumpTo(id){const b=document.getElementById(id);if(!b)return;b.classList.add('open');setTimeout(()=>{b.scrollIntoView({behavior:'smooth',block:'start'});redrawConn();},60);}
 
-// リード状態プール（IS架電の母集団）
-function poolCard(){
-  const st=[['lead_recycle','🔄 リサイクル'],['lead_sleep','💤 休眠'],['lead_new','🆕 未提案'],['lead_ob','◆ 過去稼働後']];
-  return `<div class="pnode" data-key="poolc" style="--role:var(--c-is)" onclick="event.stopPropagation()">
-    <span class="pn-role">母集団</span>
-    <div class="pn-title"><span class="pn-ico">📇</span><span>リード状態プール</span></div>
-    <div style="display:flex;flex-direction:column;gap:3px;margin-top:1px">`
-    + st.map(s=>`<span onclick="event.stopPropagation();openPanel('${s[0]}')" style="font-size:9px;font-weight:700;color:var(--blue-d);background:#eef7fd;border:1px solid #cfe6f6;border-radius:6px;padding:2px 6px;cursor:pointer">${s[1]}</span>`).join('')
-    +`</div></div>`;
+// ── リード管理（共通言語：アカウント軸 ＝ マーケ ／ リード軸 ＝ IS）──
+function matrixHtml(){
+  const tiers=[['tier1','Tier1','最重要・FSが責任者','#0079C0'],['tier2','Tier2','準開拓・引き上げ','#3E7CB1'],['tier3','Tier3','ほぼ関係なし','#5BA6D5'],['tier4','Tier4','履歴なし','#8FC4E3']];
+  const states=[['lead_ob','◆ 過去稼働後','#00A33B'],['lead_recycle','🔄 リサイクル','#F39312'],['lead_sleep','💤 休眠','#9aa0a6'],['lead_new','🆕 未提案','#5BA6D5']];
+  const tierChips=tiers.map(t=>`<span class="mx-chip" style="background:${t[3]}" onclick="openPanel('${t[0]}')"><b>${t[1]}</b> ${t[2]}</span>`).join('');
+  const stateChips=states.map(s=>`<span class="mx-chip" style="background:${s[2]}" onclick="openPanel('${s[0]}')">${s[1]}</span>`).join('');
+  return `<details class="mtx" open><summary><span class="ms-ico">🗂</span><div><div class="ms-t">リード管理（共通言語）</div></div><span class="ms-arrow">▲</span></summary>
+    <div class="mtx-body mx-flex">
+      <div class="mx-col"><div class="mx-h" style="color:var(--c-mkt)">🏢 アカウント＝企業ランク（マーケが見る）</div><div class="mx-chips">${tierChips}</div></div>
+      <div class="mx-col"><div class="mx-h" style="color:var(--c-is)">👤 リード＝担当者の状態（ISが見る）</div><div class="mx-chips">${stateChips}</div></div>
+    </div></details>`;
 }
 
 const L1_EDGES=[
-  {a:'mktcell',b:'is_list',type:'down'},
-  {a:'poolc',b:'is_list',type:'h'},
+  {a:'mktcell',b:'statecell',type:'down'},
+  {a:'statecell',b:'is_list',type:'down'},
   {a:'is_list',b:'is_call',type:'h'},
   {a:'is_call',b:'is_apo',type:'h'},
   {a:'is_apo',b:'is_hand',type:'h'},
@@ -697,6 +690,7 @@ const L2_EDGES=[
   {a:'contract',b:'won',type:'h'},
 ];
 const L3_EDGES=[
+  {a:'l3in',b:'cs_kickoff',type:'h'},
   {a:'cs_kickoff',b:'cs_support',type:'h'},
   {a:'cs_support',b:'cs_action',type:'down'},
   {a:'cs_action',b:'cs_quality',type:'h'},
@@ -710,60 +704,57 @@ const L3_EDGES=[
 
 function renderL1(){
   let h=matrixHtml();
-  h+=`<div class="sec-cap">📍 商談獲得フロー（エンプラマーケ → IS → 商談 ／ FS・インバウンド）</div>`;
-  const cols='grid-template-columns:108px 1fr 152px';
-  h+=`<div class="lane-grid" style="${cols}">`;
-  // エンプラマーケ
-  const mkt=[['mkt_mail','📨 月1テーマメルマガ'],['mkt_teijo','📬 週1配信(稼働案件/プロ人材)'],['src_wb','🎤 ウェビナー・WP・SEO'],['src_ad','📣 広告(LinkedIn/Google)'],['src_pksha','🤝 PKSHA共催・紹介']];
-  h+=roleCell('mkt','エンプラ<br>マーケ','松村 × 徳永Mgr');
+  h+=`<div class="lane-grid" style="grid-template-columns:96px 1fr 132px">`;
+  // エンプラマーケ（アカウント単位｜並列の施策）
+  const mkt=[['mkt_mail','📨 月1テーマメルマガ'],['mkt_teijo','📬 週1配信'],['src_wb','🎤 ウェビナー・WP'],['src_ad','📣 広告'],['src_pksha','🤝 PKSHA・紹介']];
+  h+=roleCell('mkt','マーケ','アカウント単位');
   h+=`<div class="phase-cell pn-row" data-key="mktcell">`+mkt.map(m=>pnode(m[0],'mkt',{label:m[1]})).join('')+`</div>`;
-  h+=`<div class="phase-cell">${ioChip('io-in','▼ 反応＝MQL','開封/クリック/DL/参加','mqlout')}</div>`;
-  // IS
-  h+=roleCell('is','IS','林（＋業務委託IS）');
+  h+=`<div class="phase-cell">${ioChip('io-in','反応 = MQL','','mqlout')}</div>`;
+  // リード状態（IS母集団｜並列・目的と触り方）
+  const stt=[
+    ['lead_ob','st_ob','◆ 過去稼働後','目的:再受注・音信不通防止 / 触り方:満了→3ヶ月後リサイクル投入。最優先で再接触'],
+    ['lead_recycle','st_rec','🔄 リサイクル','目的:文脈ある再アプローチで商談化 / 触り方:予定日に前回フックを持ってISが連絡'],
+    ['lead_sleep','st_sleep','💤 休眠','目的:関係を切らさず機会を捉える / 触り方:アポ強制せず「前回からの変化」を聞く'],
+    ['lead_new','st_new','🆕 未提案','目的:第一想起・コールド→ホット / 触り方:テーマ配信＋反応者へISコール'],
+  ];
+  h+=roleCell('is','リード状態','IS母集団');
+  h+=`<div class="phase-cell pn-row" data-key="statecell">`+stt.map(s=>pnode(s[0],'is',{key:s[1],label:s[2],desc:s[3]})).join('')+`</div>`;
+  h+=`<div class="phase-cell"></div>`;
+  // IS（リード単位｜直列）
+  h+=roleCell('is','IS','リード単位');
   h+=`<div class="phase-cell pn-row">`
-    + poolCard()
     + pnode('is_list','is',{key:'is_list',label:'① 対象リード抽出',desc:'Tier・リード状態から当日の架電対象を抽出'})
     + pnode('is_call','is',{key:'is_call',label:'② 文脈確認 → コール・2M',desc:'前回DEAD理由・フック文を読み「前回の〇〇の件で」'})
     + pnode('is_apo','is',{key:'is_apo',label:'③ アポ獲得・日程調整',desc:'関心を引けたら商談アポを設定（eeasy/架電）'})
     + pnode('is_hand','is',{key:'is_hand',label:'④ FSへトス ＝ SQL',desc:'商談ブリーフを共有しLayer2へ引き継ぎ'})
   +`</div>`;
-  h+=`<div class="phase-cell">${ioChip('io-out','🤝 商談','→ Layer2 Ph.01','l1out')}</div>`;
-  // FS
-  h+=roleCell('fs','FS','中村/岡部/栫/福本');
+  h+=`<div class="phase-cell"><div class="io-chip io-out" data-key="l1out" style="cursor:pointer" onclick="jumpTo('block-l2')">🤝 商談<span class="ic-sub">Layer2へ ▶</span></div></div>`;
+  // FS（アカウント深耕｜ABM直列＋インバウンド並列）
+  h+=roleCell('fs','FS','アカウント深耕');
   h+=`<div class="phase-cell pn-row">`
     + pnode('abm','fs',{key:'abm1',label:'Tier1 ABM：外部環境トリガー',desc:'人事異動・決算・中計・IRを起点に動く型'})
     + pnode('abm_contact','fs',{key:'abm2',label:'カスタム接触・週1MTG',desc:'個社向け事例・提案で関係維持＋案件機会'})
     + pnode('src_ib','fs',{key:'ib1',label:'⭐ インバウンド相談 受信',desc:'稼働中/稼働後からの相談。受注率45%の源泉'})
   +`</div>`;
-  h+=`<div class="phase-cell">${ioChip('io-win','🤝 商談','→ Layer2 Ph.01','l1out_fs')}</div>`;
+  h+=`<div class="phase-cell"><div class="io-chip io-win" data-key="l1out_fs" style="cursor:pointer" onclick="jumpTo('block-l2')">🤝 商談<span class="ic-sub">Layer2へ ▶</span></div></div>`;
   h+=`</div>`;
-  h+=`<div class="lane-note">流れ：<b>エンプラマーケ</b>の配信への反応（MQL）を<b>IS</b>が引き継ぎ、リード状態プール（母集団）と合わせて文脈架電→アポ→<b>商談</b>化（SQL）してFSへ。<b>FS</b>はTier1をABMで深耕し、<b>インバウンド相談</b>は最短で商談へ。</div>`;
-  // マーケ施策の進め方
-  h+=`<div class="sec-cap" style="margin-top:18px">🟧 エンプラマーケ施策の進め方（毎月の回し方｜カードで詳細）</div>`;
-  const steps=[['mkt_mail','STEP1','データ抽出（SF）','SFレポートから対象企業・担当者・稼働案件を抽出'],
-    ['mkt_mail','STEP2','コンテンツ制作（Gemini/Claude）','テーマ資料・個社カスタム資料・メール文面をAIで作成→徳永Mgr承認'],
-    ['mkt_mail','STEP3','配信リスト作成（SF/Pardot/GAS）','ターゲット抽出→GASスクリプト/Pardot動的リストを作成'],
-    ['mkt_mail','STEP4','配信（3経路）','①IS配信(GAS下書き) ②FSアプローチにCC ③Pardot配信(Tier3/4)'],
-    ['mkt_teijo','STEP5','効果測定 → IS共有','開封/クリック/DL/eeasyを検知→当日中にISへフォロー依頼']];
-  h+=`<div class="mkt-steps">`+steps.map(s=>`<div class="mstep" onclick="openPanel('${s[0]}')"><div class="mk-n">${s[1]}</div><div class="mk-t">${s[2]}</div><div class="mk-d">${s[3]}</div></div>`).join('')+`</div>`;
   document.getElementById('flow-l1').innerHTML=h;
 }
 
 function renderL2(){
-  const stages=[['01','アポ獲得'],['02','案件化'],['03','提案'],['04','面談'],['05','見積'],['06','稟議'],['07','契約手続き'],['08','受注(Closed)']];
+  const stages=[['01','アポ獲得'],['02','案件化'],['03','提案'],['04','面談'],['05','見積'],['06','稟議'],['07','契約手続き'],['08','受注']];
   const chevs=stages.map((s,i)=>`<div class="chev${i===stages.length-1?' win':''}"><span class="cn">${s[0]}</span>${s[1]}</div>`).join('');
   const path=`<div class="sfwrap"><div style="flex:0 0 110px"></div><div class="sfpath">${chevs}</div></div>`;
-  const note=`<div class="lane-note">入口：Layer1で獲得した<b>商談アポ</b>／<b>インバウンド相談</b>がPh.01に流入。各<b>✓合意ゲート</b>を通過して次フェーズへ（迷ったらDEAD→Layer1へリサイクル）。<b>要件整理→人選→稼働確保→提案書</b>のように、FSとアソシエイトが矢印で連携します。</div>`;
   let g=`<div class="lane-grid" style="grid-template-columns:110px repeat(8,minmax(0,1fr))">`;
   g+=roleCell('fs','FS','商談〜契約');
-  g+=`<div class="phase-cell">${pnode('mtg','fs')}</div>`;
+  g+=`<div class="phase-cell">${gate('gate_syodan')}${pnode('mtg','fs')}</div>`;
   g+=`<div class="phase-cell">${gate('q1')}${pnode('sf','fs')}</div>`;
   g+=`<div class="phase-cell">${gate('qs')}${pnode('propose','fs')}</div>`;
   g+=`<div class="phase-cell">${gate('q3')}${pnode('interview','fs')}</div>`;
   g+=`<div class="phase-cell">${gate('q4')}${pnode('nego','fs',{key:'nego',label:'見積・要件定義',desc:'面談議事録をもとに見積書を作成'})}</div>`;
   g+=`<div class="phase-cell">${pnode('nego','fs',{key:'nego2',label:'稟議・反社チェック',desc:'粗利率確認・マネージャー承認・反社チェック'})}</div>`;
   g+=`<div class="phase-cell">${pnode('close','fs')}${pnode('contract','fs')}</div>`;
-  g+=`<div class="phase-cell">${ioChip('io-win','🎉 受注','→ Layer3 へ','won')}</div>`;
+  g+=`<div class="phase-cell"><div class="io-chip io-win" data-key="won" style="cursor:pointer" onclick="jumpTo('block-l3')">🎉 受注<span class="ic-sub">Layer3へ ▶</span></div></div>`;
   g+=roleCell('ass','アソシ<br>エイト','人選・調整');
   g+=`<div class="phase-cell"></div>`;
   g+=`<div class="phase-cell">${pnode('select','ass')}</div>`;
@@ -771,14 +762,14 @@ function renderL2(){
   g+=`<div class="phase-cell">${pnode('sched','ass')}</div>`;
   g+=`<div class="phase-cell"></div><div class="phase-cell"></div><div class="phase-cell"></div><div class="phase-cell"></div>`;
   g+=`</div>`;
-  document.getElementById('flow-l2').innerHTML=path+note+g;
+  document.getElementById('flow-l2').innerHTML=path+g;
 }
 
 function renderL3(){
-  let h=`<div class="strat" style="border-left-color:#caa23a;margin-bottom:14px;cursor:pointer" onclick="openTmpl('cs_contact')"><div class="strat-h" style="border-right-color:#eddca0"><span class="st-k" style="color:#a8841f">⭐ TEMPLATE</span><span class="st-t">深耕レビュー設計</span><span class="st-d">📄 テンプレ集を開く</span></div><div class="strat-cards"><div class="scard s-star"><div class="sc-t">スターリード深耕レビュー（1ヶ月 / 3ヶ月 / 半年）</div><div class="sc-d">キックオフ時にレビューMTGを「契約として」予約。CS品質管理を主目的に、追加案件・隣部署を自然に生む仕組み。キックオフメール／ステータスフラグのテンプレ入り。</div></div></div></div>`;
-  h+=`<div class="sec-cap">📍 稼働開始 → 品質担保 → 深耕（継続・追加・紹介）→ 還流</div>`;
-  h+=`<div class="lane-grid" style="grid-template-columns:110px repeat(6,minmax(0,1fr))">`;
+  let h=`<div class="strat" style="border-left-color:#caa23a;margin-bottom:14px;cursor:pointer" onclick="openTmpl('cs_contact')"><div class="strat-h" style="border-right-color:#eddca0"><span class="st-k" style="color:#a8841f">⭐ TEMPLATE</span><span class="st-t">深耕レビュー設計</span><span class="st-d">📄 テンプレ集を開く</span></div><div class="strat-cards"><div class="scard s-star"><div class="sc-t">スターリード深耕レビュー（1ヶ月 / 3ヶ月 / 半年）</div><div class="sc-d">キックオフ時にレビューMTGを「契約として」予約。CS品質管理を主目的に、追加案件・隣部署を自然に生む仕組み。</div></div></div></div>`;
+  h+=`<div class="lane-grid" style="grid-template-columns:96px repeat(7,minmax(0,1fr))">`;
   h+=roleCell('fs','FS','稼働中の深耕');
+  h+=`<div class="phase-cell"><div class="io-chip io-win dashed" data-key="l3in" id="l3in">🎉 受注<span class="ic-sub">Layer2から流入</span></div></div>`;
   h+=`<div class="phase-cell">${pnode('cs_kickoff','fs')}</div>`;
   h+=`<div class="phase-cell">${pnode('cs_support','fs')}${pnode('cs_action','fs')}</div>`;
   h+=`<div class="phase-cell">${pnode('cs_quality','fs')}</div>`;
@@ -786,7 +777,6 @@ function renderL3(){
   h+=`<div class="phase-cell">${pnode('cs_expire','fs')}</div>`;
   h+=`<div class="phase-cell">${pnode('cs_survey','fs')}${pnode('cs_case','fs')}</div>`;
   h+=`</div>`;
-  h+=`<div class="lane-note">②継続・③追加案件・④部署紹介は新規案件として<b>Layer2パイプライン</b>へ、満了は3ヶ月後に<b>Layer1（過去稼働後リード）</b>へ還流。<b>受注率45%のインバウンド相談</b>の源泉はこの濃い接点。</div>`;
   document.getElementById('flow-l3').innerHTML=h;
 }
 
@@ -1628,6 +1618,60 @@ function drawAll(){
 // ══════════════════════════════════════
 // ── テンプレートデータ ──
 const TMPL_DATA = {
+  mkt_mail: {
+    title: '月1テーマメルマガ — テーマ資料・テンプレ格納',
+    tabs: [
+      {
+        label: '📁 テーマ資料（4〜6月）',
+        content: `【月次テーマと配信コンテンツ｜2026年 4〜6月】
+
+各テーマのベース資料（Googleスライド）。配信メール／個社カスタム資料の元ネタに使用。
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ ① AI研修 → AX推進 実行支援
+━━━━━━━━━━━━━━━━━━━━━━━━
+【株式会社サーキュレーション】「AI研修 → AX推進」実行支援
+https://docs.google.com/presentation/d/1J-PzWVzOhqUGybO9eJBAgBCiEuPhws6_/edit
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ ② AI時代における新規事業 支援_2026
+━━━━━━━━━━━━━━━━━━━━━━━━
+【株式会社サーキュレーション】AI時代における新規事業 支援_2026
+https://docs.google.com/presentation/d/1a-Ve0n1RJixfuOtLKKbRqW5W_GiBIxs1tvc_TH6gC7w/edit
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ ③ Microsoft 365 × AIプロ人材によるBPR支援
+━━━━━━━━━━━━━━━━━━━━━━━━
+【株式会社サーキュレーション】Microsoft 365 × AIプロ人材によるBPR支援
+https://docs.google.com/presentation/d/1d2uQDJFRpOCrUqxZPMBVIlBDgec7H_aRtWsPunukgDY/edit
+
+※テーマは年間マーケカレンダー（4〜3月）に沿って更新。7月以降は協議中。`
+      },
+      {
+        label: '🔁 毎月の回し方（STEP1〜5）',
+        content: `【月1テーマメルマガ｜運用STEP】
+
+■ STEP1 データ抽出（SF）
+SFレポートから対象企業・担当者・稼働案件を抽出（松村）。
+
+■ STEP2 コンテンツ制作（Gemini / Claude）
+①ベース資料：上記テーマ資料を元にGeminiで作成→指定Googleスライドに格納
+②アカプラ企業向けカスタム資料：SFから支援テーマ・概要・プロ人材概要を抽出→Gemini/Claudeで個社別に作成
+③メール文面：Geminiで生成→徳永Mgrが確認・承認
+
+■ STEP3 配信リスト作成（SF / Pardot / GAS）
+ターゲット企業・担当者を抽出→GASスクリプト/スプシ、またはPardot動的リストを作成。
+
+■ STEP4 配信（3経路）
+①IS配信：Tier1.2提案／Tier3商談あり → GAS（Gmail下書きを100件ずつ送付）
+②FS配信：FSのアプローチメールにCC
+③Pardot配信：Tier4・Tier3未提案
+
+■ STEP5 効果測定 → IS共有
+開封・クリック・DL・eeasyクリックを検知→当日中にISへフォロー依頼。結果をSFに記録。`
+      }
+    ]
+  },
   cs_contact: {
     title: 'スターリード深耕レビュー設計（定例レビューMTG）',
     tabs: [
