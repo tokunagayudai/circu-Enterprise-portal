@@ -65,6 +65,8 @@ html,body{font-family:var(--f);background:var(--bg);overflow:hidden;height:100%}
 }
 .tbtn:hover{background:rgba(255,255,255,.2)}
 .tbtn.tobe-on{background:rgba(255,255,255,.25);border-color:#fff}
+.tbtn.tbtn-home{background:#fff;color:var(--primary);border-color:#fff;text-decoration:none}
+.tbtn.tbtn-home:hover{background:#e8f6ff}
 
 /* ── MAIN BODY ── */
 .body{display:flex;flex:1;overflow:hidden}
@@ -278,6 +280,9 @@ html,body{font-family:var(--f);background:var(--bg);overflow:hidden;height:100%}
     <span class="topbar-badge">CIRCULATION</span>
   </h1>
   <div class="topbar-r">
+    <a class="tbtn tbtn-home" href="../">
+      <i class="ti ti-home" style="font-size:12px"></i> ポータルトップ
+    </a>
     <button class="tbtn" id="btn-view" onclick="toggleView()">
       <i class="ti ti-robot" style="font-size:12px"></i> AS-IS 表示中
     </button>
