@@ -251,6 +251,134 @@ html,body{font-family:var(--f);background:var(--bg);overflow:hidden;height:100%}
 .tc-pro{background:#F3E8FC;color:#6B35A3;border:.5px solid #C9A8F0}
 .tc-gas{background:#FFFDE7;color:#7B6000;border:.5px solid #F9D900}
 </style>
+
+<!-- ════════ v5: ポータル統一・可視性最優先リデザイン（HTML/SVG） ════════ -->
+<style>
+:root{
+  --blue:#0079C0; --blue-d:#005A92; --blue-deep:#003D5E; --blue-mid:#5599be; --blue-l:#e8f6ff;
+  --grn:#22a047; --grn-l:#e6f7ee; --org:#ed7d31; --org-l:#fff3e0;
+  --pur:#7057a3; --pur-l:#f1ecf8; --ink:#1a2a38; --ink2:#5b6b78; --gray:#6b6864;
+  --f:'M PLUS Rounded 1c','Hiragino Maru Gothic ProN',sans-serif;
+}
+/* 縦スクロールを許可（旧canvasアプリはoverflow:hidden固定だった） */
+html,body{overflow:auto!important;height:auto!important;
+  background:linear-gradient(160deg,#e8f6ff 0%,#d8eefb 100%)!important;font-family:var(--f)!important;color:var(--ink)}
+.app{height:auto!important;min-height:100vh;display:block!important}
+.body{display:block!important}
+.left-col{width:100%!important;max-width:1180px;margin:0 auto;padding:18px 16px 60px!important}
+/* レイヤーは縦積み・全幅（横並びの窮屈さを解消） */
+.row-l1l3{display:block!important}
+.layer-block{margin-bottom:18px;background:#fff;border-radius:18px!important;
+  border:1.5px solid #d6e8f5;box-shadow:0 6px 22px rgba(0,121,192,.08);overflow:hidden}
+.layer-hdr{display:flex;align-items:center;gap:12px;padding:14px 20px!important;cursor:pointer;border-radius:18px 18px 0 0!important}
+.layer-icon{font-size:22px}
+.layer-title{font-size:15px;font-weight:800;color:#fff;letter-spacing:.02em}
+.layer-sub{font-size:11px;color:rgba(255,255,255,.85);font-weight:500;margin-top:2px}
+.layer-toggle{margin-left:auto;color:#fff;font-size:13px;opacity:.9;transition:transform .2s}
+.layer-block:not(.open) .layer-toggle{transform:rotate(180deg)}
+.layer-content{padding:18px 20px 22px!important;background:#fbfdff;overflow-x:auto;display:block!important;max-height:none!important}
+.layer-block:not(.open) .layer-content{display:none!important}
+.conn-v{display:flex;justify-content:center;align-items:center}
+.conn-v-line{width:3px;border-radius:2px;background:linear-gradient(to bottom,#5599be,#0079C0)!important}
+
+/* ── Salesforce風 ステージパス（チェブロン） ── */
+.sfpath{display:flex;gap:3px;min-width:760px;margin-bottom:18px}
+.chev{position:relative;flex:1;padding:9px 8px 9px 22px;font-size:11px;font-weight:800;color:#fff;
+  background:linear-gradient(135deg,#5599be,#3e87b3);
+  clip-path:polygon(0 0, calc(100% - 13px) 0, 100% 50%, calc(100% - 13px) 100%, 0 100%, 13px 50%);
+  display:flex;flex-direction:column;justify-content:center;line-height:1.25;white-space:nowrap}
+.chev:first-child{clip-path:polygon(0 0, calc(100% - 13px) 0, 100% 50%, calc(100% - 13px) 100%, 0 100%);padding-left:14px}
+.chev .cn{font-size:8px;font-weight:700;opacity:.85;font-family:'JetBrains Mono',monospace}
+.chev.done{background:linear-gradient(135deg,#0079C0,#005A92)}
+.chev.win{background:linear-gradient(135deg,#2bb05a,#1c8a44)}
+
+/* ── スイムレーン グリッド ── */
+.lane-grid{display:grid;gap:12px 10px;min-width:880px}
+.lane-row{display:contents}
+.role-cell{display:flex;flex-direction:column;justify-content:center;gap:3px;
+  padding:10px 12px;border-radius:12px;color:#fff;font-weight:800;font-size:12px;min-width:120px}
+.role-cell .rc-sub{font-size:9px;font-weight:600;opacity:.92;line-height:1.3}
+.role-mkt{background:linear-gradient(135deg,#f0a35a,#ed7d31)}
+.role-is{background:linear-gradient(135deg,#7bb6d8,#5599be)}
+.role-fs{background:linear-gradient(135deg,#2a93cf,#0079C0)}
+.role-ib{background:linear-gradient(135deg,#5cc07e,#22a047)}
+.role-ass{background:linear-gradient(135deg,#9b7fc4,#7057a3)}
+.phase-cell{display:flex;flex-direction:column;gap:8px;justify-content:center}
+
+/* ── プロセスノード（クリックで詳細） ── */
+.pnode{--role:#0079C0;position:relative;background:#fff;border:1.5px solid #d6e8f5;border-left:5px solid var(--role);
+  border-radius:12px;padding:11px 12px 11px 13px;cursor:pointer;transition:transform .14s,box-shadow .14s,border-color .14s;
+  min-height:58px;display:flex;flex-direction:column;gap:4px}
+.pnode:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,121,192,.16);border-color:var(--role)}
+.pnode .pn-top{display:flex;align-items:center;gap:6px}
+.pnode .pn-ico{font-size:14px;flex-shrink:0}
+.pnode .pn-title{font-size:12px;font-weight:800;color:var(--ink);line-height:1.3}
+.pnode .pn-desc{font-size:10px;color:var(--ink2);line-height:1.5}
+.pnode .pn-foot{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:2px}
+.pnode .pn-who{font-size:9px;font-weight:700;color:var(--role)}
+.pnode .pn-more{margin-left:auto;font-size:9px;font-weight:700;color:var(--blue);opacity:.75}
+.pnode.tmpl::after{content:'📄';position:absolute;top:8px;right:10px;font-size:12px}
+.pnode.is-new{border-style:dashed}
+.pn-badge{font-size:8px;font-weight:800;padding:1px 6px;border-radius:8px;background:var(--grn-l);color:#0f6e56}
+
+/* ── ゲート（合意ゲート）── */
+.gate{display:flex;align-items:center;gap:5px;align-self:flex-start;
+  font-size:10px;font-weight:800;color:#0f6e56;background:var(--grn-l);
+  border:1.5px solid #9bd9b5;border-radius:20px;padding:3px 11px;cursor:pointer;transition:.14s}
+.gate:hover{box-shadow:0 3px 10px rgba(34,160,71,.2)}
+.gate .gk{font-size:11px}
+
+/* ── 出口/入口チップ・帯 ── */
+.io-chip{border-radius:12px;padding:10px 12px;color:#fff;font-weight:800;font-size:11px;line-height:1.4;
+  display:flex;flex-direction:column;gap:2px;justify-content:center;min-height:58px}
+.io-chip .ic-sub{font-size:9px;font-weight:600;opacity:.9}
+.io-in{background:linear-gradient(135deg,#7bb6d8,#5599be)}
+.io-out{background:linear-gradient(135deg,#2a93cf,#0079C0)}
+.io-win{background:linear-gradient(135deg,#2bb05a,#1c8a44)}
+
+.band{display:flex;align-items:center;gap:12px;border-radius:14px;padding:12px 16px;margin-bottom:14px;cursor:pointer;transition:.14s;color:#fff}
+.band:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(0,0,0,.12)}
+.band .bd-ico{font-size:22px}
+.band .bd-t{font-size:13px;font-weight:800}
+.band .bd-d{font-size:10px;opacity:.92;line-height:1.4;margin-top:1px}
+.band .bd-more{margin-left:auto;font-size:10px;font-weight:700;opacity:.85;white-space:nowrap}
+.band-mtx{background:linear-gradient(135deg,#0079C0,#005A92)}
+.band-eng{background:linear-gradient(135deg,#5fae6f,#2f8f4a)}
+.band-star{background:linear-gradient(135deg,#caa23a,#a8841f)}
+
+/* ── レール（2大動線サマリ） ── */
+.rails{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;min-width:560px}
+@media(max-width:640px){.rails{grid-template-columns:1fr}}
+.rail{border-radius:14px;padding:13px 15px;cursor:pointer;transition:.14s;border:1.5px solid}
+.rail:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,121,192,.14)}
+.rail-norm{background:#fff;border-color:#cfe6f6}
+.rail-star{background:linear-gradient(135deg,#fff,#fff8e8);border-color:#f0d27a}
+.rail .rl-t{font-size:12px;font-weight:800;color:var(--ink);display:flex;align-items:center;gap:6px}
+.rail .rl-d{font-size:10px;color:var(--ink2);line-height:1.5;margin-top:4px}
+
+/* ── 矢印 ── */
+.arrow-row{display:flex;align-items:center;justify-content:center;color:#9bbdd6;font-size:16px}
+.lane-note{font-size:10.5px;color:var(--ink2);margin:2px 2px 14px;line-height:1.6}
+.lane-note b{color:var(--blue)}
+.sec-cap{font-size:11px;font-weight:800;color:var(--blue-deep);margin:4px 2px 12px;display:flex;align-items:center;gap:6px}
+
+/* 詳細チャネル チップ */
+.chan-wrap{margin-top:16px;border-top:1px dashed #cfe6f6;padding-top:12px}
+.chan-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.chan-chip{font-size:10px;font-weight:700;color:var(--blue-deep);background:#eef7fd;border:1px solid #cfe6f6;
+  border-radius:16px;padding:4px 11px;cursor:pointer;transition:.14s}
+.chan-chip:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+.tbtn.tbtn-home{background:#fff;color:var(--blue);border-color:#fff;text-decoration:none}
+.tbtn.tbtn-home:hover{background:#e8f6ff}
+/* サイドパネルを右側固定オーバーレイに（block化に伴う調整） */
+.sp{position:fixed!important;top:0;right:0;height:100vh!important;z-index:1500;
+  box-shadow:-10px 0 36px rgba(0,61,94,.22);border-left:3px solid var(--blue)!important}
+.sp.open{width:440px!important;max-width:94vw}
+.sp-body{flex:1;overflow-y:auto;padding:14px 16px 30px}
+@media(max-width:560px){.sp.open{width:100vw!important}}
+/* テンプレモーダル：最前面を担保 */
+#tmpl-overlay{z-index:3000}
+</style>
 </head>
 <body>
   <!-- ─── テンプレートモーダル ─── -->
@@ -298,56 +426,49 @@ html,body{font-family:var(--f);background:var(--bg);overflow:hidden;height:100%}
 <div class="body">
 <div class="left-col" id="left-col">
 
-  <!-- ═══ 上段：Layer 1（左）＋ Layer 3（右）═══ -->
-  <div class="row-l1l3">
-
-    <!-- Layer 1 -->
-    <div class="layer-block open" id="block-l1">
-      <div class="layer-hdr" style="background:linear-gradient(135deg,#0079C0,#005A92);border-radius:16px 0 0 0" onclick="toggle('l1')">
-        <span class="layer-icon">🌱</span>
-        <div class="layer-info">
-          <div class="layer-title">Layer 1 — 商談獲得</div>
-        </div>
-        <span class="layer-toggle">▲</span>
-      </div>
-      <div class="layer-content" id="content-l1">
-        <canvas id="cv-l1" style="display:block;cursor:pointer"></canvas>
-      </div>
-    </div>
-
-    <!-- Layer 3 -->
-    <div class="layer-block open" id="block-l3">
-      <div class="layer-hdr" style="background:linear-gradient(135deg,#0A6E8C,#084E64);border-radius:0 16px 0 0" onclick="toggle('l3')">
-        <span class="layer-icon">⭐</span>
-        <div class="layer-info">
-          <div class="layer-title">Layer 3 — CS・スターリード（稼働中）</div>
-        </div>
-        <span class="layer-toggle">▲</span>
-      </div>
-      <div class="layer-content" id="content-l3">
-        <canvas id="cv-l3" style="display:block;cursor:pointer"></canvas>
-      </div>
-    </div>
-
-  </div><!-- row-l1l3 -->
-
-  <!-- CONNECTOR （上段）→ Layer 2 -->
-  <div class="conn-v" style="height:24px">
-    <div class="conn-v-line" style="background:linear-gradient(to bottom,rgba(0,121,192,.5),rgba(26,141,192,.6))"></div>
-  </div>
-
-  <!-- ═══ 下段：Layer 2（全幅）═══ -->
-  <div class="layer-block open" id="block-l2" style="border-radius:16px">
-    <div class="layer-hdr" style="background:linear-gradient(135deg,#003D5E,#002A42);border-radius:16px 16px 0 0" onclick="toggle('l2')">
-      <span class="layer-icon">⚡</span>
+  <!-- ═══ Layer 1 — 商談獲得（リードを生み、商談に変える）═══ -->
+  <div class="layer-block open" id="block-l1">
+    <div class="layer-hdr" style="background:linear-gradient(135deg,#0079C0,#005A92)" onclick="toggle('l1')">
+      <span class="layer-icon">🌱</span>
       <div class="layer-info">
-        <div class="layer-title">Layer 2 — パイプライン Ph.01 → 07</div>
+        <div class="layer-title">Layer 1 — 商談獲得</div>
+        <div class="layer-sub">リードを「状態」で管理し、文脈を持って商談化する（マーケ × IS × FS）</div>
       </div>
       <span class="layer-toggle">▲</span>
     </div>
-    <div class="layer-content" id="content-l2">
-      <canvas id="cv-l2" style="display:block;cursor:pointer"></canvas>
+    <div class="layer-content" id="content-l1"><div class="flow" id="flow-l1"></div></div>
+  </div>
+
+  <!-- CONNECTOR → Layer 2 -->
+  <div class="conn-v" style="height:22px"><div class="conn-v-line" style="height:100%"></div></div>
+
+  <!-- ═══ Layer 2 — パイプライン（Salesforce準拠ステージ）═══ -->
+  <div class="layer-block open" id="block-l2">
+    <div class="layer-hdr" style="background:linear-gradient(135deg,#003D5E,#002A42)" onclick="toggle('l2')">
+      <span class="layer-icon">⚡</span>
+      <div class="layer-info">
+        <div class="layer-title">Layer 2 — パイプライン（Salesforceステージ準拠）</div>
+        <div class="layer-sub">商談 → 案件化 → 提案 → 面談 → 見積 → 稟議 → 契約 → 受注（FS × アシスタント）</div>
+      </div>
+      <span class="layer-toggle">▲</span>
     </div>
+    <div class="layer-content" id="content-l2"><div class="flow" id="flow-l2"></div></div>
+  </div>
+
+  <!-- CONNECTOR → Layer 3 -->
+  <div class="conn-v" style="height:22px"><div class="conn-v-line" style="height:100%"></div></div>
+
+  <!-- ═══ Layer 3 — CS・スターリード（稼働中の深耕）═══ -->
+  <div class="layer-block open" id="block-l3">
+    <div class="layer-hdr" style="background:linear-gradient(135deg,#0A6E8C,#084E64)" onclick="toggle('l3')">
+      <span class="layer-icon">⭐</span>
+      <div class="layer-info">
+        <div class="layer-title">Layer 3 — CS・スターリード（稼働中）</div>
+        <div class="layer-sub">品質担保で解約を防ぎ、継続・追加案件・部署紹介でLayer1/2へ還流（FS）</div>
+      </div>
+      <span class="layer-toggle">▲</span>
+    </div>
+    <div class="layer-content" id="content-l3"><div class="flow" id="flow-l3"></div></div>
   </div>
 
   <div style="height:40px"></div>
@@ -409,22 +530,141 @@ function drawMiniNode(ctx, x, y, w, h, label, sublabel, fill, stroke, id, layer)
 }
 
 let currentView = 'asis';
-let clickedNode = null;
+let clickedNode = null, lastPanelId = null;
 
 function toggleView(){
   currentView = currentView==='asis'?'tobe':'asis';
   const btn = document.getElementById('btn-view');
-  btn.textContent = currentView==='tobe'?'🟢 TO-BE 表示中':'🔀 AS-IS 表示中';
+  btn.innerHTML = '<i class="ti ti-robot" style="font-size:12px"></i> '+(currentView==='tobe'?'TO-BE 表示中':'AS-IS 表示中');
   btn.classList.toggle('tobe-on', currentView==='tobe');
-  drawAll();
-  if(clickedNode) openPanel(clickedNode.id, clickedNode.layer);
+  renderAll();
+  if(lastPanelId && document.getElementById('sp').classList.contains('open')) openPanel(lastPanelId);
 }
-function expandAll(){ ['l1','l2','l3'].forEach(l=>{ document.getElementById('block-'+l).classList.add('open'); }); drawAll(); }
-function collapseAll(){ ['l1','l2','l3'].forEach(l=>{ document.getElementById('block-'+l).classList.remove('open'); }); }
-function toggle(l){
-  document.getElementById('block-'+l).classList.toggle('open');
-  setTimeout(()=>drawAll(),20);
+function expandAll(){ ['l1','l2','l3'].forEach(l=>document.getElementById('block-'+l).classList.add('open')); }
+function collapseAll(){ ['l1','l2','l3'].forEach(l=>document.getElementById('block-'+l).classList.remove('open')); }
+function toggle(l){ document.getElementById('block-'+l).classList.toggle('open'); }
+
+// ══════════════════════════════════════
+// v5 DOM RENDER ENGINE（canvas廃止・HTML/SVG）
+// ══════════════════════════════════════
+const L1_TIERS=[
+  {t:'Tier1',rel:'最重要・FSがアカウント責任者',own:'FS',motion:'ABM（外部環境トリガーで動く型）',col:'#0079C0'},
+  {t:'Tier2',rel:'準開拓・引き上げ対象',own:'IS/マーケ',motion:'大量アポ→最重要へ引き上げ',col:'#3E7CB1'},
+  {t:'Tier3',rel:'ほぼ関係なし',own:'部門リード',motion:'マーケ施策でコールド→ホット',col:'#5BA6D5'},
+  {t:'Tier4',rel:'履歴なし',own:'部門リード',motion:'オペレーション配信のみ',col:'#8FC4E3'},
+];
+const L1_STATES=[
+  {s:'リサイクル',d:'予定日入り→ISが連絡',col:'#F39312'},
+  {s:'休眠',d:'予定日なし→文脈再接触',col:'#B8B5B4'},
+  {s:'未提案',d:'商談歴なし→基本リーチ',col:'#5BA6D5'},
+  {s:'過去稼働後',d:'満了→3ヶ月後自動投入',col:'#00A33B'},
+];
+const ROLE={mkt:'#ed7d31',is:'#5599be',fs:'#0079C0',ib:'#22a047',ass:'#7057a3',ai:'#1d9e75'};
+
+function pnode(id, role, labelOv, descOv){
+  const d=PANEL_DATA[id], t=TMPL_DATA[id];
+  const ico=(d&&d.icon)||(t?'📄':'🔹');
+  const title=labelOv||(d&&d.title)||(t&&t.title)||id;
+  const a=d&&d.asis&&d.asis[0];
+  const desc=descOv!==undefined?descOv:(a?a.d:'');
+  const who=(d&&d.who)||'';
+  const rc=ROLE[role]||'#0079C0';
+  const primary=d?`openPanel('${id}')`:`openTmpl('${id}')`;
+  const tchip=(t&&d)?`<span class="pn-badge" style="cursor:pointer;background:#fff3e0;color:#b34700" onclick="event.stopPropagation();openTmpl('${id}')">📄 テンプレ</span>`:'';
+  return `<div class="pnode${(t&&!d)?' tmpl':''}" style="--role:${rc}" onclick="${primary}">
+    <div class="pn-top"><span class="pn-ico">${ico}</span><span class="pn-title">${title}</span></div>
+    ${desc?`<div class="pn-desc">${desc}</div>`:''}
+    <div class="pn-foot">${who?`<span class="pn-who">${who}</span>`:''}${tchip}<span class="pn-more">詳細 ›</span></div>
+  </div>`;
 }
+function gate(id){const d=PANEL_DATA[id]||{};const ttl=(d.title||id).replace(/\s*合意ゲート/,'');return `<div class="gate" onclick="openPanel('${id}')"><span class="gk">✓</span>${ttl}</div>`;}
+function arrowH(){return '<div class="arrow-row">▸</div>';}
+function roleCell(label,sub,bg){return `<div class="role-cell" style="background:${bg}">${label}${sub?`<span class="rc-sub">${sub}</span>`:''}</div>`;}
+function cap(txt){return `<div style="font-size:9px;font-weight:800;color:#5b6b78;padding:2px 4px;align-self:end">${txt}</div>`;}
+function ioChip(cls,t,sub){return `<div class="io-chip ${cls}">${t}${sub?`<span class="ic-sub">${sub}</span>`:''}</div>`;}
+
+function renderL1(){
+  let h='';
+  h+=`<div class="band band-mtx" onclick="openPanel('lead_mgmt')"><span class="bd-ico">🗂</span><div><div class="bd-t">リード管理（母集団）</div><div class="bd-d">Tier（企業）× リード状態（担当者）を全員の共通言語に</div></div><span class="bd-more">マトリクスを開く ›</span></div>`;
+  h+=`<div class="band band-eng" onclick="openPanel('nurture')"><span class="bd-ico">🌱</span><div><div class="bd-t">ナーチャリング・エンジン（文脈維持・第一想起）</div><div class="bd-d">マーケ配信 × IS文脈架電 × FS関係構築。全動線の土台</div></div><span class="bd-more">詳細 ›</span></div>`;
+  h+=`<div class="sec-cap">📍 リード状態レーン｜起点 → アクション → 出口（左から右へ）</div>`;
+  const lanes=[
+    {bg:'linear-gradient(135deg,#f0a35a,#ed7d31)',label:'🔄 リサイクルリード',sub:'予定日が紐づく案件',
+     origin:{t:'IS起点',s:'予定日にアラート'},
+     acts:[{id:'rc_check',role:'is',label:'前回文脈の確認(SF)',desc:'前回商談内容・DEAD理由・フック文を読む'},{id:'rc_call',role:'is',label:'予定日に文脈ありコール',desc:'「前回の〇〇の件で」から始める'}],
+     out:{cls:'io-out',t:'アポ獲得 → 商談',s:'Layer2 Ph.01へ'}},
+    {bg:'linear-gradient(135deg,#7bb6d8,#5599be)',label:'💤 休眠リード',sub:'予定日なし・過去商談/取引',
+     origin:{t:'IS / マーケ',s:'要掘り起こし'},
+     acts:[{id:'sl_context',role:'is',label:'過去情報で文脈づくり',desc:'過去商談/取引の履歴を確認'},{id:'sl_touch',role:'is',label:'変化ヒアリング再接触',desc:'アポ強制せず「前回からの変化」を聞く'}],
+     out:{cls:'io-in',t:'必要に応じてアポ',s:'文脈再接触を優先'}},
+    {bg:'linear-gradient(135deg,#9b7fc4,#7057a3)',label:'🆕 未提案リード',sub:'商談歴なし・ハウスリスト内',
+     origin:{t:'マーケ / IS',s:'商談歴なし'},
+     acts:[{id:'nw_theme',role:'mkt',label:'テーマ切り口で訴求',desc:'月次テーマで潜在課題を示唆'},{id:'nw_call',role:'is',label:'ISコールでホット化',desc:'反応者へコール。第一想起づくり'}],
+     out:{cls:'io-out',t:'アポ獲得 → 商談',s:'Layer2 Ph.01へ'}},
+    {bg:'linear-gradient(135deg,#2a93cf,#0079C0)',label:'⭐ Tier1（ABM）',sub:'最重要・FSが責任者',
+     origin:{t:'FS起点',s:'アカウント責任者'},
+     acts:[{id:'abm_trigger',role:'fs',label:'外部環境トリガー検知',desc:'人事異動・決算・中計・IRを監視'},{id:'abm_content',role:'fs',label:'カスタムコンテンツ作成',desc:'その企業向けに事例・提案を仕立てる'},{id:'abm_contact',role:'fs',label:'週1コンタクト/MTG',desc:'関係維持しつつ案件機会を探る'}],
+     out:{cls:'io-win',t:'案件創出＋インバウンド誘発',s:'Layer2 / 最高品質動線'}},
+  ];
+  h+=`<div class="lane-grid" style="grid-template-columns:158px 132px 1fr 172px">`;
+  h+=`<div></div>`+cap('起点（担当）')+cap('アクション（クリックで手順・プロンプト）')+cap('出口');
+  lanes.forEach(L=>{
+    const acts=L.acts.map((a,i)=>pnode(a.id,a.role,a.label,a.desc)+(i<L.acts.length-1?arrowH():'')).join('');
+    h+=roleCell(L.label,L.sub,L.bg);
+    h+=`<div class="phase-cell">${ioChip('io-in',L.origin.t,L.origin.s)}</div>`;
+    h+=`<div class="phase-cell" style="flex-direction:row;flex-wrap:wrap;align-items:stretch;gap:8px">${acts}</div>`;
+    h+=`<div class="phase-cell">${ioChip(L.out.cls,L.out.t,L.out.s)}</div>`;
+  });
+  h+=`</div>`;
+  h+=`<div class="rails"><div class="rail rail-norm" onclick="openPanel('mql_sql')"><div class="rl-t">📈 通常動線：MQL/SQL → 商談</div><div class="rl-d">配信・ウェビナー反応をIS架電/eeasyでSQL化。現在の主ボリューム</div></div><div class="rail rail-star" onclick="openPanel('ib_consult')"><div class="rl-t">⭐ 最高品質動線：インバウンド相談（受注率45%）</div><div class="rl-d">稼働中/稼働後の濃い接点が起点。最大レバー。源泉はLayer3</div></div></div>`;
+  const chans=['op_mkt','op_is','src_ib','src_ob','src_pksha','src_wb','src_ad','lead_pool','lead_recycle','lead_sleep','lead_new','lead_ob'];
+  h+=`<div class="chan-wrap"><div class="sec-cap">🔎 詳細チャネル（クリックで個別フロー）</div><div class="chan-chips">`+chans.filter(id=>PANEL_DATA[id]).map(id=>`<span class="chan-chip" onclick="openPanel('${id}')">${PANEL_DATA[id].icon||''} ${PANEL_DATA[id].title}</span>`).join('')+`</div></div>`;
+  document.getElementById('flow-l1').innerHTML=h;
+}
+
+function renderL2(){
+  const stages=[['01','アポ獲得'],['02','案件化'],['03','提案'],['04','面談'],['05','見積'],['06','稟議'],['07','契約手続き'],['08','Closed（受注）']];
+  const chevs=stages.map((s,i)=>`<div class="chev${i===stages.length-1?' win':''}"><span class="cn">${s[0]}</span>${s[1]}</div>`).join('');
+  let path=`<div style="display:flex;gap:10px;min-width:1320px;margin-bottom:14px"><div style="flex:0 0 120px"></div><div class="sfpath" style="flex:1;min-width:0;margin:0">${chevs}</div></div>`;
+  const note=`<div class="lane-note">入口：Layer1で獲得した<b>商談アポ</b>／<b>インバウンド相談</b>がPh.01に流入。各<b>✓合意ゲート</b>を通過して次フェーズへ（迷ったらDEAD→Layer1へリサイクル）。</div>`;
+  let g=`<div class="lane-grid" style="grid-template-columns:120px repeat(8,minmax(150px,1fr))">`;
+  g+=roleCell('FS','商談〜契約','linear-gradient(135deg,#2a93cf,#0079C0)');
+  g+=`<div class="phase-cell">${pnode('mtg','fs')}</div>`;
+  g+=`<div class="phase-cell">${gate('q1')}${pnode('sf','fs')}</div>`;
+  g+=`<div class="phase-cell">${gate('qs')}${pnode('propose','fs')}</div>`;
+  g+=`<div class="phase-cell">${gate('q3')}${pnode('interview','fs')}</div>`;
+  g+=`<div class="phase-cell">${gate('q4')}${pnode('nego','fs','見積・要件定義','面談議事録をもとに見積書を作成')}</div>`;
+  g+=`<div class="phase-cell">${pnode('nego','fs','稟議・反社チェック','粗利率確認・マネージャー承認・反社チェック')}</div>`;
+  g+=`<div class="phase-cell">${pnode('close','fs')}${pnode('contract','fs')}</div>`;
+  g+=`<div class="phase-cell">${ioChip('io-win','🎉 受注','→ Layer3 スターリードへ')}</div>`;
+  g+=roleCell('アシスタント','人選・調整','linear-gradient(135deg,#9b7fc4,#7057a3)');
+  g+=`<div class="phase-cell"></div>`;
+  g+=`<div class="phase-cell">${pnode('select','ass')}</div>`;
+  g+=`<div class="phase-cell">${pnode('secure','ass')}</div>`;
+  g+=`<div class="phase-cell">${pnode('sched','ass')}</div>`;
+  g+=`<div class="phase-cell"></div><div class="phase-cell"></div><div class="phase-cell"></div><div class="phase-cell"></div>`;
+  g+=`</div>`;
+  document.getElementById('flow-l2').innerHTML=path+note+g;
+}
+
+function renderL3(){
+  let h=`<div class="band band-star" onclick="openTmpl('cs_contact')"><span class="bd-ico">⭐</span><div><div class="bd-t">スターリード深耕レビュー設計（1ヶ月 / 3ヶ月 / 半年）</div><div class="bd-d">キックオフ時にレビューMTGを「契約として」予約。CS品質管理を主目的に追加案件・隣部署を自然に生む仕組み</div></div><span class="bd-more">📄 テンプレ集を開く ›</span></div>`;
+  h+=`<div class="lane-grid" style="grid-template-columns:120px repeat(6,minmax(155px,1fr))">`;
+  h+=`<div></div>`+cap('稼働開始')+cap('日常CS（接点）')+cap('①品質担保')+cap('深耕：継続・追加・紹介')+cap('満了処理')+cap('事例化');
+  h+=roleCell('FS','稼働中の深耕','linear-gradient(135deg,#2a93cf,#0079C0)');
+  h+=`<div class="phase-cell">${pnode('cs_kickoff','fs')}</div>`;
+  h+=`<div class="phase-cell">${pnode('cs_support','fs')}${pnode('cs_action','fs')}</div>`;
+  h+=`<div class="phase-cell">${pnode('cs_quality','fs')}</div>`;
+  h+=`<div class="phase-cell">${pnode('cs_renew','fs')}${pnode('cs_expand','fs')}${pnode('cs_dept','fs')}</div>`;
+  h+=`<div class="phase-cell">${pnode('cs_expire','fs')}</div>`;
+  h+=`<div class="phase-cell">${pnode('cs_survey','fs')}${pnode('cs_case','fs')}</div>`;
+  h+=`</div>`;
+  h+=`<div class="lane-note">②継続・③追加案件・④部署紹介は新規案件として<b>Layer2パイプライン</b>へ、満了は3ヶ月後に<b>Layer1（過去稼働後リード）</b>へ還流。<b>受注率45%のインバウンド相談</b>の源泉はこの濃い接点。</div>`;
+  document.getElementById('flow-l3').innerHTML=h;
+}
+
+function renderAll(){ renderL1(); renderL2(); renderL3(); }
+function drawAll(){ renderAll(); }
 
 // ══════════════════════════════════════
 // TOOL CHIPS HTML
@@ -443,6 +683,7 @@ const T={
   gas:'<span class="tc tc-gas">⚡ GAS</span>',
 };
 
+/* ===== LEGACY CANVAS RENDER — v5で無効化（HTML/SVG DOMエンジンに置換済み） =====
 // ══════════════════════════════════════
 // LAYER 1 CANVAS
 // ══════════════════════════════════════
@@ -1210,6 +1451,7 @@ function drawAll(){
   if(document.getElementById('block-l3').classList.contains('open')) drawL3(tobe);
 }
 
+/* ===== END LEGACY CANVAS RENDER ===== */
 // ══════════════════════════════════════
 // PANEL DATA
 // ══════════════════════════════════════
@@ -2410,6 +2652,7 @@ const PANEL_DATA = {
 // ══════════════════════════════════════
 function openPanel(id, layer){
   const d=PANEL_DATA[id]; if(!d) return;
+  lastPanelId=id;
   document.getElementById('sp-icon').textContent=d.icon;
   document.getElementById('sp-title').textContent=d.title;
   const w=document.getElementById('sp-who');
@@ -2478,7 +2721,7 @@ function renderPanel(d){
 
 function closeP(){
   document.getElementById('sp').classList.remove('open');
-  clickedNode=null; drawAll();
+  clickedNode=null; lastPanelId=null;
 }
 
 // ══════════════════════════════════════
