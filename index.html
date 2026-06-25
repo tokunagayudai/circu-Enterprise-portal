@@ -108,6 +108,15 @@ body{
 .card-badge.live{background:#e6f7ee;color:var(--green);border:1.5px solid #5ab870}
 .card-badge.wip{background:#fff3e0;color:var(--orange);border:1.5px solid var(--orange)}
 .card-badge.ext{background:#e8f6ff;color:var(--blue);border:1.5px solid var(--blue-mid)}
+/* ── カード内・複数リンク（マーケティング等） ── */
+.card-links2{display:flex;flex-direction:column;gap:8px;margin-top:auto}
+.mini-link{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:var(--blue);
+  background:#eef7fd;border:1.5px solid #cfe6f6;border-radius:10px;padding:9px 12px;text-decoration:none;transition:.14s}
+.mini-link:hover{background:var(--blue);color:#fff;border-color:var(--blue);transform:translateX(2px)}
+.mini-link.disabled{color:var(--gray);background:#f3f4f5;border-color:#e3e5e7;cursor:default}
+.mini-link.disabled:hover{background:#f3f4f5;color:var(--gray);border-color:#e3e5e7;transform:none}
+.mini-link i{font-size:15px;flex-shrink:0}
+.mini-link .ml-sub{margin-left:auto;font-size:9px;font-weight:700;opacity:.7}
 /* ── フッター ── */
 .foot{text-align:center;margin-top:36px;font-size:11px;color:var(--gray);font-family:'JetBrains Mono',monospace}
 </style>
@@ -151,13 +160,20 @@ body{
       <span class="card-link">議事録を開く <i class="ti ti-arrow-right"></i></span>
     </a>
 
-    <a class="card" href="#" onclick="return false">
-      <span class="card-badge wip"><i class="ti ti-tools" style="font-size:10px"></i> 準備中</span>
-      <div class="card-icon"><i class="ti ti-calendar-event"></i></div>
-      <h3>マーケカレンダー</h3>
-      <p>年間マーケティングカレンダー・地上戦FSアクション設計・Tier別アプローチ。（リンク設定待ち）</p>
-      <span class="card-link">準備中 <i class="ti ti-dots"></i></span>
-    </a>
+    <div class="card">
+      <span class="card-badge ext"><i class="ti ti-external-link" style="font-size:10px"></i> Sheet / Notion</span>
+      <div class="card-icon"><i class="ti ti-calendar-stats"></i></div>
+      <h3>マーケティング</h3>
+      <p>「来月なにやるんだっけ？」はカレンダー、「先月どうだった？」は施策分析。部長への即答用に集約。</p>
+      <div class="card-links2">
+        <a class="mini-link disabled" href="#" onclick="return false">
+          <i class="ti ti-table"></i> マーケカレンダー（スプレッドシート）<span class="ml-sub">URL設定待ち</span>
+        </a>
+        <a class="mini-link disabled" href="#" onclick="return false">
+          <i class="ti ti-chart-histogram"></i> 施策分析（Notion）<span class="ml-sub">URL設定待ち</span>
+        </a>
+      </div>
+    </div>
 
   </div>
 
@@ -230,6 +246,14 @@ body{
   <!-- ⑤ ツール -->
   <div class="sec-title"><i class="ti ti-plug"></i>ツール <small>― 各システムへの入口</small></div>
   <div class="grid">
+
+    <a class="card" href="#" onclick="return false">
+      <span class="card-badge wip"><i class="ti ti-tools" style="font-size:10px"></i> 準備中</span>
+      <div class="card-icon"><i class="ti ti-users-group"></i></div>
+      <h3>エンプラプロ人材</h3>
+      <p>エンタープライズ向けプロ人材のリスト・DB。案件にアサイン可能な人材・実績・稼働状況を管理。（リンク設定待ち）</p>
+      <span class="card-link">準備中 <i class="ti ti-dots"></i></span>
+    </a>
 
     <a class="card" href="https://www.notion.so/2d35b464b52680118e16f545eded6e4d" target="_blank" rel="noopener">
       <span class="card-badge ext"><i class="ti ti-external-link" style="font-size:10px"></i> Notion</span>
