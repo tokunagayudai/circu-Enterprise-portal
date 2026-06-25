@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>エンタープライズチーム GTM 統合フロー</title>
+<title>GTM 操作ガイド（現在地ナビ）｜エンタープライズチーム</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -418,6 +418,70 @@ html,body{overflow:auto!important;height:auto!important;
 .sp-body{flex:1;overflow-y:auto;padding:14px 16px 30px}
 @media(max-width:560px){.sp.open{width:100vw!important}}
 #tmpl-overlay{z-index:3000}
+
+/* ════════ v8: 操作コンソール（現在地ナビ）════════ */
+#gtm-app{max-width:1080px;margin:0 auto}
+.trk-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.trk-tab{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--ink2);
+  background:#fff;border:1.5px solid #d6e8f5;border-radius:12px;padding:10px 18px;cursor:pointer;transition:.15s}
+.trk-tab .tt-ico{font-size:16px}
+.trk-tab:hover{border-color:var(--blue-mid);transform:translateY(-1px)}
+.trk-tab.on{color:#fff;border-color:transparent;box-shadow:0 5px 14px rgba(0,121,192,.2)}
+.trk-tab.on.t-acq{background:linear-gradient(135deg,#2a93cf,#0079C0)}
+.trk-tab.on.t-pipe{background:linear-gradient(135deg,#0a4f73,#003D5E)}
+.trk-tab.on.t-cs{background:linear-gradient(135deg,#0A6E8C,#084E64)}
+.stepper-wrap{overflow-x:auto;padding:6px 2px 14px}
+.stepper{display:flex;min-width:max-content}
+.step{position:relative;display:flex;flex-direction:column;gap:5px;align-items:center;cursor:pointer;padding:0 4px;min-width:104px}
+.step-dot{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:800;color:#fff;background:#b9d2e6;border:3px solid #fbfdff;transition:.15s;z-index:1;font-family:'JetBrains Mono',monospace}
+.step.on .step-dot{transform:scale(1.14);box-shadow:0 0 0 4px rgba(0,121,192,.25)}
+.step-label{font-size:10.5px;font-weight:700;color:var(--ink2);text-align:center;line-height:1.25;max-width:100px}
+.step.on .step-label{color:var(--blue-deep);font-weight:800}
+.step::before{content:'';position:absolute;top:17px;left:-50%;width:100%;height:3px;background:#d4e6f3;z-index:0}
+.step:first-child::before{display:none}
+.step.on .step-dot,.step.done .step-dot{background:var(--blue)}
+.step.done::before,.step.on::before{background:var(--blue-mid)}
+.step.win .step-dot{background:var(--grn)}
+.console{background:#fff;border:1.5px solid #d6e8f5;border-radius:16px;box-shadow:0 6px 22px rgba(0,121,192,.08);padding:20px 22px;min-height:280px}
+.cs-head{display:flex;align-items:center;gap:11px;border-bottom:1.5px solid #eef5fb;padding-bottom:14px;margin-bottom:16px;flex-wrap:wrap}
+.cs-ph{font-size:11px;font-weight:800;color:#fff;background:var(--blue);border-radius:8px;padding:4px 11px;font-family:'JetBrains Mono',monospace}
+.cs-title{font-size:19px;font-weight:800;color:var(--ink)}
+.cs-aim{font-size:12px;color:var(--ink2);width:100%;line-height:1.65}
+.task{border:1.5px solid #e3eef7;border-left:5px solid var(--role,#0079C0);border-radius:12px;padding:14px 16px;margin-bottom:13px;background:#fbfdff}
+.task-top{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:9px}
+.task-role{font-size:10px;font-weight:800;color:#fff;background:var(--role,#0079C0);border-radius:7px;padding:3px 10px}
+.task-name{font-size:14.5px;font-weight:800;color:var(--ink)}
+.task-do{list-style:none;display:flex;flex-direction:column;gap:8px;margin:4px 0 11px}
+.task-do li{display:flex;gap:9px;font-size:12.5px;color:var(--ink);line-height:1.5}
+.task-do .d-n{flex-shrink:0;width:19px;height:19px;border-radius:50%;background:var(--role,#0079C0);color:#fff;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.task-do .d-t{font-weight:700}
+.task-do .d-sub{display:block;font-size:11px;color:var(--ink2);font-weight:400;margin-top:2px}
+.task-tools{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin-bottom:9px}
+.task-tools .tlab{font-size:9.5px;font-weight:700;color:var(--ink2);margin-right:2px}
+.op-btns{display:flex;gap:8px;flex-wrap:wrap}
+.op-btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;border-radius:10px;padding:8px 14px;cursor:pointer;text-decoration:none;border:1.5px solid;transition:.14s}
+.op-tmpl{background:#fff3e0;color:#b34700;border-color:#f0c089}
+.op-tmpl:hover{background:#b34700;color:#fff;border-color:#b34700}
+.op-link{background:#eef7fd;color:var(--blue);border-color:#cfe6f6}
+.op-link:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+.gate-box{display:flex;align-items:flex-start;gap:10px;background:var(--grn-l);border:1.5px solid #bfe6cd;border-radius:12px;padding:12px 15px;margin:4px 0 6px}
+.gate-box .gb-ico{font-size:17px}
+.gate-box .gb-t{font-size:13px;font-weight:800;color:#0f6e56}
+.gate-box .gb-d{font-size:11.5px;color:#2f6b56;line-height:1.55;margin-top:2px}
+.cs-more{margin-top:10px}
+.cs-more details{border-top:1px dashed #dbe9f4;padding-top:10px;margin-top:8px}
+.cs-more summary{font-size:11.5px;font-weight:800;color:var(--ink2);cursor:pointer;list-style:none}
+.cs-more summary::-webkit-details-marker{display:none}
+.cs-more .mbody{font-size:11.5px;line-height:1.65;color:var(--ink2);margin-top:8px;display:flex;flex-direction:column;gap:8px}
+.cs-more .mrow{display:flex;gap:8px}.cs-more .mrow .mk{flex-shrink:0;font-weight:800;color:#0f6e56}
+.fut-box{background:var(--grn-l);border-radius:8px;padding:8px 11px}
+.iss-box{background:#fdeeee;border-radius:8px;padding:8px 11px;color:#8a2b2b}
+.step-nav{display:flex;justify-content:space-between;gap:10px;margin-top:18px}
+.nav-btn{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:800;color:var(--blue-deep);background:#fff;border:1.5px solid #cfe6f6;border-radius:12px;padding:11px 18px;cursor:pointer;transition:.14s}
+.nav-btn:hover:not(:disabled){background:var(--blue);color:#fff;border-color:var(--blue)}
+.nav-btn:disabled{opacity:.35;cursor:default}
+.nav-btn.next{margin-left:auto}
 </style>
 </head>
 <body>
@@ -443,20 +507,14 @@ html,body{overflow:auto!important;height:auto!important;
 <!-- TOP BAR -->
 <div class="topbar">
   <h1>
-    <i class="ti ti-sitemap" style="font-size:20px"></i>
-    エンタープライズチーム GTM 統合フロー
+    <i class="ti ti-route" style="font-size:20px"></i>
+    GTM 操作ガイド（現在地ナビ）
     <span class="topbar-badge">CIRCULATION</span>
   </h1>
   <div class="topbar-r">
     <a class="tbtn tbtn-home" href="../">
       <i class="ti ti-home" style="font-size:12px"></i> ポータルトップ
     </a>
-    <button class="tbtn" onclick="expandAll()">
-      <i class="ti ti-chevrons-down" style="font-size:12px"></i> すべて展開
-    </button>
-    <button class="tbtn" onclick="collapseAll()">
-      <i class="ti ti-chevrons-up" style="font-size:12px"></i> すべて閉じる
-    </button>
   </div>
 </div>
 
@@ -468,7 +526,7 @@ html,body{overflow:auto!important;height:auto!important;
     <div class="strat-h">
       <span class="st-k">🧭 STRATEGY</span>
       <span class="st-t">戦略・方針</span>
-      <span class="st-d">業務フローの前提。<br>下のフロー図とは別物。</span>
+      <span class="st-d">業務フローの前提。<br>下の操作ガイドとは別物。</span>
     </div>
     <div class="strat-cards">
       <div class="scard s-star">
@@ -496,40 +554,11 @@ html,body{overflow:auto!important;height:auto!important;
     <span class="lg"><span class="dot" style="background:var(--c-ai)"></span>AI・自動化</span>
   </div>
 
-  <!-- ═══ Layer 1 — 商談獲得（リードを生み、商談に変える）═══ -->
-  <div class="layer-block open" id="block-l1">
-    <div class="layer-hdr" style="background:linear-gradient(135deg,#0079C0,#005A92)" onclick="toggle('l1')">
-      <span class="layer-pill">Layer 1</span>
-      <span class="layer-name">商談獲得</span>
-      <span class="layer-toggle">▲</span>
-    </div>
-    <div class="layer-content" id="content-l1"><div class="flow" id="flow-l1"></div></div>
-  </div>
-
-  <!-- CONNECTOR → Layer 2 -->
-  <div class="conn-v" style="height:22px"><div class="conn-v-line" style="height:100%"></div></div>
-
-  <!-- ═══ Layer 2 — パイプライン（Salesforce準拠ステージ）═══ -->
-  <div class="layer-block open" id="block-l2">
-    <div class="layer-hdr" style="background:linear-gradient(135deg,#003D5E,#002A42)" onclick="toggle('l2')">
-      <span class="layer-pill">Layer 2</span>
-      <span class="layer-name">パイプライン</span>
-      <span class="layer-toggle">▲</span>
-    </div>
-    <div class="layer-content" id="content-l2"><div class="flow" id="flow-l2"></div></div>
-  </div>
-
-  <!-- CONNECTOR → Layer 3 -->
-  <div class="conn-v" style="height:22px"><div class="conn-v-line" style="height:100%"></div></div>
-
-  <!-- ═══ Layer 3 — CS・スターリード（稼働中の深耕）═══ -->
-  <div class="layer-block open" id="block-l3">
-    <div class="layer-hdr" style="background:linear-gradient(135deg,#0A6E8C,#084E64)" onclick="toggle('l3')">
-      <span class="layer-pill">Layer 3</span>
-      <span class="layer-name">CS・スターリード</span>
-      <span class="layer-toggle">▲</span>
-    </div>
-    <div class="layer-content" id="content-l3"><div class="flow" id="flow-l3"></div></div>
+  <!-- ═══ 操作コンソール（現在地ナビ）═══ -->
+  <div id="gtm-app">
+    <div class="trk-tabs" id="trk-tabs"></div>
+    <div class="stepper-wrap"><div class="stepper" id="stepper"></div></div>
+    <div class="console" id="console"></div>
   </div>
 
   <div style="height:40px"></div>
@@ -813,19 +842,122 @@ function drawConn(flowEl, edges, sfx){
   });
   flowEl.insertBefore(svg, flowEl.firstChild);
 }
-function redrawConn(){
-  if(document.getElementById('block-l1').classList.contains('open')) drawConn(document.getElementById('flow-l1'),L1_EDGES,'l1');
-  if(document.getElementById('block-l2').classList.contains('open')) drawConn(document.getElementById('flow-l2'),L2_EDGES,'l2');
-  if(document.getElementById('block-l3').classList.contains('open')) drawConn(document.getElementById('flow-l3'),L3_EDGES,'l3');
+function redrawConn(){ /* v8: フローチャート廃止のため無効化 */ }
+
+// ══════════════════════════════════════
+// v8 操作コンソール（現在地ナビ）
+// ══════════════════════════════════════
+const GEM_URL='https://gemini.google.com/gem/1VMuaczRb2h2OW7lrgXJV2VO38Cv1EyeC?usp=sharing';
+const CLAUDE_PJ='https://claude.ai/project/019eb570-d6d7-71a2-92fc-31f72a4e5bf8';
+
+const TRACKS={
+  acquire:{name:'獲得',ico:'🌱',cls:'t-acq',steps:[
+    {n:'01',label:'マーケ配信',title:'マーケ施策の配信',aim:'テーマ配信・コンテンツで第一想起と反応（MQL）をつくる。担当＝エンプラマーケ。',
+      tasks:[{panel:'mkt_mail',role:'mkt',tmpl:'mkt_mail'},{panel:'mkt_teijo',role:'mkt'},{panel:'src_wb',role:'mkt'},{panel:'src_ad',role:'mkt'},{panel:'src_pksha',role:'mkt'}]},
+    {n:'02',label:'IS対象抽出',title:'IS：対象リード抽出（母集団から）',aim:'Tier・リード状態（過去稼働/リサイクル/休眠/未提案）から当日の架電対象を抽出。文脈なし架電は禁止。',
+      tasks:[{panel:'is_list',role:'is'},{panel:'lead_ob',role:'is'},{panel:'lead_recycle',role:'is'},{panel:'lead_sleep',role:'is'},{panel:'lead_new',role:'is'}]},
+    {n:'03',label:'文脈コール',title:'IS：文脈確認 → コール・2M',aim:'前回DEAD理由・フック文を読み「前回の〇〇の件で」から始める。',
+      tasks:[{panel:'is_call',role:'is'}]},
+    {n:'04',label:'アポ獲得',title:'IS：アポ獲得・日程調整',aim:'関心を引けたら商談アポを設定（eeasy/架電）。',
+      tasks:[{panel:'is_apo',role:'is'}]},
+    {n:'05',label:'FSトス',title:'IS → FSへトス＝SQL',aim:'商談ブリーフを共有しFSへ引き継ぎ。商談化＝SQL。',
+      tasks:[{panel:'is_hand',role:'is'}],note:'ここで <b>パイプライン</b> トラックへ。',links:[{label:'パイプラインへ',ico:'⚡',onclick:"setTrack('pipeline')"}]},
+    {n:'06',label:'FS・IB',title:'FS深耕（ABM）／インバウンド相談',aim:'Tier1はABMで深耕。インバウンド相談（受注率45%）は最短で商談へ。並行動線。',
+      tasks:[{panel:'abm',role:'fs'},{panel:'abm_contact',role:'fs'},{panel:'src_ib',role:'fs'}]},
+  ]},
+  pipeline:{name:'パイプライン',ico:'⚡',cls:'t-pipe',steps:[
+    {n:'01',label:'商談',title:'アポ獲得：商談実施',aim:'「話を聞きたい」の合意（商談合意）でこのフェーズへ。会社説明・ヒアリング・仮説提案。',
+      tasks:[{panel:'mtg',role:'fs'}],gate:'q1'},
+    {n:'02',label:'要件・人選',title:'案件化：要件整理（SF入力）＋人選',aim:'GEMで要件整理→SF入力。並行してアソシエイトが人材を人選・打診。',
+      tasks:[{panel:'sf',role:'fs',tmpl:'sf',links:[{label:'GEMを開く',ico:'🤖',url:GEM_URL}]},{panel:'select',role:'ass',tmpl:'select'}],gate:'qs'},
+    {n:'03',label:'提案',title:'提案：提案書作成・送付＋稼働確保',aim:'Claudeで提案書を作成し送付。アソシエイトがプロの稼働を確保。',
+      tasks:[{panel:'propose',role:'fs',tmpl:'propose',links:[{label:'Claudeプロジェクト',ico:'🤖',url:CLAUDE_PJ}]},{panel:'secure',role:'ass'}],gate:'q3'},
+    {n:'04',label:'面談',title:'面談：実施＋日程調整',aim:'顧客×プロ×当社の3者面談。アソシエイトが日程調整。',
+      tasks:[{panel:'interview',role:'fs'},{panel:'sched',role:'ass'}],gate:'q4'},
+    {n:'05',label:'見積',title:'見積・要件定義',aim:'面談議事録をもとに見積書を作成。業務詳細を整える。',
+      tasks:[{panel:'nego',role:'fs',name:'見積・要件定義'}]},
+    {n:'06',label:'稟議',title:'稟議・反社チェック',aim:'粗利率確認・マネージャー承認・反社チェック。',
+      tasks:[{panel:'nego',role:'fs',name:'稟議・反社チェック'}]},
+    {n:'07',label:'契約',title:'契約手続き：締結＋PROBASE',aim:'電子契約で締結。PROBASE登録・ツール確認など契約後の初動。',
+      tasks:[{panel:'close',role:'fs'},{panel:'contract',role:'fs',tmpl:'contract'}]},
+    {n:'08',label:'受注',title:'受注 → 稼働開始',win:true,aim:'契約締結＝受注。稼働開始し、CS（スターリード）トラックへ移行。',
+      tasks:[],note:'おめでとうございます。ここから <b>CS・スターリード</b> トラックで深耕します。',links:[{label:'CSトラックへ',ico:'⭐',onclick:"setTrack('cs')"}]},
+  ]},
+  cs:{name:'CS・スターリード',ico:'⭐',cls:'t-cs',steps:[
+    {n:'01',label:'キックオフ',title:'キックオフMTG',aim:'3者でキックオフ。期待値・スコープ・マイルストーンを合わせる。レビューMTGを「契約として」予約するのが鍵。',
+      tasks:[{panel:'cs_kickoff',role:'fs'}],links:[{label:'深耕レビュー設計（テンプレ集）',ico:'📄',onclick:"openTmpl('cs_contact')"}]},
+    {n:'02',label:'日常CS',title:'日常CS：支援同席・定期連絡',aim:'稼働の品質を見つつ関係を維持。月次フォローで信頼を積む。',
+      tasks:[{panel:'cs_support',role:'fs'},{panel:'cs_action',role:'fs'}]},
+    {n:'03',label:'品質管理',title:'①品質担保・解約防止',aim:'PROBASE等で品質をモニタリング。問題の早期発見と解約防止。',
+      tasks:[{panel:'cs_quality',role:'fs'}]},
+    {n:'04',label:'継続',title:'②案件継続・契約更新',aim:'満了1〜2ヶ月前に継続意向を確認。継続案件はパイプラインへ。',
+      tasks:[{panel:'cs_renew',role:'fs'}]},
+    {n:'05',label:'追加案件',title:'③追加案件・追加ロール',aim:'支援同席・月次で不足ロールを発見→追加提案。パイプラインへ。',
+      tasks:[{panel:'cs_expand',role:'fs'}]},
+    {n:'06',label:'部署紹介',title:'④追加部署・担当者紹介',aim:'上・横へのエスカレーション依頼。紹介をLayer1/2へ流入。',
+      tasks:[{panel:'cs_dept',role:'fs'}]},
+    {n:'07',label:'満了処理',title:'満了処理・リサイクル',aim:'満了レポート→3ヶ月後リサイクル投入。音信不通を防ぐ。',
+      tasks:[{panel:'cs_expire',role:'fs'}]},
+    {n:'08',label:'事例化',title:'アンケート・事例／ロゴ',aim:'満足度を定量把握。高評価は事例・ロゴ依頼へ。',
+      tasks:[{panel:'cs_survey',role:'fs'},{panel:'cs_case',role:'fs'}]},
+  ]},
+};
+
+let curTrack='pipeline', curStep=0;
+function setTrack(k){ curTrack=k; curStep=0; renderConsole(); document.getElementById('gtm-app').scrollIntoView({behavior:'smooth',block:'start'}); }
+function setStep(i){ const st=TRACKS[curTrack].steps; if(i<0||i>=st.length)return; curStep=i; renderConsole(); }
+
+function opBtns(links){
+  if(!links||!links.length)return '';
+  return `<div class="op-btns">`+links.map(l=>{
+    const cls = l.ico==='📄'?'op-tmpl':'op-link';
+    if(l.onclick) return `<a class="op-btn ${cls}" onclick="${l.onclick}">${l.ico||'🔗'} ${l.label}</a>`;
+    return `<a class="op-btn ${cls}" href="${l.url}" target="_blank" rel="noopener">${l.ico||'🔗'} ${l.label}</a>`;
+  }).join('')+`</div>`;
 }
 
-function renderAll(){
-  renderL1(); renderL2(); renderL3();
-  const mtx=document.querySelector('#flow-l1 details.mtx');
-  if(mtx) mtx.addEventListener('toggle',()=>setTimeout(redrawConn,30));
-  requestAnimationFrame(()=>requestAnimationFrame(redrawConn));
+function renderTask(t){
+  const d=PANEL_DATA[t.panel]||{};
+  const role=t.role||'fs';
+  const name=t.name||d.title||t.panel;
+  const doList=(d.asis||[]).map((s,i)=>`<li><span class="d-n">${i+1}</span><span><span class="d-t">${s.l}</span><span class="d-sub">${s.d}</span></span></li>`).join('');
+  const {tools,ai}=nodeTools(d);
+  const toolHtml=(tools.length||ai)?`<div class="task-tools"><span class="tlab">使用ツール</span>${tools.map(k=>T[k]||'').join('')}${ai?'<span class="pn-ai">🤖AI</span>':''}</div>`:'';
+  const links=[];
+  if(t.tmpl&&TMPL_DATA[t.tmpl]) links.push({label:'テンプレ・プロンプト',ico:'📄',onclick:`openTmpl('${t.tmpl}')`});
+  (t.links||[]).forEach(l=>links.push(l));
+  const tobe=(d.tobe||[]).filter(x=>x.t==='ai'||x.t==='auto');
+  let more='';
+  if(tobe.length||d.issue){
+    more=`<div class="cs-more"><details><summary>💡 AI・自動化の方向性 ／ ⚠️ 課題を見る</summary><div class="mbody">`;
+    if(tobe.length) more+=`<div class="fut-box">`+tobe.map(x=>`<div class="mrow"><span class="mk">将来</span><span>${x.l}：${x.d}</span></div>`).join('')+`</div>`;
+    if(d.issue) more+=`<div class="iss-box"><b>課題</b>：${d.issue}</div>`;
+    more+=`</div></details></div>`;
+  }
+  return `<div class="task" style="--role:var(--c-${role})">
+    <div class="task-top"><span class="task-role">${ROLE_NAME[role]||role}</span><span class="task-name">${name}</span></div>
+    <ul class="task-do">${doList}</ul>
+    ${toolHtml}${opBtns(links)}${more}
+  </div>`;
 }
-function drawAll(){ renderAll(); }
+
+function renderConsole(){
+  const trk=TRACKS[curTrack], steps=trk.steps, s=steps[curStep];
+  document.getElementById('trk-tabs').innerHTML=Object.keys(TRACKS).map(k=>
+    `<div class="trk-tab ${k===curTrack?'on '+TRACKS[k].cls:''}" onclick="setTrack('${k}')"><span class="tt-ico">${TRACKS[k].ico}</span>${TRACKS[k].name}</div>`).join('');
+  document.getElementById('stepper').innerHTML=steps.map((st,i)=>
+    `<div class="step ${i===curStep?'on':''} ${i<curStep?'done':''} ${st.win?'win':''}" onclick="setStep(${i})"><div class="step-dot">${st.n}</div><div class="step-label">${st.label}</div></div>`).join('');
+  let h=`<div class="cs-head"><span class="cs-ph">${trk.name} ／ ${s.n}</span><span class="cs-title">${s.title}</span>${s.aim?`<div class="cs-aim">${s.aim}</div>`:''}</div>`;
+  (s.tasks||[]).forEach(t=>h+=renderTask(t));
+  if(s.gate){const g=PANEL_DATA[s.gate]||{};const cond=(g.asis&&g.asis[0])?g.asis[0].d:'';
+    h+=`<div class="gate-box"><span class="gb-ico">✅</span><div><div class="gb-t">次に進む合意：${(g.title||'').replace(/\s*合意ゲート/,'')}</div>${cond?`<div class="gb-d">${cond}</div>`:''}</div></div>`;}
+  if(s.note) h+=`<div class="cs-aim" style="margin:4px 0 8px">${s.note}</div>`;
+  if(s.links) h+=opBtns(s.links);
+  h+=`<div class="step-nav"><button class="nav-btn prev" ${curStep===0?'disabled':''} onclick="setStep(${curStep-1})">← 前の工程</button><button class="nav-btn next" ${curStep===steps.length-1?'disabled':''} onclick="setStep(${curStep+1})">次の工程 →</button></div>`;
+  document.getElementById('console').innerHTML=h;
+}
+function renderAll(){ renderConsole(); }
+function drawAll(){ renderConsole(); }
 
 // ══════════════════════════════════════
 // TOOL CHIPS HTML
