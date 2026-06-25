@@ -431,6 +431,11 @@ html,body{overflow:auto!important;height:auto!important;
 .trk-tab.on.t-acq{background:linear-gradient(135deg,#2a93cf,#0079C0)}
 .trk-tab.on.t-pipe{background:linear-gradient(135deg,#0a4f73,#003D5E)}
 .trk-tab.on.t-cs{background:linear-gradient(135deg,#0A6E8C,#084E64)}
+/* 並行トラック（選択肢） */
+.opt-cap{font-size:11px;color:var(--ink2);font-weight:600;padding:4px 2px;line-height:1.5}
+.opt-group{margin-bottom:16px}
+.opt-gh{font-size:12px;font-weight:800;color:var(--blue-deep);border-left:4px solid var(--c-mkt);padding-left:9px;margin:4px 2px 11px}
+.opt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:13px}
 .stepper-wrap{overflow-x:auto;padding:6px 2px 14px}
 .stepper{display:flex;min-width:max-content}
 .step{position:relative;display:flex;flex-direction:column;gap:5px;align-items:center;cursor:pointer;padding:0 4px;min-width:104px}
@@ -852,16 +857,16 @@ const GEM_URL='https://gemini.google.com/gem/1VMuaczRb2h2OW7lrgXJV2VO38Cv1EyeC?u
 const CLAUDE_PJ='https://claude.ai/project/019eb570-d6d7-71a2-92fc-31f72a4e5bf8';
 
 const TRACKS={
-  leadgen:{name:'リードジェネレーション',ico:'📣',cls:'t-lg',steps:[
-    {n:'01',label:'広告',title:'広告（LinkedIn / Google）',aim:'重点期に集中投下。LP問い合わせ・WPダウンロードでリードを獲得し、ハウスリストへ蓄積。担当＝エンプラマーケ。',
-      tasks:[{panel:'src_ad',role:'mkt'}]},
-    {n:'02',label:'ウェビナー・WP・SEO',title:'ウェビナー・ホワイトペーパー・SEO・展示会',aim:'テーマ別ウェビナー／WP／SEO記事／展示会で新規リードを獲得。参加者・DLをSFに登録。',
-      tasks:[{panel:'src_wb',role:'mkt'}]},
-    {n:'03',label:'PKSHA・紹介',title:'PKSHA共催・顧問紹介',aim:'PKSHAグループ共催ウェビナー・顧問経由のハイレイヤー紹介。質の高いリードの入口。',
-      tasks:[{panel:'src_pksha',role:'mkt'}],note:'獲得したリードはハウスリストへ蓄積 → <b>パイプラインジェネレーション</b> で商談化していく。',links:[{label:'パイプラインジェネレーションへ',ico:'🌱',onclick:"setTrack('acquire')"}]},
-  ]},
+  leadgen:{name:'リードジェネレーション',ico:'📣',cls:'t-lg',parallel:true,
+    intro:'新規リードをハウスリストに入れる入口。下のチャネルは並行・独立で、順序ではありません。それぞれ独立して強化していけます。',
+    groups:[
+      {name:'運用型広告',items:[{panel:'src_ad',role:'mkt'}]},
+      {name:'コンテンツマーケ',items:[{panel:'ch_webinar',role:'mkt'},{panel:'ch_wp',role:'mkt'},{panel:'ch_seo',role:'mkt'},{panel:'ch_expo',role:'mkt'}]},
+      {name:'紹介・共催',items:[{panel:'src_pksha',role:'mkt'}]},
+    ],
+    outro:{label:'パイプラインジェネレーションへ',ico:'🌱',onclick:"setTrack('acquire')"}},
   acquire:{name:'パイプラインジェネレーション',ico:'🌱',cls:'t-acq',steps:[
-    {n:'01',label:'リード管理',title:'リード管理（母集団）｜Tier × リード状態',aim:'企業はTier1〜4、担当者はリード状態（過去稼働後／リサイクル／休眠／未提案）で管理。ここが全アクションの優先度の起点。',matrix:true,tasks:[]},
+    {n:'01',label:'リード管理',title:'リード管理（母集団）｜Tier × リード状態',aim:'企業はTier1〜4、担当者はリード状態（現在稼働／過去稼働後／リサイクル／休眠／未提案）で管理。現在稼働が最優先。ここが全アクションの優先度の起点。',matrix:true,tasks:[]},
     {n:'02',label:'エンプラマーケ配信',title:'エンプラマーケ配信（ハウスリストへ）',aim:'月次テーマ配信・週次紹介で第一想起と反応（MQL）をつくる。担当＝エンプラマーケ。',
       tasks:[{panel:'mkt_mail',role:'mkt',tmpl:'mkt_mail'},{panel:'mkt_teijo',role:'mkt'}]},
     {n:'03',label:'IS対象抽出',title:'IS：対象リード抽出（母集団から）',aim:'Tier・リード状態から当日の架電対象を抽出。文脈なし架電は禁止。',
@@ -928,7 +933,7 @@ function opBtns(links){
 
 // リード管理：Tier（企業）× リード状態（担当者）優先度マトリクス
 function matrixGrid(){
-  const states=[['lead_ob','◆ 過去稼働後','#00A33B',3],['lead_recycle','🔄 リサイクル','#F39312',3],['lead_sleep','💤 休眠','#9aa0a6',2],['lead_new','🆕 未提案','#5BA6D5',1]];
+  const states=[['lead_active','🏃 現在稼働','#0a7b3a',4],['lead_ob','◆ 過去稼働後','#34a853',3],['lead_recycle','🔄 リサイクル','#F39312',3],['lead_sleep','💤 休眠','#9aa0a6',2],['lead_new','🆕 未提案','#5BA6D5',1]];
   const tiers=[['tier1','Tier1','#0079C0',4],['tier2','Tier2','#3E7CB1',3],['tier3','Tier3','#5BA6D5',2],['tier4','Tier4','#8FC4E3',1]];
   const pr=(t,s)=>{const v=t+s;return v>=6?['◎','#0a7b3a','最優先']:v===5?['○','#0079C0','優先']:v===4?['△','#7a7f86','通常']:['▲','#aab0b6','低'];};
   let head=`<tr><th class="mtx-corner">Tier（企業）＼ リード状態（担当者）</th>`;
@@ -940,7 +945,7 @@ function matrixGrid(){
     states.forEach(s=>{const[mk,col,lab]=pr(t[3],s[3]);rows+=`<td class="mtx-cell" style="text-align:center"><div style="font-size:16px;font-weight:800;color:${col};line-height:1">${mk}</div><div style="font-size:8px;color:${col};font-weight:700">${lab}</div></td>`;});
     rows+=`</tr>`;
   });
-  return `<div style="overflow-x:auto;margin-bottom:14px"><table class="mtx-table" style="min-width:520px">${head}${rows}</table>
+  return `<div style="overflow-x:auto;margin-bottom:14px"><table class="mtx-table" style="min-width:660px">${head}${rows}</table>
     <div class="mtx-hint">◎最優先 ○優先 △通常 ▲低（Tierの重要度 × リード状態の意欲度の目安）。<b>企業＝Tier（マーケが管理）</b>／<b>担当者＝リード状態（ISが管理）</b>。見出しをクリックすると定義が右に出ます。</div></div>`;
 }
 
@@ -970,9 +975,26 @@ function renderTask(t){
 }
 
 function renderConsole(){
-  const trk=TRACKS[curTrack], steps=trk.steps, s=steps[curStep];
+  const trk=TRACKS[curTrack];
   document.getElementById('trk-tabs').innerHTML=Object.keys(TRACKS).map(k=>
     `<div class="trk-tab ${k===curTrack?'on '+TRACKS[k].cls:''}" onclick="setTrack('${k}')"><span class="tt-ico">${TRACKS[k].ico}</span>${TRACKS[k].name}</div>`).join('');
+
+  // ── 並行トラック（選択肢・順序なし）──
+  if(trk.parallel){
+    document.getElementById('stepper').innerHTML=`<div class="opt-cap">🧭 ${trk.intro||''}</div>`;
+    let h=`<div class="cs-head"><span class="cs-ph">${trk.name}</span><span class="cs-title">獲得チャネル（選択肢）</span></div>`;
+    (trk.groups||[]).forEach(g=>{
+      h+=`<div class="opt-group"><div class="opt-gh">${g.name}</div><div class="opt-grid">`;
+      (g.items||[]).forEach(t=>h+=renderTask(t));
+      h+=`</div></div>`;
+    });
+    if(trk.outro) h+=opBtns([trk.outro]);
+    document.getElementById('console').innerHTML=h;
+    return;
+  }
+
+  // ── 直列トラック（工程の順序あり）──
+  const steps=trk.steps, s=steps[curStep];
   document.getElementById('stepper').innerHTML=steps.map((st,i)=>
     `<div class="step ${i===curStep?'on':''} ${i<curStep?'done':''} ${st.win?'win':''}" onclick="setStep(${i})"><div class="step-dot">${st.n}</div><div class="step-label">${st.label}</div></div>`).join('');
   let h=`<div class="cs-head"><span class="cs-ph">${trk.name} ／ ${s.n}</span><span class="cs-title">${s.title}</span>${s.aim?`<div class="cs-aim">${s.aim}</div>`:''}</div>`;
@@ -2338,6 +2360,32 @@ document.addEventListener('keydown', e => { if(e.key==='Escape') closeTmpl(); })
 
 
 const PANEL_DATA = {
+  // ── リード状態：現在稼働（最優先）──
+  lead_active:{icon:'🏃',title:'リード状態：現在稼働（稼働中顧客）',who:'FS',wc:'w-fs',
+    asis:[{t:'human',w:'👤 FS',l:'稼働中の最優先深耕',d:'いま支援が動いている顧客。信頼が最も高く、追加案件・部署紹介・継続が最も生まれやすい＝最優先。実体はカスタマーサクセス トラック',tools:['sf']}],
+    tobe:[{t:'ai',w:'🤖 AI',l:'PJT資料→次の課題予測',d:'稼働中PJT資料から「次にぶつかる壁」とホワイトスペースを提示し、深耕を先回り',tools:['claude','sf'],isNew:true}],
+    issue:'稼働接点がFS個人に閉じ、追加機会を取りこぼしやすい',ai:'💡 横展開AI（構想）'},
+  // ── リードジェネレーション：コンテンツマーケ各チャネル ──
+  ch_webinar:{icon:'🎤',title:'ウェビナー',who:'エンプラマーケ',wc:'w-mkt',
+    asis:[{t:'human',w:'👤 マーケ',l:'月次ウェビナー企画・開催',d:'テーマは月次テーマに連動。上半期は毎月・下半期は隔月。録画→Pardot再配信でコスト削減',tools:['pardot']},
+          {t:'human',w:'👤 マーケ',l:'参加者をSF登録→IS連携',d:'参加・申込をSFに登録しTier付与。高関心はISへ優先通知',tools:['sf','pardot']}],
+    tobe:[{t:'auto',w:'⚡ 自動',l:'参加→SF自動登録→IS通知',d:'参加ログをSFへ自動登録、Pardot配信対象に追加しISへ通知',tools:['sf','pardot','n8n'],isNew:true}],
+    issue:'参加者のSF登録・フォローが手動でタイムラグが出る',ai:'🔧 参加→SF自動登録（設計中）'},
+  ch_wp:{icon:'📄',title:'ホワイトペーパー（WP）',who:'エンプラマーケ',wc:'w-mkt',
+    asis:[{t:'human',w:'👤 マーケ',l:'WP制作・公開（年4本）',d:'4/6/9/12月に公開。WP→LP→Pardot配信→スコアリングの流れを構築',tools:['pardot']},
+          {t:'human',w:'👤 マーケ',l:'DLリードをSF登録',d:'ダウンロードリードをSFに登録しTier付与・配信対象へ追加',tools:['sf']}],
+    tobe:[{t:'auto',w:'⚡ 自動',l:'DL→SF自動登録→スコア加点',d:'ダウンロードをトリガーにSF登録＋行動スコア加点',tools:['sf','pardot'],isNew:true}],
+    issue:'制作リソースが限られ本数を増やしにくい',ai:'🔧 WP骨子のAI生成（検討）'},
+  ch_seo:{icon:'🔎',title:'SEO記事',who:'エンプラマーケ',wc:'w-mkt',
+    asis:[{t:'human',w:'👤 マーケ',l:'SEO記事の制作・公開（月1〜2本）',d:'事例コンテンツと兼用で外注。検索流入からLP・WPへ誘導'},
+          {t:'human',w:'👤 マーケ',l:'流入をハウスリストへ',d:'記事→LP問い合わせ/WP DLでリード化しSFへ登録',tools:['sf']}],
+    tobe:[{t:'ai',w:'🤖 AI',l:'記事骨子のAI生成',d:'テーマ×検索意図から記事骨子を自動生成し制作を高速化',tools:['claude'],isNew:true}],
+    issue:'制作工数が大きく本数が限られる',ai:'💡 記事骨子AI（構想）'},
+  ch_expo:{icon:'🏛',title:'展示会',who:'エンプラマーケ',wc:'w-mkt',
+    asis:[{t:'human',w:'👤 マーケ',l:'展示会出展・名刺獲得',d:'対象テーマの展示会に出展し名刺・リードを獲得'},
+          {t:'human',w:'👤 マーケ',l:'獲得名刺をSF登録→IS連携',d:'獲得リードをSFに登録しTier付与、ISがフォロー',tools:['sf']}],
+    tobe:[{t:'auto',w:'⚡ 自動',l:'名刺→SF自動登録',d:'名刺データをSFへ自動取り込み、フォロー漏れを防止',tools:['sf'],isNew:true}],
+    issue:'獲得後のフォローが属人的になりがち',ai:'🔧 名刺→SF自動登録（検討）'},
   // ═══ Layer 1 — リード状態レーン（新構成）═══
   // リサイクルレーン
   rc_check:{icon:'🔍',title:'リサイクル：前回文脈の確認（SF）',who:'IS：林',wc:'w-is',
