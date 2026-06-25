@@ -427,6 +427,7 @@ html,body{overflow:auto!important;height:auto!important;
 .trk-tab .tt-ico{font-size:16px}
 .trk-tab:hover{border-color:var(--blue-mid);transform:translateY(-1px)}
 .trk-tab.on{color:#fff;border-color:transparent;box-shadow:0 5px 14px rgba(0,121,192,.2)}
+.trk-tab.on.t-lg{background:linear-gradient(135deg,#f0a35a,#ed7d31)}
 .trk-tab.on.t-acq{background:linear-gradient(135deg,#2a93cf,#0079C0)}
 .trk-tab.on.t-pipe{background:linear-gradient(135deg,#0a4f73,#003D5E)}
 .trk-tab.on.t-cs{background:linear-gradient(135deg,#0A6E8C,#084E64)}
@@ -546,10 +547,10 @@ html,body{overflow:auto!important;height:auto!important;
 
   <!-- 役割レジェンド -->
   <div class="legend">
-    <span class="lg"><span class="dot" style="background:var(--c-mkt)"></span>エンプラマーケ（松村）</span>
-    <span class="lg"><span class="dot" style="background:var(--c-is)"></span>IS（林）</span>
-    <span class="lg"><span class="dot" style="background:var(--c-fs)"></span>FS（中村/岡部/栫/福本）</span>
-    <span class="lg"><span class="dot" style="background:var(--c-ass)"></span>アソシエイト（星）</span>
+    <span class="lg"><span class="dot" style="background:var(--c-mkt)"></span>エンプラマーケ</span>
+    <span class="lg"><span class="dot" style="background:var(--c-is)"></span>IS</span>
+    <span class="lg"><span class="dot" style="background:var(--c-fs)"></span>FS</span>
+    <span class="lg"><span class="dot" style="background:var(--c-ass)"></span>アソシエイト</span>
     <span class="lg"><span class="dot" style="background:var(--c-ib)"></span>顧客／インバウンド</span>
     <span class="lg"><span class="dot" style="background:var(--c-ai)"></span>AI・自動化</span>
   </div>
@@ -851,21 +852,30 @@ const GEM_URL='https://gemini.google.com/gem/1VMuaczRb2h2OW7lrgXJV2VO38Cv1EyeC?u
 const CLAUDE_PJ='https://claude.ai/project/019eb570-d6d7-71a2-92fc-31f72a4e5bf8';
 
 const TRACKS={
-  acquire:{name:'獲得',ico:'🌱',cls:'t-acq',steps:[
-    {n:'01',label:'マーケ配信',title:'マーケ施策の配信',aim:'テーマ配信・コンテンツで第一想起と反応（MQL）をつくる。担当＝エンプラマーケ。',
-      tasks:[{panel:'mkt_mail',role:'mkt',tmpl:'mkt_mail'},{panel:'mkt_teijo',role:'mkt'},{panel:'src_wb',role:'mkt'},{panel:'src_ad',role:'mkt'},{panel:'src_pksha',role:'mkt'}]},
-    {n:'02',label:'IS対象抽出',title:'IS：対象リード抽出（母集団から）',aim:'Tier・リード状態（過去稼働/リサイクル/休眠/未提案）から当日の架電対象を抽出。文脈なし架電は禁止。',
+  leadgen:{name:'リードジェネレーション',ico:'📣',cls:'t-lg',steps:[
+    {n:'01',label:'広告',title:'広告（LinkedIn / Google）',aim:'重点期に集中投下。LP問い合わせ・WPダウンロードでリードを獲得し、ハウスリストへ蓄積。担当＝エンプラマーケ。',
+      tasks:[{panel:'src_ad',role:'mkt'}]},
+    {n:'02',label:'ウェビナー・WP・SEO',title:'ウェビナー・ホワイトペーパー・SEO・展示会',aim:'テーマ別ウェビナー／WP／SEO記事／展示会で新規リードを獲得。参加者・DLをSFに登録。',
+      tasks:[{panel:'src_wb',role:'mkt'}]},
+    {n:'03',label:'PKSHA・紹介',title:'PKSHA共催・顧問紹介',aim:'PKSHAグループ共催ウェビナー・顧問経由のハイレイヤー紹介。質の高いリードの入口。',
+      tasks:[{panel:'src_pksha',role:'mkt'}],note:'獲得したリードはハウスリストへ蓄積 → <b>パイプラインジェネレーション</b> で商談化していく。',links:[{label:'パイプラインジェネレーションへ',ico:'🌱',onclick:"setTrack('acquire')"}]},
+  ]},
+  acquire:{name:'パイプラインジェネレーション',ico:'🌱',cls:'t-acq',steps:[
+    {n:'01',label:'リード管理',title:'リード管理（母集団）｜Tier × リード状態',aim:'企業はTier1〜4、担当者はリード状態（過去稼働後／リサイクル／休眠／未提案）で管理。ここが全アクションの優先度の起点。',matrix:true,tasks:[]},
+    {n:'02',label:'エンプラマーケ配信',title:'エンプラマーケ配信（ハウスリストへ）',aim:'月次テーマ配信・週次紹介で第一想起と反応（MQL）をつくる。担当＝エンプラマーケ。',
+      tasks:[{panel:'mkt_mail',role:'mkt',tmpl:'mkt_mail'},{panel:'mkt_teijo',role:'mkt'}]},
+    {n:'03',label:'IS対象抽出',title:'IS：対象リード抽出（母集団から）',aim:'Tier・リード状態から当日の架電対象を抽出。文脈なし架電は禁止。',
       tasks:[{panel:'is_list',role:'is'},{panel:'lead_ob',role:'is'},{panel:'lead_recycle',role:'is'},{panel:'lead_sleep',role:'is'},{panel:'lead_new',role:'is'}]},
-    {n:'03',label:'文脈コール',title:'IS：文脈確認 → コール・2M',aim:'前回DEAD理由・フック文を読み「前回の〇〇の件で」から始める。',
+    {n:'04',label:'文脈コール',title:'IS：文脈確認 → コール・2M',aim:'前回DEAD理由・フック文を読み「前回の〇〇の件で」から始める。',
       tasks:[{panel:'is_call',role:'is'}]},
-    {n:'04',label:'アポ獲得',title:'IS：アポ獲得・日程調整',aim:'関心を引けたら商談アポを設定（eeasy/架電）。',
+    {n:'05',label:'アポ獲得',title:'IS：アポ獲得・日程調整',aim:'関心を引けたら商談アポを設定（eeasy/架電）。',
       tasks:[{panel:'is_apo',role:'is'}]},
-    {n:'05',label:'FSトス',title:'IS → FSへトス＝SQL',aim:'商談ブリーフを共有しFSへ引き継ぎ。商談化＝SQL。',
-      tasks:[{panel:'is_hand',role:'is'}],note:'ここで <b>パイプライン</b> トラックへ。',links:[{label:'パイプラインへ',ico:'⚡',onclick:"setTrack('pipeline')"}]},
-    {n:'06',label:'FS・IB',title:'FS深耕（ABM）／インバウンド相談',aim:'Tier1はABMで深耕。インバウンド相談（受注率45%）は最短で商談へ。並行動線。',
+    {n:'06',label:'FSトス',title:'IS → FSへトス＝SQL',aim:'商談ブリーフを共有しFSへ引き継ぎ。商談化＝SQL。',
+      tasks:[{panel:'is_hand',role:'is'}],note:'ここで <b>パイプラインマネジメント</b> トラックへ。',links:[{label:'パイプラインマネジメントへ',ico:'⚡',onclick:"setTrack('pipeline')"}]},
+    {n:'07',label:'FS・IB',title:'FS深耕（ABM）／インバウンド相談',aim:'Tier1はABMで深耕。インバウンド相談（受注率45%）は最短で商談へ。並行動線。',
       tasks:[{panel:'abm',role:'fs'},{panel:'abm_contact',role:'fs'},{panel:'src_ib',role:'fs'}]},
   ]},
-  pipeline:{name:'パイプライン',ico:'⚡',cls:'t-pipe',steps:[
+  pipeline:{name:'パイプラインマネジメント',ico:'⚡',cls:'t-pipe',steps:[
     {n:'01',label:'商談',title:'アポ獲得：商談実施',aim:'「話を聞きたい」の合意（商談合意）でこのフェーズへ。会社説明・ヒアリング・仮説提案。',
       tasks:[{panel:'mtg',role:'fs'}],gate:'q1'},
     {n:'02',label:'要件・人選',title:'案件化：要件整理（SF入力）＋人選',aim:'GEMで要件整理→SF入力。並行してアソシエイトが人材を人選・打診。',
@@ -880,21 +890,21 @@ const TRACKS={
       tasks:[{panel:'nego',role:'fs',name:'稟議・反社チェック'}]},
     {n:'07',label:'契約',title:'契約手続き：締結＋PROBASE',aim:'電子契約で締結。PROBASE登録・ツール確認など契約後の初動。',
       tasks:[{panel:'close',role:'fs'},{panel:'contract',role:'fs',tmpl:'contract'}]},
-    {n:'08',label:'受注',title:'受注 → 稼働開始',win:true,aim:'契約締結＝受注。稼働開始し、CS（スターリード）トラックへ移行。',
-      tasks:[],note:'おめでとうございます。ここから <b>CS・スターリード</b> トラックで深耕します。',links:[{label:'CSトラックへ',ico:'⭐',onclick:"setTrack('cs')"}]},
+    {n:'08',label:'受注',title:'受注 → 稼働開始',win:true,aim:'契約締結＝受注。稼働開始し、カスタマーサクセス トラックへ移行。',
+      tasks:[],note:'おめでとうございます。ここから <b>カスタマーサクセス</b> トラックで深耕します。',links:[{label:'カスタマーサクセスへ',ico:'⭐',onclick:"setTrack('cs')"}]},
   ]},
-  cs:{name:'CS・スターリード',ico:'⭐',cls:'t-cs',steps:[
+  cs:{name:'カスタマーサクセス',ico:'⭐',cls:'t-cs',steps:[
     {n:'01',label:'キックオフ',title:'キックオフMTG',aim:'3者でキックオフ。期待値・スコープ・マイルストーンを合わせる。レビューMTGを「契約として」予約するのが鍵。',
       tasks:[{panel:'cs_kickoff',role:'fs'}],links:[{label:'深耕レビュー設計（テンプレ集）',ico:'📄',onclick:"openTmpl('cs_contact')"}]},
     {n:'02',label:'日常CS',title:'日常CS：支援同席・定期連絡',aim:'稼働の品質を見つつ関係を維持。月次フォローで信頼を積む。',
       tasks:[{panel:'cs_support',role:'fs'},{panel:'cs_action',role:'fs'}]},
     {n:'03',label:'品質管理',title:'①品質担保・解約防止',aim:'PROBASE等で品質をモニタリング。問題の早期発見と解約防止。',
       tasks:[{panel:'cs_quality',role:'fs'}]},
-    {n:'04',label:'継続',title:'②案件継続・契約更新',aim:'満了1〜2ヶ月前に継続意向を確認。継続案件はパイプラインへ。',
+    {n:'04',label:'継続',title:'②案件継続・契約更新',aim:'満了1〜2ヶ月前に継続意向を確認。継続案件はパイプラインマネジメントへ。',
       tasks:[{panel:'cs_renew',role:'fs'}]},
-    {n:'05',label:'追加案件',title:'③追加案件・追加ロール',aim:'支援同席・月次で不足ロールを発見→追加提案。パイプラインへ。',
+    {n:'05',label:'追加案件',title:'③追加案件・追加ロール',aim:'支援同席・月次で不足ロールを発見→追加提案。パイプラインマネジメントへ。',
       tasks:[{panel:'cs_expand',role:'fs'}]},
-    {n:'06',label:'部署紹介',title:'④追加部署・担当者紹介',aim:'上・横へのエスカレーション依頼。紹介をLayer1/2へ流入。',
+    {n:'06',label:'部署紹介',title:'④追加部署・担当者紹介',aim:'上・横へのエスカレーション依頼。紹介をパイプラインジェネレーション/マネジメントへ流入。',
       tasks:[{panel:'cs_dept',role:'fs'}]},
     {n:'07',label:'満了処理',title:'満了処理・リサイクル',aim:'満了レポート→3ヶ月後リサイクル投入。音信不通を防ぐ。',
       tasks:[{panel:'cs_expire',role:'fs'}]},
@@ -903,7 +913,7 @@ const TRACKS={
   ]},
 };
 
-let curTrack='pipeline', curStep=0;
+let curTrack='acquire', curStep=0;
 function setTrack(k){ curTrack=k; curStep=0; renderConsole(); document.getElementById('gtm-app').scrollIntoView({behavior:'smooth',block:'start'}); }
 function setStep(i){ const st=TRACKS[curTrack].steps; if(i<0||i>=st.length)return; curStep=i; renderConsole(); }
 
@@ -914,6 +924,24 @@ function opBtns(links){
     if(l.onclick) return `<a class="op-btn ${cls}" onclick="${l.onclick}">${l.ico||'🔗'} ${l.label}</a>`;
     return `<a class="op-btn ${cls}" href="${l.url}" target="_blank" rel="noopener">${l.ico||'🔗'} ${l.label}</a>`;
   }).join('')+`</div>`;
+}
+
+// リード管理：Tier（企業）× リード状態（担当者）優先度マトリクス
+function matrixGrid(){
+  const states=[['lead_ob','◆ 過去稼働後','#00A33B',3],['lead_recycle','🔄 リサイクル','#F39312',3],['lead_sleep','💤 休眠','#9aa0a6',2],['lead_new','🆕 未提案','#5BA6D5',1]];
+  const tiers=[['tier1','Tier1','#0079C0',4],['tier2','Tier2','#3E7CB1',3],['tier3','Tier3','#5BA6D5',2],['tier4','Tier4','#8FC4E3',1]];
+  const pr=(t,s)=>{const v=t+s;return v>=6?['◎','#0a7b3a','最優先']:v===5?['○','#0079C0','優先']:v===4?['△','#7a7f86','通常']:['▲','#aab0b6','低'];};
+  let head=`<tr><th class="mtx-corner">Tier（企業）＼ リード状態（担当者）</th>`;
+  states.forEach(s=>head+=`<th class="mtx-state" style="background:${s[1+1]}" onclick="openPanel('${s[0]}')"><div class="mst-t">${s[1]}</div><div class="mst-d">クリックで定義</div></th>`);
+  head+=`</tr>`;
+  let rows='';
+  tiers.forEach(t=>{
+    rows+=`<tr><td class="mtx-tier" style="background:${t[2]}" onclick="openPanel('${t[0]}')"><div class="mt-t">${t[1]}</div></td>`;
+    states.forEach(s=>{const[mk,col,lab]=pr(t[3],s[3]);rows+=`<td class="mtx-cell" style="text-align:center"><div style="font-size:16px;font-weight:800;color:${col};line-height:1">${mk}</div><div style="font-size:8px;color:${col};font-weight:700">${lab}</div></td>`;});
+    rows+=`</tr>`;
+  });
+  return `<div style="overflow-x:auto;margin-bottom:14px"><table class="mtx-table" style="min-width:520px">${head}${rows}</table>
+    <div class="mtx-hint">◎最優先 ○優先 △通常 ▲低（Tierの重要度 × リード状態の意欲度の目安）。<b>企業＝Tier（マーケが管理）</b>／<b>担当者＝リード状態（ISが管理）</b>。見出しをクリックすると定義が右に出ます。</div></div>`;
 }
 
 function renderTask(t){
@@ -948,6 +976,7 @@ function renderConsole(){
   document.getElementById('stepper').innerHTML=steps.map((st,i)=>
     `<div class="step ${i===curStep?'on':''} ${i<curStep?'done':''} ${st.win?'win':''}" onclick="setStep(${i})"><div class="step-dot">${st.n}</div><div class="step-label">${st.label}</div></div>`).join('');
   let h=`<div class="cs-head"><span class="cs-ph">${trk.name} ／ ${s.n}</span><span class="cs-title">${s.title}</span>${s.aim?`<div class="cs-aim">${s.aim}</div>`:''}</div>`;
+  if(s.matrix) h+=matrixGrid();
   (s.tasks||[]).forEach(t=>h+=renderTask(t));
   if(s.gate){const g=PANEL_DATA[s.gate]||{};const cond=(g.asis&&g.asis[0])?g.asis[0].d:'';
     h+=`<div class="gate-box"><span class="gb-ico">✅</span><div><div class="gb-t">次に進む合意：${(g.title||'').replace(/\s*合意ゲート/,'')}</div>${cond?`<div class="gb-d">${cond}</div>`:''}</div></div>`;}
