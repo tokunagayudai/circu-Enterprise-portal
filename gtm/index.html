@@ -860,9 +860,10 @@ const TRACKS={
   leadgen:{name:'リードジェネレーション',ico:'📣',cls:'t-lg',parallel:true,
     intro:'新規リードをハウスリストに入れる入口。下のチャネルは並行・独立で、順序ではありません。それぞれ独立して強化していけます。',
     groups:[
-      {name:'運用型広告',items:[{panel:'src_ad',role:'mkt'}]},
-      {name:'コンテンツマーケ',items:[{panel:'ch_webinar',role:'mkt'},{panel:'ch_wp',role:'mkt'},{panel:'ch_seo',role:'mkt'},{panel:'ch_expo',role:'mkt'}]},
-      {name:'紹介・共催',items:[{panel:'src_pksha',role:'mkt'}]},
+      {name:'運用型広告',accent:'var(--c-mkt)',items:[{panel:'src_ad',role:'mkt'}]},
+      {name:'コンテンツマーケ',accent:'var(--c-mkt)',items:[{panel:'ch_webinar',role:'mkt'},{panel:'ch_wp',role:'mkt'},{panel:'ch_seo',role:'mkt'},{panel:'ch_expo',role:'mkt'}]},
+      {name:'紹介・共催',accent:'var(--c-mkt)',items:[{panel:'src_pksha',role:'mkt'}]},
+      {name:'担当者紹介・リード拡張（FS）',accent:'var(--c-fs)',items:[{panel:'ex_inbound',role:'fs'},{panel:'ex_deepen',role:'fs'},{panel:'ex_meishi',role:'fs'},{panel:'ex_cc',role:'fs'}]},
     ],
     outro:{label:'パイプラインジェネレーションへ',ico:'🌱',onclick:"setTrack('acquire')"}},
   acquire:{name:'パイプラインジェネレーション',ico:'🌱',cls:'t-acq',steps:[
@@ -984,7 +985,7 @@ function renderConsole(){
     document.getElementById('stepper').innerHTML=`<div class="opt-cap">🧭 ${trk.intro||''}</div>`;
     let h=`<div class="cs-head"><span class="cs-ph">${trk.name}</span><span class="cs-title">獲得チャネル（選択肢）</span></div>`;
     (trk.groups||[]).forEach(g=>{
-      h+=`<div class="opt-group"><div class="opt-gh">${g.name}</div><div class="opt-grid">`;
+      h+=`<div class="opt-group"><div class="opt-gh" style="border-left-color:${g.accent||'var(--c-mkt)'}">${g.name}</div><div class="opt-grid">`;
       (g.items||[]).forEach(t=>h+=renderTask(t));
       h+=`</div></div>`;
     });
@@ -2386,6 +2387,27 @@ const PANEL_DATA = {
           {t:'human',w:'👤 マーケ',l:'獲得名刺をSF登録→IS連携',d:'獲得リードをSFに登録しTier付与、ISがフォロー',tools:['sf']}],
     tobe:[{t:'auto',w:'⚡ 自動',l:'名刺→SF自動登録',d:'名刺データをSFへ自動取り込み、フォロー漏れを防止',tools:['sf'],isNew:true}],
     issue:'獲得後のフォローが属人的になりがち',ai:'🔧 名刺→SF自動登録（検討）'},
+  // ── リード拡張：担当者紹介（FS） ──
+  ex_inbound:{icon:'📨',title:'リード拡張：課題発生 → 新担当からの相談（受動）',who:'FS',wc:'w-fs',
+    asis:[{t:'human',w:'👤 顧客',l:'既存接点の社内で新たな課題が発生',d:'稼働中／過去稼働／過去商談先の社内で課題が出て、別の担当者から「相談したい」と連絡が来る。最も決まりやすい入口（インバウンド受注率45%の源泉）'},
+          {t:'human',w:'👤 FS',l:'新担当をリード登録→パイプラインへ',d:'相談元の新担当者をSFにリード登録し、文脈を持って商談化',tools:['sf','gmail']}],
+    tobe:[{t:'ai',w:'🤖 AI',l:'過去コンテキスト自動提示',d:'相談着信時にその企業の過去商談・稼働履歴を瞬時にまとめて提示',tools:['sf','claude'],isNew:true}],
+    issue:'発生がFS個人の関係に依存。仕組みで全FSから出したい',ai:'最重要レバー（受注率45%の源泉）'},
+  ex_deepen:{icon:'🤝',title:'リード拡張：能動的な深耕営業（能動）',who:'FS',wc:'w-fs',
+    asis:[{t:'human',w:'👤 FS',l:'隣接部署・上位職へ能動アプローチ',d:'稼働実績を起点に、こちらから仕掛けて隣部署・別担当・上位層を開拓。カウンターパートに紹介を依頼'},
+          {t:'human',w:'👤 FS',l:'得た担当者をリード登録→商談へ',d:'紹介された担当者をSFにリード登録しTier付与。商談が組めればパイプラインへ',tools:['sf']}],
+    tobe:[{t:'ai',w:'🤖 AI',l:'ステークホルダーマップ生成',d:'稼働PJT資料・組織図から「次に当たるべき部署・担当者」を提示',tools:['claude','sf'],isNew:true}],
+    issue:'横展開が属人化。どの顧客にどの部署を当てるか体系化されていない',ai:'💡 ステークホルダーマップAI（構想）'},
+  ex_meishi:{icon:'🪪',title:'リード拡張：PJT中の名刺交換・挨拶',who:'FS',wc:'w-fs',
+    asis:[{t:'human',w:'👤 FS',l:'稼働PJTで関係者と接点',d:'支援同席・MTGの場で、関係するステークホルダーと名刺交換・挨拶をさせてもらう'},
+          {t:'human',w:'👤 FS',l:'接点をリード登録',d:'得た担当者をSFにリード登録。Tier付与して将来の母集団に加える',tools:['sf']}],
+    tobe:[{t:'auto',w:'⚡ 自動',l:'名刺→SF自動登録',d:'名刺データをSFへ自動取り込みし、接点を記録',tools:['sf'],isNew:true}],
+    issue:'接点が記録されず流れてしまう',ai:'🔧 名刺→SF自動登録（検討）'},
+  ex_cc:{icon:'📧',title:'リード拡張：メールCC・カレンダー参加者から獲得',who:'FS',wc:'w-fs',
+    asis:[{t:'human',w:'👤 FS',l:'やり取りの関係者を把握',d:'メールのCC・Zoom/カレンダー参加者として入っている関係者を確認する'},
+          {t:'human',w:'👤 FS',l:'関係者をリード登録',d:'同席・CCの担当者をSFにリード登録し、関係性を可視化',tools:['sf','gmail']}],
+    tobe:[{t:'auto',w:'⚡ 自動',l:'CC/参加者→自動リード化',d:'メールCC・カレンダー参加者を検知し、候補リードとして自動抽出',tools:['gmail','sf','n8n'],isNew:true}],
+    issue:'同席者・CCがリードとして拾われていない',ai:'🔧 CC/参加者の自動リード化（構想）'},
   // ═══ Layer 1 — リード状態レーン（新構成）═══
   // リサイクルレーン
   rc_check:{icon:'🔍',title:'リサイクル：前回文脈の確認（SF）',who:'IS：林',wc:'w-is',
