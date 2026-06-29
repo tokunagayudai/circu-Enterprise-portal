@@ -855,6 +855,7 @@ function redrawConn(){ /* v8: フローチャート廃止のため無効化 */ }
 // ══════════════════════════════════════
 const GEM_URL='https://gemini.google.com/gem/1VMuaczRb2h2OW7lrgXJV2VO38Cv1EyeC?usp=sharing';
 const CLAUDE_PJ='https://claude.ai/project/019eb570-d6d7-71a2-92fc-31f72a4e5bf8';
+const GYOMU_GEM='https://gemini.google.com/gem/1N3NjZO_fsWpuVozCPFc4Xcnjpo_ecHzt?usp=sharing';
 
 const TRACKS={
   leadgen:{name:'リードジェネレーション',ico:'📣',cls:'t-lg',parallel:true,
@@ -890,12 +891,12 @@ const TRACKS={
       tasks:[{panel:'propose',role:'fs',tmpl:'propose',links:[{label:'Claudeプロジェクト',ico:'🤖',url:CLAUDE_PJ}]},{panel:'secure',role:'ass'}],gate:'q3'},
     {n:'04',label:'面談',title:'面談：実施＋日程調整',aim:'顧客×プロ×当社の3者面談。アソシエイトが日程調整。',
       tasks:[{panel:'interview',role:'fs'},{panel:'sched',role:'ass'}],gate:'q4'},
-    {n:'05',label:'見積',title:'見積・要件定義',aim:'面談議事録をもとに見積書を作成。業務詳細を整える。',
-      tasks:[{panel:'nego',role:'fs',name:'見積・要件定義',links:[{label:'見積書フォーマット',ico:'📊',url:'https://docs.google.com/spreadsheets/d/1bV77DJk6Ie_-WvG6ZsHY-NFo6AJq_P1rbH16FNEQZUo/edit?gid=1185974604#gid=1185974604'}]}]},
+    {n:'05',label:'見積',title:'見積・要件定義',aim:'面談議事録をもとに見積書を作成。業務詳細はGEMで生成（4行・契約書文言）。',
+      tasks:[{panel:'nego',role:'fs',name:'見積・要件定義',tmpl:'gyomu_gem',links:[{label:'見積書フォーマット',ico:'📊',url:'https://docs.google.com/spreadsheets/d/1bV77DJk6Ie_-WvG6ZsHY-NFo6AJq_P1rbH16FNEQZUo/edit?gid=1185974604#gid=1185974604'},{label:'業務詳細GEM',ico:'🤖',url:GYOMU_GEM}]}]},
     {n:'06',label:'稟議',title:'稟議・反社チェック',aim:'粗利率確認・マネージャー承認・反社チェック。',
       tasks:[{panel:'nego',role:'fs',name:'稟議・反社チェック'}]},
-    {n:'07',label:'契約',title:'契約手続き：締結＋PROBASE',aim:'電子契約で締結。PROBASE登録・ツール確認など契約後の初動。',
-      tasks:[{panel:'close',role:'fs'},{panel:'contract',role:'fs',tmpl:'contract'}]},
+    {n:'07',label:'契約',title:'契約手続き：締結＋PROBASE',aim:'電子契約で締結。業務詳細はGEMで生成（見積と同じ）。PROBASE登録・ツール確認など契約後の初動。',
+      tasks:[{panel:'close',role:'fs',tmpl:'gyomu_gem',links:[{label:'業務詳細GEM',ico:'🤖',url:GYOMU_GEM}]},{panel:'contract',role:'fs',tmpl:'contract'}]},
     {n:'08',label:'受注',title:'受注 → 稼働開始',win:true,aim:'契約締結＝受注。稼働開始し、カスタマーサクセス トラックへ移行。',
       tasks:[],note:'おめでとうございます。ここから <b>カスタマーサクセス</b> トラックで深耕します。',links:[{label:'カスタマーサクセスへ',ico:'⭐',onclick:"setTrack('cs')"}]},
   ]},
@@ -1802,6 +1803,71 @@ function drawAll(){
 // ══════════════════════════════════════
 // ── テンプレートデータ ──
 const TMPL_DATA = {
+  gyomu_gem: {
+    title: '業務詳細 生成GEM（面談議事録 → 契約書の業務詳細）',
+    tabs: [
+      {
+        label: '🤖 GEMを開く',
+        content: `【業務詳細 生成GEM】見積書・契約書の「業務詳細」を自動生成
+
+決定した候補プロ人材との面談議事録（録画 or 文字起こし）をもとに、
+契約書の【業務詳細】を「ずれない・簡潔・専門的」に生成します。
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ GEM リンク
+━━━━━━━━━━━━━━━━━━━━━━━━
+https://gemini.google.com/gem/1N3NjZO_fsWpuVozCPFc4Xcnjpo_ecHzt?usp=sharing
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ 使い方
+━━━━━━━━━━━━━━━━━━━━━━━━
+1. 上記GEMを開く
+2. 面談（商談）の録画 または 文字起こしを貼り付ける
+3. 【業務詳細】が4行構成で自動生成される
+4. 見積書・契約書の「業務詳細」欄にそのまま転記
+
+※プロンプト本文は「📋 プロンプト」タブに格納。`
+      },
+      {
+        label: '📋 プロンプト',
+        content: `あなたはプロフェッショナル人材マッチングエージェントの契約担当です。
+
+提供された商談録画（または文字起こし）から、契約書の【業務詳細】を作成してください。「ずれない・簡潔・専門的」を徹底し、以下の制約条件を厳守してください。
+
+【制約条件】
+
+4行限定: 箇条書き（・）の項目は、重要度の高い順に整理し、必ず合計4行で構成すること。
+
+情報の統合: 複数の細かいタスク（例：RFP作成、ベンダー交渉、コンペ支援）は、「ベンダー選定および導入支援」のように、契約書として適切な包括的表現にまとめること。
+
+具体的な数値: 稼働工数は商談内容に基づき「月XX%（XX時間目安）」と記載すること。
+
+語尾の統一: 契約書文言として「〜の支援」「〜の実施」等、体言止めまたは適切な語尾を用いること。
+
+【出力フォーマット】
+
+【業務詳細】
+
+XXXX支援（以下「本業務」という）を実施するものとする。
+
+・XXXX
+
+・XXXX
+
+・XXXX
+
+・XXXX
+
+・業務方法（対面訪問・リモート）は甲乙協議の上決定するものとする。
+
+・原則稼動工数を月XX%（月XX時間目安）とし、プロジェクト推進を行う。
+
+・メール・電話での相談・対応等は業務遂行範囲内にて双方合意の上随時行うものとする。
+
+・その他活動に関しては、甲乙双方協議の上、同意のもとで決定されるものとする。`
+      }
+    ]
+  },
   mkt_mail: {
     title: '月1テーマメルマガ — テーマ資料・テンプレ格納',
     tabs: [
