@@ -437,10 +437,9 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
   </div>
 
   <div class="ctrl-bar">
-    <div class="viewmode" id="viewmode">
-      <span class="vm-lab"><i class="ti ti-eye"></i> 表示</span>
-      <button data-m="visual" class="on"><i class="ti ti-layout-grid"></i> ビジュアル</button>
-      <button data-m="detail"><i class="ti ti-align-left"></i> 詳しく読む</button>
+    <div class="ex-legend">
+      <i class="ti ti-notebook"></i>
+      <span>各章の <b>解説</b> ボタン／各項目の <b><i class="ti ti-info-circle"></i></b> をクリックすると、右側に<b>説明</b>がスライド表示されます</span>
     </div>
     <div class="toggle-bar">
       <button onclick="document.querySelectorAll('details.sec').forEach(d=>d.open=true)"><i class="ti ti-chevrons-down"></i> すべて開く</button>
@@ -1341,34 +1340,105 @@ body:not(.detailmode) .readmore.has{display:block}
 .sec-open-prose .rrow p.rd,
 .sec-open-prose .panel .body p{display:revert!important}
 </style>
+<style>
+/* ヒント凡例 */
+.ex-legend{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1.5px solid #d6e8f5;border-radius:22px;padding:7px 15px;box-shadow:0 2px 8px rgba(0,121,192,.06);font-size:11.5px;font-weight:600;color:var(--gray)}
+.ex-legend>i{font-size:16px;color:var(--blue)}
+.ex-legend b{color:var(--blue-d);font-weight:800}
+.ex-legend b i{font-size:13px}
+/* 章ヘッダーの「解説」ボタン */
+.sec-explain{flex:none;margin-left:auto;display:inline-flex;align-items:center;gap:5px;font-family:inherit;font-size:11.5px;font-weight:800;color:#fff;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);border-radius:16px;padding:5px 13px;cursor:pointer;transition:.15s}
+.sec-explain:hover{background:rgba(255,255,255,.34)}
+.sec-explain i{font-size:14px}
+details.sec>summary .chev{margin-left:8px!important}
+/* 各項目の解説バッジ（ⓘ） */
+.exi{position:absolute;top:8px;right:8px;z-index:6;width:24px;height:24px;border-radius:50%;border:1.5px solid #cfe6f6;background:#fff;color:var(--blue);display:grid;place-items:center;cursor:pointer;box-shadow:0 2px 6px rgba(0,121,192,.16);opacity:.5;transition:.15s;padding:0}
+.exi:hover{opacity:1;background:var(--blue);color:#fff;border-color:transparent;transform:scale(1.08)}
+.exi i{font-size:14px}
+/* スライドイン・サイドパネル */
+.exdrawer{position:fixed;inset:0;z-index:200;display:none}
+.exdrawer.open{display:block}
+.ex-ov{position:absolute;inset:0;background:rgba(10,30,45,.42)}
+.ex-pane{position:absolute;top:0;right:0;height:100%;width:min(600px,94vw);background:#fff;box-shadow:-14px 0 44px rgba(0,40,70,.28);display:flex;flex-direction:column;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1)}
+.exdrawer.open .ex-pane{transform:none}
+.ex-head{flex:none;display:flex;align-items:center;gap:10px;padding:16px 18px;background:linear-gradient(135deg,#0079c0,#003d5e);color:#fff}
+.ex-head .ex-kk{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#7fc4ec;display:block;margin-bottom:2px}
+.ex-head .ex-ttl{font-size:15.5px;font-weight:800;flex:1;line-height:1.4}
+.ex-head .ex-x{flex:none;width:32px;height:32px;border-radius:9px;border:none;background:rgba(255,255,255,.18);color:#fff;font-size:15px;cursor:pointer}
+.ex-head .ex-x:hover{background:rgba(255,255,255,.32)}
+.ex-body{flex:1;overflow-y:auto;padding:18px 18px 48px;background:linear-gradient(160deg,#f2f9fe,#eaf4fb)}
+.ex-tip{font-size:11px;color:var(--gray);background:#fff;border:1.5px dashed #cfe6f6;border-radius:10px;padding:9px 13px;margin-bottom:14px;display:flex;gap:7px;align-items:center}
+.ex-tip i{color:var(--blue);font-size:15px;flex:none}
+/* パネル内：全プローズを表示＋1カラム化 */
+.exdrawer .exwrap .panel>.lead,.exdrawer .exwrap .panel>.note,.exdrawer .exwrap .qnote,.exdrawer .exwrap .ctx-hero>p,.exdrawer .exwrap .climax .clead,.exdrawer .exwrap .purpose .pnote,.exdrawer .exwrap .recall .rmsg,.exdrawer .exwrap .msg-strong,.exdrawer .exwrap .between-cap,.exdrawer .exwrap .layer-note,.exdrawer .exwrap .shift-insight p,.exdrawer .exwrap .shift-row .cap,.exdrawer .exwrap .mk-hi p,.exdrawer .exwrap .rrow p.rd,.exdrawer .exwrap .panel .body p{display:revert!important}
+.exdrawer .exwrap .stats,.exdrawer .exwrap .mini,.exdrawer .exwrap .m2,.exdrawer .exwrap .m3,.exdrawer .exwrap .steps,.exdrawer .exwrap .pillars,.exdrawer .exwrap .hws,.exdrawer .exwrap .layer2,.exdrawer .exwrap .ach,.exdrawer .exwrap .cycle-wrap,.exdrawer .exwrap .flow,.exdrawer .exwrap .between,.exdrawer .exwrap .flow2,.exdrawer .exwrap .themodel,.exdrawer .exwrap .weekgrid,.exdrawer .exwrap .org-branches,.exdrawer .exwrap .xform,.exdrawer .exwrap .recall .rcompare,.exdrawer .exwrap .sol-ex{grid-template-columns:1fr!important}
+.exdrawer .exwrap .tier{flex-direction:column}.exdrawer .exwrap .tier .h{width:100%}
+.exdrawer .exwrap .flayer{width:100%!important}
+.exdrawer .exwrap .panel{padding:15px 16px!important;margin-bottom:12px;border:1.5px solid #e0edf7}
+.exdrawer .exwrap .flow .arrowcol i,.exdrawer .exwrap .xform .xarrow i{transform:rotate(90deg)}
+.exdrawer .exwrap .panel:first-child{margin-top:0}
+.exwrap .ex-focus{outline:3px solid var(--orange);outline-offset:3px;border-radius:14px}
+@media(max-width:520px){.ex-pane{width:100vw}}
+</style>
+<div class="exdrawer" id="exdrawer">
+  <div class="ex-ov"></div>
+  <aside class="ex-pane">
+    <header class="ex-head"><div style="flex:1"><span class="ex-kk">EXPLANATION ／ 解説</span><span class="ex-ttl"></span></div><button class="ex-x" aria-label="閉じる"><i class="ti ti-x"></i></button></header>
+    <div class="ex-body"></div>
+  </aside>
+</div>
 <script>
 (function(){
-  var body=document.body;
-  // 表示モード切替
-  var vm=document.getElementById('viewmode');
-  if(vm){
-    vm.addEventListener('click',function(e){
-      var b=e.target.closest('button'); if(!b)return;
-      var detail=b.dataset.m==='detail';
-      body.classList.toggle('detailmode',detail);
-      vm.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b);});
-      if(detail) document.querySelectorAll('.sec-open-prose').forEach(function(s){s.classList.remove('sec-open-prose');});
-    });
+  var dr=document.getElementById('exdrawer');
+  var ov=dr.querySelector('.ex-ov'), ttl=dr.querySelector('.ex-ttl'), bd=dr.querySelector('.ex-body'), xb=dr.querySelector('.ex-x');
+  function close(){dr.classList.remove('open');document.body.style.overflow='';}
+  ov.addEventListener('click',close); xb.addEventListener('click',close);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&dr.classList.contains('open'))close();});
+
+  function secName(sec){
+    var st=sec.querySelector('.stitle'); if(!st) return '解説';
+    var c=st.cloneNode(true); var sm=c.querySelector('small'); if(sm)sm.remove();
+    var no=c.querySelector('.no'); if(no)no.remove(); return c.textContent.trim();
   }
-  // 各章に「詳しく読む」トグルを設置（畳まれた説明が実在する章だけ）
-  var proseSel='.panel>.lead,.panel>.note,.qnote,.ctx-hero>p,.climax .clead,.purpose .pnote,.recall .rmsg,.msg-strong,.between-cap,.layer-note,.shift-insight p,.shift-row .cap,.mk-hi p,.rrow p.rd,.panel .body p';
-  document.querySelectorAll('details.sec').forEach(function(sec){
-    if(!sec.querySelector(proseSel)) return;
-    var rm=document.createElement('div'); rm.className='readmore has';
-    var btn=document.createElement('button');
-    btn.innerHTML='<i class="ti ti-align-left"></i> この章の説明を読む';
-    btn.addEventListener('click',function(){
-      var on=sec.classList.toggle('sec-open-prose');
-      btn.innerHTML=on?'<i class="ti ti-chevron-up"></i> 説明を閉じる':'<i class="ti ti-align-left"></i> この章の説明を読む';
+  function openSec(sec, focusIdx){
+    ttl.textContent=secName(sec);
+    var wrap=document.createElement('div'); wrap.className='exwrap';
+    [].forEach.call(sec.children,function(ch){
+      if(ch.tagName==='SUMMARY') return;
+      wrap.appendChild(ch.cloneNode(true));
     });
-    rm.appendChild(btn);
+    wrap.querySelectorAll('.exi,.sec-explain').forEach(function(x){x.remove();});
+    bd.innerHTML='';
+    var tip=document.createElement('div'); tip.className='ex-tip';
+    tip.innerHTML='<i class="ti ti-bulb"></i> プレゼンでは口頭で補足する部分です。読み返し用に、この章の説明をすべて表示しています。';
+    bd.appendChild(tip); bd.appendChild(wrap);
+    dr.classList.add('open'); document.body.style.overflow='hidden'; bd.scrollTop=0;
+    if(focusIdx!=null){
+      var t=wrap.querySelector('[data-exidx="'+focusIdx+'"]');
+      if(t){t.classList.add('ex-focus'); setTimeout(function(){t.scrollIntoView({block:'center',behavior:'smooth'});},80);}
+    }
+  }
+
+  var itemSel='.mcard,.pillar,.rolecard,.rrow,.hwcard,.lcard,.step,.achcard,.opsitem,.tier,.mk-hi,.tgt-banner,.band,.shift-row,.shift-insight,.between,.between-takeaway,.xform,.themodel,.cycle-wrap,.flow,.flow2,.funnel,.purpose,.recall,.msg-strong,.compet,.sol-ex,.qnote,.ctx-hero,.weekgrid,.org,.stats';
+  var gidx=0;
+  document.querySelectorAll('details.sec').forEach(function(sec){
+    // 章ヘッダーの解説ボタン
     var sum=sec.querySelector('summary');
-    if(sum&&sum.nextSibling) sec.insertBefore(rm,sum.nextSibling); else sec.appendChild(rm);
+    var b=document.createElement('button'); b.className='sec-explain'; b.type='button';
+    b.innerHTML='<i class="ti ti-notebook"></i> 解説';
+    b.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();openSec(sec);});
+    var chev=sum.querySelector('.chev'); if(chev) sum.insertBefore(b,chev); else sum.appendChild(b);
+    // 各項目のⓘバッジ（入れ子は最外側のみ）
+    [].forEach.call(sec.querySelectorAll(itemSel),function(it){
+      if(it.parentElement && it.parentElement.closest(itemSel)) return; // 入れ子はスキップ
+      it.dataset.exidx=gidx;
+      if(getComputedStyle(it).position==='static') it.style.position='relative';
+      var ib=document.createElement('button'); ib.className='exi'; ib.type='button'; ib.title='この項目の解説';
+      ib.innerHTML='<i class="ti ti-info-circle"></i>';
+      (function(s,idx){ib.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();openSec(s,idx);});})(sec,gidx);
+      it.appendChild(ib);
+      gidx++;
+    });
   });
 })();
 </script>
