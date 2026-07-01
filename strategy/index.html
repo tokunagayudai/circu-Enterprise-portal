@@ -25,7 +25,7 @@ body{
 .topbar-spacer{flex:1}
 .topbar a.back{color:#fff;text-decoration:none;font-size:12px;font-weight:600;display:flex;align-items:center;gap:5px;opacity:.92}
 .topbar a.back:hover{opacity:1}
-.wrap{max-width:960px;margin:0 auto;padding:28px 20px 0}
+.wrap{max-width:1340px;margin:0 auto;padding:24px 26px 0}
 .hero{background:linear-gradient(135deg,#fff,#e8f6ff);border:2px solid var(--blue-mid);border-radius:20px;padding:34px 30px 30px;margin-bottom:26px;text-align:center;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(0,121,192,.08),transparent 70%);top:-60px;right:-40px}
 .hero::after{content:'';position:absolute;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(85,153,190,.1),transparent 70%);bottom:-50px;left:-30px}
@@ -433,7 +433,6 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
     <div class="hero-icon"><i class="ti ti-target-arrow"></i></div>
     <h2>FY14 エンタープライズチーム戦略</h2>
     <div class="tagline">「4 Value Cycle」を、<b>一人から、チームで回るエンジンへ</b></div>
-    <p>勝ち筋は証明済み。変えるのは「何を」ではなく「どう回すか」。役割分担とAIで、チームで回るGTMエンジンに作り変える。</p>
     <div class="meta">2026.07 ｜ Manager 徳永 雄大</div>
   </div>
 
@@ -452,18 +451,33 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
   <details class="sec" open>
     <summary><span class="stitle"><i class="ti ti-bulb"></i>エグゼクティブサマリー <small>― この戦略の結論</small></span><i class="ti ti-chevron-down chev"></i></summary>
   <div class="panel">
-    <div class="ctx-hero" style="margin-bottom:18px">
-      <div class="ck">FY14 ｜ この戦略が目指すこと</div>
-      <h3>商談一つのポテンシャルを、最大化する。<br><span class="em">一人で回す営業から、チームとAIで回す営業へ。</span></h3>
-      <p>顧客との一つひとつの接点から、最大限の価値を引き出す。そのために、<b>役割が重なり合う時代の戦い方</b>へと変える ── プロ人材という「手段」を売るのではなく、<b>「解決策」を一緒に描くパートナー</b>になる。この転換を、属人ではなく、チームとAIで回せる仕組みにする。</p>
+    <!-- FROM → TO 変換図 -->
+    <div class="xform">
+      <div class="xbox from">
+        <div class="xl">これまで</div>
+        <div class="xi"><i class="ti ti-user"></i></div>
+        <div class="xt">一人で回す営業</div>
+        <small>属人・移植できない</small>
+      </div>
+      <div class="xarrow"><i class="ti ti-arrow-big-right-filled"></i><span>役割分担 ＋ AI</span></div>
+      <div class="xbox to">
+        <div class="xl">これから</div>
+        <div class="xi"><i class="ti ti-users-group"></i></div>
+        <div class="xt">チームとAIで回す営業</div>
+        <small>再現できる・広がる</small>
+      </div>
     </div>
-    <h3 class="ph" style="font-size:15px">今期の3つの転換</h3>
-    <div class="mini m3">
-      <div class="mcard"><div class="num">1</div><h4>役割を分ける</h4><p>鳥の目（戦略）／地上（実行）／情報提供。一人で回さず、分けて連携させる。</p></div>
-      <div class="mcard"><div class="num">2</div><h4>AIで工数を削る</h4><p>提案書・要件定義・記録を自動化。減らした時間をアカウント活動へ再投資。</p></div>
-      <div class="mcard"><div class="num">3</div><h4>全員がアカウントを見る</h4><p>案件を進めるだけでなく、4階層で顧客を立体的に捉える。</p></div>
+
+    <!-- 3本の柱 → ゴール -->
+    <div class="pillars">
+      <div class="pillar"><div class="pn">1</div><div class="pi"><i class="ti ti-arrows-split-2"></i></div><h4>役割を分ける</h4><p>鳥の目／地上／情報提供に分けて連携</p></div>
+      <div class="pillar"><div class="pn">2</div><div class="pi"><i class="ti ti-robot"></i></div><h4>AIで工数を削る</h4><p>提案書・要件・記録を自動化し再投資</p></div>
+      <div class="pillar"><div class="pn">3</div><div class="pi"><i class="ti ti-stack-2"></i></div><h4>4階層で見る</h4><p>案件でなくアカウントを立体で捉える</p></div>
     </div>
-    <p class="note" style="margin-top:18px">なぜこの転換が必要か ── 世界観と背景は「この戦略の文脈」で、その根拠となる数字は「1章 振り返り」で示す。</p>
+    <div class="downarrows"><i class="ti ti-chevron-down"></i><i class="ti ti-chevron-down"></i><i class="ti ti-chevron-down"></i></div>
+    <div class="goalbar"><i class="ti ti-target-arrow"></i><span>商談一つのポテンシャルを、<b>最大化する</b></span></div>
+
+    <p class="note" style="margin-top:16px">なぜこの転換が必要か ── 世界観と背景は「この戦略の文脈」で、その根拠となる数字は「1章 振り返り」で示す。</p>
   </div>
 
   </details>
@@ -1247,6 +1261,32 @@ details.sec[open]>summary{box-shadow:0 2px 10px rgba(0,61,94,.15)}
 
 <!-- ════════ v3: ビジュアル・ファースト（プローズを既定で畳む＋章内「詳しく読む」） ════════ -->
 <style>
+/* FROM→TO 変換図 */
+.xform{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:stretch;margin-bottom:20px}
+.xbox{border-radius:16px;padding:20px 16px;text-align:center;display:flex;flex-direction:column;gap:5px;justify-content:center;align-items:center}
+.xbox.from{background:#f4f5f7;border:1.5px solid #e0e2e6;color:#7a7772}
+.xbox.to{background:linear-gradient(135deg,#0079c0,#003d5e);color:#fff;box-shadow:0 8px 22px rgba(0,121,192,.22)}
+.xbox .xl{font-size:10.5px;font-weight:800;letter-spacing:1.5px;opacity:.7}
+.xbox .xi{font-size:30px;line-height:1;margin:2px 0}
+.xbox.to .xi{color:#bfe3f7}
+.xbox .xt{font-size:17px;font-weight:800}
+.xbox small{font-size:11px;opacity:.85}
+.xarrow{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--blue);min-width:110px}
+.xarrow i{font-size:36px}
+.xarrow span{font-size:11px;font-weight:800;color:var(--blue-d);background:var(--blue-l);border:1.5px solid #cfe6f6;border-radius:14px;padding:4px 11px;white-space:nowrap}
+/* 3本の柱 → ゴール */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.pillar{border:1.5px solid #d6e8f5;border-radius:14px;background:#fff;padding:16px 16px 18px;text-align:center;position:relative}
+.pillar .pn{position:absolute;top:-11px;left:50%;transform:translateX(-50%);width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#0079c0,#5599be);color:#fff;display:grid;place-items:center;font-weight:800;font-size:12px;font-family:'JetBrains Mono',monospace}
+.pillar .pi{width:46px;height:46px;border-radius:12px;background:var(--blue-l);color:var(--blue);display:grid;place-items:center;font-size:24px;margin:8px auto 10px}
+.pillar h4{font-size:15px;font-weight:800;color:var(--blue-d);margin-bottom:5px}
+.pillar p{font-size:12px;color:var(--gray);line-height:1.5}
+.downarrows{display:grid;grid-template-columns:repeat(3,1fr);place-items:center;color:var(--blue-mid);font-size:26px;margin:2px 0}
+.goalbar{display:flex;align-items:center;justify-content:center;gap:12px;background:linear-gradient(135deg,#003d5e,#0079c0);color:#fff;border-radius:16px;padding:20px 24px;box-shadow:0 8px 22px rgba(0,61,94,.25)}
+.goalbar i{font-size:30px;color:#bfe3f7}
+.goalbar span{font-size:19px;font-weight:800}
+.goalbar b{color:#bfe3f7}
+@media(max-width:680px){.xform{grid-template-columns:1fr}.xarrow{flex-direction:row;min-width:0}.xarrow i{transform:rotate(90deg)}.pillars{grid-template-columns:1fr}.downarrows{grid-template-columns:1fr}}
 /* 表示モード切替（セグメント） */
 .ctrl-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 4px 4px}
 .viewmode{display:inline-flex;align-items:center;gap:4px;background:#fff;border:1.5px solid #d6e8f5;border-radius:22px;padding:4px;box-shadow:0 2px 8px rgba(0,121,192,.06)}
