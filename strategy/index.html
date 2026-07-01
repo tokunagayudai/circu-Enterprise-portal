@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
+<title>FY14 戦略｜エンタープライズ ポータル｜株式会社サーキュレーション</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.11.0/dist/tabler-icons.min.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+:root{
+  --blue:#0079c0; --blue-d:#003d5e; --blue-mid:#5599be; --blue-l:#e8f6ff;
+  --moss:#0a6e8c; --green:#22a047; --orange:#ed7d31; --purple:#7057a3; --ink:#1a2a38; --gray:#6b6864;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'M PLUS Rounded 1c','Hiragino Kaku Gothic ProN',sans-serif;
+  background:linear-gradient(160deg,#e8f6ff 0%,#d8eefb 100%);
+  color:var(--ink); min-height:100vh; padding:0 0 60px;
+}
+.topbar{background:linear-gradient(135deg,#0079c0,#005a92);color:#fff;padding:16px 24px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 12px rgba(0,121,192,.25);position:sticky;top:0;z-index:50}
+.topbar i{font-size:22px}
+.topbar h1{font-size:17px;font-weight:800}
+.topbar-badge{background:rgba(255,255,255,.2);border-radius:20px;padding:3px 12px;font-size:11px;font-weight:500;margin-left:4px}
+.topbar-spacer{flex:1}
+.topbar a.back{color:#fff;text-decoration:none;font-size:12px;font-weight:600;display:flex;align-items:center;gap:5px;opacity:.92}
+.topbar a.back:hover{opacity:1}
+.wrap{max-width:960px;margin:0 auto;padding:28px 20px 0}
+.hero{background:linear-gradient(135deg,#fff,#e8f6ff);border:2px solid var(--blue-mid);border-radius:20px;padding:34px 30px 30px;margin-bottom:26px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(0,121,192,.08),transparent 70%);top:-60px;right:-40px}
+.hero::after{content:'';position:absolute;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(85,153,190,.1),transparent 70%);bottom:-50px;left:-30px}
+.hero-icon{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,#0079c0,#5599be);display:inline-flex;align-items:center;justify-content:center;margin-bottom:14px;box-shadow:0 6px 16px rgba(0,121,192,.3)}
+.hero-icon i{font-size:28px;color:#fff}
+.hero h2{font-size:25px;font-weight:800;color:var(--blue);margin-bottom:6px;letter-spacing:.02em}
+.hero .tagline{font-size:15px;font-weight:700;color:var(--blue-d);margin-bottom:12px}
+.hero .tagline b{color:var(--blue)}
+.hero p{font-size:12.5px;color:var(--gray);line-height:1.7;max-width:680px;margin:0 auto}
+.hero .meta{margin-top:14px;font-size:11px;color:var(--gray);font-family:'JetBrains Mono',monospace}
+.sec-title{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--blue-d);margin:30px 4px 14px}
+.sec-title .no{flex:none;width:24px;height:24px;border-radius:7px;background:linear-gradient(135deg,#0079c0,#5599be);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:800;font-family:'JetBrains Mono',monospace}
+.sec-title i{font-size:18px;color:var(--blue)}
+.sec-title small{font-weight:500;color:var(--gray);font-size:11px}
+.panel{background:#fff;border-radius:18px;border:1.5px solid #d6e8f5;padding:24px 24px 26px;position:relative;overflow:hidden;margin-bottom:18px;box-shadow:0 4px 14px rgba(0,121,192,.06)}
+.panel .lead{font-size:13px;color:var(--gray);line-height:1.7;margin-bottom:8px}
+.panel h3.ph{font-size:18px;font-weight:800;color:var(--blue-d);margin-bottom:10px;letter-spacing:.01em}
+.panel .body{font-size:13.5px;line-height:1.8}
+.panel .body p{margin-bottom:10px}
+.panel .body b{color:var(--blue-d)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:6px 0 14px}
+.stat{border-radius:14px;background:var(--blue-l);padding:22px 14px;text-align:center;border:1.5px solid #d6e8f5}
+.stat.dark{background:linear-gradient(135deg,#0079c0,#005a92);border-color:transparent}
+.stat .big{font-size:40px;font-weight:800;color:var(--blue);line-height:1}
+.stat.dark .big{color:#fff}
+.stat .lab{font-size:11.5px;color:var(--gray);margin-top:8px;line-height:1.4}
+.stat.dark .lab{color:#e8f6ff}
+.note{font-style:italic;color:var(--gray);font-size:12.5px;margin-top:4px}
+.mini{display:grid;gap:14px;margin-top:6px}
+.m3{grid-template-columns:repeat(3,1fr)}
+.m2{grid-template-columns:repeat(2,1fr)}
+.mcard{background:#fff;border:1.5px solid #d6e8f5;border-radius:14px;padding:20px;position:relative;overflow:hidden}
+.mcard::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#5599be,#0079c0)}
+.mcard.fill{background:var(--blue-l)}
+.mcard .num{width:36px;height:36px;border-radius:10px;background:var(--blue-l);color:var(--blue);display:grid;place-items:center;font-weight:800;font-size:17px;margin-bottom:10px}
+.mcard .num.amber{background:#fff3e0;color:var(--orange)}
+.mcard h4{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.mcard p{font-size:12.5px;color:var(--gray);line-height:1.65}
+.mcard .who{display:inline-block;margin-top:10px;padding:4px 12px;border-radius:16px;font-size:11px;font-weight:700;background:var(--blue-l);color:var(--blue)}
+.mcard .who.amber{background:#fff3e0;color:var(--orange)}
+.tag-pill{display:inline-block;padding:4px 12px;border-radius:16px;background:var(--blue-l);color:var(--blue);font-size:11px;font-weight:700;margin-bottom:10px}
+.rolecard{border-radius:14px;padding:20px;color:#fff;position:relative;overflow:hidden}
+.rolecard h4{font-size:16px;font-weight:800;margin-bottom:3px}
+.rolecard .who{font-size:12px;font-weight:700;margin-bottom:9px;opacity:.92}
+.rolecard p{font-size:12.5px;line-height:1.6;opacity:.95}
+.band{border-radius:14px;padding:18px 22px;margin-top:14px;font-size:15px;font-weight:700;background:linear-gradient(135deg,#0079c0,#005a92);color:#fff}
+.band .hl{color:#bfe3f7}
+.band.light{background:var(--blue-l);color:var(--ink)}
+.band.light .hl{color:var(--blue)}
+.band .sub{font-size:12.5px;font-weight:500;margin-top:6px}
+.cycle-wrap{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:center;margin-top:8px}
+.cycle{width:100%;max-width:380px;aspect-ratio:1;margin:0 auto}
+.cycle svg{width:100%;height:100%;overflow:visible}
+.points .pt{display:flex;gap:12px;margin-bottom:16px}
+.points .pt .n{flex:none;width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,#0079c0,#5599be);color:#fff;display:grid;place-items:center;font-weight:800}
+.points .pt h4{font-size:14.5px;font-weight:700;color:var(--blue-d)}
+.points .pt p{font-size:12.5px;color:var(--gray)}
+.funnel{margin-top:8px}
+.flayer{border-radius:12px;padding:16px 22px;margin-bottom:9px;display:flex;align-items:center;gap:20px;color:#fff}
+.flayer .t{font-weight:800;font-size:15px;flex:none;width:158px}
+.flayer .d{font-size:12.5px;opacity:.93}
+.fl1{background:linear-gradient(135deg,#003d5e,#0079c0);width:100%}
+.fl2{background:var(--blue);width:88%}
+.fl3{background:var(--moss);width:76%}
+.fl4{background:var(--blue-l);width:64%;color:var(--ink)}
+.fl4 .d{color:var(--gray)}
+.flow{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;margin-top:8px}
+.flow .mid{background:linear-gradient(135deg,#0079c0,#005a92);color:#fff;border-radius:12px;padding:20px 12px;text-align:center;font-weight:800;font-size:15px;margin-bottom:12px}
+.flow .stack > div{border-radius:12px;padding:13px 16px;margin-bottom:10px}
+.flow .stack h5{font-size:13.5px;font-weight:800;margin-bottom:2px}
+.flow .stack p{font-size:12px;line-height:1.5}
+.flow .arrowcol{display:grid;place-items:center;color:var(--blue);font-size:24px}
+.tier{display:flex;border-radius:12px;overflow:hidden;margin-bottom:9px;border:1.5px solid #d6e8f5}
+.tier .h{flex:none;width:215px;padding:15px 20px;font-weight:800;color:var(--blue-d);background:#fff;display:flex;align-items:center;font-size:14px}
+.tier .c{padding:15px 20px;font-size:12.5px;display:flex;align-items:center;background:#fff}
+.tier.hi .h,.tier.hi .c{background:var(--blue-l)}
+.road{display:flex;gap:18px;align-items:flex-start;margin-bottom:14px}
+.road .m{flex:none;width:84px;height:84px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:15px;text-align:center;line-height:1.2}
+.road .rc{flex:1;border:1.5px solid #d6e8f5;border-radius:12px;padding:16px 20px;font-size:13px;line-height:1.7;margin-top:4px;background:#fff}
+.road .rc.hi{background:var(--blue-l);border-color:transparent}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:6px}
+.step{border:1.5px solid #d6e8f5;border-radius:14px;padding:18px;background:#fff;position:relative;overflow:hidden}
+.step::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#5599be,#0079c0)}
+.step .n{width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,#0079c0,#5599be);color:#fff;display:grid;place-items:center;font-weight:800;margin-bottom:9px}
+.step h4{font-size:14px;font-weight:700;color:var(--blue-d);margin-bottom:5px}
+.step p{font-size:12.5px;color:var(--gray);line-height:1.6}
+.closing{background:linear-gradient(135deg,#0079c0,#003d5e);color:#fff;border-radius:20px;padding:40px 34px;position:relative;overflow:hidden;margin-top:8px}
+.closing::before{content:'';position:absolute;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.07);bottom:-90px;right:-30px}
+.closing::after{content:'';position:absolute;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.08);bottom:-30px;right:80px}
+.closing .l1{font-size:18px;color:#cdeafb;font-weight:500;position:relative;z-index:2}
+.closing .l2{font-size:23px;font-weight:800;margin-top:4px;position:relative;z-index:2}
+.closing .l3{color:#bfe3f7;font-size:14px;margin-top:14px;position:relative;z-index:2}
+.foot{text-align:center;margin-top:32px;font-size:11px;color:var(--gray);font-family:'JetBrains Mono',monospace}
+/* quant outline (1章 定量) */
+.qnote{display:flex;gap:10px;align-items:flex-start;background:#f7fbfe;border:1.5px dashed var(--blue-mid);border-radius:12px;padding:13px 16px;margin-top:10px}
+.qnote i{color:var(--orange);font-size:18px;flex:none;margin-top:1px}
+.qnote p{font-size:12px;color:var(--gray);line-height:1.6}
+.qblock{margin-top:18px}
+.qblock .qh{display:flex;align-items:center;gap:9px;margin-bottom:9px;flex-wrap:wrap}
+.qblock .qbadge{flex:none;width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,#0079c0,#5599be);color:#fff;display:grid;place-items:center;font-weight:800;font-size:13px;font-family:'JetBrains Mono',monospace}
+.qblock .qt{font-size:14.5px;font-weight:800;color:var(--blue-d)}
+.qblock .qmap{font-size:11px;font-weight:700;color:var(--blue);background:var(--blue-l);border-radius:10px;padding:2px 9px}
+.qrow{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid #d6e8f5;border-radius:10px;padding:10px 14px;margin-bottom:6px}
+.qrow .qlabel{flex:1;font-size:13px;color:var(--ink);font-weight:600}
+.qrow .qfill{flex:none;width:118px;text-align:center;font-size:11.5px;font-weight:700;color:var(--blue-mid);background:var(--blue-l);border-radius:7px;padding:6px 0;border:1px dashed var(--blue-mid)}
+.qrow.key{border-color:var(--orange);background:#fffaf3}
+.qrow.key .qfill{color:var(--orange);background:#fff3e0;border-color:var(--orange)}
+/* role-split (変革後の階層別役割分担) */
+.rsplit{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.rrow{border:1.5px solid #d6e8f5;border-radius:14px;padding:16px 18px;background:#fff;position:relative;overflow:hidden}
+.rrow::before{content:'';position:absolute;top:0;left:0;bottom:0;width:5px}
+.rrow.ap::before{background:var(--blue)}
+.rrow.le::before{background:var(--moss)}
+.rrow.pm::before{background:var(--blue-d)}
+.rrow.cs::before{background:var(--orange)}
+.rrow .rh{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.rrow .rt{font-size:15px;font-weight:800;color:var(--blue-d)}
+.rrow .rj{font-size:11.5px;color:var(--gray)}
+.rrow .cs-badge{font-size:10.5px;font-weight:700;color:#fff;background:var(--orange);border-radius:12px;padding:2px 10px}
+.rrow .roles{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;border-radius:14px;padding:4px 11px;line-height:1.4}
+.chip.fs{background:#e6f2ee;color:#0a6e8c}
+.chip.is{background:var(--blue-l);color:var(--blue)}
+.chip.mk{background:#f1ecf8;color:var(--purple)}
+.chip.ai{background:#eef4f8;color:var(--blue-d)}
+.chip.mgr{background:#fff3e0;color:var(--orange)}
+.rrow p.rd{font-size:12.5px;color:var(--ink);line-height:1.6;margin-top:8px}
+.cs-sub{margin-top:8px;padding-left:2px;display:flex;flex-direction:column;gap:5px}
+.cs-sub .li{font-size:12.5px;color:var(--ink);display:flex;gap:7px}
+.cs-sub .li b{color:var(--orange)}
+/* org chart */
+.org{display:flex;flex-direction:column;align-items:center;gap:0;margin-top:8px}
+.org-top{background:linear-gradient(135deg,#003d5e,#0079c0);color:#fff;border-radius:12px;padding:12px 28px;font-weight:800;font-size:15px;text-align:center;box-shadow:0 4px 12px rgba(0,121,192,.2)}
+.org-stem{width:2px;height:18px;background:var(--blue-mid)}
+.org-mgr{background:#fff;border:2px solid var(--blue);color:var(--blue-d);border-radius:12px;padding:9px 24px;font-weight:800;font-size:14px;text-align:center;box-shadow:0 3px 10px rgba(0,121,192,.12)}
+.org-mgr .sub{display:block;font-size:10.5px;font-weight:600;color:var(--gray);margin-top:1px}
+.org-branches{display:grid;grid-template-columns:1fr 1fr;gap:18px;width:100%}
+.org-col{border:1.5px solid #d6e8f5;border-radius:16px;background:#fff;overflow:hidden}
+.org-col .colh{padding:13px 18px;font-weight:800;font-size:15px;color:#fff;display:flex;align-items:center;gap:8px}
+.org-col.eigyo .colh{background:var(--blue)}
+.org-col.kikaku .colh{background:var(--moss)}
+.org-col .colmgr{font-size:11.5px;color:var(--gray);padding:9px 18px 4px;font-weight:600}
+.org-col .members{padding:6px 14px 16px;display:flex;flex-direction:column;gap:6px}
+.org-col .mem{background:var(--blue-l);border-radius:9px;padding:9px 13px;font-size:13px;font-weight:600;color:var(--ink);display:flex;justify-content:space-between;align-items:center;gap:8px}
+.org-col.kikaku .mem{background:#e6f2ee}
+.org-col .mem .role{font-size:10.5px;font-weight:500;color:var(--gray)}
+.org-col .unit{font-size:11px;font-weight:800;color:var(--moss);padding:8px 16px 2px;display:flex;align-items:center;gap:6px}
+.org-col .unit::before{content:'';width:8px;height:8px;border-radius:2px;background:var(--moss)}
+.org-assist{margin-top:16px;border:1.5px solid #d6e8f5;border-radius:14px;background:#f7fbfe;padding:14px 18px;width:100%;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.org-assist .al{font-size:13px;font-weight:800;color:var(--blue-d);display:flex;align-items:center;gap:7px}
+.org-assist .am{display:flex;gap:6px;flex-wrap:wrap}
+.org-assist .am span{background:#fff;border:1px solid #d6e8f5;border-radius:9px;padding:6px 12px;font-size:12.5px;font-weight:600}
+/* ops week table */
+.weekgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:14px 0}
+.daycol{border:1.5px solid #d6e8f5;border-radius:12px;overflow:hidden;background:#fff}
+.daycol .dh{padding:9px;text-align:center;font-weight:800;font-size:13px;color:#fff}
+.daycol.async .dh{background:var(--blue-mid)}
+.daycol.sync .dh{background:var(--blue)}
+.daycol .dbody{padding:11px 12px;font-size:11.5px;line-height:1.55;color:var(--ink);min-height:78px}
+.daycol .dtag{display:inline-block;font-size:9.5px;font-weight:700;border-radius:10px;padding:2px 8px;margin-bottom:6px}
+.daycol.async .dtag{background:var(--blue-l);color:var(--blue-mid)}
+.daycol.sync .dtag{background:var(--blue-l);color:var(--blue)}
+.opslist{display:grid;gap:10px;margin-top:6px}
+.opsitem{border:1.5px solid #d6e8f5;border-radius:12px;background:#fff;padding:14px 16px;display:flex;gap:13px;align-items:flex-start}
+.opsitem .oi{flex:none;width:36px;height:36px;border-radius:10px;background:var(--blue-l);color:var(--blue);display:grid;place-items:center;font-size:18px}
+.opsitem h4{font-size:14px;font-weight:800;color:var(--blue-d);margin-bottom:3px}
+.opsitem p{font-size:12.5px;color:var(--ink);line-height:1.6}
+.opsitem.todo{border-style:dashed;border-color:var(--blue-mid);background:#f7fbfe}
+.opsitem.todo .oi{background:#fff3e0;color:var(--orange)}
+.opsitem.todo p{color:var(--gray)}
+/* achievement (BPR/マーケ成果) */
+.ach{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:6px}
+.achcard{border:1.5px solid #d6e8f5;border-radius:14px;background:#fff;padding:18px;position:relative;overflow:hidden}
+.achcard::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#5ab870,#22a047)}
+.achcard .ai2{width:34px;height:34px;border-radius:9px;background:#e6f7ee;color:var(--green);display:grid;place-items:center;font-size:18px;margin-bottom:9px}
+.achcard h4{font-size:14px;font-weight:800;color:var(--blue-d);margin-bottom:5px}
+.achcard .aval{font-size:11.5px;font-weight:700;color:var(--green);background:#e6f7ee;border-radius:9px;padding:5px 10px;text-align:center;margin-top:8px;border:1px dashed #5ab870}
+.achcard p{font-size:12px;color:var(--ink);line-height:1.55}
+.mk-hi{background:#f1ecf8;border:1.5px solid #cdbce8;border-radius:14px;padding:16px 18px;margin-top:12px}
+.mk-hi h4{font-size:14px;font-weight:800;color:var(--purple);margin-bottom:5px;display:flex;align-items:center;gap:7px}
+.mk-hi p{font-size:12.5px;color:var(--ink);line-height:1.65}
+.mk-hi .mval{font-size:11.5px;font-weight:700;color:var(--purple);background:#fff;border:1px dashed #b79fd9;border-radius:8px;padding:4px 10px;display:inline-block;margin-top:6px}
+/* salary target banner */
+.tgt-banner{background:linear-gradient(135deg,#0079c0,#003d5e);color:#fff;border-radius:16px;padding:20px 24px;margin-top:12px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.tgt-banner .ti2{flex:none;width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:24px}
+.tgt-banner .tt{font-size:15px;font-weight:800;margin-bottom:3px}
+.tgt-banner .td{font-size:12.5px;color:#cdeafb;line-height:1.55}
+.tgt-banner .tfill{flex:none;background:rgba(255,255,255,.15);border:1px dashed rgba(255,255,255,.5);border-radius:9px;padding:8px 16px;font-size:12px;font-weight:700;text-align:center}
+/* climax: action request */
+.climax{background:linear-gradient(160deg,#003d5e,#0079c0);color:#fff;border-radius:20px;padding:30px 28px;position:relative;overflow:hidden}
+.climax::before{content:'';position:absolute;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.06);top:-100px;right:-60px}
+.climax .ckicker{font-size:12px;font-weight:700;letter-spacing:1px;color:#7fc4ec;margin-bottom:8px;position:relative;z-index:2}
+.climax h3{font-size:21px;font-weight:800;margin-bottom:8px;position:relative;z-index:2;line-height:1.4}
+.climax .clead{font-size:13.5px;color:#cdeafb;line-height:1.7;position:relative;z-index:2;margin-bottom:18px}
+.climax .clead b{color:#fff}
+.flow2{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch;position:relative;z-index:2;margin-bottom:18px}
+.flow2 .fbox{background:rgba(255,255,255,.1);border-radius:13px;padding:16px}
+.flow2 .fbox.human{background:#fff;color:var(--ink)}
+.flow2 .fbox h5{font-size:13px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.flow2 .fbox.ai h5{color:#7fc4ec}
+.flow2 .fbox.human h5{color:var(--blue)}
+.flow2 .fbox ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+.flow2 .fbox li{font-size:11.5px;line-height:1.45;display:flex;gap:6px}
+.flow2 .fbox.ai li{color:#dcecf7}
+.flow2 .fbox li::before{content:'›';flex:none;font-weight:800}
+.flow2 .fbox.ai li::before{color:#7fc4ec}
+.flow2 .fbox.human li::before{color:var(--blue)}
+.flow2 .farrow{display:grid;place-items:center;color:#7fc4ec;font-size:26px}
+.actions{position:relative;z-index:2;background:#fff;border-radius:16px;padding:20px;color:var(--ink)}
+.actions .ah{font-size:14px;font-weight:800;color:var(--blue-d);margin-bottom:4px}
+.actions .asub{font-size:12px;color:var(--gray);margin-bottom:14px}
+.acat{margin-bottom:14px}
+.acat:last-child{margin-bottom:0}
+.acat .act{font-size:12.5px;font-weight:800;color:var(--blue);display:flex;align-items:center;gap:7px;margin-bottom:7px}
+.acat .achips{display:flex;flex-wrap:wrap;gap:6px}
+.acat .achip{background:var(--blue-l);color:var(--ink);border-radius:10px;padding:7px 12px;font-size:12px;line-height:1.4;font-weight:500}
+.acat .achip b{color:var(--blue-d)}
+.msg-strong{position:relative;z-index:2;margin-top:18px;background:rgba(255,255,255,.12);border-left:4px solid #7fc4ec;border-radius:10px;padding:16px 20px}
+.msg-strong .ms1{font-size:15px;font-weight:800;margin-bottom:6px}
+.msg-strong .ms2{font-size:13px;color:#cdeafb;line-height:1.7}
+.msg-strong .ms2 b{color:#fff}
+/* climax additions: purpose redefine + personal recall */
+.purpose{background:rgba(255,255,255,.1);border-radius:14px;padding:18px 20px;margin-bottom:18px;position:relative;z-index:2}
+.purpose .ph2{font-size:14px;font-weight:800;color:#fff;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.purpose .plist{display:flex;flex-wrap:wrap;gap:8px}
+.purpose .pchip{background:rgba(255,255,255,.14);border-radius:18px;padding:7px 14px;font-size:12.5px;font-weight:600;color:#eaf4fb;display:flex;align-items:center;gap:6px}
+.purpose .pchip i{color:#7fc4ec}
+.purpose .pnote{font-size:12px;color:#cdeafb;line-height:1.7;margin-top:10px}
+.purpose .pnote b{color:#fff}
+.recall{background:#fff;border-radius:16px;padding:20px;margin-top:18px;position:relative;z-index:2}
+.recall .rh2{font-size:14px;font-weight:800;color:var(--blue-d);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.recall .rcompare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.recall .rc{border-radius:11px;padding:14px 16px}
+.recall .rc.company{background:var(--blue-l)}
+.recall .rc.person{background:linear-gradient(135deg,#0079c0,#003d5e);color:#fff}
+.recall .rc .rcl{font-size:11px;font-weight:700;margin-bottom:5px}
+.recall .rc.company .rcl{color:var(--blue)}
+.recall .rc.person .rcl{color:#7fc4ec}
+.recall .rc .rct{font-size:13.5px;font-weight:700;line-height:1.5}
+.recall .rc.company .rct{color:var(--ink)}
+.recall .rmsg{font-size:13px;color:var(--ink);line-height:1.7}
+.recall .rmsg b{color:var(--blue-d)}
+.recall .rsync{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+.recall .rsync .rs{flex:1;min-width:200px;border:1.5px solid #d6e8f5;border-radius:10px;padding:11px 14px;font-size:12px;line-height:1.55;color:var(--ink)}
+.recall .rsync .rs b{color:var(--blue-d)}
+/* solution-shift (人当て→ソリューション) */
+.shift{display:flex;flex-direction:column;gap:14px;margin-top:6px}
+.shift-row{border-radius:14px;padding:18px 20px;position:relative;overflow:hidden}
+.shift-row.before{background:#f4f5f7;border:1.5px solid #e0e2e6}
+.shift-row.after{background:var(--blue-l);border:1.5px solid #b9dcf2}
+.shift-row .slab{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:800;border-radius:10px;padding:4px 12px;margin-bottom:12px}
+.shift-row.before .slab{background:#e0e2e6;color:#6b6864}
+.shift-row.after .slab{background:var(--blue);color:#fff}
+.chain{display:flex;align-items:stretch;gap:8px;flex-wrap:wrap}
+.chain .node{background:#fff;border:1.5px solid #d6e8f5;border-radius:10px;padding:10px 13px;font-size:12px;font-weight:600;color:var(--ink);display:flex;align-items:center;line-height:1.4}
+.chain .node.src{background:var(--blue-d);color:#fff;border-color:transparent;font-weight:800}
+.chain .node.need{background:#fff3e0;border-color:#f0c891;color:var(--blue-d);font-weight:800}
+.chain .node.mid{background:#fff;border-style:dashed;border-color:var(--blue-mid)}
+.shift-row.after .chain .node.midwrap{background:var(--blue);border-color:transparent;color:#fff;flex-direction:column;align-items:flex-start;gap:4px;padding:11px 14px}
+.chain .node.midwrap .mh{font-size:10.5px;font-weight:800;opacity:.85}
+.chain .node.midwrap .mi{font-size:11.5px;font-weight:600;line-height:1.5}
+.chain .arr{display:flex;align-items:center;color:var(--blue-mid);font-size:18px;font-weight:800}
+.shift-row.before .arr{color:#9aa0a6}
+.shift-row .cap{font-size:12px;color:var(--gray);margin-top:10px;line-height:1.6}
+.shift-row.after .cap{color:var(--blue-d)}
+.shift-insight{background:linear-gradient(135deg,#0079c0,#003d5e);color:#fff;border-radius:14px;padding:18px 22px;margin-top:14px}
+.shift-insight .sih{font-size:15px;font-weight:800;margin-bottom:7px;display:flex;align-items:center;gap:8px}
+.shift-insight p{font-size:13px;color:#cdeafb;line-height:1.7}
+.shift-insight p b{color:#fff}
+.shift-insight .seq{margin-top:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px;font-weight:700}
+.shift-insight .seq .s{background:rgba(255,255,255,.14);border-radius:8px;padding:6px 12px}
+.shift-insight .seq .s.bad{background:rgba(255,120,120,.22);color:#ffd9d9}
+.shift-insight .seq .s.good{background:rgba(130,220,160,.22);color:#d6f7e0}
+.shift-insight .seq .a{color:#7fc4ec}
+/* between-layer diagram (人とニーズの間) */
+.between{display:grid;grid-template-columns:1fr 1.6fr 1fr;gap:0;align-items:stretch;margin-top:8px}
+.between .bend{display:flex;flex-direction:column;justify-content:center;gap:6px;padding:20px 16px;border-radius:14px;text-align:center}
+.between .bend.person{background:var(--blue-d);color:#fff}
+.between .bend.need{background:#fff3e0;border:1.5px solid #f0c891}
+.between .bend .bl{font-size:11px;font-weight:700;opacity:.8;margin-bottom:2px}
+.between .bend.person .bl{color:#9db8c9}
+.between .bend.need .bl{color:#c98a3c}
+.between .bend .bt{font-size:15px;font-weight:800}
+.between .bend.need .bt{color:var(--blue-d)}
+.between .bmid{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 4px}
+.between .bmid .grab{background:linear-gradient(135deg,#0079c0,#003d5e);color:#fff;border-radius:14px;padding:16px 18px;text-align:center;width:100%;box-shadow:0 6px 18px rgba(0,121,192,.25);position:relative;z-index:2}
+.between .bmid .grab .gh{font-size:11px;font-weight:700;color:#7fc4ec;margin-bottom:4px}
+.between .bmid .grab .gt{font-size:14px;font-weight:800;line-height:1.5}
+.between .bmid .arrl,.between .bmid .arrr{position:absolute;top:50%;font-size:20px;color:var(--blue-mid);z-index:1}
+.between .bmid .arrl{left:-12px}.between .bmid .arrr{right:-12px}
+.between-cap{background:#fff3e0;border:1.5px solid #f0c891;border-radius:12px;padding:14px 18px;margin-top:14px;font-size:13px;color:var(--ink);line-height:1.7}
+.between-cap b{color:var(--orange)}
+.between-takeaway{background:linear-gradient(135deg,#0079c0,#003d5e);color:#fff;border-radius:12px;padding:16px 20px;margin-top:12px;font-size:14px;font-weight:700;line-height:1.6;text-align:center}
+.between-takeaway b{color:#7fc4ec}
+/* How We Solve - 4 types */
+.hws{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px}
+.hwcard{border:1.5px solid #d6e8f5;border-radius:14px;background:#fff;padding:18px;position:relative;overflow:hidden}
+.hwcard::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#5599be,#0079c0)}
+.hwcard .hwi{width:38px;height:38px;border-radius:10px;background:var(--blue-l);color:var(--blue);display:grid;place-items:center;font-size:20px;margin-bottom:10px}
+.hwcard h4{font-size:15px;font-weight:800;color:var(--blue-d);margin-bottom:6px}
+.hwcard p.hwd{font-size:12.5px;color:var(--ink);line-height:1.6;margin-bottom:10px}
+.hwcard ul{list-style:none;display:flex;flex-direction:column;gap:5px}
+.hwcard li{font-size:12px;color:var(--gray);display:flex;gap:7px;line-height:1.45}
+.hwcard li::before{content:'›';color:var(--blue);font-weight:800;flex:none}
+@media(max-width:680px){
+  .between{grid-template-columns:1fr}.between .bmid .arrl,.between .bmid .arrr{display:none}
+  .hws{grid-template-columns:1fr}
+}
+/* FS 2-layer */
+.layer2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px}
+.lcard{border-radius:16px;padding:22px;position:relative;overflow:hidden}
+.lcard.exp{background:linear-gradient(135deg,#003d5e,#0079c0);color:#fff}
+.lcard.mem{background:#fff;border:1.5px solid #d6e8f5}
+.lcard .ltag{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:800;border-radius:20px;padding:5px 13px;margin-bottom:12px}
+.lcard.exp .ltag{background:rgba(255,255,255,.18);color:#fff}
+.lcard.mem .ltag{background:var(--blue-l);color:var(--blue)}
+.lcard h4{font-size:17px;font-weight:800;margin-bottom:3px}
+.lcard.exp h4{color:#fff}
+.lcard.mem h4{color:var(--blue-d)}
+.lcard .lmeta{font-size:12px;font-weight:700;margin-bottom:14px;opacity:.85}
+.lcard.exp .lmeta{color:#cdeafb}
+.lcard.mem .lmeta{color:var(--gray)}
+.lcard .lrole{display:flex;gap:9px;margin-bottom:10px;align-items:flex-start}
+.lcard .lrole .li{flex:none;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:13px;margin-top:1px}
+.lcard.exp .lrole .li{background:rgba(255,255,255,.18);color:#fff}
+.lcard.mem .lrole .li{background:var(--blue-l);color:var(--blue)}
+.lcard .lrole .lt{font-size:13px;line-height:1.55}
+.lcard.exp .lrole .lt{color:#eaf4fb}
+.lcard.mem .lrole .lt{color:var(--ink)}
+.lcard .lrole .lt b{font-weight:800}
+.lcard.exp .lrole .lt b{color:#fff}
+.lcard.mem .lrole .lt b{color:var(--blue-d)}
+.layer-note{background:var(--blue-l);border-radius:12px;padding:15px 20px;margin-top:14px;font-size:13px;color:var(--ink);line-height:1.7}
+.layer-note b{color:var(--blue-d)}
+/* collapsible sections */
+details.sec{margin:0;border:none;background:none}
+details.sec > summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--blue-d);margin:30px 4px 14px;padding:10px 14px;background:#fff;border:1.5px solid #d6e8f5;border-radius:12px;box-shadow:0 2px 8px rgba(0,121,192,.05);transition:background .15s}
+details.sec > summary::-webkit-details-marker{display:none}
+details.sec > summary:hover{background:var(--blue-l)}
+details.sec > summary .no{flex:none;width:24px;height:24px;border-radius:7px;background:linear-gradient(135deg,#0079c0,#5599be);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:800;font-family:'JetBrains Mono',monospace}
+details.sec > summary > i:first-of-type{font-size:18px;color:var(--blue)}
+details.sec > summary small{font-weight:500;color:var(--gray);font-size:11px}
+details.sec > summary .chev{margin-left:auto;flex:none;color:var(--blue-mid);font-size:18px;transition:transform .2s}
+details.sec[open] > summary .chev{transform:rotate(180deg)}
+details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.toggle-bar{display:flex;gap:10px;justify-content:flex-end;margin:8px 4px 0}
+.toggle-bar button{font-family:inherit;font-size:11.5px;font-weight:700;color:var(--blue);background:#fff;border:1.5px solid #d6e8f5;border-radius:20px;padding:6px 16px;cursor:pointer;transition:background .15s}
+.toggle-bar button:hover{background:var(--blue-l)}
+/* context / worldview */
+.ctx-hero{background:linear-gradient(160deg,#003d5e,#0079c0);color:#fff;border-radius:18px;padding:26px 28px;position:relative;overflow:hidden;margin-bottom:16px}
+.ctx-hero::before{content:'';position:absolute;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.06);top:-90px;right:-50px}
+.ctx-hero .ck{font-size:11.5px;font-weight:700;letter-spacing:1.5px;color:#7fc4ec;margin-bottom:8px;position:relative;z-index:2}
+.ctx-hero h3{font-size:20px;font-weight:800;line-height:1.45;position:relative;z-index:2;margin-bottom:10px}
+.ctx-hero h3 .em{color:#7fc4ec}
+.ctx-hero p{font-size:13.5px;color:#cdeafb;line-height:1.8;position:relative;z-index:2}
+.ctx-hero p b{color:#fff}
+.themodel{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center;margin-top:18px;position:relative;z-index:2}
+.themodel .tm{border-radius:12px;padding:15px 16px}
+.themodel .tm.old{background:rgba(255,255,255,.1)}
+.themodel .tm.new{background:#fff;color:var(--ink)}
+.themodel .tm h5{font-size:12px;font-weight:800;margin-bottom:7px;display:flex;align-items:center;gap:6px}
+.themodel .tm.old h5{color:#9db8c9}
+.themodel .tm.new h5{color:var(--blue)}
+.themodel .tm p{font-size:12px;line-height:1.6;color:inherit}
+.themodel .tm.old p{color:#cdd9e3}
+.themodel .tm.new p{color:var(--ink)}
+.themodel .tmarrow{color:#7fc4ec;font-size:24px;display:grid;place-items:center}
+.layers{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;position:relative;z-index:2}
+.layers .ly{background:rgba(255,255,255,.12);border-radius:20px;padding:6px 14px;font-size:11.5px;font-weight:700;color:#eaf4fb}
+.layers .ly i{color:#7fc4ec;margin-right:4px}
+.compet{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.compet .cp{background:#fff;border:1.5px solid #d6e8f5;border-radius:10px;padding:9px 14px;font-size:12.5px;font-weight:700;color:var(--blue-d);display:flex;align-items:center;gap:7px}
+.compet .cp i{color:var(--orange)}
+.sol-ex{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+.sol-ex .se{background:var(--blue-l);border-radius:10px;padding:12px 15px;font-size:13px;font-weight:700;color:var(--blue-d);display:flex;align-items:center;gap:9px}
+.sol-ex .se i{font-size:18px;color:var(--blue)}
+.sol-ex .se span small{display:block;font-size:11px;font-weight:500;color:var(--gray);margin-top:1px}
+@media(max-width:680px){
+  .ach{grid-template-columns:1fr}
+  .flow2{grid-template-columns:1fr}.flow2 .farrow{transform:rotate(90deg)}
+  .org-branches{grid-template-columns:1fr}
+  .qrow{flex-wrap:wrap}.qrow .qfill{width:100%}
+  .weekgrid{grid-template-columns:1fr 1fr}
+  .stats,.m3,.m2,.steps{grid-template-columns:1fr}
+  .cycle-wrap,.flow{grid-template-columns:1fr}
+  .flow .arrowcol{transform:rotate(90deg)}
+  .tier{flex-direction:column}.tier .h{width:100%}
+  .flayer{width:100%!important}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <i class="ti ti-target-arrow"></i>
+  <h1>FY14 戦略</h1>
+  <span class="topbar-badge">CIRCULATION</span>
+  <div class="topbar-spacer"></div>
+  <a class="back" href="../"><i class="ti ti-arrow-left"></i> ポータルへ戻る</a>
+</div>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div class="hero-icon"><i class="ti ti-target-arrow"></i></div>
+    <h2>FY14 エンタープライズチーム戦略</h2>
+    <div class="tagline">「4 Value Cycle」を、<b>一人から、チームで回るエンジンへ</b></div>
+    <p>勝ち筋は証明済み。変えるのは「何を」ではなく「どう回すか」。役割分担とAIで、チームで回るGTMエンジンに作り変える。</p>
+    <div class="meta">2026.07 ｜ Manager 徳永 雄大</div>
+  </div>
+
+  <div class="toggle-bar">
+    <button onclick="document.querySelectorAll('details.sec').forEach(d=>d.open=true)"><i class="ti ti-chevrons-down"></i> すべて開く</button>
+    <button onclick="document.querySelectorAll('details.sec').forEach(d=>d.open=false)"><i class="ti ti-chevrons-up"></i> すべて閉じる</button>
+  </div>
+
+  <details class="sec" open>
+    <summary><span class="stitle"><i class="ti ti-bulb"></i>エグゼクティブサマリー <small>― この戦略の結論</small></span><i class="ti ti-chevron-down chev"></i></summary>
+  <div class="panel">
+    <div class="ctx-hero" style="margin-bottom:18px">
+      <div class="ck">FY14 ｜ この戦略が目指すこと</div>
+      <h3>商談一つのポテンシャルを、最大化する。<br><span class="em">一人で回す営業から、チームとAIで回す営業へ。</span></h3>
+      <p>顧客との一つひとつの接点から、最大限の価値を引き出す。そのために、<b>役割が重なり合う時代の戦い方</b>へと変える ── プロ人材という「手段」を売るのではなく、<b>「解決策」を一緒に描くパートナー</b>になる。この転換を、属人ではなく、チームとAIで回せる仕組みにする。</p>
+    </div>
+    <h3 class="ph" style="font-size:15px">今期の3つの転換</h3>
+    <div class="mini m3">
+      <div class="mcard"><div class="num">1</div><h4>役割を分ける</h4><p>鳥の目（戦略）／地上（実行）／情報提供。一人で回さず、分けて連携させる。</p></div>
+      <div class="mcard"><div class="num">2</div><h4>AIで工数を削る</h4><p>提案書・要件定義・記録を自動化。減らした時間をアカウント活動へ再投資。</p></div>
+      <div class="mcard"><div class="num">3</div><h4>全員がアカウントを見る</h4><p>案件を進めるだけでなく、4階層で顧客を立体的に捉える。</p></div>
+    </div>
+    <p class="note" style="margin-top:18px">なぜこの転換が必要か ── 世界観と背景は「この戦略の文脈」で、その根拠となる数字は「1章 振り返り」で示す。</p>
+  </div>
+
+  </details>
+
+  <details class="sec" open>
+    <summary><span class="stitle"><i class="ti ti-world"></i>この戦略の文脈 <small>― なぜ今、戦い方を変えるのか</small></span><i class="ti ti-chevron-down chev"></i></summary>
+  <div class="panel">
+    <div class="ctx-hero">
+      <div class="ck">CONTEXT ① ｜ THE MODEL型からの脱却</div>
+      <h3>パイプラインを「進めるだけ」では、もう勝てない。<br><span class="em">役割が重なり合う時代の、一貫性の戦い。</span></h3>
+      <p>これまでは、ISから振られたパイプラインを進捗させることだけにフォーカスしてきた。だが今後はそれだけでは難しい。<b>これは当社のIS人員の問題ではなく、世の中のGTM戦略そのものが変化している</b> ── 各役割がオーバーラップし、一人では完結できない。だからこそ役割分担して注力する。しかし分けるほど、<b>情報・打ち出し・施策・コミュニケーションに「一貫性」が必要になる。</b></p>
+      <div class="themodel">
+        <div class="tm old"><h5><i class="ti ti-clock-hour-4"></i> 従来：THE MODEL型</h5><p>IS→FS→CS が分業・分断。各自が自分の工程だけを回す。FSはパイプライン進捗に専念。</p></div>
+        <div class="tmarrow"><i class="ti ti-arrow-right"></i></div>
+        <div class="tm new"><h5><i class="ti ti-arrows-join"></i> これから：一貫性型</h5><p>マーケ／ISコール／FSパイプライン提案／CS活動が重なり合う。空中戦〜地上戦〜地下戦の全レイヤーで一貫性を持って動く。</p></div>
+      </div>
+      <div class="layers">
+        <span class="ly"><i class="ti ti-plane"></i>空中戦：マーケ</span>
+        <span class="ly"><i class="ti ti-phone"></i>地上戦：ISコール</span>
+        <span class="ly"><i class="ti ti-users"></i>地上戦：FS提案</span>
+        <span class="ly"><i class="ti ti-pick"></i>地下戦：CS活動</span>
+      </div>
+      <p style="margin-top:14px"><b>全レイヤーの活動に一貫性を持たせる ── だから「戦略」が要る。</b></p>
+    </div>
+
+    <div class="ctx-hero" style="background:linear-gradient(160deg,#0a6e8c,#0079c0)">
+      <div class="ck">CONTEXT ② ｜ 解決策ベンダーへ</div>
+      <h3>「プロ人材」という手段を売ると、負ける。<br><span class="em">売るのは、解決策（ソリューション）。</span></h3>
+      <p>「顧客思考」はマインドとして当然。その上で、動きとして<b>「解決策ベンダー」</b>になる必要がある。プロ人材というサービス（手段）を売ると競合に負ける。一方、<b>テーマの切り口を切る・体制を提案する・使い方/アサイン方法/役割を提示する</b>と、まだ柔らかい（要件が固まっていない）状態から決められる。<b>JD（人材要件）自体をこちらが作るイメージ。</b>これをやらないと勝てない ── これが全員で共通認識する文脈。</p>
+    </div>
+
+    <h3 class="ph">我々の周辺で、何が起きているか</h3>
+    <p class="lead">「人材・プロ人材」というソリューションが決まっていれば、当社は「人材」を提供すればよかった。だが今、企業は様々なサービスで「解決」を考えられる。だから人ではなく、<b>「解決策」を一緒に考え検討するフェーズから顧客と対話する</b>必要がある。</p>
+    <div class="compet">
+      <span class="cp"><i class="ti ti-robot"></i> AIベンダー</span>
+      <span class="cp"><i class="ti ti-server"></i> SIer</span>
+      <span class="cp"><i class="ti ti-briefcase"></i> コンサルファーム</span>
+      <span class="cp"><i class="ti ti-tools"></i> ツールベンダー（SaaS）</span>
+      <span class="cp"><i class="ti ti-users-group"></i> 同業（Hipro 等）</span>
+    </div>
+    <p class="lead" style="margin-top:14px">同時に、当社は<b>PKSHAグループのケイパビリティ</b>や<b>マーケ側のテーマパッケージ</b>など武器を増やしている。これも「武器の提示」ではなく、<b>「解決策」として示す。</b></p>
+    <h3 class="ph" style="font-size:15px;margin-top:18px">解決策の具体イメージ</h3>
+    <div class="sol-ex">
+      <div class="se"><i class="ti ti-sitemap"></i><span>プロジェクト設計<small>何を、どの順で進めるか</small></span></div>
+      <div class="se"><i class="ti ti-hierarchy"></i><span>体制図<small>誰が、どう関わるか</small></span></div>
+      <div class="se"><i class="ti ti-adjustments"></i><span>使い方<small>リスキリング / PM / 開発部分だけ 等</small></span></div>
+      <div class="se"><i class="ti ti-bulb"></i><span>テーマ / 切り口<small>顧客の課題を定義する角度</small></span></div>
+    </div>
+  </div>
+
+  </details>
+
+  <details class="sec" open>
+    <summary><span class="stitle"><span class="no">1</span>FY13下期の振り返り <small>― 戦略は正しかった。だが浸透しなかった</small></span><i class="ti ti-chevron-down chev"></i></summary>
+  <div class="panel">
+    <p class="lead" style="margin-top:0">戦略が正しかったことは、数字が証明している。勝ち筋は「既存アカウントの深掘り」にある。</p>
+    <div class="stats">
+      <div class="stat"><div class="big">45%</div><div class="lab">FS経由（既存深掘り）受注率</div></div>
+      <div class="stat"><div class="big">4%</div><div class="lab">IS経由（新規/リサイクル）受注率</div></div>
+      <div class="stat dark"><div class="big">8割 / 9割</div><div class="lab">受注の8割がFS経由・売上の9割が既存アカウント</div></div>
+    </div>
+    <p class="note">※ 経路別受注率は並記で示す（FS経由45% vs IS経由4%）。倍率表現は用いない。</p>
+  </div>
+  <div class="mini m2">
+    <div class="panel" style="margin-bottom:0">
+      <h3 class="ph" style="color:var(--blue);font-size:16px"><i class="ti ti-circle-check"></i> 戦略は正しかった</h3>
+      <div class="body">
+        <p>・4 Value Cycle / N Multiple MODEL はエンプラ攻略の本質を突いていた</p>
+        <p>・FS経由45% vs IS経由4% という勝ち筋がデータで裏づけられた</p>
+        <p style="margin-bottom:14px">・「面の支援」モデルは確かに機能した</p>
+      </div>
+      <div style="background:var(--blue-l);border-radius:8px;padding:9px 14px;margin-bottom:7px;display:flex;justify-content:space-between;font-size:13px"><b style="color:var(--blue-d)">サントリーHD</b><span style="color:var(--blue)">16名稼働 / 評価92%</span></div>
+      <div style="background:var(--blue-l);border-radius:8px;padding:9px 14px;margin-bottom:7px;display:flex;justify-content:space-between;font-size:13px"><b style="color:var(--blue-d)">大崎電気</b><span style="color:var(--blue)">4名並列稼働</span></div>
+      <div style="background:var(--blue-l);border-radius:8px;padding:9px 14px;display:flex;justify-content:space-between;font-size:13px"><b style="color:var(--blue-d)">三菱電機</b><span style="color:var(--blue)">9名 / 7フェーズ</span></div>
+    </div>
+    <div class="panel" style="margin-bottom:0">
+      <h3 class="ph" style="color:var(--orange);font-size:16px"><i class="ti ti-alert-triangle"></i> だが、浸透しなかった</h3>
+      <div class="body">
+        <p>・アカウントプランは継続更新されなかった</p>
+        <p>・4 Value Cycle の能動的な循環は、一部の担当者・一部のアカウントでしか回らなかった</p>
+        <p style="margin-bottom:14px">・個人の努力不足ではなく、構造の問題である</p>
+      </div>
+      <div style="border:1.5px dashed var(--blue-mid);border-radius:10px;background:#f7fbfe;padding:16px;text-align:center">
+        <div style="font-weight:700;color:var(--gray);font-size:12.5px">［ FY13下期 実績数値を差し込み ］</div>
+        <div style="color:var(--gray);font-size:11px;margin-top:5px">予算達成率 ／ CK ／ 契約数 ／ 各移行率 など（分析後に記入）</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3 class="ph">定量で振り返る ── 数字で「正しかった／回りきらなかった」を示す</h3>
+    <p class="lead">下期実績が固まり次第、各枠に数値を流し込む。数字は2章以降の戦略の論拠として、各 Value Cycle の章に対応させる。</p>
+    <div class="qnote"><i class="ti ti-info-circle"></i><p>下の枠は記入用テンプレート。実績値が出たら「記入」部分を置き換える。<b>F の2項目（プラン更新率・経路別受注率の差）は「なぜ回らなかったか」を示す最重要指標</b>で、2章の構造要因に直結する。</p></div>
+
+    <div class="qblock">
+      <div class="qh"><span class="qbadge">A</span><span class="qt">着地サマリー</span><span class="qmap">結論</span></div>
+      <div class="qrow"><span class="qlabel">予算達成率</span><span class="qhint">対予算</span><span class="qfill">記入</span></div>
+      <div class="qrow"><span class="qlabel">売上 ／ 粗利</span><span class="qhint">対予算・対前期</span><span class="qfill">記入</span></div>
+      <div class="qrow"><span class="qlabel">契約数（新規＋継続）</span><span class="qhint">合計</span><span class="qfill">記入</span></div>
+    </div>
+
+    <div class="qblock">
+      <div class="qh"><span class="qbadge">B</span><span class="qt">案件進捗ファネル</span><span class="qmap">→ Pipeline</span></div>
+      <div class="qrow"><span class="qlabel">リード→商談化→提案→受注（各段階の数・移行率）</span><span class="qfill">記入</span></div>
+      <div class="qrow"><span class="qlabel">受注率（全体）</span><span class="qfill">記入</span></div>
+      <div class="qrow key"><span class="qlabel">経路別受注率：FS経由 vs IS経由</span><span class="qhint">勝ち筋の検証</span><span class="qfill">記入</span></div>
+    </div>
+
+    <div class="qblock">
+      <div class="qh"><span class="qbadge">C</span><span class="qt">受注の構成比</span><span class="qmap">→ 勝ち筋</span></div>
+      <div class="qrow"><span class="qlabel">継続 ／ 既顧客の新規 ／ 完全新規（比率と数）</span><span class="qfill">記入</span></div>
+      <div class="qrow"><span class="qlabel">売上ベースの既存アカウント比率</span><span class="qhint">「9割が既存」検証</span><span class="qfill">記入</span></div>
+      <div class="qrow"><span class="qlabel">受注経路の内訳（FS経由の割合）</span><span class="qhint">「8割FS」検証</span><span class="qfill">記入</span></div>
+    </div>
+
+    <div class="qblock">
+      <div class="qh"><span class="qbadge">D</span><span class="qt">継続の健全性</span><span class="qmap">→ Customer Success</span></div>
+      <div class="qrow"><span class="qlabel">継続数 ／ 継続率</span><span class="qhint">更新数÷対象数</span><span class="qfill">記入</span></div>
+      <div class="qrow"><span class="qlabel">チャーン数（離脱）</span><span class="qfill">記入</span></div>
+      <div class="qrow"><span class="qlabel">1アカウントあたり平均稼働人数 ／ 平均取引額</span><span class="qfill">記入</span></div>
+    </div>
+
+    <div class="qblock">
+      <div class="qh"><span class="qbadge">E</span><span class="qt">アカウント拡張</span><span class="qmap">→ Account Planning</span></div>
+      <div class="qrow"><span class="qlabel">Tier1の案件拡張数（1社→何件・何部署）</span><span class="qfill">記入</span></div>
+      <div class="qrow"><span class="qlabel">染み出し実績（周辺部署・周辺担当への展開数）</span><span class="qfill">記入</span></div>
+      <div class="qrow"><span class="qlabel">主要アカウントの稼働推移（代表例）</span><span class="qhint">サントリー等</span><span class="qfill">記入</span></div>
+    </div>
+
+    <div class="qblock">
+      <div class="qh"><span class="qbadge">F</span><span class="qt">構造課題の定量化</span><span class="qmap">→ 2章への橋渡し</span></div>
+      <div class="qrow key"><span class="qlabel">アカウントプラン更新率</span><span class="qhint">「回らなかった」の証拠</span><span class="qfill">記入</span></div>
+      <div class="qrow key"><span class="qlabel">経路別受注率の差（FS45% vs IS4%）</span><span class="qhint">一人依存・型化の論拠</span><span class="qfill">記入</span></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3 class="ph">この半期の打ち手 ── AI/BPRとマーケで「型」を作り始めた</h3>
+    <p class="lead">戦略が回りきらなかった一方で、今期の転換に向けた仕込みは進んだ。下期はその成果も定量で振り返る。</p>
+    <div class="ach">
+      <div class="achcard"><div class="ai2"><i class="ti ti-file-text"></i></div><h4>提案書の自動生成</h4><p>Zoom議事録→要件整理→提案書PPTXのパイプラインを整備。作成工数を大幅削減。</p><div class="aval">削減時間／件数：記入</div></div>
+      <div class="achcard"><div class="ai2"><i class="ti ti-robot"></i></div><h4>要件整理・議事録のAI化</h4><p>商談後の要件整理と議事録作成をAIに巻き取り。記録の抜け漏れも改善。</p><div class="aval">削減時間：記入</div></div>
+      <div class="achcard"><div class="ai2"><i class="ti ti-cloud-data-connection"></i></div><h4>SF連携の自動化（構築中）</h4><p>議事録→Salesforce反映を情シスと自動化中。入力負荷を構造的に下げる。</p><div class="aval">対象工程／進捗：記入</div></div>
+    </div>
+    <div class="mk-hi">
+      <h4><i class="ti ti-speakerphone"></i> マーケティングの立ち上がり（松村さん × 徳永の強化成果）</h4>
+      <p>今期から松村さんをマーケ専任として配置。リード管理・ナーチャリング・コンテンツ施策が機能し始め、<b>空中戦の打ち手が大きく前進した。</b></p>
+      <p style="margin-top:8px">特に <b>4〜6月に「テーマカット」のメルマガを配信</b>。信じられないほどの反応で、ニーズの濃い案件を多数引っ張ってこられた。<b>松村さんと徳永でマーケティングを強化した成果が、目に見えて出た半期。</b>下期はこの成果を定量で振り返り、FS（地上戦）との連携モデルへ発展させる。</p>
+      <div class="mval">配信数／開封・反応率／獲得案件数／寄与受注：記入</div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3 class="ph">今期の方針 ── 売上目標を全員で共有する</h3>
+    <p class="lead">これまで売上はマネージャーだけが追っていた。今期はチーム全体の目標を全員で持ち、各自にも目安を共有する。CK（会社マター）とは切り離し、「自分がどこを目指すか」の当事者意識を持つための共有。</p>
+    <div class="tgt-banner">
+      <div class="ti2"><i class="ti ti-target"></i></div>
+      <div style="flex:1">
+        <div class="tt">チーム売上目標 ＋ 個人別の目安</div>
+        <div class="td">全体目標を共有し、各メンバーにも「このくらい」という目安を提示する。数字に追われるためではなく、逆算して自分の動きを設計するための地図として。</div>
+      </div>
+      <div class="tfill">目標値：記入</div>
+    </div>
+  </div>
+
+  </details>
+
+  <details class="sec" open>
+    <summary><span class="stitle"><span class="no">2</span>現状認識 <small>― なぜ「回し方」を変えるのか</small></span><i class="ti ti-chevron-down chev"></i></summary>
+  <div class="panel">
+    <p class="lead">精神論や努力不足ではない。仕組みが生んだ3つの構造要因。</p>
+    <div class="mini m3" style="margin-top:14px">
+      <div class="mcard"><div class="num">1</div><h4>一人で回す設計だった</h4><p>4 Value Cycle は徳永一人が全工程を循環させる前提。一人分の動きをそのまま全員に求めた時点で、移植できない設計だった。</p></div>
+      <div class="mcard"><div class="num">2</div><h4>CK月次が中長期を殺す</h4><p>評価は半期だがCKは毎月追う。成果に時間のかかるアカウント開拓は後回しに。達成意識が高い人ほど目先へ向かう。</p></div>
+      <div class="mcard"><div class="num">3</div><h4>FS起点の施策は形骸化</h4><p>工数を増やす施策は防衛本能で淘汰される。送付除外、ボタン放置。FSの能動的アクションを入り口にした施策は必ず死ぬ。</p></div>
+    </div>
+    <div class="band"><span class="hl">結論：</span> 変えるのは「何をやるか（What）」ではない。「どう回すか（How / Who）」である。</div>
+  </div>
+
+  </details>
+
+  <details class="sec" open>
+    <summary><span class="stitle"><span class="no">3</span>今期の背骨 <small>― 4 Value Cycle をチームで回す ＋ 全員が4階層で見る</small></span><i class="ti ti-chevron-down chev"></i></summary>
+  <div class="panel">
+    <h3 class="ph">4 Value Cycle は継承する。だが一人で回すのは不可能だった。</h3>
+    <p class="lead">4つの循環は正しい。役割分担とAIで「チームで回るエンジン」に作り変える。</p>
+    <div class="cycle-wrap">
+      <div class="cycle">
+        <svg viewBox="0 0 300 300">
+          <defs>
+            <marker id="ar" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#0079c0"/></marker>
+            <linearGradient id="gctr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0079c0"/><stop offset="1" stop-color="#003d5e"/></linearGradient>
+          </defs>
+          <path d="M188,70 A100,100 0 0,1 230,112" fill="none" stroke="#0079c0" stroke-width="2.5" marker-end="url(#ar)"/>
+          <path d="M230,188 A100,100 0 0,1 188,230" fill="none" stroke="#0079c0" stroke-width="2.5" marker-end="url(#ar)"/>
+          <path d="M112,230 A100,100 0 0,1 70,188" fill="none" stroke="#0079c0" stroke-width="2.5" marker-end="url(#ar)"/>
+          <path d="M70,112 A100,100 0 0,1 112,70" fill="none" stroke="#0079c0" stroke-width="2.5" marker-end="url(#ar)"/>
+          <circle cx="150" cy="150" r="46" fill="url(#gctr)"/>
+          <text x="150" y="145" text-anchor="middle" fill="#fff" font-size="15" font-weight="800" font-family="'M PLUS Rounded 1c'">LTV</text>
+          <text x="150" y="165" text-anchor="middle" fill="#fff" font-size="12.5" font-family="'M PLUS Rounded 1c'">最大化</text>
+          <g><rect x="92" y="20" width="116" height="56" rx="12" fill="#e8f6ff" stroke="#0079c0" stroke-width="2"/><text x="150" y="44" text-anchor="middle" fill="#0079c0" font-size="11" font-weight="700" font-family="'M PLUS Rounded 1c'">Account Planning</text><text x="150" y="62" text-anchor="middle" fill="#1a2a38" font-size="11">アカウント戦略</text></g>
+          <g><rect x="200" y="122" width="100" height="56" rx="12" fill="#e8f6ff" stroke="#0a6e8c" stroke-width="2"/><text x="250" y="146" text-anchor="middle" fill="#0a6e8c" font-size="10.5" font-weight="700" font-family="'M PLUS Rounded 1c'">Lead Engage.</text><text x="250" y="164" text-anchor="middle" fill="#1a2a38" font-size="11">リード育成</text></g>
+          <g><rect x="92" y="224" width="116" height="56" rx="12" fill="#e8f6ff" stroke="#0079c0" stroke-width="2"/><text x="150" y="248" text-anchor="middle" fill="#0079c0" font-size="11" font-weight="700" font-family="'M PLUS Rounded 1c'">Customer Success</text><text x="150" y="266" text-anchor="middle" fill="#1a2a38" font-size="11">顧客深耕</text></g>
+          <g><rect x="0" y="122" width="100" height="56" rx="12" fill="#e8f6ff" stroke="#0a6e8c" stroke-width="2"/><text x="50" y="146" text-anchor="middle" fill="#0a6e8c" font-size="11" font-weight="700" font-family="'M PLUS Rounded 1c'">Pipeline</text><text x="50" y="164" text-anchor="middle" fill="#1a2a38" font-size="11">案件推進</text></g>
+        </svg>
+      </div>
+      <div class="points">
+        <div class="pt"><div class="n">1</div><div><h4>役割を分けて回す</h4><p>戦略を描く・案件を進める・構造を読む力は別資質。一人に求めず分業し、連携させる。</p></div></div>
+        <div class="pt"><div class="n">2</div><div><h4>顧客接点は一人の人格で</h4><p>裏方（提案書・要件定義・記録）はAIで軽くし、顧客から見える担当者は一人に保つ。</p></div></div>
+        <div class="pt"><div class="n">3</div><div><h4>全員が4階層で見る</h4><p>企業→部署→リード→案件。案件進捗と顧客リレーションは常に接続している。</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3 class="ph">変革後 ── 4 Value Cycle の階層別・役割分担</h3>
+    <p class="lead">同じ循環を、誰がどう担うかに分解する。FSは「情報提供と地上戦の深耕」へ。企画・AIが回す部分を引き受ける。</p>
+    <div class="rsplit">
+      <div class="rrow ap">
+        <div class="rh"><span class="rt">Account Planning</span><span class="rj">アカウント戦略</span></div>
+        <div class="roles">
+          <span class="chip fs"><i class="ti ti-user-heart"></i> FS：情報提供</span>
+          <span class="chip is"><i class="ti ti-headset"></i> IS</span>
+          <span class="chip mk"><i class="ti ti-speakerphone"></i> マーケ</span>
+        </div>
+        <p class="rd">FSが顧客接点で得た構造情報を提供。IS／マーケがコンテンツを企画し、空中戦として実行。あわせてFSが<b>地上戦＝キーマンへの深耕営業</b>を担う。</p>
+      </div>
+      <div class="rrow le">
+        <div class="rh"><span class="rt">Lead Engagement</span><span class="rj">リード育成</span></div>
+        <div class="roles">
+          <span class="chip mk"><i class="ti ti-speakerphone"></i> マーケ</span>
+          <span class="chip is"><i class="ti ti-headset"></i> IS</span>
+        </div>
+        <p class="rd">マーケ／IS側のタスク。ナーチャリングと引き上げを担当し、温まったリードを地上戦（FS）へ渡す。</p>
+      </div>
+      <div class="rrow pm">
+        <div class="rh"><span class="rt">Pipeline Management</span><span class="rj">案件推進</span></div>
+        <div class="roles">
+          <span class="chip ai"><i class="ti ti-robot"></i> AI</span>
+          <span class="chip fs"><i class="ti ti-user-heart"></i> FS</span>
+        </div>
+        <p class="rd">AIとFSの共存。大幅なBPRで工数削減と品質向上を両立。<b>一つの案件接点を起点に</b>、未来ニーズ・周辺ニーズ・周辺担当者／部署への染み出しを行い、案件推進だけでなく文脈を広げる。</p>
+      </div>
+      <div class="rrow cs">
+        <div class="rh"><span class="rt">Customer Success</span><span class="rj">顧客深耕</span><span class="cs-badge">最注力</span></div>
+        <div class="cs-sub">
+          <div class="li"><b>①</b><span>案件を成功させる（品質担保）</span></div>
+          <div class="li"><b>②</b><span>その間に既顧客営業を行う。特にプロジェクト開始後の<b style="color:var(--ink)">レビューMTG</b>を実施。提案資料はPROBASE・案件資料をインプットに、マーケ／IS側で企画する。</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3 class="ph">全員が「4階層」でアカウントを見る</h3>
+    <p class="lead">案件を前に進めるだけのロールから脱却する。チームとして見るのは「案件」ではなく「アカウント」。</p>
+    <div class="funnel">
+      <div class="flayer fl1"><div class="t">企業（アカウント）</div><div class="d">全社の力学・事業の方向。最も長生きする情報。</div></div>
+      <div class="flayer fl2"><div class="t">部署</div><div class="d">部署ミッション・隣接部署との関係・組織の力学。</div></div>
+      <div class="flayer fl3"><div class="t">リード（担当者）</div><div class="d">管掌領域・社内での立ち位置・キーマン相関。</div></div>
+      <div class="flayer fl4"><div class="t">案件</div><div class="d">個別の課題と取引。最も短命な一点。</div></div>
+    </div>
+    <p class="note" style="margin-top:12px">案件は4階層の最も短命な一点にすぎない。その上に担当者・部署・企業全体の力学がある。</p>
+  </div>
+
+  <div class="panel">
+    <h3 class="ph">商談は「案件探索」だけでなく「顧客構造の理解」の場</h3>
+    <p class="lead">ヒアリングで構造を積み、2方向で刈る。これが面のリレーション営業のエンジン。</p>
+    <div class="flow">
+      <div class="stack">
+        <div style="background:var(--blue-l)"><h5 style="color:var(--blue-d)">① 案件探索</h5><p style="color:var(--gray)">今すぐの案件を見つける（従来のFS）</p></div>
+        <div style="background:var(--blue-l)"><h5 style="color:var(--blue-d)">② 顧客構造の理解</h5><p style="color:var(--gray)">部署役割・競合・予算・決裁者・購買グループ</p></div>
+      </div>
+      <div class="arrowcol"><i class="ti ti-arrow-right"></i></div>
+      <div>
+        <div class="mid">商談・接点</div>
+        <div class="stack">
+          <div style="background:#fff;border:1.5px solid #d6e8f5"><h5 style="color:var(--blue-d)">アウトバウンド</h5><p style="color:var(--gray)">こちらからタイミングを測って仕掛ける。組織が動く瞬間を捉える。</p></div>
+          <div style="background:linear-gradient(135deg,#0079c0,#003d5e);color:#fff"><h5 style="color:#bfe3f7">インバウンド</h5><p style="color:#e8f6ff">課題発生時に想起される。最も受注率の高い45%の動線。</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="band light"><span class="hl">最重点：</span> 現在稼働中のスターリードを深耕する。過去稼働 ≠ 現在稼働。今まさに関係が最も温まる「スター状態」を逃さない。</div>
+  </div>
+
+  </details>
+
+  <details class="sec" open>
+    <summary><span class="stitle"><span class="no">4</span>中核となる考え方 <small>― 2つの切り分け</small></span><i class="ti ti-chevron-down chev"></i></summary>
+  <div class="panel">
+    <h3 class="ph">切り分け① 鳥の目と地上 ― 空中戦と地上戦の連携</h3>
+    <p class="lead">思考する人と実行する人を分離する。前期は全てFSに乗せて潰れた。</p>
+    <div class="mini m3" style="margin-top:14px">
+      <div class="rolecard" style="background:linear-gradient(135deg,#003d5e,#0079c0)"><h4>鳥の目（戦略立案）</h4><div class="who" style="color:#bfe3f7">Mgr ＋ マーケ</div><p>アカウント全体を俯瞰。未開拓Tier1のマップを描き、どこを攻めるか設計する。</p></div>
+      <div class="rolecard" style="background:var(--blue)"><h4>地上（実行）</h4><div class="who">IS</div><p>設計された攻略に沿って、リードへの実行アクションを担う。</p></div>
+      <div class="rolecard" style="background:#0a6e8c"><h4>情報提供</h4><div class="who">FS</div><p>顧客接点で得た生の構造情報を、鳥の目チームに供給する。</p></div>
+    </div>
+    <div class="band light"><span class="hl">空中戦 × 地上戦 は、分業しても分断させない</span><div class="sub">前期の分業（THE MODEL）は分断を生んだ。今期は、地上戦で得た顧客情報を空中戦に還し、空中戦で温めたリードを地上戦に渡す。この往復をアクティブに回す。</div></div>
+  </div>
+
+  <div class="panel">
+    <h3 class="ph">切り分け② 型化と属人化 ― 人とAIの線引き</h3>
+    <p class="lead">アカウント営業を3つの動作に分解する。担い手が違う。</p>
+    <div class="mini m3" style="margin-top:14px">
+      <div class="mcard" style="background:#fff3e0"><div class="num amber">①</div><h4>対話で構造を引き出す</h4><p>商談で投げかけ、組織の力学を聞き出す。</p><span class="who amber">人にしかできない（属人を認める）</span></div>
+      <div class="mcard fill"><div class="num">②</div><h4>記録・構造化・更新</h4><p>議事録から自動で構造化し、地図を更新し続ける。</p><span class="who">AIが担う</span></div>
+      <div class="mcard fill"><div class="num">③</div><h4>次にどこへ当たるか判断</h4><p>蓄積された地図から、次のアプローチ先を提示する。</p><span class="who">AIが担う</span></div>
+    </div>
+    <p class="note" style="margin-top:12px;text-align:center">これまで ②③ は「誰もやらない領域」だった。AIに巻き取らせ、人は ① と実行に集中する。</p>
+  </div>
+
+  </details>
+
+  <details class="sec" open>
+    <summary><span class="stitle"><span class="no">5</span>オペレーション改善 <small>― GTM整備とAI自動化で工数を削る</small></span><i class="ti ti-chevron-down chev"></i></summary>
+  <div class="panel">
+    <h3 class="ph">まず工数を削る。空いた時間をアカウントへ再投資する。</h3>
+    <p class="lead">前期は負荷を足して潰れた。今期は引いてから足す。これが決定的な差。</p>
+    <div class="mini m2" style="margin-top:14px">
+      <div class="mcard" style="background:#f7fbfe"><h4 style="color:var(--gray)"><i class="ti ti-robot"></i> AIで削る（作業）</h4><p style="margin-top:6px">・提案書作成 ── 自動生成パイプライン整備済み<br>・要件定義 ── AIで簡素化（手間減）＋高度化（精度増）<br>・議事録→SF連携 ── 自動化（情シスと構築中）</p></div>
+      <div class="mcard" style="background:linear-gradient(135deg,#0079c0,#003d5e)"><h4 style="color:#fff"><i class="ti ti-users"></i> 空いた時間で増やす（関係構築）</h4><p style="color:#e8f6ff;margin-top:6px">AIが裏方を担うからこそ、FSは一人の人格として顧客に向き合える。減らした時間を、人にしかできない関係構築へ振り向ける。</p></div>
+    </div>
+    <div class="mcard fill" style="margin-top:14px">
+      <h4 style="color:var(--blue-d)"><i class="ti ti-sitemap"></i> GTM統合フローの整備</h4>
+      <p style="margin-top:6px">リードの状態（リサイクル/休眠/未提案/稼働後）と、誰の・どんなアクションが必要かを一枚のフローに可視化。チーム全員が同じ地図で動く共通言語であり、将来の全社プロセスの原典。新メンバーのオンボーディング教材としても機能する。 <a href="../gtm/" target="_blank" style="color:var(--blue);font-weight:700;text-decoration:none">→ GTM統合フローを見る</a></p>
+    </div>
+  </div>
+
+  </details>
+
+  <details class="sec" open>
+    <summary><span class="stitle"><i class="ti ti-arrows-exchange"></i>人当て営業からソリューション営業へ <small>― なぜ変わらなければならないか</small></span><i class="ti ti-chevron-down chev"></i></summary>
+  <div class="panel">
+    <h3 class="ph">商談1つのポテンシャルを、FSが最大化する</h3>
+    <p class="lead">育成・マインドチェンジ・技術向上はすぐには難しい人もいる。そこはAIでフォローしつつ、全員が必ず理解すべきことが一つある ── <b style="color:var(--blue-d)">なぜ「人当て（人材紹介）」から「ソリューション」へ変わらなければならないか。</b></p>
+
+    <div class="qnote" style="border-color:#f0c891;background:#fffaf3"><i class="ti ti-alert-circle" style="color:var(--orange)"></i><p>先方で要件が固まり<b>JD（人材要件）がある</b>なら、人当て営業でよい（顧客がそれを期待している）。だが今、競合はプロ人材会社だけではない ── <b>コンサル・AI関連会社・プロダクトを持つ会社</b>。彼らはソリューション／プロダクトまで提案してくる。人材要件だけを待っていては、案件数が絞られ、外部パートナーとしての深さも出ない。</p></div>
+
+    <div class="shift">
+      <div class="shift-row before">
+        <span class="slab"><i class="ti ti-clock-hour-4"></i> これまで</span>
+        <div class="chain">
+          <div class="node src">サーキュレーション<br>プロ人材</div>
+          <div class="arr">→</div>
+          <div class="node">役割・ケイパビリティ</div>
+          <div class="arr">→</div>
+          <div class="node need">ニーズ / ToBe（企業）</div>
+        </div>
+        <p class="cap">人材要件に対して、直接「人」が紐づいた。間（使い方・体制・アウトプット）は<b>顧客側が考えて埋めてくれた。</b></p>
+      </div>
+
+      <div class="shift-row after">
+        <span class="slab"><i class="ti ti-arrow-big-up-lines"></i> 現在</span>
+        <div class="chain">
+          <div class="node src">サーキュレーション<br>プロ人材</div>
+          <div class="arr">→</div>
+          <div class="node midwrap"><span class="mh">こちらが巻き取る中間地点</span><span class="mi">使い方/切り口・解決体制/アサイン・アウトプット内容・解決ロードマップ・役割/ケイパビリティ・ToBe</span></div>
+          <div class="arr">→</div>
+          <div class="node need">悩み / 課題 / 困りごと</div>
+        </div>
+        <p class="cap">外部ベンダーが入り込むフェーズが<b>深くなっている。</b>間にある「使い方・体制・アウトプット」は、かつて顧客マターだったが、今は提案側マターになっている。ここを<b>こちらが能動的に巻き取る</b>必要がある。</p>
+      </div>
+    </div>
+
+    <div class="shift-insight">
+      <div class="sih"><i class="ti ti-bulb"></i> 人材要件を「待つ」と、パイプラインを顧客に支配される</div>
+      <p>企業側で考えてから人材要件を出してくる企業も一定数いる。だが<b>それを待っていては、案件数も、こちらが出せるパイプラインも、顧客側にコントロールされる。</b>潜在／未来のパイプラインを自分たちで生むには、中間地点をこちらから能動的に巻き取るしかない。</p>
+      <div class="seq">
+        <span class="s">商談で「今必要な人材要件ありますか？」</span><span class="a">→</span><span class="s bad">「ない」で終了</span>
+      </div>
+      <div class="seq" style="margin-top:6px">
+        <span class="s">現状から潜在課題を引き出す</span><span class="a">→</span><span class="s">中間点をこちらで整理</span><span class="a">→</span><span class="s good">潜在ニーズ・未来インバウンド相談へ</span>
+      </div>
+    </div>
+  </div>
+
+  </details>
+
+  <details class="sec" open>
+    <summary><span class="stitle"><i class="ti ti-stack-2"></i>解決策の型 <small>― 「誰を出すか」ではなく「どう解決するか」</small></span><i class="ti ti-chevron-down chev"></i></summary>
+  <div class="panel">
+    <h3 class="ph">人とニーズの「間」を、こちらが取りに行く</h3>
+    <p class="lead">プロ人材（人）と顧客（ニーズ/ToBe）の間には、<b>解決策・解決支援体制・プロダクト・サービス</b>という層がある。かつてこの層は顧客が自分で埋めてくれた。だが今は競合（コンサル・AIベンダー・SaaS等）がここを取りに来る。<b>この層を当社が取りに行かないと、人とニーズは繋がらない。</b></p>
+    <div class="between">
+      <div class="bend person"><div class="bl">手段</div><div class="bt">人<br>（プロ人材）</div></div>
+      <div class="bmid">
+        <span class="arrl"><i class="ti ti-arrow-right"></i></span>
+        <div class="grab"><div class="gh">ここを当社が取りに行く</div><div class="gt">解決策 ／ 解決支援体制<br>プロダクト ／ サービス</div></div>
+        <span class="arrr"><i class="ti ti-arrow-right"></i></span>
+      </div>
+      <div class="bend need"><div class="bl">目的</div><div class="bt">顧客<br>（ニーズ / ToBe）</div></div>
+    </div>
+    <div class="between-cap">この「間の層」を、かつては顧客が埋めた（だから人を出せば済んだ）。今は競合がここを取りに来る。<b>手段（人）だけを差し出すと、間が埋まらず負ける。</b></div>
+    <div class="between-takeaway">だから、この層を<b>「4つの型」</b>として、こちらから提示する。</div>
+
+    <h3 class="ph" style="margin-top:24px">How We Solve ── 解決策の4つの型</h3>
+    <p class="lead">「誰を出すか」ではなく「どう解決するか」。この4つで、間の層を具体的に埋める。</p>
+    <div class="hws">
+      <div class="hwcard">
+        <div class="hwi"><i class="ti ti-sitemap"></i></div>
+        <h4>プロジェクト設計</h4>
+        <p class="hwd">ゴール・スコープ・マイルストーンを最初に握り、検証と意思決定が回るプロジェクトを設計する。</p>
+        <ul><li>論点・ゴールの言語化</li><li>フェーズ分解と検証計画</li><li>意思決定の場づくり</li></ul>
+      </div>
+      <div class="hwcard">
+        <div class="hwi"><i class="ti ti-hierarchy"></i></div>
+        <h4>体制図</h4>
+        <p class="hwd">顧客メンバー・プロ人材・既存ベンダーの役割を整理し、最小の体制で前に進む座組みを描く。</p>
+        <ul><li>社内 × プロ人材の役割分担</li><li>意思決定者とのレポートライン</li><li>巻き取り・引き継ぎの設計</li></ul>
+      </div>
+      <div class="hwcard">
+        <div class="hwi"><i class="ti ti-adjustments"></i></div>
+        <h4>使い方（関与モデル）</h4>
+        <p class="hwd">リスキリング・PM・特定領域だけ等、必要な範囲だけプロ人材を活用できる。丸ごとでなく"足りない一部"から。</p>
+        <ul><li>リスキリング / 伴走型</li><li>PM・推進役としての関与</li><li>開発・特定領域のスポット補強</li></ul>
+      </div>
+      <div class="hwcard">
+        <div class="hwi"><i class="ti ti-bulb"></i></div>
+        <h4>テーマ / 切り口</h4>
+        <p class="hwd">課題が漠然としていても、業界・機能の論点から切り口を提示し、取り組むテーマを一緒に定める。</p>
+        <ul><li>論点の引き出しと整理</li><li>優先順位づけ</li><li>他社の取り組みを踏まえた切り口</li></ul>
+      </div>
+    </div>
+  </div>
+
+  </details>
+
+  <details class="sec" open>
+    <summary><span class="stitle"><i class="ti ti-layers-subtract"></i>FSの役割を2層に分ける <small>― 保有案件数と強みに応じた配置</small></span><i class="ti ti-chevron-down chev"></i></summary>
+  <div class="panel">
+    <h3 class="ph">全員が同じ動きをするのではなく、強みに応じて役割を分ける</h3>
+    <p class="lead">ソリューション営業への変革は全員一律ではできない。保有プロジェクト数と実証された強みに応じて、FSを2つの役割層に分ける。<b style="color:var(--blue-d)">エキスパートのJDにある「既存法人顧客への深耕」「自身での顧客開拓」を、役割として純化する。</b></p>
+    <div class="layer2">
+      <div class="lcard exp">
+        <span class="ltag"><i class="ti ti-star"></i> エキスパート層</span>
+        <h4>継続深耕 ＋ 既顧客新規</h4>
+        <div class="lmeta">保有プロジェクト 20〜30件</div>
+        <div class="lrole"><span class="li"><i class="ti ti-shield-check"></i></span><span class="lt"><b>継続を守る。</b>更新を6ヶ月・1年スパンの提案に切り替え、稼働を維持する。</span></div>
+        <div class="lrole"><span class="li"><i class="ti ti-arrow-up-right"></i></span><span class="lt"><b>既顧客から追加案件を獲得する。</b>温まった関係を起点に、同一顧客の新規案件を取りに行く（既顧客新規のロールモデル）。</span></div>
+        <div class="lrole"><span class="li"><i class="ti ti-bulb"></i></span><span class="lt">JDが明確な案件（人材要件あり）は確実に遂行。深耕の中で潜在ニーズを引き出す。</span></div>
+      </div>
+      <div class="lcard mem">
+        <span class="ltag"><i class="ti ti-rocket"></i> メンバー層</span>
+        <h4>新規パイプライン推進 ＋ 薄くCS</h4>
+        <div class="lmeta">保有プロジェクト 1〜14件</div>
+        <div class="lrole"><span class="li"><i class="ti ti-target-arrow"></i></span><span class="lt"><b>新規案件のパイプラインを推進する。</b>ソリューション提案への変革の主軸を担う。</span></div>
+        <div class="lrole"><span class="li"><i class="ti ti-heart-handshake"></i></span><span class="lt">CS活動も薄く担い、稼働案件のフォローを行う。</span></div>
+        <div class="lrole"><span class="li"><i class="ti ti-trending-up"></i></span><span class="lt">案件数を積み上げながら、提案力・深耕の幅を広げていく。</span></div>
+      </div>
+    </div>
+    <div class="layer-note"><b>狙い：</b> 全員にソリューション提案・新規開拓を一律で求めるのではなく、保有案件数と実証された強みに合わせて役割を分ける。エキスパート層は「継続を守りながら既顧客から積み上げる」ことに集中し、その達成に向けた行動は本人が設計する。これは適性に応じた配置であり、チーム全体で案件数を積み上げるための分業である。</div>
+  </div>
+
+  </details>
+
+  <details class="sec" open>
+    <summary><span class="stitle"><i class="ti ti-arrow-big-right-lines"></i>AIに任せ、人は「関係構築」へ <small>― 営業に求める動き</small></span><i class="ti ti-chevron-down chev"></i></summary>
+  <div class="panel" style="padding:0;border:none;background:none;box-shadow:none">
+    <div class="climax">
+      <div class="ckicker">NEW OPERATION ／ TO-BE</div>
+      <h3>AIとオペレーションが「作業」を引き受ける。<br>だから人は、人にしかできないことへ。</h3>
+      <p class="clead">情シスと進めている新オペレーションを発表し、改修中のToBeも共有する。狙いは一つ ── <b>営業が「関係性構築・接点づくり・脳内シェア・未来（潜在）ニーズの訴求」に時間を使えるようにすること。</b>とりわけ深耕営業は、AIにもオペレーションにも代替できない。ここは人間＝営業の仕事になる。</p>
+
+      <div class="purpose">
+        <div class="ph2"><i class="ti ti-refresh"></i> 商談の目的を、「案件探索」だけにしない</div>
+        <div class="plist">
+          <span class="pchip"><i class="ti ti-arrow-loop-right"></i> 文脈を続けていく</span>
+          <span class="pchip"><i class="ti ti-arrows-maximize"></i> ケイパビリティを広げる</span>
+          <span class="pchip"><i class="ti ti-bulb"></i> 未来ニーズ・潜在課題を会話する</span>
+          <span class="pchip"><i class="ti ti-hand-stop"></i> ご挨拶をしておく</span>
+        </div>
+        <p class="pnote">深耕の接点は、怠らない。<b>15分でも、電話でもいい。</b>全ての商談を1時間にする必要はない。リサイクルを通じて近況を報告し合い、他社事例を共有し、同じ場で同期コミュニケーションを取ること自体が重要。<b>接点の「量」を増やしにいく。</b></p>
+      </div>
+
+      <div class="flow2">
+        <div class="fbox ai">
+          <h5><i class="ti ti-robot"></i> AI・オペレーションが担う</h5>
+          <ul>
+            <li>提案書・要件整理・議事録の生成</li>
+            <li>SFへの記録・反映（自動化）</li>
+            <li>滞留アラート・次アクション提示</li>
+            <li>定型の事務・進捗管理</li>
+          </ul>
+        </div>
+        <div class="farrow"><i class="ti ti-arrow-right"></i></div>
+        <div class="fbox human">
+          <h5><i class="ti ti-user-heart"></i> 人（営業）が担う</h5>
+          <ul>
+            <li>関係性の構築・接点づくり</li>
+            <li>脳内シェアの獲得（想起される存在に）</li>
+            <li>未来・潜在ニーズの引き出し</li>
+            <li><b>スターリードへの深耕営業</b></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="ah">営業に求める動き ── 具体的な選択肢</div>
+        <div class="asub">「案件がないと会わない」を超える。案件がなくても成立する接点を、自分の引き出しとして持つ。</div>
+        <div class="acat">
+          <div class="act"><i class="ti ti-calendar-heart"></i> 定期的な接点を作る（案件がなくても会う理由）</div>
+          <div class="achips">
+            <span class="achip"><b>レビューMTG</b>（1ヶ月後・3ヶ月後）※機会は会社が設定</span>
+            <span class="achip">四半期ごとの「ご状況伺い」定例</span>
+            <span class="achip">業界事例・他社事例の情報提供を口実にした接点</span>
+          </div>
+        </div>
+        <div class="acat">
+          <div class="act"><i class="ti ti-users-group"></i> 人間関係を広げる（縦と横）</div>
+          <div class="achips">
+            <span class="achip">キーマンの<b>上長・経営層</b>へのトップアプローチ</span>
+            <span class="achip">隣接部署キーマンへの紹介依頼</span>
+            <span class="achip">担当者個人との関係構築（会食・1on1）</span>
+          </div>
+        </div>
+        <div class="acat">
+          <div class="act"><i class="ti ti-bulb"></i> 潜在ニーズを引き出す（未来の話をする）</div>
+          <div class="achips">
+            <span class="achip">中期経営計画・部署方針から<b>未来の取り組み</b>を把握</span>
+            <span class="achip">「来期こう考えている」を聞き出す</span>
+            <span class="achip">自社事例をぶつけてニーズの種をまく</span>
+          </div>
+        </div>
+        <div class="acat">
+          <div class="act"><i class="ti ti-friends"></i> 接点の質を上げる</div>
+          <div class="achips">
+            <span class="achip"><b>対面で会いに行く</b>（オンラインで終わらせない）</span>
+            <span class="achip">目の前の案件から周辺の話へ広げる</span>
+            <span class="achip">顧客の社内定例に同席させてもらう</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="recall">
+        <div class="rh2"><i class="ti ti-brain"></i> 第一想起を取る ── 「徳永さん」として思い出される</div>
+        <div class="rcompare">
+          <div class="rc company"><div class="rcl">非同期（会社として）</div><div class="rct">「サーキュレーションさん」としての認知を維持する</div></div>
+          <div class="rc person"><div class="rcl">同期（営業担当として）</div><div class="rct">「○○さん」個人として想起される ＝ 相談ハードルが下がる</div></div>
+        </div>
+        <p class="rmsg">何か新たな課題が発生したとき、<b>真っ先に「あの人に相談しよう」と思い出してもらえるか。</b>会社の認知も必要だが、相談ハードルを考えると、個人として想起される方が圧倒的に効く。<b>データだけでは見えないところで、顧客の脳内シェアを取っておく。</b></p>
+        <div class="rsync">
+          <div class="rs"><b>非同期：</b>会社としてのナーチャリング（メルマガ・コンテンツ）で文脈を維持する。</div>
+          <div class="rs"><b>同期：</b>営業担当として文脈を維持し、新たな文脈を構築する。これが勝ち筋。</div>
+        </div>
+      </div>
+
+      <div class="msg-strong">
+        <div class="ms1">機会は会社が用意する。リレーションは、あなたが作る。</div>
+        <div class="ms2">スターリードへのレビューMTGの初期設定など、<b>「会う機会」はこちらから仕組みで提供する。</b>だが、そこで対面に行くか・何を話すか・どう関係を深めるかは型化できない。<b>行動とタッチポイントによる顧客リレーションは、属人的にあなたにお願いしたい。</b>これは仕組み化に加えて、皆さんの足で稼ぐ必要がある。遠回りに見えて、関係が温まった顧客からの相談（インバウンド）が最も受注率が高い ── 深耕営業は、最も確実な案件創出である。<br><br>そもそも、<b>FSからのメールに返信が来ないのは厳しい。それは関係が構築できていないということ。</b></div>
+      </div>
+    </div>
+  </div>
+
+  </details>
+
+  <details class="sec" open>
+    <summary><span class="stitle"><span class="no">6</span>体制と役割 <small>― 情報の扱いを3段階に分ける</small></span><i class="ti ti-chevron-down chev"></i></summary>
+  <div class="panel">
+    <p class="lead">深い地図はTier1に集中投資する。選択と集中。</p>
+    <div class="mini m3" style="margin:14px 0">
+      <div class="rolecard" style="background:linear-gradient(135deg,#003d5e,#0079c0)"><h4>鳥の目チーム</h4><div class="who" style="color:#bfe3f7">Mgr＋松村</div><p>戦略立案・未開拓Tier1マップ・IS向け攻略情報</p></div>
+      <div class="mcard"><div class="num"><i class="ti ti-headset" style="font-size:17px"></i></div><h4>IS（2名）</h4><p style="color:var(--blue);font-weight:700;font-size:12px;margin-bottom:4px">実行</p><p>稼働中リードへの実行・リサイクル/ナーチャ</p></div>
+      <div class="mcard"><div class="num"><i class="ti ti-user-heart" style="font-size:17px"></i></div><h4>FS（7名）</h4><p style="color:var(--blue);font-weight:700;font-size:12px;margin-bottom:4px">接点・推進・情報</p><p>案件推進＋Tier1の構造情報提供</p></div>
+    </div>
+    <div class="tier"><div class="h">全アカウント</div><div class="c">議事録を案件に紐づけ（AI自動化）</div></div>
+    <div class="tier hi"><div class="h">Tier1（各FSが設定）</div><div class="c">企業・部署・担当者の関係性／競合／予算／決裁者／購買グループをNotionに整理し、地図を広げてアカウント開拓</div></div>
+    <div class="tier hi"><div class="h">稼働中スターリード</div><div class="c">1ヶ月／3ヶ月のレビューMTGで深耕</div></div>
+    <p class="body" style="margin-top:14px"><b>マッチアップ制は廃止。</b> IS2:FS7では個別の噛み合わせは機能しない。代わりにリードの担当付けで公平性を担保する。</p>
+  </div>
+
+  <div class="panel">
+    <h3 class="ph">移植可能性の検証 ― 「概念は語れる人」を引き上げる</h3>
+    <p class="lead">鳥の目を持たせるのではなく、AIが描いた鳥の目を渡して動けるかを検証する。</p>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h4>現状</h4><p>アカウント構造を概念としては語れる。だが個社の体制図は持っていない（栫 等）。</p></div>
+      <div class="step"><div class="n">2</div><h4>渡す</h4><p>AIが生成したアカウントの地図（接点／未接触が可視化されたもの）を渡す。</p></div>
+      <div class="step"><div class="n">3</div><h4>検証</h4><p>地図を使って空白に向かって動けるか。動けば、鳥の目を持たずとも実行できる。</p></div>
+    </div>
+    <div class="band light"><span class="hl">これはチーム全体への移植可能性を測る試金石。</span><div class="sub">動けば「概念を持つ人にAI地図を配れば鳥の目が機能する」という再現の型が確立する。</div></div>
+  </div>
+
+  </details>
+
+  <details class="sec" open>
+    <summary><span class="stitle"><span class="no">7</span>重点施策 <small>― 4 Value Cycle の今期版</small></span><i class="ti ti-chevron-down chev"></i></summary>
+  <div class="panel">
+    <p class="lead">前期のフレームを継承し、回り方を今期版にアップデートする。</p>
+    <div class="mini m2" style="margin-top:14px">
+      <div class="mcard"><span class="tag-pill">Customer Success</span><h4>3ヶ月レビューMTG制度</h4><p>キックオフ時に1ヶ月後・3ヶ月後を固定。①品質担保＋高評価引き出し ②付随提案 ③文脈違いの染み出し。「放置→突然提案」を防ぐ。</p></div>
+      <div class="mcard"><span class="tag-pill">Lead Engagement</span><h4>Claudeアドレス自動取得＋Tier別</h4><p>キックオフで顧客チャットに当然のように追加。FSの手作業を介さず情報蓄積。Tier1=空中×地上連携／T2=引上げ／T3-4=脳内シェア。</p></div>
+      <div class="mcard"><span class="tag-pill">Account Planning</span><h4>AIアカウントカルテ生成</h4><p>議事録・組織図・SFをAIが読み、構造マップ（接点/未接触・染み出し戦略）を自動生成。人力作成からの進化。</p></div>
+      <div class="mcard"><span class="tag-pill">Pipeline Mgmt.</span><h4>2フラグ＋提案書の質</h4><p>PLシートに「PJT良好」「顧客関係性」フラグ。提案書は失注後の横展開にも効く「面の顧客体験」。1件1件落とさない。</p></div>
+    </div>
+  </div>
+
+  </details>
+
+  <details class="sec" open>
+    <summary><span class="stitle"><span class="no">8</span>残された論点 <small>― まだ解けていないこと</small></span><i class="ti ti-chevron-down chev"></i></summary>
+  <div class="panel">
+    <p class="lead">正直に認識し、向き合う。隠さない。</p>
+    <div class="mini" style="margin-top:14px;gap:14px">
+      <div class="mcard" style="display:flex;gap:16px;align-items:flex-start"><div class="num amber" style="margin-bottom:0">①</div><div><h4>新規アカウントの「突破力」は型化できるか</h4><p style="margin-top:4px">今期の施策の多くは既に関係のある顧客が起点。だが「そもそも会ってもらう・返信が来る関係をゼロから作る力」は依然属人的で、型化の目処が立っていない。外部知見も得ながら探求する。</p></div></div>
+      <div class="mcard" style="display:flex;gap:16px;align-items:flex-start"><div class="num amber" style="margin-bottom:0">②</div><div><h4>評価をCKと切り離せるか</h4><p style="margin-top:4px">中長期の関係構築を促すには、CK一辺倒から活動量（到達人数・定例同席・インバウンド発生）評価への移行が要るかもしれない。戦略アカウントを「報酬」でなく「責任」と定義できるか。</p></div></div>
+    </div>
+  </div>
+
+  </details>
+
+  <details class="sec" open>
+    <summary><span class="stitle"><span class="no">9</span>ロードマップ <small>― 7月共有・8月整備・FY14/15運用</small></span><i class="ti ti-chevron-down chev"></i></summary>
+  <div class="panel">
+    <div class="road"><div class="m" style="background:var(--blue)">7月</div><div class="rc">松蔵（全体会議）でFY14/15方針を全メンバーに共有。キックオフテンプレート整備（1ヶ月後フォロー組込）。Claudeアドレス追加テンプレ運用開始。</div></div>
+    <div class="road"><div class="m" style="background:#0a6e8c">8月</div><div class="rc">稼働中案件の情報格納体制を整備。3ヶ月レビューMTG制度の設計・導入。（人の出入りもこの月）</div></div>
+    <div class="road"><div class="m" style="background:linear-gradient(135deg,#003d5e,#0079c0);font-size:13px">FY14<br>/15</div><div class="rc hi">本格運用。Tier1のAIカルテ展開、栫らの引き上げ検証、Tier別アプローチの定着。</div></div>
+  </div>
+
+  </details>
+
+  <details class="sec" open>
+    <summary><span class="stitle"><i class="ti ti-sitemap"></i>体制図 <small>― FY14 チーム構成</small></span><i class="ti ti-chevron-down chev"></i></summary>
+  <div class="panel">
+    <div class="org">
+      <div class="org-top">部長：小林</div>
+      <div class="org-stem"></div>
+      <div class="org-mgr">マネージャー：徳永</div>
+      <div class="org-stem"></div>
+      <div class="org-branches">
+        <div class="org-col eigyo">
+          <div class="colh"><i class="ti ti-businessplan"></i> ① 営業</div>
+          <div class="colmgr">マネージャー 徳永（＋小林部長）</div>
+          <div class="members">
+            <div class="mem">土田 <span class="role">エキスパート / 主にFLEXY案件</span></div>
+            <div class="mem">栫 <span class="role">エキスパート</span></div>
+            <div class="mem">中村 <span class="role">エキスパート</span></div>
+            <div class="mem">岡部</div>
+            <div class="mem">福本</div>
+            <div class="mem">木曽</div>
+            <div class="mem">飯田 <span class="role">PKSHA 50%</span></div>
+          </div>
+        </div>
+        <div class="org-col kikaku">
+          <div class="colh"><i class="ti ti-bulb"></i> ② 企画</div>
+          <div class="colmgr">マネージャー 徳永</div>
+          <div class="unit">GTM Unit</div>
+          <div class="members">
+            <div class="mem">松村 <span class="role">マーケ / リード管理</span></div>
+            <div class="mem">林 <span class="role">IS / 業務委託ディレクション</span></div>
+            <div class="mem">業務委託者 <span class="role">IS</span></div>
+          </div>
+          <div class="unit">企画 Unit</div>
+          <div class="members">
+            <div class="mem">星 <span class="role">提案企画 / BPR</span></div>
+            <div class="mem">小野 <span class="role">リスキリング（事務局）</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="org-assist">
+        <div class="al"><i class="ti ti-users-group"></i> アシスタント</div>
+        <div class="am"><span>小松田</span><span>派遣</span></div>
+      </div>
+    </div>
+  </div>
+
+  </details>
+
+  <details class="sec" open>
+    <summary><span class="stitle"><i class="ti ti-settings"></i>オペレーション <small>― チームの動き方</small></span><i class="ti ti-chevron-down chev"></i></summary>
+  <div class="panel">
+    <h3 class="ph">週の型 ── 同期は最小、間は非同期で繋ぐ</h3>
+    <p class="lead">人数・職種が増えても回るよう、同期（集まる）を月朝・水・金夕に絞り、火木金は非同期。顔を見るより、繋がりと規律を仕組みで担保する。</p>
+    <div class="weekgrid">
+      <div class="daycol sync"><div class="dh">月</div><div class="dbody"><span class="dtag">朝会30分</span>今週の目標共有。今週の計上見込み（金曜WRからMgrが共有）。</div></div>
+      <div class="daycol async"><div class="dh">火</div><div class="dbody"><span class="dtag">非同期</span>朝イチにSlackで報告。</div></div>
+      <div class="daycol sync"><div class="dh">水</div><div class="dbody"><span class="dtag">全員出社</span>会議室で商況確認。対面で繋がる。</div></div>
+      <div class="daycol async"><div class="dh">木</div><div class="dbody"><span class="dtag">非同期</span>朝イチにSlackで報告。</div></div>
+      <div class="daycol sync"><div class="dh">金</div><div class="dbody"><span class="dtag">夕会30分</span>振り返り。良い案件・提案書の共有（ナレッジ化）。</div></div>
+    </div>
+    <div class="opslist">
+      <div class="opsitem"><div class="oi"><i class="ti ti-sun"></i></div><div><h4>朝報告（非同期・火木金）</h4><p>Slack <b>#041_エンプラ_today</b> のワークフローから<br>「今日のやりきり（最大3つ）＋体調＋備考」を投稿。<br>全職種共通。<br><br>元気な顔を見る代わりに、体調と動きを毎朝可視化。<br>9:10目安。</p></div></div>
+      <div class="opsitem"><div class="oi"><i class="ti ti-calendar-week"></i></div><div><h4>月曜 朝会 / 金曜 夕会（同期）</h4><p>月曜は週の入口＝目標と計上見込みの共有。金曜は週の出口＝振り返りと、良い案件・提案書の共有。<b>個人商店化を防ぐ場</b>として、共有された提案書は虎の巻（ターゲット別攻略ガイド）に蓄積する。</p></div></div>
+      <div class="opsitem"><div class="oi"><i class="ti ti-microphone-2"></i></div><div><h4>記録</h4><p>録画はしない。AIノートテイカーで要約を自動記録（既存の議事録DB）。残すのは決定事項と「良い提案書」のリンクのみ。</p></div></div>
+      <div class="opsitem"><div class="oi"><i class="ti ti-cloud-data-connection"></i></div><div><h4>案件管理（SFを正とする）</h4><p>案件の進捗は口頭で聞かない。<b>SFに書いていなければ進んでいないとみなす。</b>フェーズ・ネクストアクションの更新を徹底。滞留はAI／ルールでアラート抽出し、月曜にMgrが滞留分だけ確認する。</p></div></div>
+      <div class="opsitem todo"><div class="oi"><i class="ti ti-dots"></i></div><div><h4>週報（WR）／カレンダー入力／資料格納／出社日</h4><p>運用ルールを今後ここに記載（次回確定）。WRは金曜業務後にNotion記載→提出でSlack通知（現行運用を維持）。有給など事前の不在はカレンダー登録を基本とする。</p></div></div>
+    </div>
+  </div>
+  </details>
+
+
+  <div class="closing">
+    <div class="l1">リードをアクティブ化し、パイプラインを前に進め、</div>
+    <div class="l2">受注したスターリードを、拡張する。</div>
+    <div class="l3">この循環を、一人ではなく、チームとAIで回し続ける。</div>
+  </div>
+
+  <div class="foot">© 株式会社サーキュレーション　Enterprise Team Portal ｜ FY14 Strategy</div>
+
+</div>
+
+</body>
+</html>
