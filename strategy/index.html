@@ -1369,6 +1369,18 @@ details.sec>summary .chev{margin-left:8px!important}
 .ex-body{flex:1;overflow-y:auto;padding:18px 18px 48px;background:linear-gradient(160deg,#f2f9fe,#eaf4fb)}
 .ex-tip{font-size:11px;color:var(--gray);background:#fff;border:1.5px dashed #cfe6f6;border-radius:10px;padding:9px 13px;margin-bottom:14px;display:flex;gap:7px;align-items:center}
 .ex-tip i{color:var(--blue);font-size:15px;flex:none}
+/* 解説ドキュメント（説明ベースの本文） */
+.ex-doc{font-size:13.5px;line-height:1.95;color:var(--ink)}
+.ex-doc .lead-line{font-size:15.5px;font-weight:800;color:var(--blue-d);line-height:1.7;margin:2px 0 16px;padding:12px 16px;background:#fff;border-left:5px solid var(--blue);border-radius:0 12px 12px 0;box-shadow:0 3px 10px rgba(0,121,192,.07)}
+.ex-doc p{margin-bottom:13px}
+.ex-doc b{color:var(--blue-d);font-weight:800}
+.ex-doc h4{font-size:14px;font-weight:800;color:#fff;margin:20px 0 10px;padding:8px 14px;background:linear-gradient(135deg,#0079c0,#5599be);border-radius:10px;display:flex;gap:8px;align-items:center}
+.ex-doc h4 .qn{flex:none;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.25);display:grid;place-items:center;font-size:12px;font-weight:800;font-family:'JetBrains Mono',monospace}
+.ex-doc ul{list-style:none;margin:0 0 13px;display:flex;flex-direction:column;gap:8px}
+.ex-doc li{position:relative;padding-left:20px;font-size:13px;line-height:1.75}
+.ex-doc li::before{content:'';position:absolute;left:4px;top:9px;width:7px;height:7px;border-radius:2px;background:var(--blue-mid)}
+.ex-doc .kicker{font-size:11px;font-weight:800;letter-spacing:1px;color:var(--blue);background:var(--blue-l);border-radius:20px;padding:4px 12px;display:inline-block;margin-bottom:10px}
+.ex-doc .note-line{font-size:12px;color:var(--gray);background:#f2f9fe;border:1.5px dashed #cfe6f6;border-radius:10px;padding:11px 14px;margin-top:6px;line-height:1.7}
 /* パネル内：全プローズを表示＋1カラム化 */
 .exdrawer .exwrap .panel>.lead,.exdrawer .exwrap .panel>.note,.exdrawer .exwrap .qnote,.exdrawer .exwrap .ctx-hero>p,.exdrawer .exwrap .climax .clead,.exdrawer .exwrap .purpose .pnote,.exdrawer .exwrap .recall .rmsg,.exdrawer .exwrap .msg-strong,.exdrawer .exwrap .between-cap,.exdrawer .exwrap .layer-note,.exdrawer .exwrap .shift-insight p,.exdrawer .exwrap .shift-row .cap,.exdrawer .exwrap .mk-hi p,.exdrawer .exwrap .rrow p.rd,.exdrawer .exwrap .panel .body p{display:revert!important}
 .exdrawer .exwrap .stats,.exdrawer .exwrap .mini,.exdrawer .exwrap .m2,.exdrawer .exwrap .m3,.exdrawer .exwrap .steps,.exdrawer .exwrap .pillars,.exdrawer .exwrap .hws,.exdrawer .exwrap .layer2,.exdrawer .exwrap .ach,.exdrawer .exwrap .cycle-wrap,.exdrawer .exwrap .flow,.exdrawer .exwrap .between,.exdrawer .exwrap .flow2,.exdrawer .exwrap .themodel,.exdrawer .exwrap .weekgrid,.exdrawer .exwrap .org-branches,.exdrawer .exwrap .xform,.exdrawer .exwrap .recall .rcompare,.exdrawer .exwrap .sol-ex{grid-template-columns:1fr!important}
@@ -1389,6 +1401,153 @@ details.sec>summary .chev{margin-left:8px!important}
 </div>
 <script>
 (function(){
+  // ── 章ごとの「解説」本文（背景・意図を説明ベースで。原案の思考をそのまま文章化） ──
+  var EXPLAIN=[];
+  EXPLAIN[0]=`<p class="lead-line">勝ち筋はもう証明されている。変えるのは「何をやるか」ではなく「どう回すか」。</p>
+<p>FY13下期の数字が示したのは、勝ち筋が<b>「既存アカウントの深掘り」</b>にあるということだった。FS経由（既存深掘り）の受注率はIS経由（新規／リサイクル）を大きく上回り、受注の多くがFS経由、売上の多くが既存アカウントから生まれている。つまり戦略（4 Value Cycle）そのものは正しかった。</p>
+<p>問題は中身ではなく<b>回し方</b>にある。これまでの4 Value Cycleは、事実上マネージャー一人が全工程を回す前提で組まれていて、そのままではチームに移植できなかった。だから今期は「What」ではなく「How／Who」を変える。</p>
+<h4><span class="qn">1</span>役割を分ける</h4>
+<p>戦略を描く力・案件を進める力・顧客構造を読む力は、それぞれ別の資質。一人に背負わせると潰れる。分業して連携させ、顧客から見える担当者は一人の人格に保つ。</p>
+<h4><span class="qn">2</span>AIで工数を削る</h4>
+<p>提案書・要件整理・記録といった「作業」をAIに巻き取らせる。減らした時間を、人にしかできない<b>関係構築</b>へ再投資する。前期のように負荷を足すのではなく、先に引いてから足す。</p>
+<h4><span class="qn">3</span>全員がアカウントを4階層で見る</h4>
+<p>目の前の「案件」だけでなく、その上にある担当者・部署・企業全体の構造まで立体的に捉える。これらを合わせて、<b>商談一つひとつのポテンシャルを最大化する</b>のが今期の目的。</p>`;
+
+  EXPLAIN[1]=`<p class="lead-line">なぜ今、戦い方を変えるのか。二つの地殻変動が起きている。</p>
+<h4>① THE MODEL型からの脱却</h4>
+<p>これまではISから渡されたパイプラインを「進めるだけ」でよかった。だが世の中のGTMそのものが変わり、マーケ・IS・FS・CSの役割が<b>重なり合う</b>ようになっている。これは自社のIS人員の問題ではなく、構造そのものの変化だ。役割を分けて注力する一方で、分けるほど<b>情報・打ち出し・施策・コミュニケーションの「一貫性」</b>が必要になる ── だから「戦略」が要る。空中戦（マーケ）〜地上戦（IS／FS）〜地下戦（CS）の全レイヤーを、一貫した意図でつなぐ。</p>
+<h4>② 「解決策ベンダー」への転換</h4>
+<p>顧客はもはや「プロ人材」という手段だけを求めていない。AIベンダー・SIer・コンサル・SaaS・同業が、<b>要件が固まる前の柔らかい段階から「解決策」ごと</b>提案してくる。プロ人材という手段を差し出すだけでは、この競合環境では負ける。</p>
+<p>だから動きとして「解決策ベンダー」になる。テーマの切り口を切り、体制を描き、使い方・アサイン・役割を提示する ── いわば<b>JD（人材要件）自体をこちらが作る側</b>に回る。「顧客思考」はマインドとして当然の前提。その上で、この転換を全員の共通認識にする。</p>`;
+
+  EXPLAIN[2]=`<p class="lead-line">戦略は正しかった。だが、浸透しなかった。この両方を数字で見る。</p>
+<p>数字で確かめると、勝ち筋は<b>既存アカウントの深掘り</b>にある ── FS経由（既存深掘り）の受注率はIS経由（新規／リサイクル）を大きく上回り、受注の多くがFS経由、売上の多くが既存アカウントから生まれた。サントリーHD・大崎電気・三菱電機のように、一社の中で複数名・複数フェーズへ広がった事例がそれを裏づける。「面の支援」モデルは確かに機能した。</p>
+<p>一方で、浸透はしなかった。アカウントプランは継続的に更新されず、4 Value Cycleの能動的な循環は<b>一部の担当・一部のアカウントでしか回らなかった</b>。これは個人の努力不足ではなく、構造の問題である（→次章）。</p>
+<h4>この半期に仕込んだ「型」</h4>
+<p>回りきらなかった一方で、転換に向けた準備は進んだ ── 提案書の自動生成、要件整理・議事録のAI化、SF連携の自動化（構築中）。そして<b>マーケの立ち上がり</b>。テーマを切ったメルマガ配信が濃い案件を多数引き込み、空中戦の打ち手が大きく前進した。</p>
+<p class="note-line">下期の実績が固まり次第、各 Value Cycle に対応させて数字で振り返る。とりわけ「プラン更新率」「経路別受注率の差」は、なぜ回らなかったかを示す最重要指標として2章の構造要因に直結させる。</p>`;
+
+  EXPLAIN[3]=`<p class="lead-line">「回し方」を変える理由は精神論ではない。仕組みが生んだ3つの構造要因がある。</p>
+<h4><span class="qn">1</span>一人で回す設計だった</h4>
+<p>4 Value Cycleは、マネージャー一人が全工程を循環させる前提で作られていた。<b>一人分の動きをそのまま全員に求めた時点で、移植できない設計</b>だった。誰かの努力が足りなかったのではなく、設計に無理があった。</p>
+<h4><span class="qn">2</span>CK月次が中長期を殺す</h4>
+<p>評価は半期でも、粗利（CK）は毎月追う。成果が出るまで時間のかかるアカウント開拓は後回しになり、<b>達成意識が高い人ほど目先の数字へ向かう</b>。結果、じっくり耕すインセンティブが構造的に消えていた。</p>
+<h4><span class="qn">3</span>FS起点の施策は形骸化する</h4>
+<p>FSの工数を増やす施策は、防衛本能で淘汰される（送付除外、ボタン放置）。<b>FSの能動的アクションを入り口にした施策は、必ず死ぬ</b>。だから施策は「工数を足す」形では設計しない。</p>
+<p>結論はシンプル ── 変えるのは「何をやるか（What）」ではなく、<b>「どう回すか（How／Who）」</b>である。</p>`;
+
+  EXPLAIN[4]=`<p class="lead-line">今期の背骨は二つ。「4 Value Cycleをチームで回す」と「全員が4階層で見る」。</p>
+<h4>4 Value Cycle は継承する。だが一人で回すのはやめる</h4>
+<p>4つの循環（Account Planning／Lead Engagement／Pipeline／Customer Success）自体は正しい。だが戦略を描く力・案件を進める力・構造を読む力は別の資質で、一人に求めると潰れる。<b>役割で分け、AIで裏方を軽くし、顧客から見える担当者は一人の人格に保つ</b>。この形に作り変える。</p>
+<h4>全員がアカウントを「4階層」で見る</h4>
+<p>企業 → 部署 → リード（担当者）→ 案件。<b>案件は最も短命な一点にすぎない</b>。その上に担当者の立ち位置、部署のミッション、企業全体の力学がある。案件を進めるだけのロールから脱却し、見るのは「案件」ではなく「アカウント」にする。</p>
+<h4>商談は「案件探索」だけの場ではない</h4>
+<p>商談は<b>顧客構造を理解する場</b>でもある。そこで積んだ構造理解を使って、こちらから仕掛ける（アウトバウンド）と、想起されて相談が来る（インバウンド）の両方向で刈り取る。とりわけ<b>現在稼働中のスターリード</b> ── 今まさに関係が最も温まっている状態 ── を逃さず深耕することが最重点。過去に稼働したことと、今温まっていることは違う。</p>`;
+
+  EXPLAIN[5]=`<p class="lead-line">戦い方を支える「2つの切り分け」。ここが中核の思想。</p>
+<h4>切り分け① 鳥の目と地上（空中戦 × 地上戦）</h4>
+<p>アカウント全体を俯瞰して「どこを攻めるか」を設計する頭（<b>鳥の目＝戦略立案</b>）と、設計に沿って実行する動き（<b>地上</b>）を分離する。前期はこれを全てFSに乗せて潰れた。今期は鳥の目をマネージャー＋マーケが持ち、ISが地上の実行を担い、FSは顧客接点で得た生の構造情報を供給する。</p>
+<p>肝は、<b>分業しても分断させない</b>こと。前期のTHE MODEL的な分業は分断を生んだ。今期は、地上で得た情報を空中戦へ還し、空中戦で温めたリードを地上へ渡す ── この往復を能動的に回す。</p>
+<h4>切り分け② 型化と属人（人とAIの線引き）</h4>
+<p>アカウント営業を3つの動作に分解する ── ①対話で構造を引き出す、②記録・構造化・地図の更新、③次にどこへ当たるかの判断。</p>
+<ul><li><b>①は人にしかできない</b>。ここは属人性を認める。商談で投げかけ、組織の力学を聞き出すのは人の仕事。</li><li><b>②③はAIが担う</b>。これまで②③は「誰もやらない領域」だった。ここをAIに巻き取らせ、人は①と実行に集中する。</li></ul>`;
+
+  EXPLAIN[6]=`<p class="lead-line">まず工数を削る。空いた時間をアカウントへ再投資する。順番が決定的に重要。</p>
+<p>前期は負荷を<b>「足して」</b>潰れた。今期は先に<b>「引いてから足す」</b>。ここが決定的な差になる。</p>
+<h4>AIとオペレーションで「作業」を削る</h4>
+<ul><li>提案書作成 ── 自動生成パイプラインを整備済み</li><li>要件定義 ── AIで簡素化（手間減）＋高度化（精度増）</li><li>議事録 → Salesforce連携 ── 情シスと自動化を構築中</li></ul>
+<p>AIが裏方を引き受けるからこそ、FSは一人の人格として顧客に向き合える。減らした時間を、人にしかできない<b>関係構築</b>へ振り向ける。</p>
+<h4>土台としての GTM統合フロー</h4>
+<p>リードの状態（リサイクル／休眠／未提案／稼働後）と、誰がどんなアクションを取るべきかを一枚のフローに可視化する。チーム全員が同じ地図で動くための<b>共通言語</b>であり、新メンバーのオンボーディング教材であり、将来の全社プロセスの原典にもなる。</p>`;
+
+  EXPLAIN[7]=`<p class="lead-line">全員が必ず理解すべき一点 ── なぜ「人当て（人材紹介）」から「ソリューション」へ変わるのか。</p>
+<p>先方で要件が固まり<b>JD（人材要件）がある</b>なら、人当てでよい（顧客がそれを期待している）。だが今、競合はプロ人材会社だけではない。コンサル・AI関連・プロダクトを持つ会社が、<b>要件が固まる前からソリューションごと</b>提案してくる。人材要件だけを待っていては、案件数が絞られ、外部パートナーとしての深さも出ない。</p>
+<h4>「間の層」が、顧客マターから提案側マターへ移った</h4>
+<p>かつては「サーキュレーション →（役割・ケイパビリティ）→ 顧客のニーズ」と、人が直接ニーズに紐づき、その<b>間（使い方・体制・アウトプット）は顧客が自分で埋めてくれた</b>。今はその間が深くなり、提案側が担うべき領域になっている。使い方・切り口・解決体制・アサイン・アウトプット・解決ロードマップ ── ここを<b>こちらが能動的に巻き取る</b>必要がある。</p>
+<h4>人材要件を「待つ」と、パイプラインを顧客に支配される</h4>
+<p>「今必要な人材要件ありますか？」と聞けば、多くは「ない」で終わる。<b>現状から潜在課題を引き出し、中間点をこちらで整理する</b>ことで初めて、潜在ニーズと未来のインバウンド相談が生まれる。待つほど、案件数もパイプラインも顧客側にコントロールされてしまう。</p>`;
+
+  EXPLAIN[8]=`<p class="lead-line">「誰を出すか」ではなく「どう解決するか」。間の層を、4つの型で埋める。</p>
+<p>プロ人材（手段）と顧客（ニーズ／ToBe）の間には、<b>解決策・解決支援体制・プロダクト・サービス</b>という層がある。かつてこの層は顧客が自分で埋めてくれたから、人を出せば済んだ。今はここを競合（コンサル・AIベンダー・SaaS）が取りに来る。<b>手段（人）だけを差し出すと、間が埋まらず負ける</b>。だからこの層を「4つの型」としてこちらから提示する。</p>
+<h4>解決策の4つの型</h4>
+<ul>
+<li><b>プロジェクト設計</b> ── ゴール・スコープ・マイルストーンを最初に握り、検証と意思決定が回るプロジェクトを設計する。</li>
+<li><b>体制図</b> ── 顧客メンバー・プロ人材・既存ベンダーの役割を整理し、最小の体制で前に進む座組みを描く。</li>
+<li><b>使い方（関与モデル）</b> ── リスキリング／PM／特定領域だけ等、丸ごとでなく「足りない一部」から活用できる形を提示する。</li>
+<li><b>テーマ／切り口</b> ── 課題が漠然としていても、業界・機能の論点から切り口を提示し、取り組むテーマを一緒に定める。</li>
+</ul>`;
+
+  EXPLAIN[9]=`<p class="lead-line">全員が同じ動きをするのではなく、保有案件数と実証された強みに応じて役割を分ける。</p>
+<p>ソリューション営業への変革は、全員一律には進められない。だから<b>保有プロジェクト数と、これまでに実証された強み</b>に応じて、FSの役割を2つの層に分ける。これは優劣ではなく<b>適性に応じた配置</b>であり、チーム全体で案件数を積み上げるための分業である。</p>
+<h4>エキスパート層 ── 継続深耕 ＋ 既顧客新規</h4>
+<p>保有プロジェクトが多い層は、<b>「継続を守る＋既顧客から新規を積む」</b>に集中する。更新を長いスパン（半期・1年）の提案に切り替えて稼働を維持し、温まった関係を起点に同一顧客の新規案件を取りに行く（既顧客新規のロールモデル）。JDが明確な案件は確実に遂行しつつ、深耕の中で潜在ニーズを引き出す。</p>
+<h4>メンバー層 ── 新規パイプライン推進 ＋ 薄くCS</h4>
+<p>保有が積み上がり途上の層は、<b>新規案件のパイプライン推進</b>を主軸に、ソリューション提案への変革を担う。薄くCSも受け持ちながら、案件数と提案・深耕の幅を広げていく。</p>
+<p class="note-line">狙いは、エキスパートのJDにある「既存法人顧客への深耕」「自身での顧客開拓」を役割として純化すること。達成に向けた具体的な行動は本人が設計する。</p>`;
+
+  EXPLAIN[10]=`<p class="lead-line">AIとオペレーションが「作業」を引き受ける。だから人は、人にしかできないことへ。</p>
+<p>狙いは一つ ── 営業が<b>「関係構築・接点づくり・脳内シェアの獲得・未来（潜在）ニーズの訴求」</b>に時間を使えるようにすること。とりわけ深耕営業は、AIにもオペレーションにも代替できない、人間＝営業の仕事になる。</p>
+<h4>商談の目的を「案件探索」だけにしない</h4>
+<p>文脈を続け、ケイパビリティを広げ、未来ニーズを会話し、ときにご挨拶だけでもいい。<b>全ての商談を1時間にする必要はない</b> ── 15分でも、電話でもいい。近況を報告し合い、他社事例を共有し、同じ場で同期コミュニケーションを取ること自体に価値がある。接点の「量」を増やしにいく。</p>
+<h4>第一想起を取る</h4>
+<p>目指すのは<b>第一想起</b> ── 課題が発生したとき、真っ先に「あの人に相談しよう」と思い出してもらえるか。会社としての認知（非同期・ナーチャリング）も要るが、相談ハードルを下げるのは<b>個人として想起される力（同期）</b>だ。データだけでは見えないところで、顧客の脳内シェアを取っておく。ここが勝ち筋。</p>
+<h4>機会は会社が用意する。リレーションは、あなたが作る</h4>
+<p>会う「機会」はレビューMTGの初期設定などで<b>会社が仕組みとして提供する</b>。だが、そこで対面に行くか・何を話すか・どう深めるかは型化できない ── リレーションは各自が足で作る。遠回りに見えて、関係が温まった顧客からの相談（インバウンド）が最も受注率が高い。深耕営業は、最も確実な案件創出である。</p>`;
+
+  EXPLAIN[11]=`<p class="lead-line">情報の扱いを3段階に分け、深い地図はTier1に集中投資する。選択と集中。</p>
+<h4>情報の3段階</h4>
+<ul>
+<li><b>全アカウント</b> ── 議事録を案件に紐づける（AIで自動化）。抜け漏れを構造的に防ぐ。</li>
+<li><b>Tier1（各FSが設定）</b> ── 企業・部署・担当者の関係性／競合／予算／決裁者／購買グループをNotionに整理し、地図を広げてアカウント開拓する。</li>
+<li><b>稼働中スターリード</b> ── 1ヶ月／3ヶ月のレビューMTGで深耕する。</li>
+</ul>
+<p><b>マッチアップ制は廃止する。</b> IS2名対FS7名では個別の噛み合わせは機能しない。代わりにリードの担当付けで公平性を担保する。</p>
+<h4>移植可能性の検証</h4>
+<p>鳥の目を最初から持たせるのではなく、<b>AIが描いた地図（接点／未接触が可視化されたもの）を、アカウント構造を概念として語れるメンバーに渡し、その空白に向かって動けるか</b>を検証する。動けば「概念を持つ人にAI地図を配れば鳥の目が機能する」という再現の型が確立する。これはチーム全体への移植可能性を測る試金石。</p>`;
+
+  EXPLAIN[12]=`<p class="lead-line">前期のフレーム（4 Value Cycle）を継承し、回り方を今期版に更新する。</p>
+<h4>Customer Success ── 3ヶ月レビューMTG制度</h4>
+<p>キックオフ時に1ヶ月後・3ヶ月後を固定で組み込む。①品質担保＋高評価の引き出し、②付随提案、③文脈違いの染み出し、を一つの器で行う。<b>後付けの接点は形骸化するが、契約として最初から組み込んだ接点は形骸化しにくい</b> ── ここが肝。「放置 → 突然提案」を防ぐ。</p>
+<h4>Lead Engagement ── 顧客チャットへのAI追加＋Tier別</h4>
+<p>キックオフで顧客チャットに当然のようにAIを追加し、FSの手作業を介さず情報を蓄積する。Tierに応じて、空中×地上連携／引き上げ／脳内シェアを打ち分ける。</p>
+<h4>Account Planning ── AIアカウントカルテ生成</h4>
+<p>議事録・組織図・SFをAIが読み、構造マップ（接点／未接触・染み出し戦略）を自動生成する。人力作成からの進化。</p>
+<h4>Pipeline Management ── 2フラグ＋提案書の質</h4>
+<p>PLシートに「PJT良好」「顧客関係性」の2フラグ（判断ではなく記録）。提案書は失注後の横展開にも効く「面の顧客体験」として、1件1件落とさない。</p>`;
+
+  EXPLAIN[13]=`<p class="lead-line">まだ解けていないことを、隠さず認識して向き合う。</p>
+<h4><span class="qn">1</span>新規アカウントの「突破力」は型化できるか</h4>
+<p>今期の施策の多くは、<b>既に関係のある顧客が起点</b>になっている。だが「そもそも会ってもらう・返信が来る関係をゼロから作る力」は依然として属人的で、型化の目処が立っていない。ここは外部知見も得ながら探求を続ける領域。</p>
+<h4><span class="qn">2</span>評価をCKと切り離せるか</h4>
+<p>中長期の関係構築を促すには、CK一辺倒から<b>活動量（到達人数・定例同席・インバウンド発生）を評価する方向</b>への移行が要るかもしれない。戦略アカウントを「報酬」ではなく「責任」として定義できるか ── これは引き続きの論点。</p>`;
+
+  EXPLAIN[14]=`<p class="lead-line">7月共有 → 8月整備 → FY14/15運用。段階的に定着させる。</p>
+<h4>7月 ── 共有</h4>
+<p>全体会議でFY14/15方針を全メンバーに共有する。キックオフテンプレートを整備（1ヶ月後フォローを組み込み）、顧客チャットへのAI追加テンプレの運用を開始する。</p>
+<h4>8月 ── 整備</h4>
+<p>稼働中案件の情報格納体制を整備し、<b>3ヶ月レビューMTG制度</b>を設計・導入する。人の出入りもこの月。</p>
+<h4>FY14/15 ── 本格運用</h4>
+<p>Tier1のAIカルテ展開、概念を語れるメンバーへの鳥の目移植の検証、Tier別アプローチの定着を進める。</p>`;
+
+  EXPLAIN[15]=`<p class="lead-line">FY14のチーム構成 ── 営業と企画の二軸で、地上戦に集中できる体制をつくる。</p>
+<p>部長の下にマネージャーを置き、組織を<b>①営業</b>と<b>②企画</b>の二軸で構成する。</p>
+<h4>① 営業</h4>
+<p>エキスパートを含むFS陣が、既存深耕と新規推進を<b>強みに応じて</b>担う。顧客接点と案件推進、Tier1の構造情報提供が主な役割。</p>
+<h4>② 企画</h4>
+<p><b>GTM Unit</b>（マーケ／IS／業務委託ディレクション）と<b>企画 Unit</b>（提案企画・BPR／リスキリング事務局）が、空中戦の打ち手とオペレーション整備を支える。</p>
+<p>営業が地上戦に集中できるよう、企画・AI・オペレーションが裏側を引き受ける ── これがこの体制図の意図。アシスタントが実務を支援する。</p>`;
+
+  EXPLAIN[16]=`<p class="lead-line">人数・職種が増えても回るよう、動き方を「仕組み」で担保する。</p>
+<h4>週の型 ── 同期は最小、間は非同期</h4>
+<p>集まる場は最小限に絞る ── 月曜朝会（週の入口＝目標と計上見込みの共有）、水曜の全員出社（対面で繋がる）、金曜夕会（週の出口＝振り返りと、良い案件・提案書の共有＝ナレッジ化）。火・木・金は非同期で、朝イチにSlackで「今日のやりきり＋体調＋備考」を投稿する。元気な顔を見る代わりに、体調と動きを毎朝可視化する。</p>
+<h4>記録と案件管理</h4>
+<ul>
+<li><b>記録</b> ── 録画はしない。AIノートテイカーで要約を自動保存し、残すのは決定事項と「良い提案書」のリンクのみ。</li>
+<li><b>案件管理はSalesforceを正とする</b> ── 進捗を口頭で聞かない。「SFに書いていなければ進んでいない」とみなす。滞留はAI／ルールでアラート抽出し、月曜にマネージャーが滞留分だけ確認する。</li>
+</ul>
+<p>顔を見るより、繋がりと規律を<b>仕組み</b>で担保する ── これがチームの動き方の思想。</p>`;
+
+  // ── サイドパネル制御 ──
   var dr=document.getElementById('exdrawer');
   var ov=dr.querySelector('.ex-ov'), ttl=dr.querySelector('.ex-ttl'), bd=dr.querySelector('.ex-body'), xb=dr.querySelector('.ex-x');
   function close(){dr.classList.remove('open');document.body.style.overflow='';}
@@ -1400,44 +1559,42 @@ details.sec>summary .chev{margin-left:8px!important}
     var c=st.cloneNode(true); var sm=c.querySelector('small'); if(sm)sm.remove();
     var no=c.querySelector('.no'); if(no)no.remove(); return c.textContent.trim();
   }
-  function openSec(sec, focusIdx){
+  function openSec(sec){
+    var idx=+sec.dataset.exsec;
     ttl.textContent=secName(sec);
-    var wrap=document.createElement('div'); wrap.className='exwrap';
-    [].forEach.call(sec.children,function(ch){
-      if(ch.tagName==='SUMMARY') return;
-      wrap.appendChild(ch.cloneNode(true));
-    });
-    wrap.querySelectorAll('.exi,.sec-explain').forEach(function(x){x.remove();});
     bd.innerHTML='';
     var tip=document.createElement('div'); tip.className='ex-tip';
-    tip.innerHTML='<i class="ti ti-bulb"></i> プレゼンでは口頭で補足する部分です。読み返し用に、この章の説明をすべて表示しています。';
-    bd.appendChild(tip); bd.appendChild(wrap);
-    dr.classList.add('open'); document.body.style.overflow='hidden'; bd.scrollTop=0;
-    if(focusIdx!=null){
-      var t=wrap.querySelector('[data-exidx="'+focusIdx+'"]');
-      if(t){t.classList.add('ex-focus'); setTimeout(function(){t.scrollIntoView({block:'center',behavior:'smooth'});},80);}
+    tip.innerHTML='<i class="ti ti-bulb"></i> この章の背景と意図を、文章で解説しています（プレゼンでは口頭で補足する部分）。';
+    bd.appendChild(tip);
+    if(EXPLAIN[idx]){
+      var doc=document.createElement('div'); doc.className='ex-doc'; doc.innerHTML=EXPLAIN[idx];
+      bd.appendChild(doc);
+    } else {
+      var wrap=document.createElement('div'); wrap.className='exwrap';
+      [].forEach.call(sec.children,function(ch){ if(ch.tagName!=='SUMMARY') wrap.appendChild(ch.cloneNode(true)); });
+      wrap.querySelectorAll('.exi,.sec-explain').forEach(function(x){x.remove();});
+      bd.appendChild(wrap);
     }
+    dr.classList.add('open'); document.body.style.overflow='hidden'; bd.scrollTop=0;
   }
 
   var itemSel='.mcard,.pillar,.rolecard,.rrow,.hwcard,.lcard,.step,.achcard,.opsitem,.tier,.mk-hi,.tgt-banner,.band,.shift-row,.shift-insight,.between,.between-takeaway,.xform,.themodel,.cycle-wrap,.flow,.flow2,.funnel,.purpose,.recall,.msg-strong,.compet,.sol-ex,.qnote,.ctx-hero,.weekgrid,.org,.stats';
-  var gidx=0;
-  document.querySelectorAll('details.sec').forEach(function(sec){
+  document.querySelectorAll('details.sec').forEach(function(sec,secIndex){
+    sec.dataset.exsec=secIndex;
     // 章ヘッダーの解説ボタン
     var sum=sec.querySelector('summary');
     var b=document.createElement('button'); b.className='sec-explain'; b.type='button';
     b.innerHTML='<i class="ti ti-notebook"></i> 解説';
     b.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();openSec(sec);});
     var chev=sum.querySelector('.chev'); if(chev) sum.insertBefore(b,chev); else sum.appendChild(b);
-    // 各項目のⓘバッジ（入れ子は最外側のみ）
+    // 各項目のⓘバッジ（入れ子は最外側のみ）→ その章の解説を開く
     [].forEach.call(sec.querySelectorAll(itemSel),function(it){
-      if(it.parentElement && it.parentElement.closest(itemSel)) return; // 入れ子はスキップ
-      it.dataset.exidx=gidx;
+      if(it.parentElement && it.parentElement.closest(itemSel)) return;
       if(getComputedStyle(it).position==='static') it.style.position='relative';
-      var ib=document.createElement('button'); ib.className='exi'; ib.type='button'; ib.title='この項目の解説';
+      var ib=document.createElement('button'); ib.className='exi'; ib.type='button'; ib.title='この章の解説';
       ib.innerHTML='<i class="ti ti-info-circle"></i>';
-      (function(s,idx){ib.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();openSec(s,idx);});})(sec,gidx);
+      ib.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();openSec(sec);});
       it.appendChild(ib);
-      gidx++;
     });
   });
 })();
