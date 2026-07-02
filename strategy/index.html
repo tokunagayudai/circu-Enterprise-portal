@@ -152,6 +152,7 @@ body{
 .chip.mk{background:#f1ecf8;color:var(--purple)}
 .chip.ai{background:#eef4f8;color:var(--blue-d)}
 .chip.mgr{background:#fff3e0;color:var(--orange)}
+.chip.as{background:#e7edf3;color:#4a5a68}
 .rrow p.rd{font-size:12.5px;color:var(--ink);line-height:1.6;margin-top:8px}
 .cs-sub{margin-top:8px;padding-left:2px;display:flex;flex-direction:column;gap:5px}
 .cs-sub .li{font-size:12.5px;color:var(--ink);display:flex;gap:7px}
@@ -174,6 +175,11 @@ body{
 .org-col .mem .role{font-size:10.5px;font-weight:500;color:var(--gray)}
 .org-col .unit{font-size:11px;font-weight:800;color:var(--moss);padding:8px 16px 2px;display:flex;align-items:center;gap:6px}
 .org-col .unit::before{content:'';width:8px;height:8px;border-radius:2px;background:var(--moss)}
+.org-col.eigyo .unit{color:var(--blue)}
+.org-col.eigyo .unit::before{background:var(--blue)}
+.org-col .org-aim{font-size:10.5px;font-weight:700;color:var(--blue-d);background:var(--blue-l);border-radius:8px;padding:5px 10px;margin:3px 14px 4px;display:flex;gap:6px;align-items:flex-start;line-height:1.45}
+.org-col .org-aim i{color:var(--blue);font-size:13px;flex:none;margin-top:1px}
+.org-col .mem.asst{background:#f7fbfe;border:1px dashed #cfe6f6;color:var(--gray);font-weight:600}
 .org-assist{margin-top:16px;border:1.5px solid #d6e8f5;border-radius:14px;background:#f7fbfe;padding:14px 18px;width:100%;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .org-assist .al{font-size:13px;font-weight:800;color:var(--blue-d);display:flex;align-items:center;gap:7px}
 .org-assist .am{display:flex;gap:6px;flex-wrap:wrap}
@@ -512,7 +518,7 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
     <div class="fbiz">
       <div class="fbiz-head">「プロ人材」という手段売りと「解決策（ソリューション）」の<b>両方</b>を取りに行く</div>
       <div class="fseg flexy">
-        <div class="fseg-l"><span class="fseg-badge"><i class="ti ti-users"></i> FLEXY</span><p class="fseg-lever"><i class="ti ti-bolt"></i> この領域は<b>AIマッチング加速</b>によって、人の稼働確保を強化する</p></div>
+        <div class="fseg-l"><span class="fseg-badge"><i class="ti ti-users"></i> FLEXY</span><p class="fseg-lever"><i class="ti ti-bolt"></i> <b>AIマッチング加速</b>によって、人の稼働確保を強化する</p></div>
         <div class="fbiz-chain">
           <div class="fn co">サーキュレーション<span>「人」</span></div>
           <i class="ti ti-arrow-right"></i>
@@ -520,24 +526,26 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
         </div>
       </div>
       <div class="fseg pro">
-        <div class="fseg-l"><span class="fseg-badge"><i class="ti ti-bulb"></i> プロシェア案件</span><p class="fseg-lever"><i class="ti ti-arrows-maximize"></i> この領域は<b>提案強化</b>によって、案件の領域を広げる</p></div>
+        <div class="fseg-l"><span class="fseg-badge"><i class="ti ti-bulb"></i> プロシェア案件</span><p class="fseg-lever"><i class="ti ti-arrows-maximize"></i> <b>提案強化</b>によって、案件の領域を拡大する</p></div>
         <div class="fbiz-chain">
           <div class="fn co">サーキュレーション<span>「人」</span></div>
           <i class="ti ti-arrow-right"></i>
           <div class="fn sol">解決策<span>プロジェクト要件／進め方／マイルストーン／体制／役割／タスク</span></div>
           <i class="ti ti-arrow-right"></i>
-          <div class="fn cust">顧客<span>「人材要件」</span></div>
+          <div class="fn cust">顧客<span>「課題感」</span></div>
         </div>
       </div>
     </div>
 
-    <h3 class="ph">我々の周辺で、何が起きているか</h3>
+    <h3 class="ph">競合の変化</h3>
     <p class="lead">「人材・プロ人材」というソリューションが決まっていれば、当社は「人材」を提供すればよかった。だが今、企業は様々なサービスで「解決」を考えられる。だから人ではなく、<b>「解決策」を一緒に考え検討するフェーズから顧客と対話する</b>必要がある。</p>
     <div class="compet">
       <span class="cp"><i class="ti ti-robot"></i> AIベンダー</span>
       <span class="cp"><i class="ti ti-server"></i> SIer</span>
       <span class="cp"><i class="ti ti-briefcase"></i> コンサルファーム</span>
+      <span class="cp"><i class="ti ti-briefcase"></i> 小規模コンサル</span>
       <span class="cp"><i class="ti ti-tools"></i> ツールベンダー（SaaS）</span>
+      <span class="cp"><i class="ti ti-building-store"></i> 代理店</span>
       <span class="cp"><i class="ti ti-users-group"></i> 同業（Hipro 等）</span>
     </div>
     <p class="lead" style="margin-top:14px">同時に、当社は<b>PKSHAグループのケイパビリティ</b>や<b>マーケ側のテーマパッケージ</b>など武器を増やしている。これも「武器の提示」ではなく、<b>「解決策」として示す。</b></p>
@@ -702,8 +710,8 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
           <text x="150" y="165" text-anchor="middle" fill="#fff" font-size="12.5" font-family="'M PLUS Rounded 1c'">最大化</text>
           <g><rect x="92" y="20" width="116" height="56" rx="12" fill="#e8f6ff" stroke="#0079c0" stroke-width="2"/><text x="150" y="44" text-anchor="middle" fill="#0079c0" font-size="11" font-weight="700" font-family="'M PLUS Rounded 1c'">Account Planning</text><text x="150" y="62" text-anchor="middle" fill="#1a2a38" font-size="11">アカウント戦略</text></g>
           <g><rect x="200" y="122" width="100" height="56" rx="12" fill="#e8f6ff" stroke="#0a6e8c" stroke-width="2"/><text x="250" y="146" text-anchor="middle" fill="#0a6e8c" font-size="10.5" font-weight="700" font-family="'M PLUS Rounded 1c'">Lead Engage.</text><text x="250" y="164" text-anchor="middle" fill="#1a2a38" font-size="11">リード育成</text></g>
-          <g><rect x="92" y="224" width="116" height="56" rx="12" fill="#e8f6ff" stroke="#0079c0" stroke-width="2"/><text x="150" y="248" text-anchor="middle" fill="#0079c0" font-size="11" font-weight="700" font-family="'M PLUS Rounded 1c'">Customer Success</text><text x="150" y="266" text-anchor="middle" fill="#1a2a38" font-size="11">顧客深耕</text></g>
-          <g><rect x="0" y="122" width="100" height="56" rx="12" fill="#e8f6ff" stroke="#0a6e8c" stroke-width="2"/><text x="50" y="146" text-anchor="middle" fill="#0a6e8c" font-size="11" font-weight="700" font-family="'M PLUS Rounded 1c'">Pipeline</text><text x="50" y="164" text-anchor="middle" fill="#1a2a38" font-size="11">案件推進</text></g>
+          <g><rect x="92" y="224" width="116" height="56" rx="12" fill="#e8f6ff" stroke="#0079c0" stroke-width="2"/><text x="150" y="248" text-anchor="middle" fill="#0079c0" font-size="11" font-weight="700" font-family="'M PLUS Rounded 1c'">Pipeline</text><text x="150" y="266" text-anchor="middle" fill="#1a2a38" font-size="11">案件推進</text></g>
+          <g><rect x="0" y="122" width="100" height="56" rx="12" fill="#e8f6ff" stroke="#0a6e8c" stroke-width="2"/><text x="50" y="146" text-anchor="middle" fill="#0a6e8c" font-size="9.5" font-weight="700" font-family="'M PLUS Rounded 1c'">Customer Success</text><text x="50" y="164" text-anchor="middle" fill="#1a2a38" font-size="11">顧客深耕</text></g>
         </svg>
       </div>
       <div class="points">
@@ -740,11 +748,15 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
         <div class="roles">
           <span class="chip ai"><i class="ti ti-robot"></i> AI</span>
           <span class="chip fs"><i class="ti ti-user-heart"></i> FS</span>
+          <span class="chip as"><i class="ti ti-user"></i> アソシエイト</span>
         </div>
         <p class="rd">AIとFSの共存。大幅なBPRで工数削減と品質向上を両立。<b>一つの案件接点を起点に</b>、未来ニーズ・周辺ニーズ・周辺担当者／部署への染み出しを行い、案件推進だけでなく文脈を広げる。</p>
       </div>
       <div class="rrow cs">
         <div class="rh"><span class="rt">Customer Success</span><span class="rj">顧客深耕</span><span class="cs-badge">最注力</span></div>
+        <div class="roles">
+          <span class="chip fs"><i class="ti ti-user-heart"></i> FS</span>
+        </div>
         <div class="cs-sub">
           <div class="li"><b>①</b><span>案件を成功させる（品質担保）</span></div>
           <div class="li"><b>②</b><span>その間に既顧客営業を行う。特にプロジェクト開始後の<b style="color:var(--ink)">レビューMTG</b>を実施。提案資料はPROBASE・案件資料をインプットに、マーケ／IS側で企画する。</span></div>
@@ -1129,16 +1141,24 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
       <div class="org-stem"></div>
       <div class="org-branches">
         <div class="org-col eigyo">
-          <div class="colh"><i class="ti ti-businessplan"></i> ① 営業</div>
+          <div class="colh"><i class="ti ti-businessplan"></i> ① フロント</div>
           <div class="colmgr">マネージャー 徳永（＋小林部長）</div>
+          <div class="unit">FLEXY Unit</div>
+          <div class="org-aim"><i class="ti ti-target"></i> 目指す層：継続深耕 ＋ 既顧客新規</div>
           <div class="members">
-            <div class="mem">土田 <span class="role">エキスパート / 主にFLEXY案件</span></div>
-            <div class="mem">栫 <span class="role">エキスパート</span></div>
-            <div class="mem">中村 <span class="role">エキスパート</span></div>
+            <div class="mem">土田 <span class="role">主にFLEXY案件</span></div>
+            <div class="mem asst">アシスタント：関</div>
+          </div>
+          <div class="unit">Prosharing Unit</div>
+          <div class="org-aim"><i class="ti ti-target"></i> 目指す層：継続深耕＋既顧客新規 ／ 幅広いパイプライン推進</div>
+          <div class="members">
+            <div class="mem">栫</div>
+            <div class="mem">中村</div>
             <div class="mem">岡部</div>
             <div class="mem">福本</div>
             <div class="mem">木曽</div>
             <div class="mem">飯田 <span class="role">PKSHA 50%</span></div>
+            <div class="mem asst">アシスタント：小松田</div>
           </div>
         </div>
         <div class="org-col kikaku">
@@ -1156,10 +1176,6 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
             <div class="mem">小野 <span class="role">リスキリング（事務局）</span></div>
           </div>
         </div>
-      </div>
-      <div class="org-assist">
-        <div class="al"><i class="ti ti-users-group"></i> アシスタント</div>
-        <div class="am"><span>小松田</span><span>派遣</span></div>
       </div>
     </div>
   </div>
@@ -1579,13 +1595,15 @@ details.sec>summary .chev{margin-left:8px!important}
 <h4>FY14/15 ── 本格運用</h4>
 <p>Tier1のAIカルテ展開、概念を語れるメンバーへの鳥の目移植の検証、Tier別アプローチの定着を進める。</p>`;
 
-  EXPLAIN[15]=`<p class="lead-line">FY14のチーム構成 ── 営業と企画の二軸で、地上戦に集中できる体制をつくる。</p>
-<p>部長の下にマネージャーを置き、組織を<b>①営業</b>と<b>②企画</b>の二軸で構成する。</p>
-<h4>① 営業</h4>
-<p>エキスパートを含むFS陣が、既存深耕と新規推進を<b>強みに応じて</b>担う。顧客接点と案件推進、Tier1の構造情報提供が主な役割。</p>
+  EXPLAIN[15]=`<p class="lead-line">FY14のチーム構成 ── フロントと企画の二軸。フロントは強み（目指す層）で2つに分ける。</p>
+<p>部長の下にマネージャーを置き、組織を<b>①フロント</b>と<b>②企画</b>の二軸で構成する。フロントは、実証された強み＝<b>目指す層</b>に応じて2つのUnitに分ける（優劣ではなく適性に応じた配置）。</p>
+<h4>① フロント ── FLEXY Unit</h4>
+<p>目指す層は<b>「継続深耕 ＋ 既顧客新規」</b>。温まった関係を守り、そこから同一顧客の新規を積む。要件が明確なFLEXY案件を軸に、AIマッチングの加速で稼働確保を強化する。アシスタントが実務を支援する。</p>
+<h4>① フロント ── Prosharing Unit</h4>
+<p>目指す層は<b>「継続深耕＋既顧客新規」と「幅広いパイプライン推進」の両方</b>。解決策提案（プロシェア案件）で案件の領域を拡大しつつ、継続・既顧客新規も担う。ソリューション営業への変革の主軸。アシスタントが実務を支援する。</p>
 <h4>② 企画</h4>
 <p><b>GTM Unit</b>（マーケ／IS／業務委託ディレクション）と<b>企画 Unit</b>（提案企画・BPR／リスキリング事務局）が、空中戦の打ち手とオペレーション整備を支える。</p>
-<p>営業が地上戦に集中できるよう、企画・AI・オペレーションが裏側を引き受ける ── これがこの体制図の意図。アシスタントが実務を支援する。</p>`;
+<p>フロントが地上戦・顧客接点に集中できるよう、企画・AI・オペレーションが裏側を引き受ける ── これがこの体制の意図。</p>`;
 
   EXPLAIN[16]=`<p class="lead-line">人数・職種が増えても回るよう、動き方を「仕組み」で担保する。</p>
 <h4>週の型 ── 同期は最小、間は非同期</h4>
