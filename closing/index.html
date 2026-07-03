@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧾</text></svg>">
+<title>請求・締め ダッシュボード｜エンタープライズ ポータル｜株式会社サーキュレーション</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.11.0/dist/tabler-icons.min.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+:root{
+  --blue:#0079c0; --blue-d:#003d5e; --blue-mid:#5599be; --blue-l:#e8f6ff;
+  --moss:#0a6e8c; --green:#22a047; --orange:#ed7d31; --red:#d64545; --purple:#7057a3;
+  --ink:#1a2a38; --gray:#6b6864; --line:#d6e8f5;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'M PLUS Rounded 1c','Hiragino Kaku Gothic ProN',sans-serif;background:linear-gradient(160deg,#e8f6ff 0%,#d8eefb 100%);color:var(--ink);min-height:100vh;padding:0 0 60px}
+.topbar{background:linear-gradient(135deg,#0079c0,#005a92);color:#fff;padding:16px 24px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 12px rgba(0,121,192,.25);position:sticky;top:0;z-index:50}
+.topbar>i{font-size:22px}
+.topbar h1{font-size:17px;font-weight:800}
+.topbar-badge{background:rgba(255,255,255,.2);border-radius:20px;padding:3px 12px;font-size:11px;font-weight:500;margin-left:4px}
+.topbar-spacer{flex:1}
+.topbar a.back{color:#fff;text-decoration:none;font-size:12px;font-weight:600;display:flex;align-items:center;gap:5px;opacity:.92}
+.topbar a.back:hover{opacity:1}
+.wrap{max-width:1280px;margin:0 auto;padding:22px 22px 0}
+
+/* データソース注記バナー */
+.srcbar{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;border-radius:12px;padding:10px 16px;margin-bottom:16px}
+.srcbar.mock{background:#fff3e0;border:1.5px solid #f0c891;color:#9a5b18}
+.srcbar.live{background:#e6f7ee;border:1.5px solid #a8e0bf;color:#1e7a3c}
+.srcbar i{font-size:17px;flex:none}
+.srcbar b{font-weight:800}
+.srcbar .upd{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:11px;opacity:.8}
+
+/* 締めゲージ */
+.gauge{background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:22px 24px;box-shadow:0 4px 14px rgba(0,121,192,.06);margin-bottom:18px}
+.gauge-top{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+.gauge-ttl{font-size:14px;font-weight:800;color:var(--blue-d);display:flex;align-items:center;gap:8px}
+.gauge-ttl i{color:var(--blue);font-size:18px}
+.gauge-num{font-size:13px;color:var(--gray);font-weight:600}
+.gauge-num b{font-size:26px;font-weight:800;color:var(--blue);font-family:'JetBrains Mono',monospace;margin:0 2px}
+.gauge-num .rem{color:var(--orange)}
+.gbar{height:16px;border-radius:10px;background:#eef4f8;overflow:hidden;position:relative}
+.gbar-fill{height:100%;border-radius:10px;background:linear-gradient(90deg,#22a047,#5ab870);transition:width .5s}
+.gauge-foot{display:flex;gap:22px;margin-top:14px;flex-wrap:wrap}
+.gstat{display:flex;align-items:center;gap:9px}
+.gstat .gi{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-size:19px;flex:none}
+.gstat .gi.days{background:var(--blue-l);color:var(--blue)}
+.gstat .gi.stuck{background:#fdeaea;color:var(--red)}
+.gstat .gv{font-size:20px;font-weight:800;font-family:'JetBrains Mono',monospace;line-height:1}
+.gstat .gl{font-size:10.5px;color:var(--gray);font-weight:600}
+.gstat .gv.warn{color:var(--orange)}
+.gstat .gv.bad{color:var(--red)}
+
+/* フィルタバー */
+.filters{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:12px 16px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,121,192,.05)}
+.filters .fl-lab{font-size:11px;font-weight:800;color:var(--gray);display:flex;align-items:center;gap:5px}
+.filters .fl-lab i{font-size:15px;color:var(--blue-mid)}
+.filters select{font-family:inherit;font-size:12.5px;font-weight:700;color:var(--blue-d);background:#f7fbfe;border:1.5px solid var(--line);border-radius:9px;padding:7px 11px;cursor:pointer}
+.filters select:focus{outline:none;border-color:var(--blue-mid)}
+.toggle{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:var(--blue-d);cursor:pointer;user-select:none}
+.toggle input{display:none}
+.toggle .tk{width:38px;height:22px;border-radius:12px;background:#cfd8de;position:relative;transition:.18s;flex:none}
+.toggle .tk::after{content:'';position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.18s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.toggle input:checked+.tk{background:var(--orange)}
+.toggle input:checked+.tk::after{transform:translateX(16px)}
+.filters .spacer{flex:1}
+.filters .count{font-size:11.5px;color:var(--gray);font-weight:700;font-family:'JetBrains Mono',monospace}
+
+/* テーブル */
+.tablewrap{background:#fff;border:1.5px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 4px 14px rgba(0,121,192,.06)}
+.thead{display:grid;grid-template-columns:var(--cols);gap:0;background:linear-gradient(135deg,#0079c0,#003d5e);color:#fff;font-size:11px;font-weight:800;padding:0}
+.thead>div{padding:12px 12px;display:flex;align-items:center;gap:5px}
+.trow{display:grid;grid-template-columns:var(--cols);gap:0;border-top:1px solid #eef4f8;font-size:12.5px;align-items:center;transition:background .12s}
+.trow:hover{background:#f7fbfe}
+.trow.stuck{background:#fff8f4}
+.trow.stuck:hover{background:#fff2ea}
+.trow.done{opacity:.62}
+.trow>div{padding:12px 12px;min-width:0}
+.cust{display:flex;flex-direction:column;gap:2px}
+.cust .cn{font-weight:800;color:var(--blue-d);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cust .op{font-size:11px;color:var(--gray);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fs-cell{font-weight:700;color:var(--ink)}
+.due-cell{font-family:'JetBrains Mono',monospace;font-weight:700;display:flex;flex-direction:column;gap:1px}
+.due-cell .dd{font-size:12px}
+.due-cell .dl{font-size:10px;font-weight:700}
+.due-cell .dl.ok{color:var(--gray)}
+.due-cell .dl.warn{color:var(--orange)}
+.due-cell .dl.bad{color:var(--red)}
+/* ステージ・ミニステッパー */
+.steps{display:flex;align-items:center;gap:0}
+.stp{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;position:relative}
+.stp .dot{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:800;z-index:2;border:2px solid #fff}
+.stp .dot.done{background:var(--green);color:#fff}
+.stp .dot.cur{background:var(--blue);color:#fff;box-shadow:0 0 0 3px rgba(0,121,192,.18)}
+.stp .dot.todo{background:#e3ebf1;color:#9aa8b3}
+.stp .dot.rej{background:var(--red);color:#fff}
+.stp .lb{font-size:8.5px;font-weight:700;color:var(--gray);white-space:nowrap;text-align:center;line-height:1.1}
+.stp .lb.cur{color:var(--blue)}
+.stp .lb.rej{color:var(--red)}
+.stp:not(:last-child)::after{content:'';position:absolute;top:9px;left:50%;width:100%;height:2px;background:#e3ebf1;z-index:1}
+.stp.pdone:not(:last-child)::after{background:var(--green)}
+/* ステータス・ピル */
+.pill{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:800;border-radius:20px;padding:4px 10px;white-space:nowrap}
+.pill.done{background:#e6f7ee;color:var(--green)}
+.pill.cur{background:var(--blue-l);color:var(--blue)}
+.pill.rej{background:#fdeaea;color:var(--red)}
+.pill.wait{background:#f3f4f5;color:var(--gray)}
+.links{display:flex;gap:6px;flex-wrap:wrap}
+.lk{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:700;text-decoration:none;border-radius:8px;padding:5px 9px;border:1.5px solid var(--line);color:var(--blue);background:#f7fbfe;transition:.12s}
+.lk:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+.lk.pb{color:var(--moss)}
+.lk.pb:hover{background:var(--moss);color:#fff;border-color:var(--moss)}
+.lk i{font-size:12px}
+.empty{padding:40px;text-align:center;color:var(--gray);font-size:13px}
+/* 凡例 */
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin:14px 4px 0;font-size:10.5px;color:var(--gray);font-weight:600}
+.legend .lg{display:flex;align-items:center;gap:6px}
+.legend .lg .d{width:12px;height:12px;border-radius:50%}
+.legend .lg .d.done{background:var(--green)}
+.legend .lg .d.cur{background:var(--blue)}
+.legend .lg .d.todo{background:#e3ebf1}
+.legend .lg .d.rej{background:var(--red)}
+.foot{text-align:center;margin-top:26px;font-size:11px;color:var(--gray);font-family:'JetBrains Mono',monospace}
+.phase-note{margin-top:14px;background:#f7fbfe;border:1.5px dashed var(--line);border-radius:12px;padding:12px 16px;font-size:11.5px;color:var(--gray);line-height:1.7}
+.phase-note b{color:var(--blue-d)}
+@media(max-width:900px){
+  .wrap{padding:16px 12px 0}
+  .thead{display:none}
+  .trow{grid-template-columns:1fr!important;gap:6px;padding:12px 6px}
+  .trow>div{padding:5px 10px}
+  .steps{overflow-x:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <i class="ti ti-file-invoice"></i>
+  <h1>請求・締め ダッシュボード</h1>
+  <span class="topbar-badge">CIRCULATION</span>
+  <div class="topbar-spacer"></div>
+  <a class="back" href="../"><i class="ti ti-arrow-left"></i> ポータルへ戻る</a>
+</div>
+
+<div class="wrap">
+
+  <div id="srcbar" class="srcbar mock">
+    <i class="ti ti-flask"></i>
+    <span><b>サンプルデータ表示中</b> ── Google Sheet 未接続。CONFIG に Sheet ID・列名を設定すると自動でライブ表示に切り替わります。</span>
+    <span class="upd" id="updated"></span>
+  </div>
+
+  <!-- 締めゲージ -->
+  <div class="gauge">
+    <div class="gauge-top">
+      <div class="gauge-ttl"><i class="ti ti-flag-check"></i> <span id="gauge-month"></span>の締め ── 候補者稼働承認 完了状況</div>
+      <div class="gauge-num"><b id="g-done">0</b>/ <span id="g-total">0</span> 件 完了　<span class="rem">残 <b id="g-rem" class="rem">0</b> 件</span></div>
+    </div>
+    <div class="gbar"><div class="gbar-fill" id="g-fill" style="width:0%"></div></div>
+    <div class="gauge-foot">
+      <div class="gstat"><div class="gi days"><i class="ti ti-calendar-due"></i></div><div><div class="gv" id="g-days">–</div><div class="gl">締めまで残営業日</div></div></div>
+      <div class="gstat"><div class="gi stuck"><i class="ti ti-alert-triangle"></i></div><div><div class="gv bad" id="g-stuck">0</div><div class="gl">詰まっている案件（要対応）</div></div></div>
+    </div>
+  </div>
+
+  <!-- フィルタ -->
+  <div class="filters">
+    <span class="fl-lab"><i class="ti ti-filter"></i> 絞り込み</span>
+    <select id="f-fs"><option value="">全担当</option></select>
+    <select id="f-stage">
+      <option value="">全工程</option>
+      <option value="1">① 報告書提出</option>
+      <option value="2">② 一次チェック</option>
+      <option value="3">③ FS提出</option>
+      <option value="4">④ Mgr承認</option>
+      <option value="5">⑤ 顧客検収承認</option>
+      <option value="done">完了</option>
+    </select>
+    <label class="toggle"><input type="checkbox" id="f-near"><span class="tk"></span>期限接近のみ</label>
+    <label class="toggle"><input type="checkbox" id="f-stuck"><span class="tk"></span>詰まりのみ</label>
+    <span class="spacer"></span>
+    <span class="count" id="rowcount"></span>
+  </div>
+
+  <!-- テーブル -->
+  <div class="tablewrap">
+    <div class="thead">
+      <div>顧客 / 案件</div>
+      <div>担当FS</div>
+      <div>締め期限</div>
+      <div>工程ステータス（① → ⑤）</div>
+      <div>現在</div>
+      <div>リンク</div>
+    </div>
+    <div id="rows"></div>
+  </div>
+
+  <div class="legend">
+    <div class="lg"><span class="d done"></span>完了</div>
+    <div class="lg"><span class="d cur"></span>現在の工程</div>
+    <div class="lg"><span class="d todo"></span>未着手</div>
+    <div class="lg"><span class="d rej"></span>差し戻し</div>
+  </div>
+
+  <div class="phase-note">
+    <b>第1段階（現在）</b>：G-Connector同期済みSheetの<b>読み取り表示</b>のみ。ステータス確認・締めゲージ・直リンク・絞り込みまで。
+    <b>書き戻し（提出・承認をこの画面から実行）は未対応</b> ── 各行のリンクからSF/PROBASE画面でワンクリック操作してください。
+    <b>第2段階（後日）</b>：締め接近時に未完了者へ1日1通のリマインド（n8n）。<b>第3段階</b>：一次チェックのAI自動照合。
+  </div>
+
+  <div class="foot">© 株式会社サーキュレーション　Enterprise Team Portal ｜ 請求・締め</div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   CONFIG ── データ接続はここだけ差し替えれば切り替わる
+   ═══════════════════════════════════════════════════════════ */
+const CONFIG = {
+  // G-Connectorで同期したGoogle Sheetの「ウェブに公開(CSV)」or gviz CSV URL。
+  // 空のあいだはサンプルデータで表示。
+  //   例) https://docs.google.com/spreadsheets/d/<SHEET_ID>/gviz/tq?tqx=out:csv&sheet=<シート名>
+  SHEET_CSV_URL: '',
+  // 今月の締め期限（YYYY-MM-DD）。Sheet側に列があればそちらを優先させる拡張も可。
+  CLOSING_DEADLINE: '',           // 空なら「当月末営業日」を自動計算
+  SF_REPORT_URL: 'https://circulation.lightning.force.com/lightning/r/Report/00Odc0000083o0TEAQ/view',
+  // Sheetの列名 → 内部キーのマッピング（実際のヘッダー名に合わせて変更）
+  COLS: {
+    account:'顧客名', opp:'案件名', fs:'担当FS', due:'締め期限',
+    s1:'報告書提出', s2:'一次チェック', s3:'FS提出', s4:'Mgr承認', s5:'顧客検収承認',
+    sfUrl:'SFリンク', pbUrl:'PROBASEリンク'
+  }
+};
+
+/* 工程定義（フロー順） */
+const STAGES = [
+  {key:'s1', short:'①', lab:'報告書\n提出',   done:['提出済','済','完了','TRUE','true','1']},
+  {key:'s2', short:'②', lab:'一次\nチェック', done:['済','完了','OK','TRUE','true','1']},
+  {key:'s3', short:'③', lab:'FS\n提出',      done:['済','提出済','完了','TRUE','true','1']},
+  {key:'s4', short:'④', lab:'Mgr\n承認',     done:['済','承認','承認済','完了','TRUE','true','1']},
+  {key:'s5', short:'⑤', lab:'顧客\n検収',    done:['承認済','検収済','完了','TRUE','true','1'], rej:['差し戻し','差し戻しあり','要修正','リジェクト']}
+];
+
+/* ── サンプルデータ（Sheet未接続時） ── */
+const MOCK = [
+  {account:'サントリーHD',   opp:'DX組織設計 PJT',        fs:'土田', due:offset(-1), s1:'提出済', s2:'済', s3:'済', s4:'済', s5:'承認済'},
+  {account:'三菱電機',       opp:'新規事業 伴走支援',      fs:'中村', due:offset(1),  s1:'提出済', s2:'済', s3:'済', s4:'済', s5:'差し戻しあり'},
+  {account:'大崎電気',       opp:'PMO 体制構築',          fs:'岡部', due:offset(1),  s1:'提出済', s2:'済', s3:'済', s4:'未', s5:'未承認'},
+  {account:'イオン',         opp:'需要予測 高度化',        fs:'福本', due:offset(2),  s1:'提出済', s2:'済', s3:'未', s4:'未', s5:'未承認'},
+  {account:'メルシャン',     opp:'ブランド戦略 PJT',       fs:'木曽', due:offset(2),  s1:'提出済', s2:'未', s3:'未', s4:'未', s5:'未承認'},
+  {account:'富士フイルムシステム',opp:'基幹刷新 PM',        fs:'栫',   due:offset(3),  s1:'未提出', s2:'未', s3:'未', s4:'未', s5:'未承認'},
+  {account:'Cowellnex',      opp:'AI導入 PoC',            fs:'土田', due:offset(4),  s1:'提出済', s2:'済', s3:'済', s4:'済', s5:'承認済'},
+  {account:'キリンビバレッジ',opp:'SCM 改革',             fs:'中村', due:offset(5),  s1:'提出済', s2:'済', s3:'済', s4:'未', s5:'未承認'},
+  {account:'ヤマハ発動機',   opp:'海外マーケ 強化',        fs:'岡部', due:offset(6),  s1:'提出済', s2:'済', s3:'未', s4:'未', s5:'未承認'},
+  {account:'ニコン',         opp:'開発PM スポット',        fs:'福本', due:offset(7),  s1:'未提出', s2:'未', s3:'未', s4:'未', s5:'未承認'},
+  {account:'オムロン',       opp:'人事制度 設計',          fs:'木曽', due:offset(2),  s1:'提出済', s2:'済', s3:'済', s4:'済', s5:'承認済'},
+  {account:'JAL',            opp:'CX 改善 PJT',           fs:'栫',   due:offset(0),  s1:'提出済', s2:'未', s3:'未', s4:'未', s5:'未承認'}
+];
+
+/* ═══════════════════════════════════════════════════════════ */
+let ROWS=[];
+
+function offset(businessDays){
+  // 今日から businessDays 営業日後の YYYY-MM-DD（サンプル用）
+  const d=new Date(); let n=Math.abs(businessDays), dir=businessDays<0?-1:1;
+  while(n>0){ d.setDate(d.getDate()+dir); const w=d.getDay(); if(w!==0&&w!==6) n--; }
+  return d.toISOString().slice(0,10);
+}
+function todayYMD(){ return new Date().toISOString().slice(0,10); }
+function businessDaysBetween(fromYMD,toYMD){
+  const a=new Date(fromYMD+'T00:00:00'), b=new Date(toYMD+'T00:00:00');
+  if(isNaN(a)||isNaN(b)) return null;
+  let dir=b<a?-1:1, cur=new Date(a), n=0;
+  while(cur.getTime()!==b.getTime()){ cur.setDate(cur.getDate()+dir); const w=cur.getDay(); if(w!==0&&w!==6) n+=dir; }
+  return n;
+}
+function lastBusinessDayOfMonth(){
+  const now=new Date(); const d=new Date(now.getFullYear(),now.getMonth()+1,0);
+  while(d.getDay()===0||d.getDay()===6) d.setDate(d.getDate()-1);
+  return d.toISOString().slice(0,10);
+}
+function normStatus(val,stage){
+  const v=(val==null?'':String(val)).trim();
+  if(stage.rej && stage.rej.some(x=>v.includes(x))) return 'rej';
+  if(stage.done.some(x=>v===x||v.includes(x))) return 'done';
+  return 'todo';
+}
+/* 各行の工程状態を算出 */
+function analyze(r){
+  const st=STAGES.map(s=>({stage:s, state:normStatus(r[s.key],s)}));
+  // 完了 = 最終工程(⑤)がdone
+  const complete = st[st.length-1].state==='done';
+  // 現在工程 = 最初の未done（rejも現在扱い）。全doneならnull
+  let curIdx = st.findIndex(x=>x.state!=='done');
+  const rejected = st.some(x=>x.state==='rej');
+  return {...r, st, complete, curIdx, rejected};
+}
+const DEADLINE = () => CONFIG.CLOSING_DEADLINE || lastBusinessDayOfMonth();
+function dueInfo(r){
+  const bd = businessDaysBetween(todayYMD(), r.due);
+  return bd; // 残営業日（過ぎていれば負）
+}
+/* 詰まり判定 */
+function isStuck(r){
+  if(r.complete) return false;
+  if(r.rejected) return true;
+  const bd = dueInfo(r);
+  if(bd!=null && bd<=2) return true;       // 期限接近で未完了
+  return false;
+}
+/* 並び替えスコア（大きいほど上） */
+function riskScore(r){
+  if(r.complete) return -1000 + (dueInfo(r)||0); // 完了は最下段
+  let s=0;
+  const bd=dueInfo(r);
+  if(r.rejected) s+=500;
+  if(bd!=null){ if(bd<0) s+=400+ -bd*10; else s+=Math.max(0,200-bd*30); }
+  s += (5 - (r.curIdx<0?5:r.curIdx))*8; // 進んでいないほど上
+  return s;
+}
+
+/* ── CSV パース ── */
+function parseCSV(text){
+  const rows=[]; let i=0, field='', row=[], q=false;
+  while(i<text.length){
+    const c=text[i];
+    if(q){ if(c==='"'){ if(text[i+1]==='"'){field+='"';i++;} else q=false; } else field+=c; }
+    else{ if(c==='"') q=true; else if(c===','){row.push(field);field='';} else if(c==='\n'){row.push(field);rows.push(row);row=[];field='';} else if(c==='\r'){} else field+=c; }
+    i++;
+  }
+  if(field.length||row.length){row.push(field);rows.push(row);}
+  return rows;
+}
+function rowsFromCSV(text){
+  const arr=parseCSV(text).filter(r=>r.some(c=>c&&c.trim()!==''));
+  if(!arr.length) return [];
+  const head=arr[0].map(h=>h.trim());
+  const idx={}; for(const k in CONFIG.COLS){ idx[k]=head.indexOf(CONFIG.COLS[k]); }
+  return arr.slice(1).map(cells=>{
+    const o={}; for(const k in idx){ o[k]= idx[k]>=0 ? (cells[idx[k]]||'').trim() : ''; } return o;
+  });
+}
+
+/* ── データ読み込み ── */
+async function load(){
+  let data=null, live=false, updated='';
+  if(CONFIG.SHEET_CSV_URL){
+    try{
+      const res=await fetch(CONFIG.SHEET_CSV_URL,{cache:'no-store'});
+      if(res.ok){ data=rowsFromCSV(await res.text()); live=data.length>0; updated=new Date().toLocaleString('ja-JP'); }
+    }catch(e){ console.warn('Sheet取得失敗、サンプルにフォールバック:',e); }
+  }
+  if(!data||!data.length){ data=MOCK; live=false; }
+  const sb=document.getElementById('srcbar');
+  if(live){ sb.className='srcbar live'; sb.querySelector('i').className='ti ti-cloud-check';
+    sb.querySelector('span').innerHTML='<b>ライブ表示中</b> ── Google Sheet（G-Connector同期）から読み込み。';
+    document.getElementById('updated').textContent='取得 '+updated;
+  }
+  ROWS=data.map(analyze);
+  initFilters(); render();
+}
+
+function initFilters(){
+  const sel=document.getElementById('f-fs');
+  const fsList=[...new Set(ROWS.map(r=>r.fs).filter(Boolean))].sort();
+  fsList.forEach(f=>{const o=document.createElement('option');o.value=f;o.textContent=f;sel.appendChild(o);});
+  ['f-fs','f-stage'].forEach(id=>document.getElementById(id).addEventListener('change',render));
+  ['f-near','f-stuck'].forEach(id=>document.getElementById(id).addEventListener('change',render));
+  // 締めゲージ月・期限
+  const dl=DEADLINE();
+  document.getElementById('gauge-month').textContent = (new Date()).getMonth()+1+'月';
+}
+
+function render(){
+  const fFs=document.getElementById('f-fs').value;
+  const fStage=document.getElementById('f-stage').value;
+  const fNear=document.getElementById('f-near').checked;
+  const fStuck=document.getElementById('f-stuck').checked;
+
+  let list=ROWS.slice();
+  // ゲージ（フィルタ後の担当ベースで出す：担当フィルタのみ反映、他は全体感を保つ）
+  const gaugeBase = fFs ? ROWS.filter(r=>r.fs===fFs) : ROWS;
+  const total=gaugeBase.length;
+  const done=gaugeBase.filter(r=>r.complete).length;
+  const stuck=gaugeBase.filter(isStuck).length;
+  const rem=total-done;
+  document.getElementById('g-done').textContent=done;
+  document.getElementById('g-total').textContent=total;
+  document.getElementById('g-rem').textContent=rem;
+  document.getElementById('g-fill').style.width=(total?Math.round(done/total*100):0)+'%';
+  document.getElementById('g-stuck').textContent=stuck;
+  const dl=DEADLINE();
+  const bd=businessDaysBetween(todayYMD(),dl);
+  const gd=document.getElementById('g-days');
+  gd.textContent = bd==null?'–':(bd<0?('超過'+(-bd)):bd);
+  gd.className='gv'+(bd!=null&&bd<0?' bad':(bd!=null&&bd<=3?' warn':''));
+
+  // 行フィルタ
+  if(fFs) list=list.filter(r=>r.fs===fFs);
+  if(fStage){
+    if(fStage==='done') list=list.filter(r=>r.complete);
+    else list=list.filter(r=>!r.complete && (r.curIdx+1)==+fStage);
+  }
+  if(fNear) list=list.filter(r=>{const b=dueInfo(r);return !r.complete && b!=null && b<=3;});
+  if(fStuck) list=list.filter(isStuck);
+
+  list.sort((a,b)=>riskScore(b)-riskScore(a));
+  document.getElementById('rowcount').textContent=list.length+' 件表示';
+
+  const box=document.getElementById('rows');
+  box.style.setProperty('--cols','minmax(160px,1.6fr) 80px 110px minmax(300px,2.4fr) 130px 150px');
+  if(!list.length){ box.innerHTML='<div class="empty">該当する案件はありません。</div>'; return; }
+  box.innerHTML=list.map(rowHTML).join('');
+}
+
+function rowHTML(r){
+  const bd=dueInfo(r);
+  let dcls='ok',dtxt='';
+  if(r.complete){dcls='ok';dtxt='完了';}
+  else if(bd==null){dcls='ok';dtxt='';}
+  else if(bd<0){dcls='bad';dtxt='超過 '+(-bd)+'営業日';}
+  else if(bd===0){dcls='bad';dtxt='本日';}
+  else if(bd<=3){dcls='warn';dtxt='残 '+bd+'営業日';}
+  else{dcls='ok';dtxt='残 '+bd+'営業日';}
+
+  // ステッパー
+  const steps=r.st.map((x,i)=>{
+    let dc='todo', lc='';
+    if(x.state==='done'){dc='done';}
+    else if(x.state==='rej'){dc='rej';lc='rej';}
+    else if(i===r.curIdx){dc='cur';lc='cur';}
+    const pdone = x.state==='done';
+    const mark = x.state==='done'?'<i class="ti ti-check"></i>':(x.state==='rej'?'<i class="ti ti-x"></i>':x.stage.short);
+    return `<div class="stp${pdone?' pdone':''}"><div class="dot ${dc}">${mark}</div><div class="lb ${lc}">${x.stage.lab.replace(/\n/g,'<br>')}</div></div>`;
+  }).join('');
+
+  // 現在ステータス・ピル
+  let pill;
+  if(r.complete) pill='<span class="pill done"><i class="ti ti-circle-check"></i>稼働承認完了</span>';
+  else if(r.rejected) pill='<span class="pill rej"><i class="ti ti-arrow-back-up"></i>差し戻しあり</span>';
+  else{ const s=STAGES[r.curIdx]; pill=`<span class="pill cur">${s.short} ${s.lab.replace(/\n/g,'')}待ち</span>`; }
+
+  const sf = r.sfUrl || CONFIG.SF_REPORT_URL;
+  const pb = r.pbUrl || '';
+  const links = `<a class="lk" href="${sf}" target="_blank" rel="noopener"><i class="ti ti-cloud"></i>SF</a>`
+    + (pb?`<a class="lk pb" href="${pb}" target="_blank" rel="noopener"><i class="ti ti-clipboard-text"></i>PROBASE</a>`
+         :`<span class="lk pb" style="opacity:.45;cursor:default"><i class="ti ti-clipboard-text"></i>PROBASE</span>`);
+
+  return `<div class="trow${isStuck(r)?' stuck':''}${r.complete?' done':''}">
+    <div class="cust"><span class="cn">${esc(r.account)}</span><span class="op">${esc(r.opp)}</span></div>
+    <div class="fs-cell">${esc(r.fs)}</div>
+    <div class="due-cell"><span class="dd">${esc(r.due||'—')}</span><span class="dl ${dcls}">${dtxt}</span></div>
+    <div class="steps">${steps}</div>
+    <div>${pill}</div>
+    <div class="links">${links}</div>
+  </div>`;
+}
+function esc(s){return (s==null?'':String(s)).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+load();
+</script>
+</body>
+</html>
