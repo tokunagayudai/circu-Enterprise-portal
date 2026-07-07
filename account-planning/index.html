@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+<title>アカウントプランニング フロー｜エンタープライズ ポータル｜株式会社サーキュレーション</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.11.0/dist/tabler-icons.min.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+:root{
+  --blue:#0079c0; --blue-d:#003d5e; --blue-mid:#5599be; --blue-l:#e8f6ff;
+  --moss:#0a6e8c; --green:#22a047; --green-d:#1a7d38; --orange:#ed7d31; --purple:#7057a3;
+  --ink:#1a2a38; --gray:#6b6864; --line:#d6e8f5;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'M PLUS Rounded 1c','Hiragino Kaku Gothic ProN',sans-serif;background:linear-gradient(160deg,#e8f6ff 0%,#d8eefb 100%);color:var(--ink);min-height:100vh;padding:0 0 60px}
+.topbar{background:linear-gradient(135deg,#0079c0,#005a92);color:#fff;padding:16px 24px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 12px rgba(0,121,192,.25);position:sticky;top:0;z-index:50}
+.topbar>i{font-size:22px}
+.topbar h1{font-size:17px;font-weight:800}
+.topbar-badge{background:rgba(255,255,255,.2);border-radius:20px;padding:3px 12px;font-size:11px;font-weight:500;margin-left:4px}
+.topbar-spacer{flex:1}
+.topbar a.back{color:#fff;text-decoration:none;font-size:12px;font-weight:600;display:flex;align-items:center;gap:5px;opacity:.92}
+.topbar a.back:hover{opacity:1}
+.wrap{max-width:1280px;margin:0 auto;padding:30px 24px 0}
+
+/* ヘッダー */
+.head{margin-bottom:8px}
+.head .kick{font-size:11.5px;font-weight:800;letter-spacing:2px;color:var(--blue-mid);margin-bottom:8px}
+.head h2{font-size:30px;font-weight:800;color:var(--blue-d);letter-spacing:.01em;margin-bottom:12px}
+.head .sub{font-size:13.5px;color:var(--gray);line-height:1.8;max-width:820px}
+.head .sub b{color:var(--blue-d)}
+/* 凡例 */
+.legend{display:flex;gap:20px;flex-wrap:wrap;margin:18px 0 30px}
+.legend .lg{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--gray)}
+.legend .lg .sw{width:13px;height:13px;border-radius:4px;flex:none}
+.legend .lg .sw.mk{background:var(--blue-d)}
+.legend .lg .sw.fs{background:var(--green)}
+.legend .lg .sw.hub{background:var(--purple)}
+
+/* フロー全体 */
+.apflow{display:grid;grid-template-columns:1fr 46px 1.02fr 46px 1.12fr;align-items:center;gap:0}
+.colhead{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.colhead .n{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#0079c0,#003d5e);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:800;flex:none}
+.colhead .t{font-size:12.5px;font-weight:800;color:var(--blue-d)}
+.colhead .t small{font-weight:700;color:var(--blue-mid);font-family:'JetBrains Mono',monospace;font-size:10.5px;margin-left:4px}
+.col{display:flex;flex-direction:column;gap:16px}
+
+/* カード */
+.apc{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:18px 18px;position:relative;overflow:hidden;box-shadow:0 4px 14px rgba(0,121,192,.06)}
+.apc::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.apc.mk::before{background:linear-gradient(90deg,#5599be,#003d5e)}
+.apc.fs::before{background:linear-gradient(90deg,#5ab870,#1a7d38)}
+.apc.hub{border-color:#d9cff0;background:linear-gradient(160deg,#fbfaff,#f3effb)}
+.lane{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:800;color:#fff;border-radius:8px;padding:4px 11px;margin-bottom:10px}
+.lane.mk{background:var(--blue-d)}
+.lane.fs{background:var(--green)}
+.apc h3{font-size:15.5px;font-weight:800;color:var(--blue-d);margin-bottom:4px;display:inline}
+.apc .cap{font-size:11.5px;color:var(--gray);line-height:1.6;margin:8px 0 12px}
+.aplist{list-style:none;display:flex;flex-direction:column;gap:9px}
+.aplist li{display:flex;align-items:flex-start;gap:9px;font-size:13px;line-height:1.5;color:var(--ink)}
+.aplist li .dot{width:8px;height:8px;border-radius:50%;flex:none;margin-top:6px}
+.apc.mk .aplist li .dot{background:var(--blue)}
+.apc.fs .aplist li .dot{background:var(--green)}
+.aplist li b{font-weight:800;color:var(--blue-d)}
+.aplist li .arrow{color:var(--blue-mid);font-weight:800;margin:0 2px}
+.subchips{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.subchips span{font-size:10.5px;font-weight:700;color:var(--blue-d);background:var(--blue-l);border:1.5px solid #cfe6f6;border-radius:8px;padding:3px 9px}
+
+/* HUB */
+.hubcard{background:linear-gradient(160deg,#003d5e,#0079c0);color:#fff;border:none;border-radius:18px;padding:22px 20px;text-align:center;box-shadow:0 10px 28px rgba(0,61,94,.28);position:relative;overflow:hidden}
+.hubcard::after{content:'';position:absolute;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.06);top:-70px;right:-50px}
+.hubcard .pool-k{font-size:10.5px;font-weight:800;letter-spacing:1.5px;color:#8fd0f0;position:relative;z-index:2}
+.hubcard .pool-t{font-size:22px;font-weight:800;margin:3px 0 3px;position:relative;z-index:2}
+.hubcard .pool-s{font-size:11.5px;color:#bfe3f7;font-weight:600;position:relative;z-index:2}
+.hubcard .pool-s i{font-size:13px;vertical-align:-1px}
+.hub-plan{background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.2);border-radius:12px;padding:14px 15px;margin-top:16px;text-align:left;position:relative;z-index:2}
+.hub-plan .hp-h{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:800;color:#fff;margin-bottom:6px}
+.hub-plan .hp-h i{color:#8fd0f0}
+.hub-plan p{font-size:12px;color:#dcecf7;line-height:1.7}
+.hub-plan p b{color:#fff}
+
+/* 矢印列 */
+.arrcol{display:flex;align-items:center;justify-content:center;height:100%;color:var(--blue-mid)}
+.arrcol i{font-size:30px}
+.arrcol.split{flex-direction:column;gap:40px}
+
+@media(max-width:900px){
+  .apflow{grid-template-columns:1fr;gap:0}
+  .arrcol{padding:10px 0}
+  .arrcol i{transform:rotate(90deg)}
+  .arrcol.split{flex-direction:row;gap:80px}
+  .colhead{margin-top:8px}
+}
+.note{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);font-size:11.5px;color:var(--gray);line-height:1.7}
+.foot{text-align:center;margin-top:26px;font-size:11px;color:var(--gray);font-family:'JetBrains Mono',monospace}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <i class="ti ti-map-2"></i>
+  <h1>アカウントプランニング フロー</h1>
+  <span class="topbar-badge">CIRCULATION</span>
+  <div class="topbar-spacer"></div>
+  <a class="back" href="../"><i class="ti ti-arrow-left"></i> ポータルへ戻る</a>
+</div>
+
+<div class="wrap">
+
+  <div class="head">
+    <div class="kick">ENTERPRISE TEAM / GTM</div>
+    <h2>アカウントプランニング フロー</h2>
+    <p class="sub">FS（内部情報）とマーケ・IS（外部情報）を中間に集約し、<b>AIでアカウント企画を自動設計</b>。営業企画はマーケ／ISがボールを持ち、FSのヒアリングを元に設計。出口で<b>二経路のアプローチ</b>に展開する。</p>
+  </div>
+
+  <div class="legend">
+    <div class="lg"><span class="sw mk"></span>マーケ・IS 経路（外部・デジタル）</div>
+    <div class="lg"><span class="sw fs"></span>FS 経路（内部・地上戦）</div>
+    <div class="lg"><span class="sw hub"></span>集約・企画（AI／Notion）</div>
+  </div>
+
+  <div class="apflow">
+
+    <!-- ① 入力 -->
+    <div>
+      <div class="colhead"><span class="n">1</span><span class="t">入力 <small>INPUT</small></span></div>
+      <div class="col">
+        <div class="apc mk">
+          <span class="lane mk"><i class="ti ti-world"></i> マーケ・IS</span>
+          <h3>外部情報</h3>
+          <ul class="aplist">
+            <li><span class="dot"></span>外部リサーチ</li>
+            <li><span class="dot"></span>電話</li>
+            <li><span class="dot"></span>メール</li>
+          </ul>
+        </div>
+        <div class="apc fs">
+          <span class="lane fs"><i class="ti ti-user-heart"></i> FS</span>
+          <h3>内部情報</h3>
+          <ul class="aplist">
+            <li><span class="dot"></span>地上戦（現場の一次情報）</li>
+            <li><span class="dot"></span>PJT・案件からの学び</li>
+            <li><span class="dot"></span>顧客ヒアリング</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrcol"><i class="ti ti-arrow-right"></i></div>
+
+    <!-- ② 集約・企画 -->
+    <div>
+      <div class="colhead"><span class="n">2</span><span class="t">集約・企画 <small>HUB</small></span></div>
+      <div class="hubcard">
+        <div class="pool-k">INFORMATION POOL</div>
+        <div class="pool-t">情報プール</div>
+        <div class="pool-s"><i class="ti ti-brand-notion"></i> Notion に集約</div>
+        <div class="hub-plan">
+          <div class="hp-h"><i class="ti ti-robot"></i> アカウントプランニング</div>
+          <p>マーケ／IS がボールを持ち、FS のヒアリングを元に <b>AI でアカウント企画を自動設計</b>。企画結果を両経路の出口へ展開する。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrcol split"><i class="ti ti-arrow-right"></i><i class="ti ti-arrow-right"></i></div>
+
+    <!-- ③ 出口 -->
+    <div>
+      <div class="colhead"><span class="n">3</span><span class="t">出口 / アプローチ <small>OUTPUT</small></span></div>
+      <div class="col">
+        <div class="apc mk">
+          <span class="lane mk"><i class="ti ti-broadcast"></i> マーケ・IS</span>
+          <h3>ハウスリスト活用 ＋ アウトバウンド</h3>
+          <p class="cap">カスタマイズアプローチと新規開拓の二本立て</p>
+          <ul class="aplist">
+            <li><span class="dot"></span><b>アウトバウンド</b>（新規開拓）</li>
+            <li><span class="dot"></span>部署（文脈なし）<span class="arrow">→</span>メール・電話</li>
+            <li><span class="dot"></span>コンテンツ抜粋 <span class="arrow">→</span> アプローチ設計
+              <div class="subchips"><span>Tier1 / アカプラ</span><span>ポータル / カスタム</span></div>
+            </li>
+          </ul>
+        </div>
+        <div class="apc fs">
+          <span class="lane fs"><i class="ti ti-users"></i> FS</span>
+          <h3>地上戦・深耕営業</h3>
+          <p class="cap">既存関係を軸にした深耕アプローチ</p>
+          <ul class="aplist">
+            <li><span class="dot"></span>リード（現在・過去情報）<span class="arrow">→</span>メール・電話</li>
+            <li><span class="dot"></span>横展開</li>
+            <li><span class="dot"></span>レビュー MTG</li>
+            <li><span class="dot"></span>会食・ランチ</li>
+            <li><span class="dot"></span>情報交換・支援同席</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="note">※ 手書きホワイトボードを整理・清書したものです。ラベルの解釈（特に「情報交換・支援同席」等の判読箇所）で修正が必要な場合はお知らせください。</div>
+  <div class="foot">© 株式会社サーキュレーション　Enterprise Team Portal ｜ Account Planning Flow</div>
+
+</div>
+</body>
+</html>
