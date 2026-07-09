@@ -180,6 +180,19 @@ body{
 .org-col .org-aim{font-size:10.5px;font-weight:700;color:var(--blue-d);background:var(--blue-l);border-radius:8px;padding:5px 10px;margin:3px 14px 4px;display:flex;gap:6px;align-items:flex-start;line-height:1.45}
 .org-col .org-aim i{color:var(--blue);font-size:13px;flex:none;margin-top:1px}
 .org-col .mem.asst{background:#f7fbfe;border:1px dashed #cfe6f6;color:var(--gray);font-weight:600}
+/* フロント：本体（左）＋ テーマUnit縦棒（右・横断） */
+.front-split{display:flex;gap:12px;align-items:stretch;padding:0 14px 16px}
+.front-main{flex:1;min-width:0;text-align:left}
+.front-main .unit,.front-main .org-aim,.front-main .members{padding-left:0;padding-right:0;margin-left:0;margin-right:0}
+.theme-bar{flex:none;width:132px;align-self:stretch;background:linear-gradient(160deg,#7057a3,#4a3870);border-radius:14px;padding:14px 12px;display:flex;flex-direction:column;color:#fff;box-shadow:0 6px 16px rgba(112,87,163,.25)}
+.theme-bar .th-h{display:flex;flex-direction:column;align-items:flex-start;gap:5px;margin-bottom:12px}
+.theme-bar .th-h b{font-size:13.5px;font-weight:800}
+.theme-bar .th-h span{font-size:9.5px;font-weight:700;background:rgba(255,255,255,.22);border-radius:10px;padding:2px 9px}
+.theme-bar .th-mem{background:rgba(255,255,255,.14);border-radius:10px;padding:10px 11px;margin-bottom:8px}
+.theme-bar .th-mem .nm{font-size:13.5px;font-weight:800}
+.theme-bar .th-mem small{display:block;font-size:9.5px;color:#e6ddf5;font-weight:600;margin-top:3px;line-height:1.35}
+.theme-bar .th-note{font-size:9.5px;color:#ddd2f0;line-height:1.5;margin-top:auto;opacity:.92;border-top:1px solid rgba(255,255,255,.18);padding-top:9px}
+@media(max-width:560px){.front-split{flex-direction:column}.theme-bar{width:100%}}
 .org-assist{margin-top:16px;border:1.5px solid #d6e8f5;border-radius:14px;background:#f7fbfe;padding:14px 18px;width:100%;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .org-assist .al{font-size:13px;font-weight:800;color:var(--blue-d);display:flex;align-items:center;gap:7px}
 .org-assist .am{display:flex;gap:6px;flex-wrap:wrap}
@@ -1157,22 +1170,32 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
         <div class="org-col eigyo">
           <div class="colh"><i class="ti ti-businessplan"></i> ① フロント</div>
           <div class="colmgr">マネージャー 徳永（＋小林部長）</div>
-          <div class="unit">深耕Unit（エキスパート）</div>
-          <div class="org-aim"><i class="ti ti-target"></i> 目指す層：継続深耕 ＋ 既顧客新規</div>
-          <div class="members">
-            <div class="mem">中村</div>
-            <div class="mem">土田</div>
-            <div class="mem">栫</div>
-            <div class="mem asst">アシスタント：野沢</div>
-          </div>
-          <div class="unit">開拓Unit（メンバー）</div>
-          <div class="org-aim"><i class="ti ti-target"></i> 目指す層：新規パイプラインの開拓（幅広いパイプライン推進）</div>
-          <div class="members">
-            <div class="mem">岡部</div>
-            <div class="mem">福本 <span class="role">50%</span></div>
-            <div class="mem">木曽</div>
-            <div class="mem">飯田 <span class="role">100%</span></div>
-            <div class="mem asst">アシスタント：小松田</div>
+          <div class="front-split">
+            <div class="front-main">
+              <div class="unit">深耕Unit（エキスパート）</div>
+              <div class="org-aim"><i class="ti ti-target"></i> 目指す層：継続深耕 ＋ 既顧客新規</div>
+              <div class="members">
+                <div class="mem">中村</div>
+                <div class="mem">土田</div>
+                <div class="mem">栫</div>
+                <div class="mem asst">アシスタント：野沢</div>
+              </div>
+              <div class="unit">開拓Unit（メンバー）</div>
+              <div class="org-aim"><i class="ti ti-target"></i> 目指す層：新規パイプラインの開拓（幅広いパイプライン推進）</div>
+              <div class="members">
+                <div class="mem">岡部</div>
+                <div class="mem">福本 <span class="role">50%</span></div>
+                <div class="mem">木曽</div>
+                <div class="mem">飯田 <span class="role">100%</span></div>
+                <div class="mem asst">アシスタント：小松田</div>
+              </div>
+            </div>
+            <div class="theme-bar">
+              <div class="th-h"><b>テーマUnit</b><span>全担当を横断</span></div>
+              <div class="th-mem"><span class="nm">小野</span><small>リスキリング（事務局）</small></div>
+              <div class="th-mem"><span class="nm">（金谷）</span><small>FLEXY案件でPM</small></div>
+              <div class="th-note">各担当のアカウントを横断し、テーマ（リスキリング等）で支援する</div>
+            </div>
           </div>
         </div>
         <div class="org-col kikaku">
@@ -1184,11 +1207,6 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
             <div class="mem">松村 <span class="role">マーケ / リード管理</span></div>
             <div class="mem">林 <span class="role">IS</span></div>
             <div class="mem">奈良 <span class="role">IS（業務委託）</span></div>
-          </div>
-          <div class="unit">企画 Unit</div>
-          <div class="members">
-            <div class="mem">小野 <span class="role">リスキリング（事務局）</span></div>
-            <div class="mem">（金谷） <span class="role">FLEXY案件でPM</span></div>
           </div>
         </div>
       </div>
@@ -1617,8 +1635,10 @@ details.sec>summary .chev{margin-left:8px!important}
 <p>目指す層は<b>「継続深耕 ＋ 既顧客新規」</b>。温まった関係を守り、そこから同一顧客の新規を積む。保有案件が厚い層で、専属アシスタントが実務を支える。</p>
 <h4>① フロント ── 開拓Unit（メンバー）</h4>
 <p>目指す層は<b>「新規パイプラインの開拓（幅広いパイプライン推進）」</b>。ソリューション提案への変革の主軸として新規案件を積み上げ、薄くCSも担う。</p>
+<h4>① フロント ── テーマUnit（横断）</h4>
+<p>小野（リスキリング事務局）と（金谷／FLEXY案件でPM）は、特定Unitに属さず<b>フロント全担当のアカウントを横断</b>して、テーマ（リスキリング等）で支援する。体制図では縦棒で「横断」を表現している。</p>
 <h4>② 企画</h4>
-<p><b>GTM Unit</b>（マーケ／IS／業務委託ディレクション）と<b>企画 Unit</b>（提案企画・BPR／リスキリング事務局）が、空中戦の打ち手とオペレーション整備を支える。</p>
+<p><b>GTM Unit</b>（提案企画・BPR／マーケ・リード管理／IS）が、空中戦の打ち手とオペレーション整備を支える。</p>
 <p>フロントが地上戦・顧客接点に集中できるよう、企画・AI・オペレーションが裏側を引き受ける ── これがこの体制の意図。</p>`;
 
   EXPLAIN[16]=`<p class="lead-line">人数・職種が増えても回るよう、動き方を「仕組み」で担保する。</p>
