@@ -284,6 +284,60 @@ body{
 .sec-sub i{color:var(--blue);font-size:18px}
 .sec-sub small{font-weight:500;color:var(--gray);font-size:12px}
 .sec-sub .no{display:none}
+/* エグゼクティブサマリー：ピラミッド＋実績スナップ */
+.es-frame{background:linear-gradient(135deg,#003d5e,#0079c0);color:#fff;border-radius:14px;padding:15px 20px;font-size:13.5px;font-weight:700;line-height:1.65}
+.es-frame b{color:#bfe3f7}
+.es-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:16px;margin-top:16px}
+.es-stats{display:flex;flex-direction:column;gap:11px}
+.es-statcard{border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff}
+.es-statcard .lbl{font-size:11px;font-weight:800;color:var(--blue-d);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.es-statcard .lbl i{color:var(--blue)}
+.es-bar{display:flex;height:28px;border-radius:8px;overflow:hidden;font-size:10.5px;font-weight:800;color:#fff}
+.es-bar span{display:flex;align-items:center;justify-content:center;white-space:nowrap;min-width:0}
+.es-two{display:flex;gap:14px}
+.es-two .k{flex:1;text-align:center;border-radius:10px;padding:9px;font-weight:800}
+.es-two .k .v{font-size:22px;font-family:'JetBrains Mono',monospace;line-height:1}
+.es-two .k .n{font-size:10.5px;font-weight:700;margin-top:3px}
+.es-two .k.fs{background:var(--blue-l);color:var(--blue)}
+.es-two .k.is{background:#f2f3f4;color:var(--gray)}
+.pyr{display:flex;flex-direction:column;gap:8px}
+.pyr-row{border-radius:12px;overflow:hidden;border:1.5px solid var(--line);background:#fff}
+.pyr-row .h{font-size:10.5px;font-weight:800;letter-spacing:1.2px;color:#fff;padding:5px 13px}
+.pyr-row.mission .h{background:var(--blue-d)}
+.pyr-row.strategy .h{background:var(--blue)}
+.pyr-row.indicator .h{background:var(--moss)}
+.pyr-row.tactics .h{background:#5b6b78}
+.pyr-row .c{padding:11px 14px;font-size:13px;font-weight:700;color:var(--ink);line-height:1.55}
+.pyr-row .c .big{font-size:16px;font-weight:800;color:var(--blue-d)}
+.pyr-row .c .big b{color:var(--blue)}
+.pyr-row .c small{font-weight:600;color:var(--gray);font-size:11px}
+.es-fun{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-top:4px}
+.es-fun .st{background:var(--blue-l);border-radius:8px;padding:5px 9px;text-align:center;font-size:11px;font-weight:800;color:var(--blue-d)}
+.es-fun .st b{display:block;font-size:14px;font-family:'JetBrains Mono',monospace}
+.es-fun .rt{font-size:10px;font-weight:800;color:var(--moss)}
+.es-tac{display:flex;gap:7px;flex-wrap:wrap;margin-top:2px}
+.es-tac .t{background:var(--blue-l);border:1.5px solid #cfe6f6;border-radius:8px;padding:5px 10px;font-size:11.5px;font-weight:700;color:var(--blue-d)}
+@media(max-width:760px){.es-grid{grid-template-columns:1fr}}
+/* 契約数モデル式＋課題→打ち手テーブル */
+.model{display:flex;flex-direction:column;gap:10px;background:#f7fbfe;border:1.5px solid var(--line);border-radius:14px;padding:16px;margin:6px 0 16px}
+.model-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center}
+.model .mv{background:#fff;border:1.5px solid #cfe6f6;border-radius:11px;padding:9px 15px;text-align:center;min-width:110px}
+.model .mv .t{font-size:13px;font-weight:800;color:var(--blue-d)}
+.model .mv .s{font-size:10px;color:var(--gray);font-weight:700;margin-top:2px}
+.model .mv.hi{background:linear-gradient(135deg,#0079c0,#003d5e);border-color:transparent}
+.model .mv.hi .t{color:#fff}.model .mv.hi .s{color:#bfe3f7}
+.model .op{font-size:19px;font-weight:800;color:var(--blue-mid)}
+.q2d-head{display:grid;grid-template-columns:1fr 34px 1fr;font-size:11px;font-weight:800;color:var(--gray);margin-bottom:6px}
+.q2d-head span{padding:0 12px}
+.q2d{display:flex;flex-direction:column;gap:8px}
+.q2d-row{display:grid;grid-template-columns:1fr 34px 1fr;align-items:stretch}
+.q2d .cell{padding:11px 13px;font-size:12.5px;line-height:1.55;border-radius:10px}
+.q2d .issue{background:#fff;border:1.5px solid #e0e2e6}
+.q2d .issue b{color:var(--orange)}
+.q2d .arr{display:grid;place-items:center;color:var(--blue-mid);font-size:18px}
+.q2d .dir{background:var(--blue-l);border:1.5px solid #cfe6f6}
+.q2d .dir b{color:var(--blue-d)}
+@media(max-width:640px){.q2d-row,.q2d-head{grid-template-columns:1fr}.q2d .arr{transform:rotate(90deg);padding:3px 0}.q2d-head span:nth-child(2){display:none}}
 /* salary target banner */
 .tgt-banner{background:linear-gradient(135deg,#0079c0,#003d5e);color:#fff;border-radius:16px;padding:20px 24px;margin-top:12px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .tgt-banner .ti2{flex:none;width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:24px}
@@ -528,39 +582,81 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
 
 
   <div class="panel">
-    <!-- FROM → TO 変換図 -->
-    <div class="xform">
-      <div class="xbox from">
-        <div class="xl">これまで</div>
-        <div class="xi"><i class="ti ti-user"></i></div>
-        <div class="xt">一人で回す営業</div>
-        <small>属人・移植できない</small>
+    <div class="es-frame">これは新しい戦略ではない。<b>以前共有したモデル（4 Value Cycle）を整理</b>し、<b>分析で見えた課題に打ち手を紐づけ</b>、<b>体制の変更で実行</b>する ── その全体像。</div>
+
+    <div class="es-grid">
+      <!-- 左：実績スナップ -->
+      <div class="es-stats">
+        <div class="es-statcard">
+          <div class="lbl"><i class="ti ti-chart-pie"></i> 受注の構成 ── 売上の柱は「既存」</div>
+          <div class="es-bar">
+            <span style="width:52%;background:var(--blue-d)">継続 52%</span>
+            <span style="width:32%;background:var(--blue)">既顧客 32%</span>
+            <span style="width:16%;background:var(--blue-mid)">新規 16%</span>
+          </div>
+        </div>
+        <div class="es-statcard">
+          <div class="lbl"><i class="ti ti-route"></i> 経路別の受注率（P1→受注）</div>
+          <div class="es-two">
+            <div class="k fs"><div class="v">45%</div><div class="n">FS経由</div></div>
+            <div class="k is"><div class="v">4%</div><div class="n">IS経由</div></div>
+          </div>
+          <p style="font-size:10.5px;color:var(--gray);margin-top:8px;font-weight:600;line-height:1.5">勝ち筋は<b style="color:var(--blue-d)">FS経由の既存深耕</b>。新規受注の <b style="color:var(--blue-d)">79%もFS経由</b>。</p>
+        </div>
       </div>
-      <div class="xarrow"><i class="ti ti-arrow-big-right-filled"></i><span>役割分担 ＋ AI</span></div>
-      <div class="xbox to">
-        <div class="xl">これから</div>
-        <div class="xi"><i class="ti ti-users-group"></i></div>
-        <div class="xt">チームとAIで回す営業</div>
-        <small>再現できる・広がる</small>
+
+      <!-- 右：ピラミッド（Mission → Strategy → Indicator → Tactics） -->
+      <div class="pyr">
+        <div class="pyr-row mission"><div class="h">MISSION</div><div class="c"><span class="big">1社あたり <b>LTV 最大化</b></span><br><small>複数人・複数案件で「面」で入り、顧客に深く長く。</small></div></div>
+        <div class="pyr-row strategy"><div class="h">STRATEGY</div><div class="c"><b>契約数（案件数 × 移行率）</b>を引き上げ、粗利単価は <b>40万円以上</b> で提示する。<br><small>FS経由パイプライン創出（135件）を 1.5倍 へ。</small></div></div>
+        <div class="pyr-row indicator"><div class="h">INDICATOR ── 案件 → 受注</div><div class="c"><div class="es-fun">
+          <span class="st">案件<b>246</b><small>P2</small></span><span class="rt">67%▶</span>
+          <span class="st">提案<b>165</b><small>P3</small></span><span class="rt">80%▶</span>
+          <span class="st">面談<b>132</b><small>P4</small></span><span class="rt">58%▶</span>
+          <span class="st">受注<b>77</b><small>P8</small></span>
+        </div><small style="display:block;margin-top:6px">成長ドライバー＝<b>案件数(P2)</b> と <b>提案実施率(P2→P3)</b>。移行率は高水準を維持。</small></div></div>
+        <div class="pyr-row tactics"><div class="h">TACTICS ── 3つの打ち手 ＋ 体制</div><div class="c"><div class="es-tac"><span class="t">① 増やす：マーケ強化</span><span class="t">② 深める：深耕営業</span><span class="t">③ 決める：移行の質</span></div><small style="display:block;margin-top:7px">実行は新体制で ── フロント（Farming／Hunting）＋企画＋テーマUnit。</small></div></div>
       </div>
     </div>
-
-    <!-- 3本の柱 → ゴール -->
-    <div class="pillars">
-      <div class="pillar"><div class="pn">1</div><div class="pi"><i class="ti ti-arrows-split-2"></i></div><h4>役割を分ける</h4><p>鳥の目／地上／情報提供に分けて連携</p></div>
-      <div class="pillar"><div class="pn">2</div><div class="pi"><i class="ti ti-robot"></i></div><h4>AIで工数を削る</h4><p>提案書・要件・記録を自動化し再投資</p></div>
-      <div class="pillar"><div class="pn">3</div><div class="pi"><i class="ti ti-stack-2"></i></div><h4>4階層で見る</h4><p>案件でなくアカウントを立体で捉える</p></div>
-    </div>
-    <div class="downarrows"><i class="ti ti-chevron-down"></i><i class="ti ti-chevron-down"></i><i class="ti ti-chevron-down"></i></div>
-    <div class="goalbar"><i class="ti ti-target-arrow"></i><span>商談一つのポテンシャルを、<b>最大化する</b></span></div>
-
-    <p class="note" style="margin-top:16px">なぜこの転換が必要か ── 世界観と背景は「この戦略の文脈」で、その根拠となる数字は「1章 振り返り」で示す。</p>
+    <p class="note" style="margin-top:14px">定量の詳細（ファネル・契約単価・課題→打ち手）は「現状認識」で示す。数値はFY13上期の実績ベース（確定分析は別途）。</p>
   </div>
 
   </details>
 
   <details class="sec" open>
     <summary><span class="stitle"><span class="no">1</span>現状認識 <small>― 総論は正しい。直すのは各論</small></span><i class="ti ti-chevron-down chev"></i></summary>
+
+    <h3 class="sec-sub"><i class="ti ti-chart-dots"></i>定量で見る現状 <small>― 契約数の分解と、課題 → 打ち手</small></h3>
+    <div class="panel">
+      <div class="band"><span class="hl">最注力：</span> 契約数（案件数 × 移行率）の引き上げ。粗利単価は <span class="hl">40万円以上</span> で提示する。</div>
+      <div class="model">
+        <div class="model-row">
+          <div class="mv hi"><div class="t">契約数</div></div>
+          <div class="op">＝</div>
+          <div class="mv"><div class="t">案件数</div><div class="s">P2</div></div>
+          <div class="op">×</div>
+          <div class="mv"><div class="t">移行率</div><div class="s">P2→P8</div></div>
+        </div>
+        <div class="model-row">
+          <div class="mv hi"><div class="t">CK（粗利）</div></div>
+          <div class="op">＝</div>
+          <div class="mv"><div class="t">月次粗利</div><div class="s">実績 34.8万円/月</div></div>
+          <div class="op">×</div>
+          <div class="mv"><div class="t">契約期間</div><div class="s">実績 3.4ヶ月 ※継続除く</div></div>
+        </div>
+      </div>
+      <p class="lead">FY13上期の実績（案件246→受注77件、移行率31%）を分解し、どこに課題があり何を打つかを紐づける。<b>案件数(P2)</b>と<b>提案実施率(P2→P3)</b>が主ドライバー。</p>
+      <div class="q2d-head"><span>現状と課題（分析）</span><span></span><span>打ち手（目指す方向性）</span></div>
+      <div class="q2d">
+        <div class="q2d-row"><div class="cell issue">マーケ施策がなく<b>新規リードが皆無</b>。ISリードの84%はリサイクル。</div><div class="arr"><i class="ti ti-arrow-right"></i></div><div class="cell dir"><b>FS起点で新規認知獲得</b>を展開。継続的なナーチャリングで認知を維持。</div></div>
+        <div class="q2d-row"><div class="cell issue">IS人員減で<b>商談数が低下</b>。商談→案件化率(P1→P2)は47%と高水準。</div><div class="arr"><i class="ti ti-arrow-right"></i></div><div class="cell dir">IS経由の商談は減少前提。<b>FS経由のニーズ量を増やす</b>（1ニーズに複数案件・複数プロ提案）。</div></div>
+        <div class="q2d-row"><div class="cell issue"><b>案件後提案率(P2→P3)は67%</b>と改善余地。獲得ニーズのテーマも限定的。</div><div class="arr"><i class="ti ti-arrow-right"></i></div><div class="cell dir"><b>80%へ引き上げ</b>。プロ確保に向けたBP（協業先）を拡大。</div></div>
+        <div class="q2d-row"><div class="cell issue">提案後の面談設定率(P3→P4)は<b>80%と高水準</b>。</div><div class="arr"><i class="ti ti-arrow-right"></i></div><div class="cell dir"><b>90%を狙う</b>。顧客側＝人材要件の合意、人材側＝質、の両軸で。</div></div>
+        <div class="q2d-row"><div class="cell issue">粗利単価は目標35万円にほぼミート（<b>34.8万円/月</b>）。</div><div class="arr"><i class="ti ti-arrow-right"></i></div><div class="cell dir"><b>40万円以上</b>、100万円以上案件35%を狙う（イレギュラー案件は許容）。</div></div>
+        <div class="q2d-row"><div class="cell issue">契約期間は目標6ヶ月に対し<b>3.4ヶ月とビハインド</b>。</div><div class="arr"><i class="ti ti-arrow-right"></i></div><div class="cell dir">可能な限り<b>6ヶ月契約</b>を狙う（数字の取り方は残論点）。</div></div>
+      </div>
+      <p class="note">※ 数値はFY13上期の実績ベース。確定版の分析は別途差し込む。</p>
+    </div>
 
     <h3 class="sec-sub"><i class="ti ti-alert-triangle"></i>現状認識 <small>― なぜ「回し方」を変えるのか</small></h3>
 
