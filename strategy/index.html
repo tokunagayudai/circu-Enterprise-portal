@@ -195,7 +195,9 @@ body{
 .theme-bar .th-h{display:flex;flex-direction:column;align-items:flex-start;gap:5px;margin-bottom:12px}
 .theme-bar .th-h b{font-size:12.5px;font-weight:800;color:#3f2f66}
 .theme-bar .th-h span{font-size:9px;font-weight:800;background:rgba(112,87,163,.2);color:#4a3870;border-radius:10px;padding:2px 8px}
-.theme-bar .th-mem{background:rgba(255,255,255,.62);border:1px solid rgba(112,87,163,.22);border-radius:10px;padding:9px 10px;margin-bottom:8px}
+.theme-bar .th-body{flex:1;display:flex;flex-direction:column;justify-content:space-around;gap:12px;position:relative}
+.theme-bar .th-body::before{content:'';position:absolute;left:50%;top:2px;bottom:2px;width:2px;transform:translateX(-50%);background:repeating-linear-gradient(#b7a9d6 0 5px,transparent 5px 11px);z-index:0}
+.theme-bar .th-mem{background:rgba(255,255,255,.72);border:1px solid rgba(112,87,163,.22);border-radius:10px;padding:9px 10px;position:relative;z-index:1}
 .theme-bar .th-mem .nm{font-size:12.5px;font-weight:800;color:#3f2f66}
 .theme-bar .th-mem small{display:block;font-size:9px;color:#6b5a90;font-weight:600;margin-top:3px;line-height:1.35}
 .theme-bar .th-note{font-size:9.5px;color:#6b5a90;line-height:1.5;margin-top:auto;border-top:1px solid rgba(112,87,163,.22);padding-top:9px}
@@ -1237,8 +1239,10 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
               </div>
               <div class="theme-bar">
                 <div class="th-h"><b>テーマUnit</b><span>全担当を横断</span></div>
-                <div class="th-mem"><span class="nm">小野</span><small>リスキリング（事務局）</small></div>
-                <div class="th-mem"><span class="nm">（金谷）</span><small>FLEXY案件でPM</small></div>
+                <div class="th-body">
+                  <div class="th-mem"><span class="nm">小野</span><small>リスキリング（事務局）</small></div>
+                  <div class="th-mem"><span class="nm">（金谷）</span><small>FLEXY案件でPM</small></div>
+                </div>
               </div>
             </div>
           </div>
