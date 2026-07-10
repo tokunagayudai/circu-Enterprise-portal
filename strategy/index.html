@@ -181,18 +181,24 @@ body{
 .org-col .org-aim i{color:var(--blue);font-size:13px;flex:none;margin-top:1px}
 .org-col .mem.asst{background:#f7fbfe;border:1px dashed #cfe6f6;color:var(--gray);font-weight:600}
 /* フロント：本体（左）＋ テーマUnit縦棒（右・横断） */
-.front-split{display:flex;gap:12px;align-items:stretch;padding:0 14px 16px}
-.front-main{flex:1;min-width:0;text-align:left}
-.front-main .unit,.front-main .org-aim,.front-main .members{padding-left:0;padding-right:0;margin-left:0;margin-right:0}
-.theme-bar{flex:none;width:132px;align-self:stretch;background:linear-gradient(160deg,#7057a3,#4a3870);border-radius:14px;padding:14px 12px;display:flex;flex-direction:column;color:#fff;box-shadow:0 6px 16px rgba(112,87,163,.25)}
+.front-split{position:relative;padding:0 14px 16px}
+.front-main{text-align:left}
+.front-main .unit,.front-main .org-aim,.front-main .members{padding-left:0;margin-left:0;margin-right:0}
+.front-split .mem{justify-content:flex-start;gap:8px}   /* 名前＋補足を左寄せ */
+.front-split .mem .role{margin-left:0}
+.front-split .unit,.front-split .org-aim{padding-right:160px}  /* テキストは帯を避ける／背景は右まで伸びる */
+/* テーマUnit＝薄い縦帯を横棒に被せる（横断表現） */
+.theme-bar{position:absolute;top:2px;right:14px;bottom:16px;width:150px;
+  background:rgba(112,87,163,.13);border:1.6px solid rgba(112,87,163,.34);
+  border-radius:14px;padding:13px 12px;display:flex;flex-direction:column;color:#4a3870;backdrop-filter:blur(1px)}
 .theme-bar .th-h{display:flex;flex-direction:column;align-items:flex-start;gap:5px;margin-bottom:12px}
-.theme-bar .th-h b{font-size:13.5px;font-weight:800}
-.theme-bar .th-h span{font-size:9.5px;font-weight:700;background:rgba(255,255,255,.22);border-radius:10px;padding:2px 9px}
-.theme-bar .th-mem{background:rgba(255,255,255,.14);border-radius:10px;padding:10px 11px;margin-bottom:8px}
-.theme-bar .th-mem .nm{font-size:13.5px;font-weight:800}
-.theme-bar .th-mem small{display:block;font-size:9.5px;color:#e6ddf5;font-weight:600;margin-top:3px;line-height:1.35}
-.theme-bar .th-note{font-size:9.5px;color:#ddd2f0;line-height:1.5;margin-top:auto;opacity:.92;border-top:1px solid rgba(255,255,255,.18);padding-top:9px}
-@media(max-width:560px){.front-split{flex-direction:column}.theme-bar{width:100%}}
+.theme-bar .th-h b{font-size:13.5px;font-weight:800;color:#3f2f66}
+.theme-bar .th-h span{font-size:9.5px;font-weight:800;background:rgba(112,87,163,.2);color:#4a3870;border-radius:10px;padding:2px 9px}
+.theme-bar .th-mem{background:rgba(255,255,255,.62);border:1px solid rgba(112,87,163,.22);border-radius:10px;padding:10px 11px;margin-bottom:8px}
+.theme-bar .th-mem .nm{font-size:13.5px;font-weight:800;color:#3f2f66}
+.theme-bar .th-mem small{display:block;font-size:9.5px;color:#6b5a90;font-weight:600;margin-top:3px;line-height:1.35}
+.theme-bar .th-note{font-size:9.5px;color:#6b5a90;line-height:1.5;margin-top:auto;border-top:1px solid rgba(112,87,163,.22);padding-top:9px}
+@media(max-width:560px){.theme-bar{position:static;width:100%;background:rgba(112,87,163,.13);margin-top:10px}.front-split .unit,.front-split .org-aim{padding-right:0}}
 .org-assist{margin-top:16px;border:1.5px solid #d6e8f5;border-radius:14px;background:#f7fbfe;padding:14px 18px;width:100%;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .org-assist .al{font-size:13px;font-weight:800;color:var(--blue-d);display:flex;align-items:center;gap:7px}
 .org-assist .am{display:flex;gap:6px;flex-wrap:wrap}
@@ -750,46 +756,42 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
   </div>
 
   <div class="panel">
-    <h3 class="ph">変革後 ── 4 Value Cycle の階層別・役割分担</h3>
-    <p class="lead">同じ循環を、誰がどう担うかに分解する。FSは「情報提供と地上戦の深耕」へ。企画・AIが回す部分を引き受ける。</p>
+    <h3 class="ph">変革後 ── 4つの活動エリアと役割分担</h3>
+    <p class="lead">「4 Value Cycle」を、実際の運用解像度で<b>4つの活動エリア</b>に更新。誰がどのエリアを担うかを明確にする。</p>
     <div class="rsplit">
-      <div class="rrow ap">
-        <div class="rh"><span class="rt">Account Planning</span><span class="rj">アカウント戦略</span></div>
-        <div class="roles">
-          <span class="chip fs"><i class="ti ti-user-heart"></i> FS：情報提供</span>
-          <span class="chip is"><i class="ti ti-headset"></i> IS</span>
-          <span class="chip mk"><i class="ti ti-speakerphone"></i> マーケ</span>
-        </div>
-        <p class="rd">FSが顧客接点で得た構造情報を提供。IS／マーケがコンテンツを企画し、空中戦として実行。あわせてFSが<b>地上戦＝キーマンへの深耕営業</b>を担う。</p>
-      </div>
       <div class="rrow le">
-        <div class="rh"><span class="rt">Lead Engagement</span><span class="rj">リード育成</span></div>
+        <div class="rh"><span class="rt"><b>①</b> リードマネジメント 〜 パイプラインジェネレーション</span><span class="rj">空中戦</span></div>
         <div class="roles">
           <span class="chip mk"><i class="ti ti-speakerphone"></i> マーケ</span>
           <span class="chip is"><i class="ti ti-headset"></i> IS</span>
         </div>
-        <p class="rd">マーケ／IS側のタスク。ナーチャリングと引き上げを担当し、温まったリードを地上戦（FS）へ渡す。</p>
+        <p class="rd">リードへの認知を<b>アクティブ化</b>し、関係性を維持して<b>第一想起</b>を獲得する。</p>
       </div>
       <div class="rrow pm">
-        <div class="rh"><span class="rt">Pipeline Management</span><span class="rj">案件推進</span></div>
+        <div class="rh"><span class="rt"><b>②</b> パイプラインマネジメント</span></div>
         <div class="roles">
-          <span class="chip ai"><i class="ti ti-robot"></i> AI</span>
           <span class="chip fs"><i class="ti ti-user-heart"></i> FS</span>
           <span class="chip as"><i class="ti ti-user"></i> アソシエイト</span>
         </div>
-        <p class="rd">AIとFSの共存。大幅なBPRで工数削減と品質向上を両立。<b>一つの案件接点を起点に</b>、未来ニーズ・周辺ニーズ・周辺担当者／部署への染み出しを行い、案件推進だけでなく文脈を広げる。</p>
+        <p class="rd">一つの接点を機会に<b>課題探索と提案</b>。ただの案件探しでなく、周辺テーマの深掘りから<b>現在・未来・周辺ニーズ</b>を獲得する。</p>
       </div>
       <div class="rrow cs">
-        <div class="rh"><span class="rt">Customer Success</span><span class="rj">顧客深耕</span><span class="cs-badge">最注力</span></div>
+        <div class="rh"><span class="rt"><b>③</b> カスタマーサクセス</span><span class="rj">地上戦</span><span class="cs-badge">来期 最注力</span></div>
         <div class="roles">
           <span class="chip fs"><i class="ti ti-user-heart"></i> FS</span>
         </div>
-        <div class="cs-sub">
-          <div class="li"><b>①</b><span>案件を成功させる（品質担保）</span></div>
-          <div class="li"><b>②</b><span>その間に既顧客営業を行う。特にプロジェクト開始後の<b style="color:var(--ink)">レビューMTG</b>を実施。提案資料はPROBASE・案件資料をインプットに、マーケ／IS側で企画する。</span></div>
+        <p class="rd">受注案件の成功を確実にし、<b>追加ロール・次フェーズの未来ニーズ</b>で継続を狙う。スターリード起点の深耕でリレーションを構築する。</p>
+      </div>
+      <div class="rrow ap">
+        <div class="rh"><span class="rt"><b>④</b> アカウントプランニング</span><span class="rj">地上戦 ＋ 空中戦</span></div>
+        <div class="roles">
+          <span class="chip fs"><i class="ti ti-user-heart"></i> FS：地上戦</span>
+          <span class="chip is"><i class="ti ti-headset"></i> IS：空中戦</span>
         </div>
+        <p class="rd">FSが地上戦で得た一次情報（<b>課題・体制図・機能役割</b>）を基に、<b>FSは地上戦アプローチ、ISは空中戦アプローチ</b>を進める。</p>
       </div>
     </div>
+    <div class="band"><span class="hl">重心の移動：</span> この半年は <span class="hl">①②</span> に注力（リードのアクティブ化と案件推進）。来期は <span class="hl">③④</span> に注力（継続深耕とアカウントプランニング）。</div>
   </div>
 
   <div class="panel">
@@ -864,6 +866,15 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
     <div class="mcard fill" style="margin-top:14px">
       <h4 style="color:var(--blue-d)"><i class="ti ti-sitemap"></i> GTM統合フローの整備</h4>
       <p style="margin-top:6px">リードの状態（リサイクル/休眠/未提案/稼働後）と、誰の・どんなアクションが必要かを一枚のフローに可視化。チーム全員が同じ地図で動く共通言語であり、将来の全社プロセスの原典。新メンバーのオンボーディング教材としても機能する。 <a href="../gtm/" target="_blank" style="color:var(--blue);font-weight:700;text-decoration:none">→ GTM統合フローを見る</a></p>
+    </div>
+    <div class="mcard fill" style="margin-top:14px">
+      <h4 style="color:var(--blue-d)"><i class="ti ti-map-2"></i> アカウントプランニングの「入力レス」設計</h4>
+      <p style="margin-top:6px">FSに新たな入力作業を負わせない。<b>FSは「喋るだけ」で、アカウントプランが積み上がる</b>設計にする。<a href="../account-planning/" target="_blank" style="color:var(--blue);font-weight:700;text-decoration:none"> → アカウントプランニング フローを見る</a></p>
+      <div class="steps" style="margin-top:12px">
+        <div class="step"><div class="n">1</div><h4>インプット</h4><p>外部情報はAIが収集する。</p></div>
+        <div class="step"><div class="n">2</div><h4>ヒアリング</h4><p>FSは喋るだけ。Notionが自動で構造化する。</p></div>
+        <div class="step"><div class="n">3</div><h4>アウトプット</h4><p>コンテンツ・アプローチ文面をAIが生成する。</p></div>
+      </div>
     </div>
   </div>
 
@@ -974,22 +985,28 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
     <div class="layer2">
       <div class="lcard exp">
         <span class="ltag"><i class="ti ti-star"></i> エキスパート層</span>
-        <h4>継続深耕 ＋ 既顧客新規</h4>
-        <div class="lmeta">保有プロジェクト 20〜30件</div>
-        <div class="lrole"><span class="li"><i class="ti ti-shield-check"></i></span><span class="lt"><b>継続を守る。</b>更新を6ヶ月・1年スパンの提案に切り替え、稼働を維持する。</span></div>
+        <h4>継続の深耕 ＋ 既顧客新規</h4>
+        <div class="lmeta">保有Tier1中心・保有案件が厚い層</div>
+        <div class="lrole"><span class="li"><i class="ti ti-shield-check"></i></span><span class="lt"><b>継続を守る。</b>新規開拓ではなく、<b>既存の深いリレーションを活かした継続受注・追加ロール開拓に集中</b>する。更新は6ヶ月・1年スパンの提案へ。</span></div>
         <div class="lrole"><span class="li"><i class="ti ti-arrow-up-right"></i></span><span class="lt"><b>既顧客から追加案件を獲得する。</b>温まった関係を起点に、同一顧客の新規案件を取りに行く（既顧客新規のロールモデル）。</span></div>
-        <div class="lrole"><span class="li"><i class="ti ti-bulb"></i></span><span class="lt">JDが明確な案件（人材要件あり）は確実に遂行。深耕の中で潜在ニーズを引き出す。</span></div>
+        <div class="lrole"><span class="li"><i class="ti ti-scale"></i></span><span class="lt"><b>“守り”が主、“攻め”は従。</b>活動比重は Tier1の進行営業（継続・深耕）<b>8割</b> : 新規開拓 <b>2割</b> を目安に（チーム方針であり、個人への指示ではない）。</span></div>
       </div>
       <div class="lcard mem">
         <span class="ltag"><i class="ti ti-rocket"></i> メンバー層</span>
-        <h4>新規パイプライン推進 ＋ 薄くCS</h4>
-        <div class="lmeta">保有プロジェクト 1〜14件</div>
-        <div class="lrole"><span class="li"><i class="ti ti-target-arrow"></i></span><span class="lt"><b>新規案件のパイプラインを推進する。</b>ソリューション提案への変革の主軸を担う。</span></div>
+        <h4>新規パイプラインの構築</h4>
+        <div class="lmeta">Tier2以下が軸・保有案件が積み上げ途上の層</div>
+        <div class="lrole"><span class="li"><i class="ti ti-target-arrow"></i></span><span class="lt"><b>新しいパイプラインを作る。</b>Tier2以下を軸に、マーケ連携・NDA巻き・Tier引き上げで新規案件を生む。ソリューション提案への変革の主軸。</span></div>
         <div class="lrole"><span class="li"><i class="ti ti-heart-handshake"></i></span><span class="lt">CS活動も薄く担い、稼働案件のフォローを行う。</span></div>
         <div class="lrole"><span class="li"><i class="ti ti-trending-up"></i></span><span class="lt">案件数を積み上げながら、提案力・深耕の幅を広げていく。</span></div>
       </div>
     </div>
-    <div class="layer-note"><b>狙い：</b> 全員にソリューション提案・新規開拓を一律で求めるのではなく、保有案件数と実証された強みに合わせて役割を分ける。エキスパート層は「継続を守りながら既顧客から積み上げる」ことに集中し、その達成に向けた行動は本人が設計する。これは適性に応じた配置であり、チーム全体で案件数を積み上げるための分業である。</div>
+    <div class="layer-note"><b>狙い：</b> 全員にソリューション提案・新規開拓を一律で求めるのではなく、保有案件数と実証された強みに合わせて役割を純化する。これは適性に応じた配置であり、チーム全体で案件数を積み上げるための分業（優劣ではない）。</div>
+
+    <h3 class="ph" style="margin-top:22px">Tier × 担当セグメントの原則 ── 「濃度」で設計する</h3>
+    <p class="lead">担当の持ち方を、Tierごとに <b>固定 / 分担 / 自由</b> の3段階の濃度で設計する。</p>
+    <div class="tier hi"><div class="h"><i class="ti ti-lock" style="margin-right:6px"></i>Tier1（アカウント固定）</div><div class="c">アカウント（企業）単位で<b>固定担当</b>。FLEXY案件・Biz案件を問わず、同一担当者が一気通貫で持つ。</div></div>
+    <div class="tier"><div class="h"><i class="ti ti-arrows-shuffle" style="margin-right:6px"></i>Tier2・3（案件分担）</div><div class="c">案件ごとに分担。担当は状況に応じて<b>柔軟に</b>決める。</div></div>
+    <div class="tier"><div class="h"><i class="ti ti-shuffle" style="margin-right:6px"></i>Tier4（自由アサイン）</div><div class="c">ゼロベース。得意・不得意や稼働状況で、その都度アサインする<b>自由エリア</b>。</div></div>
   </div>
 
   </details>
@@ -1010,7 +1027,7 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
           <span class="pchip"><i class="ti ti-bulb"></i> 未来ニーズ・潜在課題を会話する</span>
           <span class="pchip"><i class="ti ti-hand-stop"></i> ご挨拶をしておく</span>
         </div>
-        <p class="pnote">深耕の接点は、怠らない。<b>15分でも、電話でもいい。</b>全ての商談を1時間にする必要はない。リサイクルを通じて近況を報告し合い、他社事例を共有し、同じ場で同期コミュニケーションを取ること自体が重要。<b>接点の「量」を増やしにいく。</b></p>
+        <p class="pnote">深耕の接点は、怠らない。<b>15分でも、電話でもいい。</b>全ての商談を1時間にする必要はない。リサイクルを通じて近況を報告し合い、他社事例を共有し、同じ場で同期コミュニケーションを取ること自体が重要。<b>接点の「量」を増やしにいく。</b><br><b>会食・ランチ・電話など、セールスフォースには残らない接点</b>もやってほしい。モニタリングはできないが、<b>確実に成果としてリード数・受注数に現れる。</b></p>
       </div>
 
       <div class="flow2">
@@ -1538,7 +1555,9 @@ details.sec>summary .chev{margin-left:8px!important}
 
   EXPLAIN[4]=`<p class="lead-line">今期の背骨は二つ。「4 Value Cycleをチームで回す」と「全員が4階層で見る」。</p>
 <h4>4 Value Cycle は継承する。だが一人で回すのはやめる</h4>
-<p>4つの循環（Account Planning／Lead Engagement／Pipeline／Customer Success）自体は正しい。だが戦略を描く力・案件を進める力・構造を読む力は別の資質で、一人に求めると潰れる。<b>役割で分け、AIで裏方を軽くし、顧客から見える担当者は一人の人格に保つ</b>。この形に作り変える。</p>
+<p>4つの循環自体は正しい。だが戦略を描く力・案件を進める力・構造を読む力は別の資質で、一人に求めると潰れる。<b>役割で分け、AIで裏方を軽くし、顧客から見える担当者は一人の人格に保つ</b>。この形に作り変える。</p>
+<h4>4つの活動エリアと重心の移動</h4>
+<p>運用解像度で4エリアに更新 ── <b>①リードマネジメント〜パイプラインジェネレーション（空中戦／マーケ・IS）</b>、<b>②パイプラインマネジメント（FS・アソシエイト）</b>、<b>③カスタマーサクセス（地上戦／FS）</b>、<b>④アカウントプランニング（地上戦＋空中戦／FS・IS）</b>。この半年は<b>①②</b>（リードのアクティブ化と案件推進）に、来期は<b>③④</b>（継続深耕とアカウントプランニング）に重心を移す。</p>
 <h4>全員がアカウントを「4階層」で見る</h4>
 <p>企業 → 部署 → リード（担当者）→ 案件。<b>案件は最も短命な一点にすぎない</b>。その上に担当者の立ち位置、部署のミッション、企業全体の力学がある。案件を進めるだけのロールから脱却し、見るのは「案件」ではなく「アカウント」にする。</p>
 <h4>商談は「案件探索」だけの場ではない</h4>
@@ -1579,11 +1598,13 @@ details.sec>summary .chev{margin-left:8px!important}
 
   EXPLAIN[9]=`<p class="lead-line">全員が同じ動きをするのではなく、保有案件数と実証された強みに応じて役割を分ける。</p>
 <p>ソリューション営業への変革は、全員一律には進められない。だから<b>保有プロジェクト数と、これまでに実証された強み</b>に応じて、FSの役割を2つの層に分ける。これは優劣ではなく<b>適性に応じた配置</b>であり、チーム全体で案件数を積み上げるための分業である。</p>
-<h4>エキスパート層 ── 継続深耕 ＋ 既顧客新規</h4>
-<p>保有プロジェクトが多い層は、<b>「継続を守る＋既顧客から新規を積む」</b>に集中する。更新を長いスパン（半期・1年）の提案に切り替えて稼働を維持し、温まった関係を起点に同一顧客の新規案件を取りに行く（既顧客新規のロールモデル）。JDが明確な案件は確実に遂行しつつ、深耕の中で潜在ニーズを引き出す。</p>
-<h4>メンバー層 ── 新規パイプライン推進 ＋ 薄くCS</h4>
-<p>保有が積み上がり途上の層は、<b>新規案件のパイプライン推進</b>を主軸に、ソリューション提案への変革を担う。薄くCSも受け持ちながら、案件数と提案・深耕の幅を広げていく。</p>
-<p class="note-line">狙いは、エキスパートのJDにある「既存法人顧客への深耕」「自身での顧客開拓」を役割として純化すること。達成に向けた具体的な行動は本人が設計する。</p>`;
+<h4>エキスパート層 ── 継続の深耕（保有Tier1中心）</h4>
+<p>保有案件が厚い層は、新規開拓ではなく<b>既存の深いリレーションを活かした継続受注・追加ロール開拓に集中</b>する。活動比重は<b>“守り”が主・“攻め”は従</b> ── Tier1の進行営業（継続・深耕）8割 : 新規開拓2割を目安に（<b>チーム方針であり、個人への指示ではない</b>）。</p>
+<h4>メンバー層 ── 新規パイプラインの構築（Tier2以下が軸）</h4>
+<p>保有が積み上げ途上の層は、Tier2以下を軸に<b>新しいパイプラインを作る</b>（マーケ連携・NDA巻き・Tier引き上げ）。薄くCSも受け持ちながら、案件数と提案・深耕の幅を広げる。</p>
+<h4>Tier × 担当セグメントの「濃度」</h4>
+<p><b>Tier1＝アカウント固定</b>（FLEXY/Bizを問わず同一担当が一気通貫）、<b>Tier2・3＝案件ごとに分担</b>（柔軟に決める）、<b>Tier4＝自由アサイン</b>（都度、得意・稼働状況で割り当て）。固定／分担／自由の3段階の濃度で持ち方を設計する。</p>
+<p class="note-line">個人名・個人の能力評価は資料に載せない。比重や配置はロール／チーム方針として一般化している。</p>`;
 
   EXPLAIN[10]=`<p class="lead-line">AIとオペレーションが「作業」を引き受ける。だから人は、人にしかできないことへ。</p>
 <p>狙いは一つ ── 営業が<b>「関係構築・接点づくり・脳内シェアの獲得・未来（潜在）ニーズの訴求」</b>に時間を使えるようにすること。とりわけ深耕営業は、AIにもオペレーションにも代替できない、人間＝営業の仕事になる。</p>
