@@ -186,19 +186,27 @@ body{
 .front-main .unit,.front-main .org-aim,.front-main .members{padding-left:0;margin-left:0;margin-right:0}
 .front-split .mem{justify-content:flex-start;gap:8px}   /* 名前＋補足を左寄せ */
 .front-split .mem .role{margin-left:0}
-.front-split .unit,.front-split .org-aim{padding-right:160px}  /* テキストは帯を避ける／背景は右まで伸びる */
-/* テーマUnit＝薄い縦帯を横棒に被せる（横断表現） */
-.theme-bar{position:absolute;top:2px;right:14px;bottom:16px;width:150px;
-  background:rgba(112,87,163,.13);border:1.6px solid rgba(112,87,163,.34);
-  border-radius:14px;padding:13px 12px;display:flex;flex-direction:column;color:#4a3870;backdrop-filter:blur(1px)}
+.front-split .unit,.front-split .org-aim{padding-right:262px}  /* テキストは帯を避ける／背景は右まで伸びる */
+/* 右側の縦帯レール（アシスタント＋テーマUnitを横棒に被せる） */
+.front-rail{position:absolute;top:2px;right:14px;bottom:16px;display:flex;gap:8px;align-items:stretch}
+.assist-bar,.theme-bar{width:122px;display:flex;flex-direction:column;border-radius:14px;padding:13px 11px;backdrop-filter:blur(1px)}
+/* テーマUnit（横断） */
+.theme-bar{background:rgba(112,87,163,.13);border:1.6px solid rgba(112,87,163,.34);color:#4a3870}
 .theme-bar .th-h{display:flex;flex-direction:column;align-items:flex-start;gap:5px;margin-bottom:12px}
-.theme-bar .th-h b{font-size:13.5px;font-weight:800;color:#3f2f66}
-.theme-bar .th-h span{font-size:9.5px;font-weight:800;background:rgba(112,87,163,.2);color:#4a3870;border-radius:10px;padding:2px 9px}
-.theme-bar .th-mem{background:rgba(255,255,255,.62);border:1px solid rgba(112,87,163,.22);border-radius:10px;padding:10px 11px;margin-bottom:8px}
-.theme-bar .th-mem .nm{font-size:13.5px;font-weight:800;color:#3f2f66}
-.theme-bar .th-mem small{display:block;font-size:9.5px;color:#6b5a90;font-weight:600;margin-top:3px;line-height:1.35}
+.theme-bar .th-h b{font-size:12.5px;font-weight:800;color:#3f2f66}
+.theme-bar .th-h span{font-size:9px;font-weight:800;background:rgba(112,87,163,.2);color:#4a3870;border-radius:10px;padding:2px 8px}
+.theme-bar .th-mem{background:rgba(255,255,255,.62);border:1px solid rgba(112,87,163,.22);border-radius:10px;padding:9px 10px;margin-bottom:8px}
+.theme-bar .th-mem .nm{font-size:12.5px;font-weight:800;color:#3f2f66}
+.theme-bar .th-mem small{display:block;font-size:9px;color:#6b5a90;font-weight:600;margin-top:3px;line-height:1.35}
 .theme-bar .th-note{font-size:9.5px;color:#6b5a90;line-height:1.5;margin-top:auto;border-top:1px solid rgba(112,87,163,.22);padding-top:9px}
-@media(max-width:560px){.theme-bar{position:static;width:100%;background:rgba(112,87,163,.13);margin-top:10px}.front-split .unit,.front-split .org-aim{padding-right:0}}
+/* アシスタント（縦・担当のオーバーラップ） */
+.assist-bar{background:rgba(10,110,140,.10);border:1.6px solid rgba(10,110,140,.30)}
+.assist-bar .ab-h{font-size:12.5px;font-weight:800;color:#0a5a72;margin-bottom:10px}
+.assist-bar .ab-seg{background:rgba(255,255,255,.66);border:1px solid rgba(10,110,140,.22);border-radius:10px;padding:9px 10px;margin-bottom:8px}
+.assist-bar .ab-seg.fill{flex:1}
+.assist-bar .ab-seg .nm{font-size:12.5px;font-weight:800;color:#083f52}
+.assist-bar .ab-seg small{display:block;font-size:9px;color:#3f7a8e;font-weight:600;margin-top:3px;line-height:1.4}
+@media(max-width:640px){.front-rail{position:static;margin-top:10px}.assist-bar,.theme-bar{width:auto;flex:1}.front-split .unit,.front-split .org-aim{padding-right:0}}
 .org-assist{margin-top:16px;border:1.5px solid #d6e8f5;border-radius:14px;background:#f7fbfe;padding:14px 18px;width:100%;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .org-assist .al{font-size:13px;font-weight:800;color:var(--blue-d);display:flex;align-items:center;gap:7px}
 .org-assist .am{display:flex;gap:6px;flex-wrap:wrap}
@@ -981,10 +989,10 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
     <summary><span class="stitle"><i class="ti ti-layers-subtract"></i>FSの役割を2層に分ける <small>― 保有案件数と強みに応じた配置</small></span><i class="ti ti-chevron-down chev"></i></summary>
   <div class="panel">
     <h3 class="ph">全員が同じ動きをするのではなく、強みに応じて役割を分ける</h3>
-    <p class="lead">ソリューション営業への変革は全員一律ではできない。保有プロジェクト数と実証された強みに応じて、FSを2つの役割層に分ける。<b style="color:var(--blue-d)">エキスパートのJDにある「既存法人顧客への深耕」「自身での顧客開拓」を、役割として純化する。</b></p>
+    <p class="lead">ソリューション営業への変革は全員一律ではできない。保有案件数と実証された強みに応じて、FSの動きを <b style="color:var(--blue-d)">Farming（深耕強化）</b> と <b style="color:var(--blue-d)">Hunting（開拓強化）</b> の2つに分け、役割を純化する。</p>
     <div class="layer2">
       <div class="lcard exp">
-        <span class="ltag"><i class="ti ti-plant-2"></i> Farming（深耕強化）｜エキスパート層</span>
+        <span class="ltag"><i class="ti ti-plant-2"></i> Farming（深耕強化）</span>
         <h4>継続の深耕 ＋ 既顧客新規</h4>
         <div class="lmeta">保有Tier1中心・保有案件が厚い層</div>
         <div class="lrole"><span class="li"><i class="ti ti-shield-check"></i></span><span class="lt"><b>継続を守る。</b>新規開拓ではなく、<b>既存の深いリレーションを活かした継続受注・追加ロール開拓に集中</b>する。更新は6ヶ月・1年スパンの提案へ。</span></div>
@@ -992,7 +1000,7 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
         <div class="lrole"><span class="li"><i class="ti ti-scale"></i></span><span class="lt"><b>“守り”が主、“攻め”は従。</b>活動比重は Tier1の進行営業（継続・深耕）<b>8割</b> : 新規開拓 <b>2割</b> を目安に（チーム方針であり、個人への指示ではない）。</span></div>
       </div>
       <div class="lcard mem">
-        <span class="ltag"><i class="ti ti-target-arrow"></i> Hunting（開拓強化）｜メンバー層</span>
+        <span class="ltag"><i class="ti ti-target-arrow"></i> Hunting（開拓強化）</span>
         <h4>新規パイプラインの構築</h4>
         <div class="lmeta">Tier2以下が軸・保有案件が積み上げ途上の層</div>
         <div class="lrole"><span class="li"><i class="ti ti-target-arrow"></i></span><span class="lt"><b>新しいパイプラインを作る。</b>Tier2以下を軸に、マーケ連携・NDA巻き・Tier引き上げで新規案件を生む。ソリューション提案への変革の主軸。</span></div>
@@ -1003,18 +1011,18 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
     <div class="band light" style="margin-top:14px"><span class="hl">Farming と Hunting は「0 vs 100」ではない。</span><div class="sub">どちらの層も<b>新規も深耕も行う</b>。変えるのは <b>比重＝どこに向けるか</b> であって、活動の「量」ではない。</div></div>
     <div class="mini m2" style="margin-top:12px">
       <div class="mcard">
-        <span class="tag-pill">Farming｜深耕強化（エキスパート層）</span>
+        <span class="tag-pill">Farming｜深耕強化</span>
         <h4 style="font-size:14px">狙い</h4>
         <p>Tier1・稼働中顧客という「資産」の関係の深さを活かし、既存アカウントからの<b>追加ロール・新規部署への展開</b>を掘り続けることに集中する。</p>
         <h4 style="font-size:14px;margin-top:9px">期待値</h4>
         <p><b>新規を断るという意味ではない。</b>文脈が薄いところからゼロで文脈構築する動きは減らし、<b>既に文脈があるところをより濃くしていく比重</b>に寄せる、という意味。活動の「量」を減らすのでなく、「どこに向けるか」を変える。</p>
       </div>
       <div class="mcard">
-        <span class="tag-pill">Hunting｜開拓強化（メンバー層）</span>
+        <span class="tag-pill">Hunting｜開拓強化</span>
         <h4 style="font-size:14px">狙い</h4>
         <p>関係値がまだ薄い顧客・新規開拓を主戦場とし、<b>新しいパイプラインを作る</b>ことに集中する。</p>
         <h4 style="font-size:14px;margin-top:9px">期待値</h4>
-        <p>エキスパート層が長年かけて積み上げたTier1資産を、ゼロから同じように作るのは現実的でない。新規開拓を「頑張れ」と精神論で終わらせず、<b>マーケティングを強化してメンバー層への新規リード供給を増やす</b>。開拓は個人の営業力だけに頼らせない。</p>
+        <p>Farming側が長年かけて積み上げたTier1資産を、ゼロから同じように作るのは現実的でない。新規開拓を「頑張れ」と精神論で終わらせず、<b>マーケティングを強化してHunting側への新規リード供給を増やす</b>。開拓は個人の営業力だけに頼らせない。</p>
       </div>
     </div>
 
@@ -1205,28 +1213,33 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
           <div class="colmgr">マネージャー 徳永（＋小林部長）</div>
           <div class="front-split">
             <div class="front-main">
-              <div class="unit">Farming（深耕強化）｜エキスパート層</div>
+              <div class="unit">Farming（深耕強化）</div>
               <div class="org-aim"><i class="ti ti-target"></i> 目指す層：継続深耕 ＋ 既顧客新規</div>
               <div class="members">
-                <div class="mem">中村</div>
                 <div class="mem">土田</div>
+                <div class="mem">中村</div>
                 <div class="mem">栫</div>
-                <div class="mem asst">アシスタント：野沢</div>
               </div>
-              <div class="unit">Hunting（開拓強化）｜メンバー層</div>
+              <div class="unit">Hunting（開拓強化）</div>
               <div class="org-aim"><i class="ti ti-target"></i> 目指す層：新規パイプラインの開拓（幅広いパイプライン推進）</div>
               <div class="members">
                 <div class="mem">岡部</div>
                 <div class="mem">福本 <span class="role">50%</span></div>
                 <div class="mem">木曽</div>
-                <div class="mem">飯田 <span class="role">100%</span></div>
-                <div class="mem asst">アシスタント：小松田</div>
+                <div class="mem">飯田 <span class="role">PKSHA出向</span></div>
               </div>
             </div>
-            <div class="theme-bar">
-              <div class="th-h"><b>テーマUnit</b><span>全担当を横断</span></div>
-              <div class="th-mem"><span class="nm">小野</span><small>リスキリング（事務局）</small></div>
-              <div class="th-mem"><span class="nm">（金谷）</span><small>FLEXY案件でPM</small></div>
+            <div class="front-rail">
+              <div class="assist-bar">
+                <div class="ab-h">アシスタント</div>
+                <div class="ab-seg"><span class="nm">野沢</span><small>土田 専属</small></div>
+                <div class="ab-seg fill"><span class="nm">小松田</span><small>中村・栫・岡部・福本・木曽・飯田</small></div>
+              </div>
+              <div class="theme-bar">
+                <div class="th-h"><b>テーマUnit</b><span>全担当を横断</span></div>
+                <div class="th-mem"><span class="nm">小野</span><small>リスキリング（事務局）</small></div>
+                <div class="th-mem"><span class="nm">（金谷）</span><small>FLEXY案件でPM</small></div>
+              </div>
             </div>
           </div>
         </div>
@@ -1613,9 +1626,9 @@ details.sec>summary .chev{margin-left:8px!important}
 
   EXPLAIN[9]=`<p class="lead-line">全員が同じ動きをするのではなく、保有案件数と実証された強みに応じて役割を分ける。</p>
 <p>ソリューション営業への変革は、全員一律には進められない。だから<b>保有プロジェクト数と、これまでに実証された強み</b>に応じて、FSの役割を2つの層に分ける。これは優劣ではなく<b>適性に応じた配置</b>であり、チーム全体で案件数を積み上げるための分業である。</p>
-<h4>Farming（深耕強化）｜エキスパート層</h4>
+<h4>Farming（深耕強化）</h4>
 <p>保有案件が厚い層は、新規開拓ではなく<b>既存の深いリレーションを活かした継続受注・追加ロール開拓に集中</b>する。活動比重は<b>“守り”が主・“攻め”は従</b> ── Tier1の進行営業（継続・深耕）8割 : 新規開拓2割を目安に（<b>チーム方針であり、個人への指示ではない</b>）。</p>
-<h4>Hunting（開拓強化）｜メンバー層</h4>
+<h4>Hunting（開拓強化）</h4>
 <p>保有が積み上げ途上の層は、Tier2以下を軸に<b>新しいパイプラインを作る</b>（マーケ連携・NDA巻き・Tier引き上げ）。薄くCSも受け持ちながら、案件数と提案・深耕の幅を広げる。</p>
 <h4>Tier × 担当セグメントの「濃度」</h4>
 <p><b>Tier1＝アカウント固定</b>（FLEXY/Bizを問わず同一担当が一気通貫）、<b>Tier2・3＝案件ごとに分担</b>（柔軟に決める）、<b>Tier4＝自由アサイン</b>（都度、得意・稼働状況で割り当て）。固定／分担／自由の3段階の濃度で持ち方を設計する。</p>
@@ -1667,10 +1680,11 @@ details.sec>summary .chev{margin-left:8px!important}
 
   EXPLAIN[15]=`<p class="lead-line">FY14のチーム構成 ── フロントと企画の二軸。フロントは強み（目指す層）で2つに分ける。</p>
 <p>部長の下にマネージャーを置き、組織を<b>①フロント</b>と<b>②企画</b>の二軸で構成する。フロントは、実証された強み＝<b>目指す層</b>に応じて2つのUnitに分ける（優劣ではなく適性に応じた配置）。</p>
-<h4>① フロント ── Farming（深耕強化）｜エキスパート層</h4>
-<p>Tier1・稼働中顧客という「資産」の関係の深さを活かし、既存アカウントからの追加ロール・新規部署展開を掘り続けることに集中する。保有案件が厚い層で、専属アシスタントが実務を支える。</p>
-<h4>① フロント ── Hunting（開拓強化）｜メンバー層</h4>
+<h4>① フロント ── Farming（深耕強化）</h4>
+<p>Tier1・稼働中顧客という「資産」の関係の深さを活かし、既存アカウントからの追加ロール・新規部署展開を掘り続けることに集中する。</p>
+<h4>① フロント ── Hunting（開拓強化）</h4>
 <p>関係値がまだ薄い顧客・新規開拓を主戦場に、新しいパイプラインを作ることに集中する。ソリューション提案への変革の主軸。</p>
+<p>アシスタントは <b>野沢＝土田 専属</b>、<b>小松田＝中村・栫・岡部・福本・木曽・飯田</b> を担当（現状の体制。今後見直していく）。</p>
 <p class="note-line">FarmingとHuntingは「0 vs 100」ではない。どちらも新規も深耕も行う。変えるのは<b>比重＝どこに向けるか</b>であって、活動の量ではない。</p>
 <h4>① フロント ── テーマUnit（横断）</h4>
 <p>小野（リスキリング事務局）と（金谷／FLEXY案件でPM）は、特定Unitに属さず<b>フロント全担当のアカウントを横断</b>して、テーマ（リスキリング等）で支援する。体制図では縦棒で「横断」を表現している。</p>
