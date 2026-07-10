@@ -279,6 +279,11 @@ body{
 .vc-node:hover rect{stroke-width:3.5}
 .vc-hint{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:var(--blue);background:var(--blue-l);border:1.5px solid #cfe6f6;border-radius:20px;padding:6px 14px;margin-bottom:6px}
 .vc-hint i{font-size:15px}
+/* 大項目内のサブ見出し（統合した旧セクション名） */
+.sec-sub{font-size:16.5px;font-weight:800;color:var(--blue-d);margin:30px 4px 14px;padding:9px 14px;background:linear-gradient(135deg,#eef7fd,#e3f0fb);border-left:5px solid var(--blue);border-radius:0 12px 12px 0;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.sec-sub i{color:var(--blue);font-size:18px}
+.sec-sub small{font-weight:500;color:var(--gray);font-size:12px}
+.sec-sub .no{display:none}
 /* salary target banner */
 .tgt-banner{background:linear-gradient(135deg,#0079c0,#003d5e);color:#fff;border-radius:16px;padding:20px 24px;margin-top:12px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .tgt-banner .ti2{flex:none;width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:24px}
@@ -519,7 +524,9 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
   </div>
 
   <details class="sec" open>
-    <summary><span class="stitle"><i class="ti ti-bulb"></i>エグゼクティブサマリー <small>― この戦略の結論</small></span><i class="ti ti-chevron-down chev"></i></summary>
+    <summary><span class="stitle"><i class="ti ti-bulb"></i>エグゼクティブサマリー <small>― 結論</small></span><i class="ti ti-chevron-down chev"></i></summary>
+
+
   <div class="panel">
     <!-- FROM → TO 変換図 -->
     <div class="xform">
@@ -553,80 +560,22 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
   </details>
 
   <details class="sec" open>
-    <summary><span class="stitle"><i class="ti ti-world"></i>この戦略の文脈 <small>― なぜ今、戦い方を変えるのか</small></span><i class="ti ti-chevron-down chev"></i></summary>
+    <summary><span class="stitle"><span class="no">1</span>現状認識 <small>― 総論は正しい。直すのは各論</small></span><i class="ti ti-chevron-down chev"></i></summary>
+
+    <h3 class="sec-sub"><i class="ti ti-alert-triangle"></i>現状認識 <small>― なぜ「回し方」を変えるのか</small></h3>
+
   <div class="panel">
-    <div class="ctx-hero">
-      <div class="ck">CONTEXT ① ｜ THE MODEL型からの脱却</div>
-      <h3>パイプラインを「進めるだけ」では、もう勝てない。<br><span class="em">役割が重なり合う時代の、一貫性の戦い。</span></h3>
-      <p>これまでは、ISから振られたパイプラインを進捗させることだけにフォーカスしてきた。だが今後はそれだけでは難しい。<b>これは当社のIS人員の問題ではなく、世の中のGTM戦略そのものが変化している</b> ── 各役割がオーバーラップし、一人では完結できない。だからこそ役割分担して注力する。しかし分けるほど、<b>情報・打ち出し・施策・コミュニケーションに「一貫性」が必要になる。</b></p>
-      <div class="themodel">
-        <div class="tm old"><h5><i class="ti ti-clock-hour-4"></i> 従来：THE MODEL型</h5><p>IS→FS→CS が<b>分業・分断</b>。各自が自工程だけを回す。</p></div>
-        <div class="tmarrow"><i class="ti ti-arrow-right"></i></div>
-        <div class="tm new"><h5><i class="ti ti-arrows-join"></i> これから：一貫性型</h5><p>マーケ／IS／FS／CS が<b>重なり合う</b>。全レイヤーで一貫して動く。</p></div>
-      </div>
-      <div class="layers">
-        <span class="ly"><i class="ti ti-plane"></i>空中戦：マーケ</span>
-        <span class="ly"><i class="ti ti-phone"></i>地上戦：ISコール</span>
-        <span class="ly"><i class="ti ti-users"></i>地上戦：FS提案</span>
-        <span class="ly"><i class="ti ti-pick"></i>地下戦：CS活動</span>
-      </div>
-      <p style="margin-top:14px"><b>全レイヤーの活動に一貫性を持たせる ── だから「戦略」が要る。</b></p>
+    <p class="lead">精神論や努力不足ではない。仕組みが生んだ3つの構造要因。</p>
+    <div class="mini m3" style="margin-top:14px">
+      <div class="mcard"><div class="num">1</div><h4>一人で回す設計だった</h4><p>4 Value Cycle は徳永一人が全工程を循環させる前提。一人分の動きをそのまま全員に求めた時点で、移植できない設計だった。</p></div>
+      <div class="mcard"><div class="num">2</div><h4>CK月次が中長期を殺す</h4><p>評価は半期だがCKは毎月追う。成果に時間のかかるアカウント開拓は後回しに。達成意識が高い人ほど目先へ向かう。</p></div>
+      <div class="mcard"><div class="num">3</div><h4>FS起点の施策は形骸化</h4><p>工数を増やす施策は防衛本能で淘汰される。送付除外、ボタン放置。FSの能動的アクションを入り口にした施策は必ず死ぬ。</p></div>
     </div>
-
-    <div class="ctx-hero" style="background:linear-gradient(160deg,#0a6e8c,#0079c0)">
-      <div class="ck">CONTEXT ② ｜ 解決策ベンダーへ</div>
-      <h3>「プロ人材」という手段売りと、<br><span class="em">「解決策」の両方を取りに行く。</span></h3>
-      <p>「顧客思考」はマインドとして当然。その上で、動きとして<b>「解決策ベンダー」</b>の力を持つ必要がある。<b>「プロ人材」という手段売り（FLEXY）はAIマッチングの加速で人の稼働確保を強化</b>し、<b>「解決策」の提案（プロシェア案件）は提案力の強化で案件の領域を広げる</b>。テーマの切り口を切る・体制を提案する・使い方/アサイン/役割を提示する ── JD（人材要件）自体をこちらが描くイメージ。<b>手段売りと解決策の両方を取りに行く</b>ことが、競合に勝つ条件になる。</p>
-    </div>
-
-    <!-- CONTEXT② 図解：FLEXY と プロシェア案件の両取り -->
-    <div class="fbiz">
-      <div class="fbiz-head">「プロ人材」という手段売りと「解決策（ソリューション）」の<b>両方</b>を取りに行く</div>
-      <div class="fseg flexy">
-        <div class="fseg-l"><span class="fseg-badge"><i class="ti ti-users"></i> FLEXY</span><p class="fseg-lever"><i class="ti ti-bolt"></i> <b>AIマッチング加速</b>によって、人の稼働確保を強化する</p></div>
-        <div class="fbiz-chain">
-          <div class="fn co">サーキュレーション<span>「人」</span></div>
-          <i class="ti ti-arrow-right"></i>
-          <div class="fn cust">顧客<span>「人材要件」</span></div>
-        </div>
-      </div>
-      <div class="fseg pro">
-        <div class="fseg-l"><span class="fseg-badge"><i class="ti ti-bulb"></i> プロシェア案件</span><p class="fseg-lever"><i class="ti ti-arrows-maximize"></i> <b>提案強化</b>によって、案件の領域を拡大する</p></div>
-        <div class="fbiz-chain">
-          <div class="fn co">サーキュレーション<span>「人」</span></div>
-          <i class="ti ti-arrow-right"></i>
-          <div class="fn sol">解決策<span>プロジェクト要件／進め方／マイルストーン／体制／役割／タスク</span></div>
-          <i class="ti ti-arrow-right"></i>
-          <div class="fn cust">顧客<span>「課題感」</span></div>
-        </div>
-      </div>
-    </div>
-
-    <h3 class="ph">競合の変化</h3>
-    <p class="lead">「人材・プロ人材」というソリューションが決まっていれば、当社は「人材」を提供すればよかった。だが今、企業は様々なサービスで「解決」を考えられる。だから人ではなく、<b>「解決策」を一緒に考え検討するフェーズから顧客と対話する</b>必要がある。</p>
-    <div class="compet">
-      <span class="cp"><i class="ti ti-robot"></i> AIベンダー</span>
-      <span class="cp"><i class="ti ti-server"></i> SIer</span>
-      <span class="cp"><i class="ti ti-briefcase"></i> コンサルファーム</span>
-      <span class="cp"><i class="ti ti-briefcase"></i> 小規模コンサル</span>
-      <span class="cp"><i class="ti ti-tools"></i> ツールベンダー（SaaS）</span>
-      <span class="cp"><i class="ti ti-building-store"></i> 代理店</span>
-      <span class="cp"><i class="ti ti-users-group"></i> 同業（Hipro 等）</span>
-    </div>
-    <p class="lead" style="margin-top:14px">同時に、当社は<b>PKSHAグループのケイパビリティ</b>や<b>マーケ側のテーマパッケージ</b>など武器を増やしている。これも「武器の提示」ではなく、<b>「解決策」として示す。</b></p>
-    <h3 class="ph" style="font-size:15px;margin-top:18px">解決策の具体イメージ</h3>
-    <div class="sol-ex">
-      <div class="se"><i class="ti ti-sitemap"></i><span>プロジェクト設計<small>何を、どの順で進めるか</small></span></div>
-      <div class="se"><i class="ti ti-hierarchy"></i><span>体制図<small>誰が、どう関わるか</small></span></div>
-      <div class="se"><i class="ti ti-adjustments"></i><span>使い方<small>リスキリング / PM / 開発部分だけ 等</small></span></div>
-      <div class="se"><i class="ti ti-bulb"></i><span>テーマ / 切り口<small>顧客の課題を定義する角度</small></span></div>
-    </div>
+    <div class="band"><span class="hl">結論：</span> 変えるのは「何をやるか（What）」ではない。「どう回すか（How / Who）」である。</div>
   </div>
 
-  </details>
+    <h3 class="sec-sub"><i class="ti ti-history"></i>FY13下期の振り返り <small>― 戦略は正しかった。だが浸透しなかった</small></h3>
 
-  <details class="sec" open>
-    <summary><span class="stitle"><span class="no">1</span>FY13下期の振り返り <small>― 戦略は正しかった。だが浸透しなかった</small></span><i class="ti ti-chevron-down chev"></i></summary>
   <div class="panel">
     <p class="lead" style="margin-top:0">戦略が正しかったことは、数字が証明している。勝ち筋は「既存アカウントの深掘り」にある。</p>
     <div class="stats">
@@ -745,24 +694,82 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
     </div>
   </div>
 
-  </details>
+    <h3 class="sec-sub"><i class="ti ti-world"></i>この戦略の文脈 <small>― なぜ今、戦い方を変えるのか</small></h3>
 
-  <details class="sec" open>
-    <summary><span class="stitle"><span class="no">2</span>現状認識 <small>― なぜ「回し方」を変えるのか</small></span><i class="ti ti-chevron-down chev"></i></summary>
   <div class="panel">
-    <p class="lead">精神論や努力不足ではない。仕組みが生んだ3つの構造要因。</p>
-    <div class="mini m3" style="margin-top:14px">
-      <div class="mcard"><div class="num">1</div><h4>一人で回す設計だった</h4><p>4 Value Cycle は徳永一人が全工程を循環させる前提。一人分の動きをそのまま全員に求めた時点で、移植できない設計だった。</p></div>
-      <div class="mcard"><div class="num">2</div><h4>CK月次が中長期を殺す</h4><p>評価は半期だがCKは毎月追う。成果に時間のかかるアカウント開拓は後回しに。達成意識が高い人ほど目先へ向かう。</p></div>
-      <div class="mcard"><div class="num">3</div><h4>FS起点の施策は形骸化</h4><p>工数を増やす施策は防衛本能で淘汰される。送付除外、ボタン放置。FSの能動的アクションを入り口にした施策は必ず死ぬ。</p></div>
+    <div class="ctx-hero">
+      <div class="ck">CONTEXT ① ｜ THE MODEL型からの脱却</div>
+      <h3>パイプラインを「進めるだけ」では、もう勝てない。<br><span class="em">役割が重なり合う時代の、一貫性の戦い。</span></h3>
+      <p>これまでは、ISから振られたパイプラインを進捗させることだけにフォーカスしてきた。だが今後はそれだけでは難しい。<b>これは当社のIS人員の問題ではなく、世の中のGTM戦略そのものが変化している</b> ── 各役割がオーバーラップし、一人では完結できない。だからこそ役割分担して注力する。しかし分けるほど、<b>情報・打ち出し・施策・コミュニケーションに「一貫性」が必要になる。</b></p>
+      <div class="themodel">
+        <div class="tm old"><h5><i class="ti ti-clock-hour-4"></i> 従来：THE MODEL型</h5><p>IS→FS→CS が<b>分業・分断</b>。各自が自工程だけを回す。</p></div>
+        <div class="tmarrow"><i class="ti ti-arrow-right"></i></div>
+        <div class="tm new"><h5><i class="ti ti-arrows-join"></i> これから：一貫性型</h5><p>マーケ／IS／FS／CS が<b>重なり合う</b>。全レイヤーで一貫して動く。</p></div>
+      </div>
+      <div class="layers">
+        <span class="ly"><i class="ti ti-plane"></i>空中戦：マーケ</span>
+        <span class="ly"><i class="ti ti-phone"></i>地上戦：ISコール</span>
+        <span class="ly"><i class="ti ti-users"></i>地上戦：FS提案</span>
+        <span class="ly"><i class="ti ti-pick"></i>地下戦：CS活動</span>
+      </div>
+      <p style="margin-top:14px"><b>全レイヤーの活動に一貫性を持たせる ── だから「戦略」が要る。</b></p>
     </div>
-    <div class="band"><span class="hl">結論：</span> 変えるのは「何をやるか（What）」ではない。「どう回すか（How / Who）」である。</div>
+
+    <div class="ctx-hero" style="background:linear-gradient(160deg,#0a6e8c,#0079c0)">
+      <div class="ck">CONTEXT ② ｜ 解決策ベンダーへ</div>
+      <h3>「プロ人材」という手段売りと、<br><span class="em">「解決策」の両方を取りに行く。</span></h3>
+      <p>「顧客思考」はマインドとして当然。その上で、動きとして<b>「解決策ベンダー」</b>の力を持つ必要がある。<b>「プロ人材」という手段売り（FLEXY）はAIマッチングの加速で人の稼働確保を強化</b>し、<b>「解決策」の提案（プロシェア案件）は提案力の強化で案件の領域を広げる</b>。テーマの切り口を切る・体制を提案する・使い方/アサイン/役割を提示する ── JD（人材要件）自体をこちらが描くイメージ。<b>手段売りと解決策の両方を取りに行く</b>ことが、競合に勝つ条件になる。</p>
+    </div>
+
+    <!-- CONTEXT② 図解：FLEXY と プロシェア案件の両取り -->
+    <div class="fbiz">
+      <div class="fbiz-head">「プロ人材」という手段売りと「解決策（ソリューション）」の<b>両方</b>を取りに行く</div>
+      <div class="fseg flexy">
+        <div class="fseg-l"><span class="fseg-badge"><i class="ti ti-users"></i> FLEXY</span><p class="fseg-lever"><i class="ti ti-bolt"></i> <b>AIマッチング加速</b>によって、人の稼働確保を強化する</p></div>
+        <div class="fbiz-chain">
+          <div class="fn co">サーキュレーション<span>「人」</span></div>
+          <i class="ti ti-arrow-right"></i>
+          <div class="fn cust">顧客<span>「人材要件」</span></div>
+        </div>
+      </div>
+      <div class="fseg pro">
+        <div class="fseg-l"><span class="fseg-badge"><i class="ti ti-bulb"></i> プロシェア案件</span><p class="fseg-lever"><i class="ti ti-arrows-maximize"></i> <b>提案強化</b>によって、案件の領域を拡大する</p></div>
+        <div class="fbiz-chain">
+          <div class="fn co">サーキュレーション<span>「人」</span></div>
+          <i class="ti ti-arrow-right"></i>
+          <div class="fn sol">解決策<span>プロジェクト要件／進め方／マイルストーン／体制／役割／タスク</span></div>
+          <i class="ti ti-arrow-right"></i>
+          <div class="fn cust">顧客<span>「課題感」</span></div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="ph">競合の変化</h3>
+    <p class="lead">「人材・プロ人材」というソリューションが決まっていれば、当社は「人材」を提供すればよかった。だが今、企業は様々なサービスで「解決」を考えられる。だから人ではなく、<b>「解決策」を一緒に考え検討するフェーズから顧客と対話する</b>必要がある。</p>
+    <div class="compet">
+      <span class="cp"><i class="ti ti-robot"></i> AIベンダー</span>
+      <span class="cp"><i class="ti ti-server"></i> SIer</span>
+      <span class="cp"><i class="ti ti-briefcase"></i> コンサルファーム</span>
+      <span class="cp"><i class="ti ti-briefcase"></i> 小規模コンサル</span>
+      <span class="cp"><i class="ti ti-tools"></i> ツールベンダー（SaaS）</span>
+      <span class="cp"><i class="ti ti-building-store"></i> 代理店</span>
+      <span class="cp"><i class="ti ti-users-group"></i> 同業（Hipro 等）</span>
+    </div>
+    <p class="lead" style="margin-top:14px">同時に、当社は<b>PKSHAグループのケイパビリティ</b>や<b>マーケ側のテーマパッケージ</b>など武器を増やしている。これも「武器の提示」ではなく、<b>「解決策」として示す。</b></p>
+    <h3 class="ph" style="font-size:15px;margin-top:18px">解決策の具体イメージ</h3>
+    <div class="sol-ex">
+      <div class="se"><i class="ti ti-sitemap"></i><span>プロジェクト設計<small>何を、どの順で進めるか</small></span></div>
+      <div class="se"><i class="ti ti-hierarchy"></i><span>体制図<small>誰が、どう関わるか</small></span></div>
+      <div class="se"><i class="ti ti-adjustments"></i><span>使い方<small>リスキリング / PM / 開発部分だけ 等</small></span></div>
+      <div class="se"><i class="ti ti-bulb"></i><span>テーマ / 切り口<small>顧客の課題を定義する角度</small></span></div>
+    </div>
   </div>
 
   </details>
 
   <details class="sec" open>
-    <summary><span class="stitle"><span class="no">3</span>今期の背骨 <small>― 4 Value Cycle をチームで回す ＋ 全員が4階層で見る</small></span><i class="ti ti-chevron-down chev"></i></summary>
+    <summary><span class="stitle"><span class="no">2</span>戦略の背骨と3つの打ち手 <small>― 4 Value Cycle を今期版で回す</small></span><i class="ti ti-chevron-down chev"></i></summary>
+
   <div class="panel">
     <h3 class="ph">4 Value Cycle は継承する。だが一人で回すのは不可能だった。</h3>
     <p class="lead">4つの循環は正しい。役割分担とAIで「チームで回るエンジン」に作り変える。</p>
@@ -866,242 +873,24 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
     <div class="band light"><span class="hl">最重点：</span> 現在稼働中のスターリードを深耕する。過去稼働 ≠ 現在稼働。今まさに関係が最も温まる「スター状態」を逃さない。</div>
   </div>
 
-  </details>
-
-  <details class="sec" open>
-    <summary><span class="stitle"><span class="no">4</span>中核となる考え方 <small>― 2つの切り分け</small></span><i class="ti ti-chevron-down chev"></i></summary>
-  <div class="panel">
-    <h3 class="ph">切り分け① 鳥の目と地上 ― 空中戦と地上戦の連携</h3>
-    <p class="lead">思考する人と実行する人を分離する。前期は全てFSに乗せて潰れた。</p>
-    <div class="mini m3" style="margin-top:14px">
-      <div class="rolecard" style="background:linear-gradient(135deg,#003d5e,#0079c0)"><h4>鳥の目（戦略立案）</h4><div class="who" style="color:#bfe3f7">Mgr ＋ マーケ</div><p>アカウント全体を俯瞰。未開拓Tier1のマップを描き、どこを攻めるか設計する。</p></div>
-      <div class="rolecard" style="background:var(--blue)"><h4>地上（実行）</h4><div class="who">IS</div><p>設計された攻略に沿って、リードへの実行アクションを担う。</p></div>
-      <div class="rolecard" style="background:#0a6e8c"><h4>情報提供</h4><div class="who">FS</div><p>顧客接点で得た生の構造情報を、鳥の目チームに供給する。</p></div>
+    <h3 class="sec-sub"><i class="ti ti-broadcast"></i> 案件を増やす ── マーケティング強化（空中戦）</h3>
+    <div class="panel">
+      <p class="lead">案件数を増やす主エンジンは、個人の新規開拓力ではなく<b>マーケティング</b>。空中戦（マーケ・IS）でリードを継続供給し、開拓を個人に頼らせない。</p>
+      <div class="mini m3">
+        <div class="mcard"><div class="num">1</div><h4>リード／案件供給を増やす</h4><p>テーマを切ったコンテンツ・メルマガ・ウェビナーで、濃いリードを継続的に生む。</p></div>
+        <div class="mcard"><div class="num">2</div><h4>ナーチャリングで温める</h4><p>非同期で文脈を維持し、課題発生時に相談が来る状態（第一想起）をつくる。</p></div>
+        <div class="mcard"><div class="num">3</div><h4>開拓を個人に頼らせない</h4><p>新規開拓を精神論にせず、マーケ強化で Hunting（開拓）側へリードを供給する。</p></div>
+      </div>
+      <div class="band"><span class="hl">狙い：</span> 案件の「入口」をマーケで太くし、深耕（次章）と質（次々章）に回す母数を増やす。</div>
     </div>
-    <div class="band light"><span class="hl">空中戦 × 地上戦 は、分業しても分断させない</span><div class="sub">前期の分業（THE MODEL）は分断を生んだ。今期は、地上戦で得た顧客情報を空中戦に還し、空中戦で温めたリードを地上戦に渡す。この往復をアクティブに回す。</div></div>
-  </div>
-
-  <div class="panel">
-    <h3 class="ph">切り分け② 型化と属人化 ― 人とAIの線引き</h3>
-    <p class="lead">アカウント営業を3つの動作に分解する。担い手が違う。</p>
-    <div class="mini m3" style="margin-top:14px">
-      <div class="mcard" style="background:#fff3e0"><div class="num amber">①</div><h4>対話で構造を引き出す</h4><p>商談で投げかけ、組織の力学を聞き出す。</p><span class="who amber">人にしかできない（属人を認める）</span></div>
-      <div class="mcard fill"><div class="num">②</div><h4>記録・構造化・更新</h4><p>議事録から自動で構造化し、地図を更新し続ける。</p><span class="who">AIが担う</span></div>
-      <div class="mcard fill"><div class="num">③</div><h4>次にどこへ当たるか判断</h4><p>蓄積された地図から、次のアプローチ先を提示する。</p><span class="who">AIが担う</span></div>
-    </div>
-    <p class="note" style="margin-top:12px;text-align:center">これまで ②③ は「誰もやらない領域」だった。AIに巻き取らせ、人は ① と実行に集中する。</p>
-  </div>
 
   </details>
 
   <details class="sec" open>
-    <summary><span class="stitle"><span class="no">5</span>オペレーション改善 <small>― GTM整備とAI自動化で工数を削る</small></span><i class="ti ti-chevron-down chev"></i></summary>
-  <div class="panel">
-    <h3 class="ph">まず工数を削る。空いた時間をアカウントへ再投資する。</h3>
-    <p class="lead">前期は負荷を足して潰れた。今期は引いてから足す。これが決定的な差。</p>
-    <div class="mini m2" style="margin-top:14px">
-      <div class="mcard" style="background:#f7fbfe"><h4 style="color:var(--gray)"><i class="ti ti-robot"></i> AIで削る（作業）</h4><p style="margin-top:6px">・提案書作成 ── 自動生成パイプライン整備済み<br>・要件定義 ── AIで簡素化（手間減）＋高度化（精度増）<br>・議事録→SF連携 ── 自動化（情シスと構築中）</p></div>
-      <div class="mcard" style="background:linear-gradient(135deg,#0079c0,#003d5e)"><h4 style="color:#fff"><i class="ti ti-users"></i> 空いた時間で増やす（関係構築）</h4><p style="color:#e8f6ff;margin-top:6px">AIが裏方を担うからこそ、FSは一人の人格として顧客に向き合える。減らした時間を、人にしかできない関係構築へ振り向ける。</p></div>
-    </div>
-    <div class="mcard fill" style="margin-top:14px">
-      <h4 style="color:var(--blue-d)"><i class="ti ti-sitemap"></i> GTM統合フローの整備</h4>
-      <p style="margin-top:6px">リードの状態（リサイクル/休眠/未提案/稼働後）と、誰の・どんなアクションが必要かを一枚のフローに可視化。チーム全員が同じ地図で動く共通言語であり、将来の全社プロセスの原典。新メンバーのオンボーディング教材としても機能する。 <a href="../gtm/" target="_blank" style="color:var(--blue);font-weight:700;text-decoration:none">→ GTM統合フローを見る</a></p>
-    </div>
-    <div class="mcard fill" style="margin-top:14px">
-      <h4 style="color:var(--blue-d)"><i class="ti ti-map-2"></i> アカウントプランニングの「入力レス」設計</h4>
-      <p style="margin-top:6px">FSに新たな入力作業を負わせない。<b>FSは「喋るだけ」で、アカウントプランが積み上がる</b>設計にする。<a href="../account-planning/" target="_blank" style="color:var(--blue);font-weight:700;text-decoration:none"> → アカウントプランニング フローを見る</a></p>
-      <div class="steps" style="margin-top:12px">
-        <div class="step"><div class="n">1</div><h4>インプット</h4><p>外部情報はAIが収集する。</p></div>
-        <div class="step"><div class="n">2</div><h4>ヒアリング</h4><p>FSは喋るだけ。Notionが自動で構造化する。</p></div>
-        <div class="step"><div class="n">3</div><h4>アウトプット</h4><p>コンテンツ・アプローチ文面をAIが生成する。</p></div>
-      </div>
-    </div>
-  </div>
+    <summary><span class="stitle"><span class="no">3</span>案件を深める <small>― 深耕営業（アカプラ ＋ スターリード）</small></span><i class="ti ti-chevron-down chev"></i></summary>
 
-  <div class="panel">
-    <h3 class="ph">GTMオペレーション自動化フロー ── Zoom商談後を一気通貫で</h3>
-    <p class="lead">商談終了から提案書・顧客メール下書きまで、Salesforce と Claude Cowork で自動的につなぐ。</p>
-    <div class="gop">
-      <div class="gop-node grey"><b>Zoom商談終了</b><span>録音・文字起こし</span></div>
-      <div class="gop-arrow"><i class="ti ti-arrow-down"></i></div>
-      <div class="gop-node grey"><b>SF自動格納</b><span>フェーズ更新 ＋ 要件詳細も同時記入</span></div>
-      <div class="gop-arrow"><i class="ti ti-arrow-down"></i></div>
-      <div class="gop-cowork">
-        <div class="gop-cw-h"><i class="ti ti-sparkles"></i> Claude Cowork <small>要件整理〜提案書作成まで一括</small></div>
-        <div class="gop-parallel">
-          <div class="gop-node green"><b>要件整理</b><span>ASIS / TOBE / GAP</span></div>
-          <div class="gop-node green">
-            <b>人選</b><span>候補者選定の3ステップ</span>
-            <div class="gop-steps">
-              <div class="gop-step">① 候補者検索</div>
-              <div class="gop-step">② プロへ依頼メール</div>
-              <div class="gop-step">③ 稼働確認受信</div>
-            </div>
-          </div>
-        </div>
-        <div class="gop-merge-wrap"><div class="gop-merge">▼ マージ</div></div>
-        <div class="gop-arrow"><i class="ti ti-arrow-down"></i></div>
-        <div class="gop-node green solo"><b>提案書作成</b><span>概要 / マイルストーン / 体制図 / 比較 / 詳細</span></div>
-      </div>
-      <div class="gop-arrow"><i class="ti ti-arrow-down"></i></div>
-      <div class="gop-branch">
-        <div class="gop-node grey"><b>共有ドライブ保存</b></div>
-        <div class="gop-node accent"><b>顧客メール下書き</b></div>
-      </div>
-    </div>
-  </div>
+    <h3 class="sec-sub"><i class="ti ti-arrow-big-right-lines"></i>AIに任せ、人は「関係構築」へ <small>― 営業に求める動き</small></h3>
 
-  </details>
-
-  <details class="sec" open>
-    <summary><span class="stitle"><i class="ti ti-arrows-exchange"></i>人当て営業からソリューション営業へ <small>― なぜ変わらなければならないか</small></span><i class="ti ti-chevron-down chev"></i></summary>
-  <div class="panel">
-    <h3 class="ph">商談1つのポテンシャルを、FSが最大化する</h3>
-    <p class="lead">育成・マインドチェンジ・技術向上はすぐには難しい人もいる。そこはAIでフォローしつつ、全員が必ず理解すべきことが一つある ── <b style="color:var(--blue-d)">なぜ「人当て（人材紹介）」から「ソリューション」へ変わらなければならないか。</b></p>
-
-    <div class="qnote" style="border-color:#f0c891;background:#fffaf3"><i class="ti ti-alert-circle" style="color:var(--orange)"></i><p>先方で要件が固まり<b>JD（人材要件）がある</b>なら、人当て営業でよい（顧客がそれを期待している）。だが今、競合はプロ人材会社だけではない ── <b>コンサル・AI関連会社・プロダクトを持つ会社</b>。彼らはソリューション／プロダクトまで提案してくる。人材要件だけを待っていては、案件数が絞られ、外部パートナーとしての深さも出ない。</p></div>
-
-    <div class="shift">
-      <div class="shift-row before">
-        <span class="slab"><i class="ti ti-clock-hour-4"></i> これまで</span>
-        <div class="chain">
-          <div class="node src">サーキュレーション<br>プロ人材</div>
-          <div class="arr">→</div>
-          <div class="node">役割・ケイパビリティ</div>
-          <div class="arr">→</div>
-          <div class="node need">ニーズ / ToBe（企業）</div>
-        </div>
-        <p class="cap">人材要件に対して、直接「人」が紐づいた。間（使い方・体制・アウトプット）は<b>顧客側が考えて埋めてくれた。</b></p>
-      </div>
-
-      <div class="shift-row after">
-        <span class="slab"><i class="ti ti-arrow-big-up-lines"></i> 現在</span>
-        <div class="chain">
-          <div class="node src">サーキュレーション<br>プロ人材</div>
-          <div class="arr">→</div>
-          <div class="node midwrap"><span class="mh">こちらが巻き取る中間地点</span><span class="mi">使い方/切り口・解決体制/アサイン・アウトプット内容・解決ロードマップ・役割/ケイパビリティ・ToBe</span></div>
-          <div class="arr">→</div>
-          <div class="node need">悩み / 課題 / 困りごと</div>
-        </div>
-        <p class="cap">外部ベンダーが入り込むフェーズが<b>深くなっている。</b>間にある「使い方・体制・アウトプット」は、かつて顧客マターだったが、今は提案側マターになっている。ここを<b>こちらが能動的に巻き取る</b>必要がある。</p>
-      </div>
-    </div>
-
-    <div class="shift-insight">
-      <div class="sih"><i class="ti ti-bulb"></i> 人材要件を「待つ」と、パイプラインを顧客に支配される</div>
-      <p>企業側で考えてから人材要件を出してくる企業も一定数いる。だが<b>それを待っていては、案件数も、こちらが出せるパイプラインも、顧客側にコントロールされる。</b>潜在／未来のパイプラインを自分たちで生むには、中間地点をこちらから能動的に巻き取るしかない。</p>
-      <div class="seq">
-        <span class="s">商談で「今必要な人材要件ありますか？」</span><span class="a">→</span><span class="s bad">「ない」で終了</span>
-      </div>
-      <div class="seq" style="margin-top:6px">
-        <span class="s">現状から潜在課題を引き出す</span><span class="a">→</span><span class="s">中間点をこちらで整理</span><span class="a">→</span><span class="s good">潜在ニーズ・未来インバウンド相談へ</span>
-      </div>
-    </div>
-  </div>
-
-  </details>
-
-  <details class="sec" open>
-    <summary><span class="stitle"><i class="ti ti-stack-2"></i>解決策の型 <small>― 「誰を出すか」ではなく「どう解決するか」</small></span><i class="ti ti-chevron-down chev"></i></summary>
-  <div class="panel">
-    <h3 class="ph">人とニーズの「間」を、こちらが取りに行く</h3>
-    <p class="lead">プロ人材（人）と顧客（ニーズ/ToBe）の間には、<b>解決策・解決支援体制・プロダクト・サービス</b>という層がある。かつてこの層は顧客が自分で埋めてくれた。だが今は競合（コンサル・AIベンダー・SaaS等）がここを取りに来る。<b>この層を当社が取りに行かないと、人とニーズは繋がらない。</b></p>
-    <div class="between">
-      <div class="bend person"><div class="bl">手段</div><div class="bt">人<br>（プロ人材）</div></div>
-      <div class="bmid">
-        <span class="arrl"><i class="ti ti-arrow-right"></i></span>
-        <div class="grab"><div class="gh">ここを当社が取りに行く</div><div class="gt">解決策 ／ 解決支援体制<br>プロダクト ／ サービス</div></div>
-        <span class="arrr"><i class="ti ti-arrow-right"></i></span>
-      </div>
-      <div class="bend need"><div class="bl">目的</div><div class="bt">顧客<br>（ニーズ / ToBe）</div></div>
-    </div>
-    <div class="between-cap">この「間の層」を、かつては顧客が埋めた（だから人を出せば済んだ）。今は競合がここを取りに来る。<b>手段（人）だけを差し出すと、間が埋まらず負ける。</b></div>
-    <div class="between-takeaway">だから、この層を<b>「4つの型」</b>として、こちらから提示する。</div>
-
-    <h3 class="ph" style="margin-top:24px">How We Solve ── 解決策の4つの型</h3>
-    <p class="lead">「誰を出すか」ではなく「どう解決するか」。この4つで、間の層を具体的に埋める。</p>
-    <div class="hws">
-      <div class="hwcard">
-        <div class="hwi"><i class="ti ti-sitemap"></i></div>
-        <h4>プロジェクト設計</h4>
-        <p class="hwd">ゴール・スコープ・マイルストーンを最初に握り、検証と意思決定が回るプロジェクトを設計する。</p>
-        <ul><li>論点・ゴールの言語化</li><li>フェーズ分解と検証計画</li><li>意思決定の場づくり</li></ul>
-      </div>
-      <div class="hwcard">
-        <div class="hwi"><i class="ti ti-hierarchy"></i></div>
-        <h4>体制図</h4>
-        <p class="hwd">顧客メンバー・プロ人材・既存ベンダーの役割を整理し、最小の体制で前に進む座組みを描く。</p>
-        <ul><li>社内 × プロ人材の役割分担</li><li>意思決定者とのレポートライン</li><li>巻き取り・引き継ぎの設計</li></ul>
-      </div>
-      <div class="hwcard">
-        <div class="hwi"><i class="ti ti-adjustments"></i></div>
-        <h4>使い方（関与モデル）</h4>
-        <p class="hwd">リスキリング・PM・特定領域だけ等、必要な範囲だけプロ人材を活用できる。丸ごとでなく"足りない一部"から。</p>
-        <ul><li>リスキリング / 伴走型</li><li>PM・推進役としての関与</li><li>開発・特定領域のスポット補強</li></ul>
-      </div>
-      <div class="hwcard">
-        <div class="hwi"><i class="ti ti-bulb"></i></div>
-        <h4>テーマ / 切り口</h4>
-        <p class="hwd">課題が漠然としていても、業界・機能の論点から切り口を提示し、取り組むテーマを一緒に定める。</p>
-        <ul><li>論点の引き出しと整理</li><li>優先順位づけ</li><li>他社の取り組みを踏まえた切り口</li></ul>
-      </div>
-    </div>
-  </div>
-
-  </details>
-
-  <details class="sec" open>
-    <summary><span class="stitle"><i class="ti ti-layers-subtract"></i>FSの役割を2層に分ける <small>― 保有案件数と強みに応じた配置</small></span><i class="ti ti-chevron-down chev"></i></summary>
-  <div class="panel">
-    <h3 class="ph">全員が同じ動きをするのではなく、強みに応じて役割を分ける</h3>
-    <p class="lead">ソリューション営業への変革は全員一律ではできない。保有案件数と実証された強みに応じて、FSの動きを <b style="color:var(--blue-d)">Farming（深耕強化）</b> と <b style="color:var(--blue-d)">Hunting（開拓強化）</b> の2つに分け、役割を純化する。</p>
-    <div class="layer2">
-      <div class="lcard exp">
-        <span class="ltag"><i class="ti ti-plant-2"></i> Farming（深耕強化）</span>
-        <h4>継続の深耕 ＋ 既顧客新規</h4>
-        <div class="lmeta">保有Tier1中心・保有案件が厚い層</div>
-        <div class="lrole"><span class="li"><i class="ti ti-shield-check"></i></span><span class="lt"><b>継続を守る。</b>新規開拓ではなく、<b>既存の深いリレーションを活かした継続受注・追加ロール開拓に集中</b>する。更新は6ヶ月・1年スパンの提案へ。</span></div>
-        <div class="lrole"><span class="li"><i class="ti ti-arrow-up-right"></i></span><span class="lt"><b>既顧客から追加案件を獲得する。</b>温まった関係を起点に、同一顧客の新規案件を取りに行く（既顧客新規のロールモデル）。</span></div>
-        <div class="lrole"><span class="li"><i class="ti ti-scale"></i></span><span class="lt"><b>“守り”が主、“攻め”は従。</b>活動比重は Tier1の進行営業（継続・深耕）<b>8割</b> : 新規開拓 <b>2割</b> を目安に（チーム方針であり、個人への指示ではない）。</span></div>
-      </div>
-      <div class="lcard mem">
-        <span class="ltag"><i class="ti ti-target-arrow"></i> Hunting（開拓強化）</span>
-        <h4>新規パイプラインの構築</h4>
-        <div class="lmeta">Tier2以下が軸・保有案件が積み上げ途上の層</div>
-        <div class="lrole"><span class="li"><i class="ti ti-target-arrow"></i></span><span class="lt"><b>新しいパイプラインを作る。</b>Tier2以下を軸に、マーケ連携・NDA巻き・Tier引き上げで新規案件を生む。ソリューション提案への変革の主軸。</span></div>
-        <div class="lrole"><span class="li"><i class="ti ti-heart-handshake"></i></span><span class="lt">CS活動も薄く担い、稼働案件のフォローを行う。</span></div>
-        <div class="lrole"><span class="li"><i class="ti ti-trending-up"></i></span><span class="lt">案件数を積み上げながら、提案力・深耕の幅を広げていく。</span></div>
-      </div>
-    </div>
-    <div class="band light" style="margin-top:14px"><span class="hl">Farming と Hunting は「0 vs 100」ではない。</span><div class="sub">どちらの層も<b>新規も深耕も行う</b>。変えるのは <b>比重＝どこに向けるか</b> であって、活動の「量」ではない。</div></div>
-    <div class="mini m2" style="margin-top:12px">
-      <div class="mcard">
-        <span class="tag-pill">Farming｜深耕強化</span>
-        <h4 style="font-size:14px">狙い</h4>
-        <p>Tier1・稼働中顧客という「資産」の関係の深さを活かし、既存アカウントからの<b>追加ロール・新規部署への展開</b>を掘り続けることに集中する。</p>
-        <h4 style="font-size:14px;margin-top:9px">期待値</h4>
-        <p><b>新規を断るという意味ではない。</b>文脈が薄いところからゼロで文脈構築する動きは減らし、<b>既に文脈があるところをより濃くしていく比重</b>に寄せる、という意味。活動の「量」を減らすのでなく、「どこに向けるか」を変える。</p>
-      </div>
-      <div class="mcard">
-        <span class="tag-pill">Hunting｜開拓強化</span>
-        <h4 style="font-size:14px">狙い</h4>
-        <p>関係値がまだ薄い顧客・新規開拓を主戦場とし、<b>新しいパイプラインを作る</b>ことに集中する。</p>
-        <h4 style="font-size:14px;margin-top:9px">期待値</h4>
-        <p>Farming側が長年かけて積み上げたTier1資産を、ゼロから同じように作るのは現実的でない。新規開拓を「頑張れ」と精神論で終わらせず、<b>マーケティングを強化してHunting側への新規リード供給を増やす</b>。開拓は個人の営業力だけに頼らせない。</p>
-      </div>
-    </div>
-
-    <h3 class="ph" style="margin-top:22px">Tier × 担当セグメントの原則 ── 「濃度」で設計する</h3>
-    <p class="lead">担当の持ち方を、Tierごとに <b>固定 / 分担 / 自由</b> の3段階の濃度で設計する。</p>
-    <div class="tier hi"><div class="h"><i class="ti ti-lock" style="margin-right:6px"></i>Tier1（アカウント固定）</div><div class="c">アカウント（企業）単位で<b>固定担当</b>。FLEXY案件・Biz案件を問わず、同一担当者が一気通貫で持つ。</div></div>
-    <div class="tier"><div class="h"><i class="ti ti-arrows-shuffle" style="margin-right:6px"></i>Tier2・3（案件分担）</div><div class="c">案件ごとに分担。担当は状況に応じて<b>柔軟に</b>決める。</div></div>
-    <div class="tier"><div class="h"><i class="ti ti-shuffle" style="margin-right:6px"></i>Tier4（自由アサイン）</div><div class="c">ゼロベース。得意・不得意や稼働状況で、その都度アサインする<b>自由エリア</b>。</div></div>
-  </div>
-
-  </details>
-
-  <details class="sec" open>
-    <summary><span class="stitle"><i class="ti ti-arrow-big-right-lines"></i>AIに任せ、人は「関係構築」へ <small>― 営業に求める動き</small></span><i class="ti ti-chevron-down chev"></i></summary>
   <div class="panel" style="padding:0;border:none;background:none;box-shadow:none">
     <div class="climax">
       <div class="ckicker">NEW OPERATION ／ TO-BE</div>
@@ -1198,10 +987,252 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
     </div>
   </div>
 
+    <h3 class="sec-sub"><i class="ti ti-star"></i>重点施策 <small>― 4 Value Cycle の今期版</small></h3>
+
+  <div class="panel">
+    <p class="lead">前期のフレームを継承し、回り方を今期版にアップデートする。</p>
+    <div class="mini m2" style="margin-top:14px">
+      <div class="mcard"><span class="tag-pill">Customer Success</span><h4>3ヶ月レビューMTG制度</h4><p>キックオフ時に1ヶ月後・3ヶ月後を固定。①品質担保＋高評価引き出し ②付随提案 ③文脈違いの染み出し。「放置→突然提案」を防ぐ。</p></div>
+      <div class="mcard"><span class="tag-pill">Lead Engagement</span><h4>Claudeアドレス自動取得＋Tier別</h4><p>キックオフで顧客チャットに当然のように追加。FSの手作業を介さず情報蓄積。Tier1=空中×地上連携／T2=引上げ／T3-4=脳内シェア。</p></div>
+      <div class="mcard"><span class="tag-pill">Account Planning</span><h4>AIアカウントカルテ生成</h4><p>議事録・組織図・SFをAIが読み、構造マップ（接点/未接触・染み出し戦略）を自動生成。人力作成からの進化。</p></div>
+      <div class="mcard"><span class="tag-pill">Pipeline Mgmt.</span><h4>2フラグ＋提案書の質</h4><p>PLシートに「PJT良好」「顧客関係性」フラグ。提案書は失注後の横展開にも効く「面の顧客体験」。1件1件落とさない。</p></div>
+    </div>
+  </div>
+
   </details>
 
   <details class="sec" open>
-    <summary><span class="stitle"><span class="no">6</span>体制と役割 <small>― 情報の扱いを3段階に分ける</small></span><i class="ti ti-chevron-down chev"></i></summary>
+    <summary><span class="stitle"><span class="no">4</span>案件を決める・大きくする <small>― 移行の質（人選・提案・LTV）</small></span><i class="ti ti-chevron-down chev"></i></summary>
+
+    <h3 class="sec-sub"><i class="ti ti-arrows-exchange"></i>人当て営業からソリューション営業へ <small>― なぜ変わらなければならないか</small></h3>
+
+  <div class="panel">
+    <h3 class="ph">商談1つのポテンシャルを、FSが最大化する</h3>
+    <p class="lead">育成・マインドチェンジ・技術向上はすぐには難しい人もいる。そこはAIでフォローしつつ、全員が必ず理解すべきことが一つある ── <b style="color:var(--blue-d)">なぜ「人当て（人材紹介）」から「ソリューション」へ変わらなければならないか。</b></p>
+
+    <div class="qnote" style="border-color:#f0c891;background:#fffaf3"><i class="ti ti-alert-circle" style="color:var(--orange)"></i><p>先方で要件が固まり<b>JD（人材要件）がある</b>なら、人当て営業でよい（顧客がそれを期待している）。だが今、競合はプロ人材会社だけではない ── <b>コンサル・AI関連会社・プロダクトを持つ会社</b>。彼らはソリューション／プロダクトまで提案してくる。人材要件だけを待っていては、案件数が絞られ、外部パートナーとしての深さも出ない。</p></div>
+
+    <div class="shift">
+      <div class="shift-row before">
+        <span class="slab"><i class="ti ti-clock-hour-4"></i> これまで</span>
+        <div class="chain">
+          <div class="node src">サーキュレーション<br>プロ人材</div>
+          <div class="arr">→</div>
+          <div class="node">役割・ケイパビリティ</div>
+          <div class="arr">→</div>
+          <div class="node need">ニーズ / ToBe（企業）</div>
+        </div>
+        <p class="cap">人材要件に対して、直接「人」が紐づいた。間（使い方・体制・アウトプット）は<b>顧客側が考えて埋めてくれた。</b></p>
+      </div>
+
+      <div class="shift-row after">
+        <span class="slab"><i class="ti ti-arrow-big-up-lines"></i> 現在</span>
+        <div class="chain">
+          <div class="node src">サーキュレーション<br>プロ人材</div>
+          <div class="arr">→</div>
+          <div class="node midwrap"><span class="mh">こちらが巻き取る中間地点</span><span class="mi">使い方/切り口・解決体制/アサイン・アウトプット内容・解決ロードマップ・役割/ケイパビリティ・ToBe</span></div>
+          <div class="arr">→</div>
+          <div class="node need">悩み / 課題 / 困りごと</div>
+        </div>
+        <p class="cap">外部ベンダーが入り込むフェーズが<b>深くなっている。</b>間にある「使い方・体制・アウトプット」は、かつて顧客マターだったが、今は提案側マターになっている。ここを<b>こちらが能動的に巻き取る</b>必要がある。</p>
+      </div>
+    </div>
+
+    <div class="shift-insight">
+      <div class="sih"><i class="ti ti-bulb"></i> 人材要件を「待つ」と、パイプラインを顧客に支配される</div>
+      <p>企業側で考えてから人材要件を出してくる企業も一定数いる。だが<b>それを待っていては、案件数も、こちらが出せるパイプラインも、顧客側にコントロールされる。</b>潜在／未来のパイプラインを自分たちで生むには、中間地点をこちらから能動的に巻き取るしかない。</p>
+      <div class="seq">
+        <span class="s">商談で「今必要な人材要件ありますか？」</span><span class="a">→</span><span class="s bad">「ない」で終了</span>
+      </div>
+      <div class="seq" style="margin-top:6px">
+        <span class="s">現状から潜在課題を引き出す</span><span class="a">→</span><span class="s">中間点をこちらで整理</span><span class="a">→</span><span class="s good">潜在ニーズ・未来インバウンド相談へ</span>
+      </div>
+    </div>
+  </div>
+
+    <h3 class="sec-sub"><i class="ti ti-stack-2"></i>解決策の型 <small>― 「誰を出すか」ではなく「どう解決するか」</small></h3>
+
+  <div class="panel">
+    <h3 class="ph">人とニーズの「間」を、こちらが取りに行く</h3>
+    <p class="lead">プロ人材（人）と顧客（ニーズ/ToBe）の間には、<b>解決策・解決支援体制・プロダクト・サービス</b>という層がある。かつてこの層は顧客が自分で埋めてくれた。だが今は競合（コンサル・AIベンダー・SaaS等）がここを取りに来る。<b>この層を当社が取りに行かないと、人とニーズは繋がらない。</b></p>
+    <div class="between">
+      <div class="bend person"><div class="bl">手段</div><div class="bt">人<br>（プロ人材）</div></div>
+      <div class="bmid">
+        <span class="arrl"><i class="ti ti-arrow-right"></i></span>
+        <div class="grab"><div class="gh">ここを当社が取りに行く</div><div class="gt">解決策 ／ 解決支援体制<br>プロダクト ／ サービス</div></div>
+        <span class="arrr"><i class="ti ti-arrow-right"></i></span>
+      </div>
+      <div class="bend need"><div class="bl">目的</div><div class="bt">顧客<br>（ニーズ / ToBe）</div></div>
+    </div>
+    <div class="between-cap">この「間の層」を、かつては顧客が埋めた（だから人を出せば済んだ）。今は競合がここを取りに来る。<b>手段（人）だけを差し出すと、間が埋まらず負ける。</b></div>
+    <div class="between-takeaway">だから、この層を<b>「4つの型」</b>として、こちらから提示する。</div>
+
+    <h3 class="ph" style="margin-top:24px">How We Solve ── 解決策の4つの型</h3>
+    <p class="lead">「誰を出すか」ではなく「どう解決するか」。この4つで、間の層を具体的に埋める。</p>
+    <div class="hws">
+      <div class="hwcard">
+        <div class="hwi"><i class="ti ti-sitemap"></i></div>
+        <h4>プロジェクト設計</h4>
+        <p class="hwd">ゴール・スコープ・マイルストーンを最初に握り、検証と意思決定が回るプロジェクトを設計する。</p>
+        <ul><li>論点・ゴールの言語化</li><li>フェーズ分解と検証計画</li><li>意思決定の場づくり</li></ul>
+      </div>
+      <div class="hwcard">
+        <div class="hwi"><i class="ti ti-hierarchy"></i></div>
+        <h4>体制図</h4>
+        <p class="hwd">顧客メンバー・プロ人材・既存ベンダーの役割を整理し、最小の体制で前に進む座組みを描く。</p>
+        <ul><li>社内 × プロ人材の役割分担</li><li>意思決定者とのレポートライン</li><li>巻き取り・引き継ぎの設計</li></ul>
+      </div>
+      <div class="hwcard">
+        <div class="hwi"><i class="ti ti-adjustments"></i></div>
+        <h4>使い方（関与モデル）</h4>
+        <p class="hwd">リスキリング・PM・特定領域だけ等、必要な範囲だけプロ人材を活用できる。丸ごとでなく"足りない一部"から。</p>
+        <ul><li>リスキリング / 伴走型</li><li>PM・推進役としての関与</li><li>開発・特定領域のスポット補強</li></ul>
+      </div>
+      <div class="hwcard">
+        <div class="hwi"><i class="ti ti-bulb"></i></div>
+        <h4>テーマ / 切り口</h4>
+        <p class="hwd">課題が漠然としていても、業界・機能の論点から切り口を提示し、取り組むテーマを一緒に定める。</p>
+        <ul><li>論点の引き出しと整理</li><li>優先順位づけ</li><li>他社の取り組みを踏まえた切り口</li></ul>
+      </div>
+    </div>
+  </div>
+
+    <h3 class="sec-sub"><i class="ti ti-robot"></i>オペレーション改善 <small>― GTM整備とAI自動化で工数を削る</small></h3>
+
+  <div class="panel">
+    <h3 class="ph">まず工数を削る。空いた時間をアカウントへ再投資する。</h3>
+    <p class="lead">前期は負荷を足して潰れた。今期は引いてから足す。これが決定的な差。</p>
+    <div class="mini m2" style="margin-top:14px">
+      <div class="mcard" style="background:#f7fbfe"><h4 style="color:var(--gray)"><i class="ti ti-robot"></i> AIで削る（作業）</h4><p style="margin-top:6px">・提案書作成 ── 自動生成パイプライン整備済み<br>・要件定義 ── AIで簡素化（手間減）＋高度化（精度増）<br>・議事録→SF連携 ── 自動化（情シスと構築中）</p></div>
+      <div class="mcard" style="background:linear-gradient(135deg,#0079c0,#003d5e)"><h4 style="color:#fff"><i class="ti ti-users"></i> 空いた時間で増やす（関係構築）</h4><p style="color:#e8f6ff;margin-top:6px">AIが裏方を担うからこそ、FSは一人の人格として顧客に向き合える。減らした時間を、人にしかできない関係構築へ振り向ける。</p></div>
+    </div>
+    <div class="mcard fill" style="margin-top:14px">
+      <h4 style="color:var(--blue-d)"><i class="ti ti-sitemap"></i> GTM統合フローの整備</h4>
+      <p style="margin-top:6px">リードの状態（リサイクル/休眠/未提案/稼働後）と、誰の・どんなアクションが必要かを一枚のフローに可視化。チーム全員が同じ地図で動く共通言語であり、将来の全社プロセスの原典。新メンバーのオンボーディング教材としても機能する。 <a href="../gtm/" target="_blank" style="color:var(--blue);font-weight:700;text-decoration:none">→ GTM統合フローを見る</a></p>
+    </div>
+    <div class="mcard fill" style="margin-top:14px">
+      <h4 style="color:var(--blue-d)"><i class="ti ti-map-2"></i> アカウントプランニングの「入力レス」設計</h4>
+      <p style="margin-top:6px">FSに新たな入力作業を負わせない。<b>FSは「喋るだけ」で、アカウントプランが積み上がる</b>設計にする。<a href="../account-planning/" target="_blank" style="color:var(--blue);font-weight:700;text-decoration:none"> → アカウントプランニング フローを見る</a></p>
+      <div class="steps" style="margin-top:12px">
+        <div class="step"><div class="n">1</div><h4>インプット</h4><p>外部情報はAIが収集する。</p></div>
+        <div class="step"><div class="n">2</div><h4>ヒアリング</h4><p>FSは喋るだけ。Notionが自動で構造化する。</p></div>
+        <div class="step"><div class="n">3</div><h4>アウトプット</h4><p>コンテンツ・アプローチ文面をAIが生成する。</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3 class="ph">GTMオペレーション自動化フロー ── Zoom商談後を一気通貫で</h3>
+    <p class="lead">商談終了から提案書・顧客メール下書きまで、Salesforce と Claude Cowork で自動的につなぐ。</p>
+    <div class="gop">
+      <div class="gop-node grey"><b>Zoom商談終了</b><span>録音・文字起こし</span></div>
+      <div class="gop-arrow"><i class="ti ti-arrow-down"></i></div>
+      <div class="gop-node grey"><b>SF自動格納</b><span>フェーズ更新 ＋ 要件詳細も同時記入</span></div>
+      <div class="gop-arrow"><i class="ti ti-arrow-down"></i></div>
+      <div class="gop-cowork">
+        <div class="gop-cw-h"><i class="ti ti-sparkles"></i> Claude Cowork <small>要件整理〜提案書作成まで一括</small></div>
+        <div class="gop-parallel">
+          <div class="gop-node green"><b>要件整理</b><span>ASIS / TOBE / GAP</span></div>
+          <div class="gop-node green">
+            <b>人選</b><span>候補者選定の3ステップ</span>
+            <div class="gop-steps">
+              <div class="gop-step">① 候補者検索</div>
+              <div class="gop-step">② プロへ依頼メール</div>
+              <div class="gop-step">③ 稼働確認受信</div>
+            </div>
+          </div>
+        </div>
+        <div class="gop-merge-wrap"><div class="gop-merge">▼ マージ</div></div>
+        <div class="gop-arrow"><i class="ti ti-arrow-down"></i></div>
+        <div class="gop-node green solo"><b>提案書作成</b><span>概要 / マイルストーン / 体制図 / 比較 / 詳細</span></div>
+      </div>
+      <div class="gop-arrow"><i class="ti ti-arrow-down"></i></div>
+      <div class="gop-branch">
+        <div class="gop-node grey"><b>共有ドライブ保存</b></div>
+        <div class="gop-node accent"><b>顧客メール下書き</b></div>
+      </div>
+    </div>
+  </div>
+
+  </details>
+
+  <details class="sec" open>
+    <summary><span class="stitle"><span class="no">5</span>実行体制 <small>― 人数拡充と役割の棲み分け</small></span><i class="ti ti-chevron-down chev"></i></summary>
+
+    <h3 class="sec-sub"><i class="ti ti-scissors"></i>中核となる考え方 <small>― 2つの切り分け</small></h3>
+
+  <div class="panel">
+    <h3 class="ph">切り分け① 鳥の目と地上 ― 空中戦と地上戦の連携</h3>
+    <p class="lead">思考する人と実行する人を分離する。前期は全てFSに乗せて潰れた。</p>
+    <div class="mini m3" style="margin-top:14px">
+      <div class="rolecard" style="background:linear-gradient(135deg,#003d5e,#0079c0)"><h4>鳥の目（戦略立案）</h4><div class="who" style="color:#bfe3f7">Mgr ＋ マーケ</div><p>アカウント全体を俯瞰。未開拓Tier1のマップを描き、どこを攻めるか設計する。</p></div>
+      <div class="rolecard" style="background:var(--blue)"><h4>地上（実行）</h4><div class="who">IS</div><p>設計された攻略に沿って、リードへの実行アクションを担う。</p></div>
+      <div class="rolecard" style="background:#0a6e8c"><h4>情報提供</h4><div class="who">FS</div><p>顧客接点で得た生の構造情報を、鳥の目チームに供給する。</p></div>
+    </div>
+    <div class="band light"><span class="hl">空中戦 × 地上戦 は、分業しても分断させない</span><div class="sub">前期の分業（THE MODEL）は分断を生んだ。今期は、地上戦で得た顧客情報を空中戦に還し、空中戦で温めたリードを地上戦に渡す。この往復をアクティブに回す。</div></div>
+  </div>
+
+  <div class="panel">
+    <h3 class="ph">切り分け② 型化と属人化 ― 人とAIの線引き</h3>
+    <p class="lead">アカウント営業を3つの動作に分解する。担い手が違う。</p>
+    <div class="mini m3" style="margin-top:14px">
+      <div class="mcard" style="background:#fff3e0"><div class="num amber">①</div><h4>対話で構造を引き出す</h4><p>商談で投げかけ、組織の力学を聞き出す。</p><span class="who amber">人にしかできない（属人を認める）</span></div>
+      <div class="mcard fill"><div class="num">②</div><h4>記録・構造化・更新</h4><p>議事録から自動で構造化し、地図を更新し続ける。</p><span class="who">AIが担う</span></div>
+      <div class="mcard fill"><div class="num">③</div><h4>次にどこへ当たるか判断</h4><p>蓄積された地図から、次のアプローチ先を提示する。</p><span class="who">AIが担う</span></div>
+    </div>
+    <p class="note" style="margin-top:12px;text-align:center">これまで ②③ は「誰もやらない領域」だった。AIに巻き取らせ、人は ① と実行に集中する。</p>
+  </div>
+
+    <h3 class="sec-sub"><i class="ti ti-layers-subtract"></i>FSの役割を2層に分ける <small>― 保有案件数と強みに応じた配置</small></h3>
+
+  <div class="panel">
+    <h3 class="ph">全員が同じ動きをするのではなく、強みに応じて役割を分ける</h3>
+    <p class="lead">ソリューション営業への変革は全員一律ではできない。保有案件数と実証された強みに応じて、FSの動きを <b style="color:var(--blue-d)">Farming（深耕強化）</b> と <b style="color:var(--blue-d)">Hunting（開拓強化）</b> の2つに分け、役割を純化する。</p>
+    <div class="layer2">
+      <div class="lcard exp">
+        <span class="ltag"><i class="ti ti-plant-2"></i> Farming（深耕強化）</span>
+        <h4>継続の深耕 ＋ 既顧客新規</h4>
+        <div class="lmeta">保有Tier1中心・保有案件が厚い層</div>
+        <div class="lrole"><span class="li"><i class="ti ti-shield-check"></i></span><span class="lt"><b>継続を守る。</b>新規開拓ではなく、<b>既存の深いリレーションを活かした継続受注・追加ロール開拓に集中</b>する。更新は6ヶ月・1年スパンの提案へ。</span></div>
+        <div class="lrole"><span class="li"><i class="ti ti-arrow-up-right"></i></span><span class="lt"><b>既顧客から追加案件を獲得する。</b>温まった関係を起点に、同一顧客の新規案件を取りに行く（既顧客新規のロールモデル）。</span></div>
+        <div class="lrole"><span class="li"><i class="ti ti-scale"></i></span><span class="lt"><b>“守り”が主、“攻め”は従。</b>活動比重は Tier1の進行営業（継続・深耕）<b>8割</b> : 新規開拓 <b>2割</b> を目安に（チーム方針であり、個人への指示ではない）。</span></div>
+      </div>
+      <div class="lcard mem">
+        <span class="ltag"><i class="ti ti-target-arrow"></i> Hunting（開拓強化）</span>
+        <h4>新規パイプラインの構築</h4>
+        <div class="lmeta">Tier2以下が軸・保有案件が積み上げ途上の層</div>
+        <div class="lrole"><span class="li"><i class="ti ti-target-arrow"></i></span><span class="lt"><b>新しいパイプラインを作る。</b>Tier2以下を軸に、マーケ連携・NDA巻き・Tier引き上げで新規案件を生む。ソリューション提案への変革の主軸。</span></div>
+        <div class="lrole"><span class="li"><i class="ti ti-heart-handshake"></i></span><span class="lt">CS活動も薄く担い、稼働案件のフォローを行う。</span></div>
+        <div class="lrole"><span class="li"><i class="ti ti-trending-up"></i></span><span class="lt">案件数を積み上げながら、提案力・深耕の幅を広げていく。</span></div>
+      </div>
+    </div>
+    <div class="band light" style="margin-top:14px"><span class="hl">Farming と Hunting は「0 vs 100」ではない。</span><div class="sub">どちらの層も<b>新規も深耕も行う</b>。変えるのは <b>比重＝どこに向けるか</b> であって、活動の「量」ではない。</div></div>
+    <div class="mini m2" style="margin-top:12px">
+      <div class="mcard">
+        <span class="tag-pill">Farming｜深耕強化</span>
+        <h4 style="font-size:14px">狙い</h4>
+        <p>Tier1・稼働中顧客という「資産」の関係の深さを活かし、既存アカウントからの<b>追加ロール・新規部署への展開</b>を掘り続けることに集中する。</p>
+        <h4 style="font-size:14px;margin-top:9px">期待値</h4>
+        <p><b>新規を断るという意味ではない。</b>文脈が薄いところからゼロで文脈構築する動きは減らし、<b>既に文脈があるところをより濃くしていく比重</b>に寄せる、という意味。活動の「量」を減らすのでなく、「どこに向けるか」を変える。</p>
+      </div>
+      <div class="mcard">
+        <span class="tag-pill">Hunting｜開拓強化</span>
+        <h4 style="font-size:14px">狙い</h4>
+        <p>関係値がまだ薄い顧客・新規開拓を主戦場とし、<b>新しいパイプラインを作る</b>ことに集中する。</p>
+        <h4 style="font-size:14px;margin-top:9px">期待値</h4>
+        <p>Farming側が長年かけて積み上げたTier1資産を、ゼロから同じように作るのは現実的でない。新規開拓を「頑張れ」と精神論で終わらせず、<b>マーケティングを強化してHunting側への新規リード供給を増やす</b>。開拓は個人の営業力だけに頼らせない。</p>
+      </div>
+    </div>
+
+    <h3 class="ph" style="margin-top:22px">Tier × 担当セグメントの原則 ── 「濃度」で設計する</h3>
+    <p class="lead">担当の持ち方を、Tierごとに <b>固定 / 分担 / 自由</b> の3段階の濃度で設計する。</p>
+    <div class="tier hi"><div class="h"><i class="ti ti-lock" style="margin-right:6px"></i>Tier1（アカウント固定）</div><div class="c">アカウント（企業）単位で<b>固定担当</b>。FLEXY案件・Biz案件を問わず、同一担当者が一気通貫で持つ。</div></div>
+    <div class="tier"><div class="h"><i class="ti ti-arrows-shuffle" style="margin-right:6px"></i>Tier2・3（案件分担）</div><div class="c">案件ごとに分担。担当は状況に応じて<b>柔軟に</b>決める。</div></div>
+    <div class="tier"><div class="h"><i class="ti ti-shuffle" style="margin-right:6px"></i>Tier4（自由アサイン）</div><div class="c">ゼロベース。得意・不得意や稼働状況で、その都度アサインする<b>自由エリア</b>。</div></div>
+  </div>
+
+    <h3 class="sec-sub"><i class="ti ti-users-group"></i>体制と役割 <small>― 情報の扱いを3段階に分ける</small></h3>
+
   <div class="panel">
     <p class="lead">深い地図はTier1に集中投資する。選択と集中。</p>
     <div class="mini m3" style="margin:14px 0">
@@ -1226,46 +1257,8 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
     <div class="band light"><span class="hl">これはチーム全体への移植可能性を測る試金石。</span><div class="sub">動けば「概念を持つ人にAI地図を配れば鳥の目が機能する」という再現の型が確立する。</div></div>
   </div>
 
-  </details>
+    <h3 class="sec-sub"><i class="ti ti-sitemap"></i>体制図 <small>― FY14 チーム構成</small></h3>
 
-  <details class="sec" open>
-    <summary><span class="stitle"><span class="no">7</span>重点施策 <small>― 4 Value Cycle の今期版</small></span><i class="ti ti-chevron-down chev"></i></summary>
-  <div class="panel">
-    <p class="lead">前期のフレームを継承し、回り方を今期版にアップデートする。</p>
-    <div class="mini m2" style="margin-top:14px">
-      <div class="mcard"><span class="tag-pill">Customer Success</span><h4>3ヶ月レビューMTG制度</h4><p>キックオフ時に1ヶ月後・3ヶ月後を固定。①品質担保＋高評価引き出し ②付随提案 ③文脈違いの染み出し。「放置→突然提案」を防ぐ。</p></div>
-      <div class="mcard"><span class="tag-pill">Lead Engagement</span><h4>Claudeアドレス自動取得＋Tier別</h4><p>キックオフで顧客チャットに当然のように追加。FSの手作業を介さず情報蓄積。Tier1=空中×地上連携／T2=引上げ／T3-4=脳内シェア。</p></div>
-      <div class="mcard"><span class="tag-pill">Account Planning</span><h4>AIアカウントカルテ生成</h4><p>議事録・組織図・SFをAIが読み、構造マップ（接点/未接触・染み出し戦略）を自動生成。人力作成からの進化。</p></div>
-      <div class="mcard"><span class="tag-pill">Pipeline Mgmt.</span><h4>2フラグ＋提案書の質</h4><p>PLシートに「PJT良好」「顧客関係性」フラグ。提案書は失注後の横展開にも効く「面の顧客体験」。1件1件落とさない。</p></div>
-    </div>
-  </div>
-
-  </details>
-
-  <details class="sec" open>
-    <summary><span class="stitle"><span class="no">8</span>残された論点 <small>― まだ解けていないこと</small></span><i class="ti ti-chevron-down chev"></i></summary>
-  <div class="panel">
-    <p class="lead">正直に認識し、向き合う。隠さない。</p>
-    <div class="mini" style="margin-top:14px;gap:14px">
-      <div class="mcard" style="display:flex;gap:16px;align-items:flex-start"><div class="num amber" style="margin-bottom:0">①</div><div><h4>新規アカウントの「突破力」は型化できるか</h4><p style="margin-top:4px">今期の施策の多くは既に関係のある顧客が起点。だが「そもそも会ってもらう・返信が来る関係をゼロから作る力」は依然属人的で、型化の目処が立っていない。外部知見も得ながら探求する。</p></div></div>
-      <div class="mcard" style="display:flex;gap:16px;align-items:flex-start"><div class="num amber" style="margin-bottom:0">②</div><div><h4>評価をCKと切り離せるか</h4><p style="margin-top:4px">中長期の関係構築を促すには、CK一辺倒から活動量（到達人数・定例同席・インバウンド発生）評価への移行が要るかもしれない。戦略アカウントを「報酬」でなく「責任」と定義できるか。</p></div></div>
-    </div>
-  </div>
-
-  </details>
-
-  <details class="sec" open>
-    <summary><span class="stitle"><span class="no">9</span>ロードマップ <small>― 7月共有・8月整備・FY14/15運用</small></span><i class="ti ti-chevron-down chev"></i></summary>
-  <div class="panel">
-    <div class="road"><div class="m" style="background:var(--blue)">7月</div><div class="rc">松蔵（全体会議）でFY14/15方針を全メンバーに共有。キックオフテンプレート整備（1ヶ月後フォロー組込）。Claudeアドレス追加テンプレ運用開始。</div></div>
-    <div class="road"><div class="m" style="background:#0a6e8c">8月</div><div class="rc">稼働中案件の情報格納体制を整備。3ヶ月レビューMTG制度の設計・導入。（人の出入りもこの月）</div></div>
-    <div class="road"><div class="m" style="background:linear-gradient(135deg,#003d5e,#0079c0);font-size:13px">FY14<br>/15</div><div class="rc hi">本格運用。Tier1のAIカルテ展開、栫らの引き上げ検証、Tier別アプローチの定着。</div></div>
-  </div>
-
-  </details>
-
-  <details class="sec" open>
-    <summary><span class="stitle"><i class="ti ti-sitemap"></i>体制図 <small>― FY14 チーム構成</small></span><i class="ti ti-chevron-down chev"></i></summary>
   <div class="panel">
     <div class="org">
       <div class="org-top">部長：小林</div>
@@ -1325,10 +1318,8 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
     </div>
   </div>
 
-  </details>
+    <h3 class="sec-sub"><i class="ti ti-settings"></i>オペレーション <small>― チームの動き方</small></h3>
 
-  <details class="sec" open>
-    <summary><span class="stitle"><i class="ti ti-settings"></i>オペレーション <small>― チームの動き方</small></span><i class="ti ti-chevron-down chev"></i></summary>
   <div class="panel">
     <h3 class="ph">週の型 ── 同期は最小、間は非同期で繋ぐ</h3>
     <p class="lead">人数・職種が増えても回るよう、同期（集まる）を月朝・水・金夕に絞り、火木金は非同期。顔を見るより、繋がりと規律を仕組みで担保する。</p>
@@ -1347,8 +1338,26 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
       <div class="opsitem todo"><div class="oi"><i class="ti ti-dots"></i></div><div><h4>週報（WR）／カレンダー入力／資料格納／出社日</h4><p>運用ルールを今後ここに記載（次回確定）。WRは金曜業務後にNotion記載→提出でSlack通知（現行運用を維持）。有給など事前の不在はカレンダー登録を基本とする。</p></div></div>
     </div>
   </div>
-  </details>
 
+    <h3 class="sec-sub"><i class="ti ti-map-pin"></i>ロードマップ <small>― 7月共有・8月整備・FY14/15運用</small></h3>
+
+  <div class="panel">
+    <div class="road"><div class="m" style="background:var(--blue)">7月</div><div class="rc">松蔵（全体会議）でFY14/15方針を全メンバーに共有。キックオフテンプレート整備（1ヶ月後フォロー組込）。Claudeアドレス追加テンプレ運用開始。</div></div>
+    <div class="road"><div class="m" style="background:#0a6e8c">8月</div><div class="rc">稼働中案件の情報格納体制を整備。3ヶ月レビューMTG制度の設計・導入。（人の出入りもこの月）</div></div>
+    <div class="road"><div class="m" style="background:linear-gradient(135deg,#003d5e,#0079c0);font-size:13px">FY14<br>/15</div><div class="rc hi">本格運用。Tier1のAIカルテ展開、栫らの引き上げ検証、Tier別アプローチの定着。</div></div>
+  </div>
+
+    <h3 class="sec-sub"><i class="ti ti-help-circle"></i>残された論点 <small>― まだ解けていないこと</small></h3>
+
+  <div class="panel">
+    <p class="lead">正直に認識し、向き合う。隠さない。</p>
+    <div class="mini" style="margin-top:14px;gap:14px">
+      <div class="mcard" style="display:flex;gap:16px;align-items:flex-start"><div class="num amber" style="margin-bottom:0">①</div><div><h4>新規アカウントの「突破力」は型化できるか</h4><p style="margin-top:4px">今期の施策の多くは既に関係のある顧客が起点。だが「そもそも会ってもらう・返信が来る関係をゼロから作る力」は依然属人的で、型化の目処が立っていない。外部知見も得ながら探求する。</p></div></div>
+      <div class="mcard" style="display:flex;gap:16px;align-items:flex-start"><div class="num amber" style="margin-bottom:0">②</div><div><h4>評価をCKと切り離せるか</h4><p style="margin-top:4px">中長期の関係構築を促すには、CK一辺倒から活動量（到達人数・定例同席・インバウンド発生）評価への移行が要るかもしれない。戦略アカウントを「報酬」でなく「責任」と定義できるか。</p></div></div>
+    </div>
+  </div>
+
+  </details>
 
   <div class="closing">
     <div class="l1">リードをアクティブ化し、パイプラインを前に進め、</div>
@@ -1785,7 +1794,7 @@ details.sec>summary .chev{margin-left:8px!important}
     var idx=+sec.dataset.exsec;
     ttl.textContent=secName(sec);
     bd.innerHTML='';
-    if(EXPLAIN[idx]){
+    if(false){
       var doc=document.createElement('div'); doc.className='ex-doc'; doc.innerHTML=EXPLAIN[idx];
       bd.appendChild(doc);
     } else {
