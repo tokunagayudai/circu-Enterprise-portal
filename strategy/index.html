@@ -195,9 +195,8 @@ body{
 .theme-bar .th-h{display:flex;flex-direction:column;align-items:flex-start;gap:5px;margin-bottom:12px}
 .theme-bar .th-h b{font-size:12.5px;font-weight:800;color:#3f2f66}
 .theme-bar .th-h span{font-size:9px;font-weight:800;background:rgba(112,87,163,.2);color:#4a3870;border-radius:10px;padding:2px 8px}
-.theme-bar .th-body{flex:1;display:flex;flex-direction:column;justify-content:space-around;gap:12px;position:relative}
-.theme-bar .th-body::before{content:'';position:absolute;left:50%;top:2px;bottom:2px;width:2px;transform:translateX(-50%);background:repeating-linear-gradient(#b7a9d6 0 5px,transparent 5px 11px);z-index:0}
-.theme-bar .th-mem{background:rgba(255,255,255,.72);border:1px solid rgba(112,87,163,.22);border-radius:10px;padding:9px 10px;position:relative;z-index:1}
+.theme-bar .th-body{flex:1;display:flex;flex-direction:column;gap:8px}
+.theme-bar .th-mem{flex:1;display:flex;flex-direction:column;justify-content:center;background:rgba(255,255,255,.72);border:1px solid rgba(112,87,163,.22);border-radius:10px;padding:10px}
 .theme-bar .th-mem .nm{font-size:12.5px;font-weight:800;color:#3f2f66}
 .theme-bar .th-mem small{display:block;font-size:9px;color:#6b5a90;font-weight:600;margin-top:3px;line-height:1.35}
 .theme-bar .th-note{font-size:9.5px;color:#6b5a90;line-height:1.5;margin-top:auto;border-top:1px solid rgba(112,87,163,.22);padding-top:9px}
@@ -275,6 +274,11 @@ body{
 .gop-node.solo{margin:0 auto}
 .gop-branch{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
 @media(max-width:640px){.gop-parallel{flex-direction:column;align-items:stretch}.gop-parallel .gop-node{max-width:none}.gop-branch{flex-direction:column;align-items:center}}
+/* 4VC クリック可能ノード */
+.vc-node rect{transition:.15s}
+.vc-node:hover rect{stroke-width:3.5}
+.vc-hint{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:var(--blue);background:var(--blue-l);border:1.5px solid #cfe6f6;border-radius:20px;padding:6px 14px;margin-bottom:6px}
+.vc-hint i{font-size:15px}
 /* salary target banner */
 .tgt-banner{background:linear-gradient(135deg,#0079c0,#003d5e);color:#fff;border-radius:16px;padding:20px 24px;margin-top:12px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .tgt-banner .ti2{flex:none;width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:24px}
@@ -762,6 +766,7 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
   <div class="panel">
     <h3 class="ph">4 Value Cycle は継承する。だが一人で回すのは不可能だった。</h3>
     <p class="lead">4つの循環は正しい。役割分担とAIで「チームで回るエンジン」に作り変える。</p>
+    <div class="vc-hint"><i class="ti ti-hand-click"></i> 各サイクルをクリックすると、目的・狙い・具体オペレーションが開きます</div>
     <div class="cycle-wrap">
       <div class="cycle">
         <svg viewBox="0 0 300 300">
@@ -776,10 +781,10 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
           <circle cx="150" cy="150" r="46" fill="url(#gctr)"/>
           <text x="150" y="145" text-anchor="middle" fill="#fff" font-size="15" font-weight="800" font-family="'M PLUS Rounded 1c'">LTV</text>
           <text x="150" y="165" text-anchor="middle" fill="#fff" font-size="12.5" font-family="'M PLUS Rounded 1c'">最大化</text>
-          <g><rect x="92" y="20" width="116" height="56" rx="12" fill="#e8f6ff" stroke="#0079c0" stroke-width="2"/><text x="150" y="44" text-anchor="middle" fill="#0079c0" font-size="11" font-weight="700" font-family="'M PLUS Rounded 1c'">Account Planning</text><text x="150" y="62" text-anchor="middle" fill="#1a2a38" font-size="11">アカウント戦略</text></g>
-          <g><rect x="200" y="122" width="100" height="56" rx="12" fill="#e8f6ff" stroke="#0a6e8c" stroke-width="2"/><text x="250" y="146" text-anchor="middle" fill="#0a6e8c" font-size="10.5" font-weight="700" font-family="'M PLUS Rounded 1c'">Lead Engage.</text><text x="250" y="164" text-anchor="middle" fill="#1a2a38" font-size="11">リード育成</text></g>
-          <g><rect x="92" y="224" width="116" height="56" rx="12" fill="#e8f6ff" stroke="#0079c0" stroke-width="2"/><text x="150" y="248" text-anchor="middle" fill="#0079c0" font-size="11" font-weight="700" font-family="'M PLUS Rounded 1c'">Pipeline</text><text x="150" y="266" text-anchor="middle" fill="#1a2a38" font-size="11">案件推進</text></g>
-          <g><rect x="0" y="122" width="100" height="56" rx="12" fill="#e8f6ff" stroke="#0a6e8c" stroke-width="2"/><text x="50" y="146" text-anchor="middle" fill="#0a6e8c" font-size="9.5" font-weight="700" font-family="'M PLUS Rounded 1c'">Customer Success</text><text x="50" y="164" text-anchor="middle" fill="#1a2a38" font-size="11">顧客深耕</text></g>
+          <g class="vc-node" data-vc="ap" style="cursor:pointer"><rect x="92" y="20" width="116" height="56" rx="12" fill="#e8f6ff" stroke="#0079c0" stroke-width="2"/><text x="150" y="44" text-anchor="middle" fill="#0079c0" font-size="11" font-weight="700" font-family="'M PLUS Rounded 1c'">Account Planning</text><text x="150" y="62" text-anchor="middle" fill="#1a2a38" font-size="11">アカウント戦略</text></g>
+          <g class="vc-node" data-vc="le" style="cursor:pointer"><rect x="200" y="122" width="100" height="56" rx="12" fill="#e8f6ff" stroke="#0a6e8c" stroke-width="2"/><text x="250" y="146" text-anchor="middle" fill="#0a6e8c" font-size="10.5" font-weight="700" font-family="'M PLUS Rounded 1c'">Lead Engage.</text><text x="250" y="164" text-anchor="middle" fill="#1a2a38" font-size="11">リード育成</text></g>
+          <g class="vc-node" data-vc="pm" style="cursor:pointer"><rect x="92" y="224" width="116" height="56" rx="12" fill="#e8f6ff" stroke="#0079c0" stroke-width="2"/><text x="150" y="248" text-anchor="middle" fill="#0079c0" font-size="11" font-weight="700" font-family="'M PLUS Rounded 1c'">Pipeline</text><text x="150" y="266" text-anchor="middle" fill="#1a2a38" font-size="11">案件推進</text></g>
+          <g class="vc-node" data-vc="cs" style="cursor:pointer"><rect x="0" y="122" width="100" height="56" rx="12" fill="#e8f6ff" stroke="#0a6e8c" stroke-width="2"/><text x="50" y="146" text-anchor="middle" fill="#0a6e8c" font-size="9.5" font-weight="700" font-family="'M PLUS Rounded 1c'">Customer Success</text><text x="50" y="164" text-anchor="middle" fill="#1a2a38" font-size="11">顧客深耕</text></g>
         </svg>
       </div>
       <div class="points">
@@ -1298,8 +1303,8 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
               <div class="theme-bar">
                 <div class="th-h"><b>テーマUnit</b><span>全担当を横断</span></div>
                 <div class="th-body">
-                  <div class="th-mem"><span class="nm">小野</span><small>リスキリング（事務局）</small></div>
-                  <div class="th-mem"><span class="nm">（金谷）</span><small>FLEXY案件でPM</small></div>
+                  <div class="th-mem"><span class="nm">小野</span><small>リスキリング</small></div>
+                  <div class="th-mem"><span class="nm">（金谷）</span><small>PM</small></div>
                 </div>
               </div>
             </div>
@@ -1791,6 +1796,35 @@ details.sec>summary .chev{margin-left:8px!important}
     }
     dr.classList.add('open'); document.body.style.overflow='hidden'; bd.scrollTop=0;
   }
+
+  // 汎用ドロワー（任意タイトル＋HTML）
+  function openDrawer(title, html){
+    ttl.textContent=title; bd.innerHTML='';
+    var doc=document.createElement('div'); doc.className='ex-doc'; doc.innerHTML=html; bd.appendChild(doc);
+    dr.classList.add('open'); document.body.style.overflow='hidden'; bd.scrollTop=0;
+  }
+  // 4 Value Cycle：各サイクルの目的・狙い・具体オペレーション
+  var VC={
+    ap:{t:'Account Planning ── アカウント戦略', h:`<p class="lead-line">アカウント（企業）全体を俯瞰し、どこを攻めるかを設計してLTVを最大化する。</p>
+<h4>目的</h4><p>案件単位ではなく<b>アカウント単位</b>で捉える。企業 → 部署 → リード → 案件 の4階層で構造を読み、未接触の空白へ計画的に展開する。</p>
+<h4>狙い</h4><p>FSが地上戦で得た一次情報（課題・体制図・機能役割）を起点に、鳥の目（戦略）と地上（実行）を分けて連携。深い地図はTier1に集中投資する。</p>
+<h4>具体オペレーション</h4><ul><li>議事録・組織図・SFをAIが読み、<b>AIアカウントカルテ</b>（接点/未接触・染み出し戦略）を自動生成</li><li>ヒアリングは<b>「喋るだけ」</b>、Notionが自動で構造化（入力レス設計）</li><li>Tier1は各FSが固定担当し、Notionに構造マップを蓄積</li></ul>`},
+    le:{t:'Lead Engagement ── リード育成', h:`<p class="lead-line">リードの認知をアクティブ化し、関係を維持して第一想起を獲得する（空中戦）。</p>
+<h4>目的</h4><p>マーケ・ISが担い、温まったリードを地上戦（FS）へ渡す。放置された大量の休眠リードを分散し、全体最適で回す。</p>
+<h4>狙い</h4><p>「案件がある時だけ」ではなく、非同期のナーチャリングで文脈を維持し、課題が発生したとき真っ先に想起される状態をつくる。</p>
+<h4>具体オペレーション</h4><ul><li>テーマを切ったメルマガ配信・コンテンツ施策（マーケ主導）</li><li>Tier別の打ち分け（Tier1＝空中×地上連携／Tier2＝引き上げ／Tier3-4＝脳内シェア）</li><li>リサイクルを回し、未提案・休眠リードを再アクティブ化</li></ul>`},
+    pm:{t:'Pipeline ── 案件推進', h:`<p class="lead-line">一つの接点を機会に課題探索と提案を行い、案件を前進させる。</p>
+<h4>目的</h4><p>ただの案件探しでなく、周辺テーマの深掘りから<b>現在・未来・周辺ニーズ</b>を獲得する。FS・アソシエイトが担い、AIで大幅にBPR。</p>
+<h4>狙い</h4><p>裏方（提案書・要件整理・記録）をAIに巻き取らせ、人は関係構築へ。一つの案件を起点に周辺担当者・部署へ染み出し、文脈を広げる。</p>
+<h4>具体オペレーション</h4><ul><li>提案書の自動生成、要件整理・議事録→SF連携の自動化で工数削減</li><li>PLシートに「PJT良好」「顧客関係性」の2フラグ（記録）</li><li>1件1件落とさない ── 提案書は失注後の横展開にも効く「面の顧客体験」</li></ul>`},
+    cs:{t:'Customer Success ── 顧客深耕', h:`<p class="lead-line">受注案件の成功を確実にし、継続と追加ロールでLTVを伸ばす（地上戦・来期の最注力）。</p>
+<h4>目的</h4><p>品質を担保しながら既顧客営業を行う。スターリード起点の深耕でリレーションを構築する。</p>
+<h4>狙い</h4><p>「放置 → 突然提案」を防ぐ。契約として最初から組み込んだ接点は形骸化しにくい。継続・追加ロール・次フェーズの未来ニーズで積み上げる。</p>
+<h4>具体オペレーション</h4><ul><li>キックオフで<b>1ヶ月・3ヶ月レビューMTG</b>を固定（器は品質レビュー、後半に付随提案を忍ばせる）</li><li>レビューで ①品質担保＋高評価 ②付随提案 ③文脈違いの染み出し</li><li>会食・電話などSalesforceに残らない接点も、量を増やす</li></ul>`}
+  };
+  document.querySelectorAll('.vc-node').forEach(function(g){
+    g.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();var v=VC[g.dataset.vc];if(v)openDrawer(v.t,v.h);});
+  });
 
   var itemSel='.mcard,.pillar,.rolecard,.rrow,.hwcard,.lcard,.step,.achcard,.opsitem,.tier,.mk-hi,.tgt-banner,.band,.shift-row,.shift-insight,.between,.between-takeaway,.xform,.themodel,.cycle-wrap,.flow,.flow2,.funnel,.purpose,.recall,.msg-strong,.compet,.sol-ex,.qnote,.ctx-hero,.weekgrid,.org,.stats';
   document.querySelectorAll('details.sec').forEach(function(sec,secIndex){
