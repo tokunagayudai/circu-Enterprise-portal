@@ -250,6 +250,31 @@ body{
 .win-hi p b{color:var(--blue-d)}
 .win-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:11px}
 .win-chips span{background:#fff;border:1.5px solid #cfe0ee;border-radius:9px;padding:7px 14px;font-size:12.5px;font-weight:700;color:var(--blue-d)}
+/* GTMオペレーション自動化フロー */
+.gop{display:flex;flex-direction:column;align-items:center;margin-top:12px}
+.gop-node{background:#fff;border:1.5px solid #d6e8f5;border-radius:14px;padding:13px 20px;text-align:center;min-width:230px;box-shadow:0 3px 10px rgba(0,121,192,.05)}
+.gop-node b{display:block;font-size:15px;font-weight:800;color:var(--ink)}
+.gop-node span{display:block;font-size:11.5px;color:var(--gray);margin-top:3px;line-height:1.5}
+.gop-node.grey{background:#f2f3f4;border-color:#e0e2e5}
+.gop-node.grey b{color:#55595e}
+.gop-node.green{background:#e9f7ef;border-color:#b6e2c8}
+.gop-node.green b{color:#1a7d4b}
+.gop-node.green span{color:#4a8f6c}
+.gop-node.accent{background:#fbeaea;border-color:#e0b4b4}
+.gop-node.accent b{color:#b23b3b}
+.gop-arrow{color:var(--blue-mid);font-size:22px;line-height:1;margin:7px 0;display:grid;place-items:center}
+.gop-cowork{width:100%;background:rgba(112,87,163,.06);border:2px dashed rgba(112,87,163,.45);border-radius:18px;padding:16px 18px 20px}
+.gop-cw-h{font-size:14.5px;font-weight:800;color:var(--purple);margin-bottom:14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.gop-cw-h small{font-weight:600;color:#8b7bb0;font-size:11px}
+.gop-parallel{display:flex;gap:16px;justify-content:center;align-items:flex-start}
+.gop-parallel .gop-node{flex:1;max-width:340px}
+.gop-steps{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.gop-step{background:#fff;border:1.5px solid #b6e2c8;border-radius:9px;padding:6px 10px;font-size:12px;font-weight:700;color:#1a7d4b}
+.gop-merge-wrap{display:flex;justify-content:center;margin:12px 0 0}
+.gop-merge{background:#f2f3f4;border:1.5px solid #e0e2e5;border-radius:20px;padding:6px 22px;font-size:12.5px;font-weight:800;color:#55595e}
+.gop-node.solo{margin:0 auto}
+.gop-branch{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+@media(max-width:640px){.gop-parallel{flex-direction:column;align-items:stretch}.gop-parallel .gop-node{max-width:none}.gop-branch{flex-direction:column;align-items:center}}
 /* salary target banner */
 .tgt-banner{background:linear-gradient(135deg,#0079c0,#003d5e);color:#fff;border-radius:16px;padding:20px 24px;margin-top:12px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .tgt-banner .ti2{flex:none;width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:24px}
@@ -884,6 +909,39 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
         <div class="step"><div class="n">1</div><h4>インプット</h4><p>外部情報はAIが収集する。</p></div>
         <div class="step"><div class="n">2</div><h4>ヒアリング</h4><p>FSは喋るだけ。Notionが自動で構造化する。</p></div>
         <div class="step"><div class="n">3</div><h4>アウトプット</h4><p>コンテンツ・アプローチ文面をAIが生成する。</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3 class="ph">GTMオペレーション自動化フロー ── Zoom商談後を一気通貫で</h3>
+    <p class="lead">商談終了から提案書・顧客メール下書きまで、Salesforce と Claude Cowork で自動的につなぐ。</p>
+    <div class="gop">
+      <div class="gop-node grey"><b>Zoom商談終了</b><span>録音・文字起こし</span></div>
+      <div class="gop-arrow"><i class="ti ti-arrow-down"></i></div>
+      <div class="gop-node grey"><b>SF自動格納</b><span>フェーズ更新 ＋ 要件詳細も同時記入</span></div>
+      <div class="gop-arrow"><i class="ti ti-arrow-down"></i></div>
+      <div class="gop-cowork">
+        <div class="gop-cw-h"><i class="ti ti-sparkles"></i> Claude Cowork <small>要件整理〜提案書作成まで一括</small></div>
+        <div class="gop-parallel">
+          <div class="gop-node green"><b>要件整理</b><span>ASIS / TOBE / GAP</span></div>
+          <div class="gop-node green">
+            <b>人選</b><span>候補者選定の3ステップ</span>
+            <div class="gop-steps">
+              <div class="gop-step">① 候補者検索</div>
+              <div class="gop-step">② プロへ依頼メール</div>
+              <div class="gop-step">③ 稼働確認受信</div>
+            </div>
+          </div>
+        </div>
+        <div class="gop-merge-wrap"><div class="gop-merge">▼ マージ</div></div>
+        <div class="gop-arrow"><i class="ti ti-arrow-down"></i></div>
+        <div class="gop-node green solo"><b>提案書作成</b><span>概要 / マイルストーン / 体制図 / 比較 / 詳細</span></div>
+      </div>
+      <div class="gop-arrow"><i class="ti ti-arrow-down"></i></div>
+      <div class="gop-branch">
+        <div class="gop-node grey"><b>共有ドライブ保存</b></div>
+        <div class="gop-node accent"><b>顧客メール下書き</b></div>
       </div>
     </div>
   </div>
