@@ -31,9 +31,20 @@ body{
   font-size:11px; font-weight:500; margin-left:4px;
 }
 .topbar-spacer{flex:1}
-.topbar-meta{font-size:11px;opacity:.85;font-family:'JetBrains Mono',monospace}
+.topbar-meta{font-size:11px;opacity:.85;font-family:'JetBrains Mono',monospace;margin-left:16px}
+/* ── トップバー：外部ツールボタン ── */
+.topbar-links{display:flex;align-items:center;gap:10px}
+.tool-btn{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(255,255,255,.16);border:1.5px solid rgba(255,255,255,.35);
+  color:#fff;text-decoration:none;font-size:12px;font-weight:700;
+  padding:7px 13px;border-radius:22px;transition:.15s;
+}
+.tool-btn i{font-size:16px}
+.tool-btn:hover{background:#fff;color:var(--blue);border-color:#fff}
+@media(max-width:640px){.tool-btn span{display:none}.tool-btn{padding:8px 10px}}
 /* ── コンテナ ── */
-.wrap{max-width:960px;margin:0 auto;padding:28px 20px 0}
+.wrap{max-width:1360px;margin:0 auto;padding:28px 28px 0}
 /* ── ヒーロー ── */
 .hero{
   background:linear-gradient(135deg,#fff,#e8f6ff);
@@ -68,8 +79,10 @@ body{
 .sec-title i{font-size:18px;color:var(--blue)}
 .sec-title small{font-weight:500;color:var(--gray);font-size:11px;letter-spacing:0}
 /* ── カードグリッド ── */
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-@media(max-width:680px){.grid{grid-template-columns:1fr}}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+@media(max-width:1200px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:860px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
 .card{
   background:#fff; border-radius:18px; border:1.5px solid #d6e8f5;
   padding:24px 22px; text-decoration:none; color:inherit;
@@ -129,6 +142,10 @@ body{
   <h1>エンタープライズ ポータル</h1>
   <span class="topbar-badge">CIRCULATION</span>
   <div class="topbar-spacer"></div>
+  <div class="topbar-links">
+    <a class="tool-btn" href="https://drive.google.com/drive/folders/1LyXzX-LTaViS_K4JSL4_S2iaTwJ6-mJg?usp=drive_link" target="_blank" rel="noopener"><i class="ti ti-brand-google-drive"></i><span>Google ドライブ</span></a>
+    <a class="tool-btn" href="https://app.notion.com/p/_-2d35b464b52680118e16f545eded6e4d?source=copy_link" target="_blank" rel="noopener"><i class="ti ti-brand-notion"></i><span>Notion</span></a>
+  </div>
   <div class="topbar-meta">Enterprise Team</div>
 </div>
 
@@ -141,7 +158,29 @@ body{
     <p>エンタープライズチームの入口です。<strong>戦略を見直すなら</strong>・<strong>商況を確認するなら</strong>・<strong>型を学ぶなら</strong>——目的から選んでください。</p>
   </div>
 
-  <!-- ① 戦略・オペレーション -->
+  <!-- ① 商況・数値 -->
+  <div class="sec-title"><i class="ti ti-chart-bar"></i>商況・数値 <small>― 商況を確認するなら</small></div>
+  <div class="grid">
+
+    <a class="card green" href="https://tokunagayudai.github.io/Circulation-Enterprise-dashboard/" target="_blank" rel="noopener">
+      <span class="card-badge ext"><i class="ti ti-external-link" style="font-size:10px"></i> 外部</span>
+      <div class="card-icon"><i class="ti ti-chart-bar"></i></div>
+      <h3>エンプラ ダッシュボード</h3>
+      <p>パイプライン・KPI・ファネル分析。Salesforce → G-Connector → GAS 連携の営業実績ダッシュボード。</p>
+      <span class="card-link">ダッシュボードを開く <i class="ti ti-arrow-right"></i></span>
+    </a>
+
+    <a class="card green" href="https://tokunagayudai.github.io/circu-lead-management/" target="_blank" rel="noopener">
+      <span class="card-badge ext"><i class="ti ti-external-link" style="font-size:10px"></i> 外部</span>
+      <div class="card-icon"><i class="ti ti-address-book"></i></div>
+      <h3>リード管理</h3>
+      <p>リードの獲得・ステータス・ナーチャリング状況を一元管理。担当・確度・次アクションを可視化。</p>
+      <span class="card-link">リード管理を開く <i class="ti ti-arrow-right"></i></span>
+    </a>
+
+  </div>
+
+  <!-- ② 戦略・オペレーション -->
   <div class="sec-title"><i class="ti ti-route"></i>戦略・オペレーション <small>― 戦略を見直すなら</small></div>
   <div class="grid">
 
@@ -186,44 +225,8 @@ body{
 
   </div>
 
-  <!-- ② 商況・数値 -->
-  <div class="sec-title"><i class="ti ti-chart-bar"></i>商況・数値 <small>― 商況を確認するなら</small></div>
-  <div class="grid">
-
-    <a class="card green" href="https://tokunagayudai.github.io/Circulation-Enterprise-dashboard/" target="_blank" rel="noopener">
-      <span class="card-badge ext"><i class="ti ti-external-link" style="font-size:10px"></i> 外部</span>
-      <div class="card-icon"><i class="ti ti-chart-bar"></i></div>
-      <h3>エンプラ ダッシュボード</h3>
-      <p>パイプライン・KPI・ファネル分析。Salesforce → G-Connector → GAS 連携の営業実績ダッシュボード。</p>
-      <span class="card-link">ダッシュボードを開く <i class="ti ti-arrow-right"></i></span>
-    </a>
-
-    <a class="card green" href="https://tokunagayudai.github.io/circu-lead-management/" target="_blank" rel="noopener">
-      <span class="card-badge ext"><i class="ti ti-external-link" style="font-size:10px"></i> 外部</span>
-      <div class="card-icon"><i class="ti ti-address-book"></i></div>
-      <h3>リード管理</h3>
-      <p>リードの獲得・ステータス・ナーチャリング状況を一元管理。担当・確度・次アクションを可視化。</p>
-      <span class="card-link">リード管理を開く <i class="ti ti-arrow-right"></i></span>
-    </a>
-
-  </div>
-
-  <!-- 締め・請求（守り／独立） -->
-  <div class="sec-title"><i class="ti ti-file-invoice"></i>締め・請求 <small>― 月次オペレーション（守り）</small></div>
-  <div class="grid">
-
-    <a class="card orange" href="./closing/" target="_blank" rel="noopener">
-      <span class="card-badge live"><i class="ti ti-circle-filled" style="font-size:8px"></i> 公開中</span>
-      <div class="card-icon"><i class="ti ti-file-invoice"></i></div>
-      <h3>請求・締め ダッシュボード</h3>
-      <p>月次の締め（全件・候補者稼働承認完了）までの進捗を1画面に集約。工程別ステータス・締めゲージ・詰まっている案件・担当別フィルタ。Slack催促をやめ、毎朝ここを見れば分かる状態に。</p>
-      <span class="card-link">締め状況を見る <i class="ti ti-arrow-right"></i></span>
-    </a>
-
-  </div>
-
-  <!-- ③ ナレッジ・型（虎の巻） -->
-  <div class="sec-title"><i class="ti ti-book-2"></i>ナレッジ・型（虎の巻） <small>― 型を学ぶ・提案を作るなら</small></div>
+  <!-- ③ 提案活動 -->
+  <div class="sec-title"><i class="ti ti-briefcase"></i>提案活動 <small>― 型を学ぶ・提案を作るなら</small></div>
   <div class="grid">
 
     <a class="card purple" href="https://tokunagayudai.github.io/circu-proposal/" target="_blank" rel="noopener">
@@ -234,18 +237,34 @@ body{
       <span class="card-link">提案ポータルを開く <i class="ti ti-arrow-right"></i></span>
     </a>
 
-  </div>
-
-  <!-- ④ ツール -->
-  <div class="sec-title"><i class="ti ti-plug"></i>ツール <small>― 各システムへの入口</small></div>
-  <div class="grid">
-
-    <a class="card" href="#" onclick="return false">
+    <a class="card purple" href="#" onclick="return false">
       <span class="card-badge wip"><i class="ti ti-tools" style="font-size:10px"></i> 準備中</span>
       <div class="card-icon"><i class="ti ti-users-group"></i></div>
       <h3>エンプラプロ人材</h3>
       <p>エンタープライズ向けプロ人材のリスト・DB。案件にアサイン可能な人材・実績・稼働状況を管理。（リンク設定待ち）</p>
       <span class="card-link">準備中 <i class="ti ti-dots"></i></span>
+    </a>
+
+    <a class="card purple" href="#" onclick="return false">
+      <span class="card-badge wip"><i class="ti ti-tools" style="font-size:10px"></i> 準備中</span>
+      <div class="card-icon"><i class="ti ti-template"></i></div>
+      <h3>テンプレ集</h3>
+      <p>提案書・見積・メール・議事録などの雛形をまとめたテンプレート集。ゼロから作らず型から始める。（リンク設定待ち）</p>
+      <span class="card-link">準備中 <i class="ti ti-dots"></i></span>
+    </a>
+
+  </div>
+
+  <!-- ④ 事務作業 -->
+  <div class="sec-title"><i class="ti ti-file-invoice"></i>事務作業 <small>― 月次オペレーション（守り）</small></div>
+  <div class="grid">
+
+    <a class="card orange" href="./closing/" target="_blank" rel="noopener">
+      <span class="card-badge live"><i class="ti ti-circle-filled" style="font-size:8px"></i> 公開中</span>
+      <div class="card-icon"><i class="ti ti-file-invoice"></i></div>
+      <h3>請求・締め ダッシュボード</h3>
+      <p>月次の締め（全件・候補者稼働承認完了）までの進捗を1画面に集約。工程別ステータス・締めゲージ・詰まっている案件・担当別フィルタ。Slack催促をやめ、毎朝ここを見れば分かる状態に。</p>
+      <span class="card-link">締め状況を見る <i class="ti ti-arrow-right"></i></span>
     </a>
 
   </div>
