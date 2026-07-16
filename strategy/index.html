@@ -318,6 +318,18 @@ body{
 .topic-card .tc-d{font-size:12px;color:var(--gray);line-height:1.6;margin-top:9px;flex:1}
 .topic-card .tc-go{margin-top:12px;font-size:11.5px;font-weight:800;color:var(--blue);display:flex;align-items:center;gap:5px}
 .topic-card .tc-n{position:absolute;top:15px;right:16px;font-size:13px;font-weight:800;color:#d5e6f3;font-family:'JetBrains Mono',monospace}
+/* モーダル内アコーディオン（長い章を折りたたむ） */
+.exwrap .acc-item{border:1.5px solid #dcebf6;border-radius:12px;margin-bottom:10px;overflow:hidden;background:#fff}
+.exwrap .acc-head{display:flex;align-items:center;gap:9px;padding:12px 15px;cursor:pointer;font-weight:800;color:var(--blue-d);font-size:14px;background:#f2f9fe;user-select:none;transition:background .12s}
+.exwrap .acc-head:hover{background:#e8f4fd}
+.exwrap .acc-head .ah-ic{color:var(--blue);font-size:17px;flex:none}
+.exwrap .acc-head .ah-t{flex:1;line-height:1.4}
+.exwrap .acc-head .ah-t small{font-weight:600;color:var(--gray);font-size:10.5px;margin-left:2px}
+.exwrap .acc-head .ah-cv{margin-left:auto;transition:transform .2s;color:var(--blue-mid);font-size:16px;flex:none}
+.exwrap .acc-item.open .acc-head .ah-cv{transform:rotate(180deg)}
+.exwrap .acc-body{display:none;padding:6px 14px 2px}
+.exwrap .acc-item.open .acc-body{display:block}
+.exwrap .acc-body .panel:first-child{margin-top:8px}
 /* アカウントプランニング フロー（入力→集約→出口） */
 .apf-legend{display:flex;gap:16px;flex-wrap:wrap;margin:4px 0 16px;font-size:11px;font-weight:700;color:var(--gray)}
 .apf-legend .lg{display:flex;align-items:center;gap:7px}
@@ -2198,6 +2210,32 @@ details.sec>summary .chev{margin-left:8px!important}
   function openDetail(title, html){
     ttl.textContent=title; bd.innerHTML='';
     var wrap=document.createElement('div'); wrap.className='exwrap'; wrap.innerHTML=html;
+    // 内部に sec-sub が複数 → アコーディオン化（縦長を折りたたむ）
+    var kids=[].slice.call(wrap.children);
+    var subIdx=[]; kids.forEach(function(c,i){ if(c.classList&&c.classList.contains('sec-sub')) subIdx.push(i); });
+    if(subIdx.length>=2){
+      var frag=document.createElement('div');
+      for(var i=0;i<subIdx[0];i++) frag.appendChild(kids[i]); // 先頭の導入部
+      for(var s=0;s<subIdx.length;s++){
+        var start=subIdx[s], end=(s+1<subIdx.length)?subIdx[s+1]:kids.length;
+        var bodyNodes=kids.slice(start+1,end);
+        if(!bodyNodes.length) continue; // 見出しだけ（親見出し等）はスキップ
+        var headEl=kids[start];
+        var ic=headEl.querySelector('i'); var icls=ic?ic.className:'ti ti-point';
+        var c2=headEl.cloneNode(true); var sm=c2.querySelector('small'); var smt=sm?sm.textContent.replace(/^[\s―\-]+/,'').trim():'';
+        if(sm)sm.remove(); var ic0=c2.querySelector('i'); if(ic0)ic0.remove(); var no=c2.querySelector('.no'); if(no)no.remove();
+        var mt=c2.textContent.replace(/\s+/g,' ').trim();
+        var open=!frag.querySelector('.acc-item');
+        var item=document.createElement('div'); item.className='acc-item'+(open?' open':'');
+        var h=document.createElement('div'); h.className='acc-head';
+        h.innerHTML='<i class="ah-ic '+icls+'"></i><span class="ah-t">'+mt+(smt?' <small>'+smt+'</small>':'')+'</span><i class="ah-cv ti ti-chevron-down"></i>';
+        h.addEventListener('click',function(){this.parentNode.classList.toggle('open');});
+        var body=document.createElement('div'); body.className='acc-body';
+        bodyNodes.forEach(function(n){body.appendChild(n);});
+        item.appendChild(h); item.appendChild(body); frag.appendChild(item);
+      }
+      wrap.innerHTML=''; wrap.appendChild(frag);
+    }
     bd.appendChild(wrap);
     wrap.querySelectorAll('.vc-node').forEach(function(g){
       g.style.cursor='pointer';
