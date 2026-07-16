@@ -301,6 +301,23 @@ body{
 .gtm-link{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:13px;font-weight:800;text-decoration:none;color:#fff;background:linear-gradient(135deg,#0079c0,#003d5e);border-radius:12px;padding:11px 20px;box-shadow:0 6px 16px rgba(0,121,192,.25);transition:.15s}
 .gtm-link:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,121,192,.32)}
 .gtm-link i{font-size:16px}
+/* トピックカード（章内をカード化 → タップで詳細ドロワー） */
+.topic-hint{display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:700;color:var(--blue);background:#eef7fd;border:1.5px dashed #cfe6f6;border-radius:10px;padding:9px 13px;margin:6px 4px 2px}
+.topic-hint i{font-size:15px}
+.topic-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:14px 4px 6px}
+@media(max-width:900px){.topic-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.topic-grid{grid-template-columns:1fr}}
+.topic-card{text-align:left;background:#fff;border:1.5px solid var(--blue-l);border-radius:16px;padding:18px 18px 15px;cursor:pointer;position:relative;overflow:hidden;transition:transform .16s,box-shadow .16s,border-color .16s;display:flex;flex-direction:column;font-family:inherit;box-shadow:0 3px 12px rgba(0,121,192,.05)}
+.topic-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#5599be,#0079c0);transform:scaleX(0);transform-origin:left;transition:transform .2s}
+.topic-card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,121,192,.16);border-color:var(--blue-mid)}
+.topic-card:hover::before{transform:scaleX(1)}
+.topic-card .tc-ic{width:42px;height:42px;border-radius:12px;background:var(--blue-l);display:grid;place-items:center;margin-bottom:12px}
+.topic-card .tc-ic i{font-size:22px;color:var(--blue)}
+.topic-card .tc-t{font-size:15px;font-weight:800;color:var(--blue-d);line-height:1.4;margin-bottom:3px;padding-right:26px}
+.topic-card .tc-s{font-size:10.5px;font-weight:700;color:var(--blue-mid);line-height:1.4}
+.topic-card .tc-d{font-size:12px;color:var(--gray);line-height:1.6;margin-top:9px;flex:1}
+.topic-card .tc-go{margin-top:12px;font-size:11.5px;font-weight:800;color:var(--blue);display:flex;align-items:center;gap:5px}
+.topic-card .tc-n{position:absolute;top:15px;right:16px;font-size:13px;font-weight:800;color:#d5e6f3;font-family:'JetBrains Mono',monospace}
 /* アカウントプランニング フロー（入力→集約→出口） */
 .apf-legend{display:flex;gap:16px;flex-wrap:wrap;margin:4px 0 16px;font-size:11px;font-weight:700;color:var(--gray)}
 .apf-legend .lg{display:flex;align-items:center;gap:7px}
@@ -2174,6 +2191,91 @@ details.sec>summary .chev{margin-left:8px!important}
       ib.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();openSec(sec);});
       it.appendChild(ib);
     });
+  });
+
+  // ── 章内カード化：主要トピックをカードにし、タップで詳細をドロワー表示 ──
+  // detail を .exwrap で表示（openSec と同じパネル整形＋vc-node 再バインド）
+  function openDetail(title, html){
+    ttl.textContent=title; bd.innerHTML='';
+    var wrap=document.createElement('div'); wrap.className='exwrap'; wrap.innerHTML=html;
+    bd.appendChild(wrap);
+    wrap.querySelectorAll('.vc-node').forEach(function(g){
+      g.style.cursor='pointer';
+      g.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();var v=VC[g.dataset.vc];if(v)openDrawer(v.t,v.h);});
+    });
+    dr.classList.add('open'); document.body.style.overflow='hidden'; bd.scrollTop=0;
+  }
+  function subMain(ss){var c=ss.cloneNode(true);var sm=c.querySelector('small');if(sm)sm.remove();var no=c.querySelector('.no');if(no)no.remove();var ic=c.querySelector('i');if(ic)ic.remove();return c.textContent.replace(/\s+/g,' ').trim();}
+  function subSmall(ss){var sm=ss.querySelector('small');return sm?sm.textContent.replace(/^[\s―-]+/,'').trim():'';}
+  function subIcon(ss){var ic=ss.querySelector('i');return ic?ic.className:'ti ti-point';}
+  function firstSummary(nodes){
+    for(var i=0;i<nodes.length;i++){
+      var el=nodes[i];
+      var cand=el.matches&&el.matches('.lead,.ph,.lead-line')?el:(el.querySelector?el.querySelector('.lead,.ph,p'):null);
+      if(cand&&cand.textContent.trim()){var s=cand.textContent.replace(/\s+/g,' ').trim();return s.length>78?s.slice(0,76)+'…':s;}
+    }
+    return '';
+  }
+  // 章名 → 主要カード境界（null=各 sec-sub をカード化）／タイトル上書き
+  var CARD_CFG={
+    '現状認識・課題分析':null,
+    '戦略':['顧客の「4階層」','体制','GTMフロー'],
+    '戦術':['重点施策','マーケティング施策','マーケ／IS の分担と目標KPI','4 Value Cycle の今期版','AIに任せ、人は「関係構築」へ','オペレーション改善']
+  };
+  var CARD_TITLE={'AIに任せ、人は「関係構築」へ':'案件を深める・決める','マーケ／IS の分担と目標KPI':'マーケ／IS の分担と目標KPI'};
+  var CARD_SUM={
+    '案件を深める・決める':'AIに裏方を任せ、人は関係構築へ。人当てからソリューション営業への転換と解決策の型。',
+    '体制':'FSの2層分担、Farming／Hunting、企画・テーマUnit。人数拡充と役割の棲み分け。'
+  };
+  document.querySelectorAll('details.sec').forEach(function(sec){
+    var name=secName(sec);
+    if(!(name in CARD_CFG)) return;
+    var prim=CARD_CFG[name];
+    var kids=[].slice.call(sec.children).filter(function(c){return c.tagName!=='SUMMARY';});
+    function isB(ch){ if(ch.classList&&ch.classList.contains('sec-sub')){ if(!prim) return true; return prim.indexOf(subMain(ch))>=0; } return false; }
+    var segs=[],cur=null,pre=[];
+    kids.forEach(function(ch){
+      if(isB(ch)){ cur={head:ch,nodes:[]}; segs.push(cur); }
+      else if(cur){ cur.nodes.push(ch); }
+      else { pre.push(ch); }
+    });
+    if(!segs.length) return;
+    // 詳細HTMLを先に確保（.exi/.sec-explain を除去）
+    segs.forEach(function(sg){
+      var tmp=document.createElement('div');
+      tmp.appendChild(sg.head.cloneNode(true));
+      sg.nodes.forEach(function(n){tmp.appendChild(n.cloneNode(true));});
+      tmp.querySelectorAll('.exi,.sec-explain').forEach(function(x){x.remove();});
+      sg.title=CARD_TITLE[subMain(sg.head)]||subMain(sg.head);
+      sg.sub=subSmall(sg.head);
+      sg.icon=subIcon(sg.head);
+      sg.sum=CARD_SUM[sg.title]||firstSummary(sg.nodes.length?sg.nodes:[sg.head]);
+      sg.html=tmp.innerHTML;
+    });
+    // 解説ボタンは撤去（カードで代替）
+    var seb=sec.querySelector('summary .sec-explain'); if(seb) seb.remove();
+    // 元コンテンツを隠す（pre は残す）
+    kids.forEach(function(ch){ if(pre.indexOf(ch)<0) ch.style.display='none'; });
+    // カードグリッド生成
+    var hint=document.createElement('div'); hint.className='topic-hint';
+    hint.innerHTML='<i class="ti ti-hand-click"></i> 各カードをタップすると詳細が開きます';
+    var grid=document.createElement('div'); grid.className='topic-grid';
+    segs.forEach(function(sg,i){
+      var card=document.createElement('button'); card.type='button'; card.className='topic-card';
+      card.innerHTML='<span class="tc-n">'+('0'+(i+1)).slice(-2)+'</span>'
+        +'<span class="tc-ic"><i class="'+sg.icon+'"></i></span>'
+        +'<span class="tc-t">'+sg.title+'</span>'
+        +(sg.sub?'<span class="tc-s">'+sg.sub+'</span>':'')
+        +(sg.sum?'<span class="tc-d">'+sg.sum+'</span>':'')
+        +'<span class="tc-go">詳細を見る <i class="ti ti-arrow-right"></i></span>';
+      card.addEventListener('click',function(){openDetail(sg.title,sg.html);});
+      grid.appendChild(card);
+    });
+    var anchor=sec.querySelector('summary');
+    // pre がある場合はその後ろ、なければ summary 直後
+    var insAfter=pre.length?pre[pre.length-1]:anchor;
+    insAfter.parentNode.insertBefore(grid, insAfter.nextSibling);
+    insAfter.parentNode.insertBefore(hint, grid);
   });
 })();
 </script>
