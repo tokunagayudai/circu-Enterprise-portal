@@ -285,6 +285,22 @@ body{
 .sec-sub i{color:var(--blue);font-size:18px}
 .sec-sub small{font-weight:500;color:var(--gray);font-size:12px}
 .sec-sub .no{display:none}
+/* マーケ施策：予算テーブル・KPI・GTMリンク */
+.mini.m4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:760px){.mini.m4{grid-template-columns:repeat(2,1fr)}}
+.mkt-tbl{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:10px}
+.mkt-tbl th{text-align:left;font-size:11px;font-weight:800;color:#fff;background:linear-gradient(135deg,#0079c0,#003d5e);padding:8px 12px}
+.mkt-tbl th:last-child,.mkt-tbl td:last-child{width:42%}
+.mkt-tbl td{padding:8px 12px;border-top:1px solid #eef4f8;color:var(--ink);font-weight:600}
+.mkt-tbl td:nth-child(2){font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--blue-d);white-space:nowrap}
+.mkt-tbl tbody tr:hover{background:#f7fbfe}
+.mkt-tbl .bar{display:inline-block;height:9px;border-radius:5px;background:linear-gradient(90deg,#5599be,#0079c0);width:var(--w);vertical-align:middle;margin-right:8px;min-width:6px}
+.mkt-list{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+.mkt-list li{position:relative;padding-left:22px;font-size:13px;line-height:1.55;color:var(--ink)}
+.mkt-list li::before{content:'';position:absolute;left:6px;top:7px;width:8px;height:8px;border-radius:50%;background:var(--blue)}
+.gtm-link{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:13px;font-weight:800;text-decoration:none;color:#fff;background:linear-gradient(135deg,#0079c0,#003d5e);border-radius:12px;padding:11px 20px;box-shadow:0 6px 16px rgba(0,121,192,.25);transition:.15s}
+.gtm-link:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,121,192,.32)}
+.gtm-link i{font-size:16px}
 /* アカウントプランニング フロー（入力→集約→出口） */
 .apf-legend{display:flex;gap:16px;flex-wrap:wrap;margin:4px 0 16px;font-size:11px;font-weight:700;color:var(--gray)}
 .apf-legend .lg{display:flex;align-items:center;gap:7px}
@@ -634,6 +650,7 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
     <summary><span class="stitle"><i class="ti ti-bulb"></i>エグゼクティブサマリー <small>― 結論</small></span><i class="ti ti-chevron-down chev"></i></summary>
 
 
+
   <div class="panel">
     <div class="es-frame">これは新しい戦略ではない。<b>以前共有したモデル（4 Value Cycle）を整理</b>し、<b>分析で見えた課題に打ち手を紐づけ</b>、<b>体制の変更で実行</b>する ── その全体像。</div>
 
@@ -677,7 +694,8 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
   </details>
 
   <details class="sec" open>
-    <summary><span class="stitle"><span class="no">1</span>現状認識 <small>― 総論は正しい。直すのは各論</small></span><i class="ti ti-chevron-down chev"></i></summary>
+    <summary><span class="stitle"><span class="no">1</span>現状認識・課題分析 <small>― 総論は正しい。直すのは各論</small></span><i class="ti ti-chevron-down chev"></i></summary>
+
 
     <h3 class="sec-sub"><i class="ti ti-chart-dots"></i>定量で見る現状 <small>― 契約数の分解と、課題 → 打ち手</small></h3>
     <div class="panel">
@@ -917,80 +935,10 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
   </details>
 
   <details class="sec" open>
-    <summary><span class="stitle"><span class="no">2</span>戦略の背骨と3つの打ち手 <small>― 4 Value Cycle を今期版で回す</small></span><i class="ti ti-chevron-down chev"></i></summary>
+    <summary><span class="stitle"><span class="no">2</span>戦略 <small>― 4階層で見る・体制・GTM</small></span><i class="ti ti-chevron-down chev"></i></summary>
 
-  <div class="panel">
-    <h3 class="ph">4 Value Cycle は継承する。だが一人で回すのは不可能だった。</h3>
-    <p class="lead">4つの循環は正しい。役割分担とAIで「チームで回るエンジン」に作り変える。</p>
-    <div class="vc-hint"><i class="ti ti-hand-click"></i> 各サイクルをクリックすると、目的・狙い・具体オペレーションが開きます</div>
-    <div class="cycle-wrap">
-      <div class="cycle">
-        <svg viewBox="0 0 300 300">
-          <defs>
-            <marker id="ar" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#0079c0"/></marker>
-            <linearGradient id="gctr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0079c0"/><stop offset="1" stop-color="#003d5e"/></linearGradient>
-          </defs>
-          <path d="M188,70 A100,100 0 0,1 230,112" fill="none" stroke="#0079c0" stroke-width="2.5" marker-end="url(#ar)"/>
-          <path d="M230,188 A100,100 0 0,1 188,230" fill="none" stroke="#0079c0" stroke-width="2.5" marker-end="url(#ar)"/>
-          <path d="M112,230 A100,100 0 0,1 70,188" fill="none" stroke="#0079c0" stroke-width="2.5" marker-end="url(#ar)"/>
-          <path d="M70,112 A100,100 0 0,1 112,70" fill="none" stroke="#0079c0" stroke-width="2.5" marker-end="url(#ar)"/>
-          <circle cx="150" cy="150" r="46" fill="url(#gctr)"/>
-          <text x="150" y="145" text-anchor="middle" fill="#fff" font-size="15" font-weight="800" font-family="'M PLUS Rounded 1c'">LTV</text>
-          <text x="150" y="165" text-anchor="middle" fill="#fff" font-size="12.5" font-family="'M PLUS Rounded 1c'">最大化</text>
-          <g class="vc-node" data-vc="ap" style="cursor:pointer"><rect x="92" y="20" width="116" height="56" rx="12" fill="#e8f6ff" stroke="#0079c0" stroke-width="2"/><text x="150" y="44" text-anchor="middle" fill="#0079c0" font-size="11" font-weight="700" font-family="'M PLUS Rounded 1c'">Account Planning</text><text x="150" y="62" text-anchor="middle" fill="#1a2a38" font-size="11">アカウント戦略</text></g>
-          <g class="vc-node" data-vc="le" style="cursor:pointer"><rect x="200" y="122" width="100" height="56" rx="12" fill="#e8f6ff" stroke="#0a6e8c" stroke-width="2"/><text x="250" y="146" text-anchor="middle" fill="#0a6e8c" font-size="10.5" font-weight="700" font-family="'M PLUS Rounded 1c'">Lead Engage.</text><text x="250" y="164" text-anchor="middle" fill="#1a2a38" font-size="11">リード育成</text></g>
-          <g class="vc-node" data-vc="pm" style="cursor:pointer"><rect x="92" y="224" width="116" height="56" rx="12" fill="#e8f6ff" stroke="#0079c0" stroke-width="2"/><text x="150" y="248" text-anchor="middle" fill="#0079c0" font-size="11" font-weight="700" font-family="'M PLUS Rounded 1c'">Pipeline</text><text x="150" y="266" text-anchor="middle" fill="#1a2a38" font-size="11">案件推進</text></g>
-          <g class="vc-node" data-vc="cs" style="cursor:pointer"><rect x="0" y="122" width="100" height="56" rx="12" fill="#e8f6ff" stroke="#0a6e8c" stroke-width="2"/><text x="50" y="146" text-anchor="middle" fill="#0a6e8c" font-size="9.5" font-weight="700" font-family="'M PLUS Rounded 1c'">Customer Success</text><text x="50" y="164" text-anchor="middle" fill="#1a2a38" font-size="11">顧客深耕</text></g>
-        </svg>
-      </div>
-      <div class="points">
-        <div class="pt"><div class="n">1</div><div><h4>役割を分けて回す</h4><p>戦略を描く・案件を進める・構造を読む力は別資質。一人に求めず分業し、連携させる。</p></div></div>
-        <div class="pt"><div class="n">2</div><div><h4>顧客接点は一人の人格で</h4><p>裏方（提案書・要件定義・記録）はAIで軽くし、顧客から見える担当者は一人に保つ。</p></div></div>
-        <div class="pt"><div class="n">3</div><div><h4>全員が4階層で見る</h4><p>企業→部署→リード→案件。案件進捗と顧客リレーションは常に接続している。</p></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="panel">
-    <h3 class="ph">変革後 ── 4つの活動エリアと役割分担</h3>
-    <p class="lead">「4 Value Cycle」を、実際の運用解像度で<b>4つの活動エリア</b>に更新。誰がどのエリアを担うかを明確にする。</p>
-    <div class="rsplit">
-      <div class="rrow le">
-        <div class="rh"><span class="rt"><b>①</b> リードマネジメント 〜 パイプラインジェネレーション</span><span class="rj">空中戦</span></div>
-        <div class="roles">
-          <span class="chip mk"><i class="ti ti-speakerphone"></i> マーケ</span>
-          <span class="chip is"><i class="ti ti-headset"></i> IS</span>
-        </div>
-        <p class="rd">リードへの認知を<b>アクティブ化</b>し、関係性を維持して<b>第一想起</b>を獲得する。</p>
-      </div>
-      <div class="rrow pm">
-        <div class="rh"><span class="rt"><b>②</b> パイプラインマネジメント</span></div>
-        <div class="roles">
-          <span class="chip fs"><i class="ti ti-user-heart"></i> FS</span>
-          <span class="chip as"><i class="ti ti-user"></i> アソシエイト</span>
-        </div>
-        <p class="rd">一つの接点を機会に<b>課題探索と提案</b>。ただの案件探しでなく、周辺テーマの深掘りから<b>現在・未来・周辺ニーズ</b>を獲得する。</p>
-      </div>
-      <div class="rrow cs">
-        <div class="rh"><span class="rt"><b>③</b> カスタマーサクセス</span><span class="rj">地上戦</span><span class="cs-badge">来期 最注力</span></div>
-        <div class="roles">
-          <span class="chip fs"><i class="ti ti-user-heart"></i> FS</span>
-        </div>
-        <p class="rd">受注案件の成功を確実にし、<b>追加ロール・次フェーズの未来ニーズ</b>で継続を狙う。スターリード起点の深耕でリレーションを構築する。</p>
-      </div>
-      <div class="rrow ap">
-        <div class="rh"><span class="rt"><b>④</b> アカウントプランニング</span><span class="rj">地上戦 ＋ 空中戦</span></div>
-        <div class="roles">
-          <span class="chip fs"><i class="ti ti-user-heart"></i> FS：地上戦</span>
-          <span class="chip is"><i class="ti ti-headset"></i> IS：空中戦</span>
-        </div>
-        <p class="rd">FSが地上戦で得た一次情報（<b>課題・体制図・機能役割</b>）を基に、<b>FSは地上戦アプローチ、ISは空中戦アプローチ</b>を進める。</p>
-      </div>
-    </div>
-    <div class="band"><span class="hl">重心の移動：</span> この半年は <span class="hl">①②</span> に注力（リードのアクティブ化と案件推進）。来期は <span class="hl">③④</span> に注力（継続深耕とアカウントプランニング）。</div>
-  </div>
-
-  <div class="panel">
+    <h3 class="sec-sub"><i class="ti ti-stack-2"></i>顧客の「4階層」 <small>― 案件ではなくアカウントで見る</small></h3>
+<div class="panel">
     <h3 class="ph">全員が「4階層」でアカウントを見る</h3>
     <p class="lead">案件を前に進めるだけのロールから脱却する。チームとして見るのは「案件」ではなく「アカウント」。</p>
     <div class="funnel">
@@ -1002,388 +950,11 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
     <p class="note" style="margin-top:12px">案件は4階層の最も短命な一点にすぎない。その上に担当者・部署・企業全体の力学がある。</p>
   </div>
 
-  <div class="panel">
-    <h3 class="ph">商談は「案件探索」だけでなく「顧客構造の理解」の場</h3>
-    <p class="lead">ヒアリングで構造を積み、2方向で刈る。これが面のリレーション営業のエンジン。</p>
-    <div class="flow">
-      <div class="stack">
-        <div style="background:var(--blue-l)"><h5 style="color:var(--blue-d)">① 案件探索</h5><p style="color:var(--gray)">今すぐの案件を見つける（従来のFS）</p></div>
-        <div style="background:var(--blue-l)"><h5 style="color:var(--blue-d)">② 顧客構造の理解</h5><p style="color:var(--gray)">部署役割・競合・予算・決裁者・購買グループ</p></div>
-      </div>
-      <div class="arrowcol"><i class="ti ti-arrow-right"></i></div>
-      <div>
-        <div class="mid">商談・接点</div>
-        <div class="stack">
-          <div style="background:#fff;border:1.5px solid #d6e8f5"><h5 style="color:var(--blue-d)">アウトバウンド</h5><p style="color:var(--gray)">こちらからタイミングを測って仕掛ける。組織が動く瞬間を捉える。</p></div>
-          <div style="background:linear-gradient(135deg,#0079c0,#003d5e);color:#fff"><h5 style="color:#bfe3f7">インバウンド</h5><p style="color:#e8f6ff">課題発生時に想起される。最も受注率の高い45%の動線。</p></div>
-        </div>
-      </div>
-    </div>
-    <div class="band light"><span class="hl">最重点：</span> 現在稼働中のスターリードを深耕する。過去稼働 ≠ 現在稼働。今まさに関係が最も温まる「スター状態」を逃さない。</div>
-  </div>
+  
 
-    <h3 class="sec-sub"><i class="ti ti-broadcast"></i> 案件を増やす ── マーケティング強化（空中戦）</h3>
-    <div class="panel">
-      <p class="lead">案件数を増やす主エンジンは、個人の新規開拓力ではなく<b>マーケティング</b>。空中戦（マーケ・IS）でリードを継続供給し、開拓を個人に頼らせない。</p>
-      <div class="mini m3">
-        <div class="mcard"><div class="num">1</div><h4>リード／案件供給を増やす</h4><p>テーマを切ったコンテンツ・メルマガ・ウェビナーで、濃いリードを継続的に生む。</p></div>
-        <div class="mcard"><div class="num">2</div><h4>ナーチャリングで温める</h4><p>非同期で文脈を維持し、課題発生時に相談が来る状態（第一想起）をつくる。</p></div>
-        <div class="mcard"><div class="num">3</div><h4>開拓を個人に頼らせない</h4><p>新規開拓を精神論にせず、マーケ強化で Hunting（開拓）側へリードを供給する。</p></div>
-      </div>
-      <div class="band"><span class="hl">狙い：</span> 案件の「入口」をマーケで太くし、深耕（次章）と質（次々章）に回す母数を増やす。</div>
-    </div>
+    <h3 class="sec-sub"><i class="ti ti-users-group"></i>体制 <small>― 人数拡充と役割の棲み分け</small></h3>
 
-  </details>
 
-  <details class="sec" open>
-    <summary><span class="stitle"><span class="no">3</span>案件を深める <small>― 深耕営業（アカプラ ＋ スターリード）</small></span><i class="ti ti-chevron-down chev"></i></summary>
-
-    <h3 class="sec-sub"><i class="ti ti-arrow-big-right-lines"></i>AIに任せ、人は「関係構築」へ <small>― 営業に求める動き</small></h3>
-
-  <div class="panel" style="padding:0;border:none;background:none;box-shadow:none">
-    <div class="climax">
-      <div class="ckicker">NEW OPERATION ／ TO-BE</div>
-      <h3>AIとオペレーションが「作業」を引き受ける。<br>だから人は、人にしかできないことへ。</h3>
-      <p class="clead">情シスと進めている新オペレーションを発表し、改修中のToBeも共有する。狙いは一つ ── <b>営業が「関係性構築・接点づくり・脳内シェア・未来（潜在）ニーズの訴求」に時間を使えるようにすること。</b>とりわけ深耕営業は、AIにもオペレーションにも代替できない。ここは人間＝営業の仕事になる。</p>
-
-      <div class="purpose">
-        <div class="ph2"><i class="ti ti-refresh"></i> 商談の目的を、「案件探索」だけにしない</div>
-        <div class="plist">
-          <span class="pchip"><i class="ti ti-arrow-loop-right"></i> 文脈を続けていく</span>
-          <span class="pchip"><i class="ti ti-arrows-maximize"></i> ケイパビリティを広げる</span>
-          <span class="pchip"><i class="ti ti-bulb"></i> 未来ニーズ・潜在課題を会話する</span>
-          <span class="pchip"><i class="ti ti-hand-stop"></i> ご挨拶をしておく</span>
-        </div>
-        <p class="pnote">深耕の接点は、怠らない。<b>15分でも、電話でもいい。</b>全ての商談を1時間にする必要はない。リサイクルを通じて近況を報告し合い、他社事例を共有し、同じ場で同期コミュニケーションを取ること自体が重要。<b>接点の「量」を増やしにいく。</b><br><b>会食・ランチ・電話など、セールスフォースには残らない接点</b>もやってほしい。モニタリングはできないが、<b>確実に成果としてリード数・受注数に現れる。</b></p>
-      </div>
-
-      <div class="flow2">
-        <div class="fbox ai">
-          <h5><i class="ti ti-robot"></i> AI・オペレーションが担う</h5>
-          <ul>
-            <li>提案書・要件整理・議事録の生成</li>
-            <li>SFへの記録・反映（自動化）</li>
-            <li>滞留アラート・次アクション提示</li>
-            <li>定型の事務・進捗管理</li>
-          </ul>
-        </div>
-        <div class="farrow"><i class="ti ti-arrow-right"></i></div>
-        <div class="fbox human">
-          <h5><i class="ti ti-user-heart"></i> 人（営業）が担う</h5>
-          <ul>
-            <li>関係性の構築・接点づくり</li>
-            <li>脳内シェアの獲得（想起される存在に）</li>
-            <li>未来・潜在ニーズの引き出し</li>
-            <li><b>スターリードへの深耕営業</b></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="actions">
-        <div class="ah">営業に求める動き ── 具体的な選択肢</div>
-        <div class="asub">「案件がないと会わない」を超える。案件がなくても成立する接点を、自分の引き出しとして持つ。</div>
-        <div class="acat">
-          <div class="act"><i class="ti ti-calendar-heart"></i> 定期的な接点を作る（案件がなくても会う理由）</div>
-          <div class="achips">
-            <span class="achip"><b>レビューMTG</b>（1ヶ月後・3ヶ月後）※機会は会社が設定</span>
-            <span class="achip">四半期ごとの「ご状況伺い」定例</span>
-            <span class="achip">業界事例・他社事例の情報提供を口実にした接点</span>
-          </div>
-        </div>
-        <div class="acat">
-          <div class="act"><i class="ti ti-users-group"></i> 人間関係を広げる（縦と横）</div>
-          <div class="achips">
-            <span class="achip">キーマンの<b>上長・経営層</b>へのトップアプローチ</span>
-            <span class="achip">隣接部署キーマンへの紹介依頼</span>
-            <span class="achip">担当者個人との関係構築（会食・1on1）</span>
-          </div>
-        </div>
-        <div class="acat">
-          <div class="act"><i class="ti ti-bulb"></i> 潜在ニーズを引き出す（未来の話をする）</div>
-          <div class="achips">
-            <span class="achip">中期経営計画・部署方針から<b>未来の取り組み</b>を把握</span>
-            <span class="achip">「来期こう考えている」を聞き出す</span>
-            <span class="achip">自社事例をぶつけてニーズの種をまく</span>
-          </div>
-        </div>
-        <div class="acat">
-          <div class="act"><i class="ti ti-friends"></i> 接点の質を上げる</div>
-          <div class="achips">
-            <span class="achip"><b>対面で会いに行く</b>（オンラインで終わらせない）</span>
-            <span class="achip">目の前の案件から周辺の話へ広げる</span>
-            <span class="achip">顧客の社内定例に同席させてもらう</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="recall">
-        <div class="rh2"><i class="ti ti-brain"></i> 第一想起を取る ── 「徳永さん」として思い出される</div>
-        <div class="rcompare">
-          <div class="rc company"><div class="rcl">非同期（会社として）</div><div class="rct">「サーキュレーションさん」としての認知を維持する</div></div>
-          <div class="rc person"><div class="rcl">同期（営業担当として）</div><div class="rct">「○○さん」個人として想起される ＝ 相談ハードルが下がる</div></div>
-        </div>
-        <p class="rmsg">何か新たな課題が発生したとき、<b>真っ先に「あの人に相談しよう」と思い出してもらえるか。</b>会社の認知も必要だが、相談ハードルを考えると、個人として想起される方が圧倒的に効く。<b>データだけでは見えないところで、顧客の脳内シェアを取っておく。</b></p>
-        <div class="rsync">
-          <div class="rs"><b>非同期：</b>会社としてのナーチャリング（メルマガ・コンテンツ）で文脈を維持する。</div>
-          <div class="rs"><b>同期：</b>営業担当として文脈を維持し、新たな文脈を構築する。これが勝ち筋。</div>
-        </div>
-      </div>
-
-      <div class="msg-strong">
-        <div class="ms1">機会は会社が用意する。リレーションは、あなたが作る。</div>
-        <div class="ms2">スターリードへのレビューMTGの初期設定など、<b>「会う機会」はこちらから仕組みで提供する。</b>だが、そこで対面に行くか・何を話すか・どう関係を深めるかは型化できない。<b>行動とタッチポイントによる顧客リレーションは、属人的にあなたにお願いしたい。</b>これは仕組み化に加えて、皆さんの足で稼ぐ必要がある。遠回りに見えて、関係が温まった顧客からの相談（インバウンド）が最も受注率が高い ── 深耕営業は、最も確実な案件創出である。<br><br>そもそも、<b>FSからのメールに返信が来ないのは厳しい。それは関係が構築できていないということ。</b></div>
-      </div>
-    </div>
-  </div>
-
-    <h3 class="sec-sub"><i class="ti ti-star"></i>重点施策 <small>― 4 Value Cycle の今期版</small></h3>
-
-  <div class="panel">
-    <p class="lead">前期のフレームを継承し、回り方を今期版にアップデートする。</p>
-    <div class="mini m2" style="margin-top:14px">
-      <div class="mcard"><span class="tag-pill">Customer Success</span><h4>3ヶ月レビューMTG制度</h4><p>キックオフ時に1ヶ月後・3ヶ月後を固定。①品質担保＋高評価引き出し ②付随提案 ③文脈違いの染み出し。「放置→突然提案」を防ぐ。</p></div>
-      <div class="mcard"><span class="tag-pill">Lead Engagement</span><h4>Claudeアドレス自動取得＋Tier別</h4><p>キックオフで顧客チャットに当然のように追加。FSの手作業を介さず情報蓄積。Tier1=空中×地上連携／T2=引上げ／T3-4=脳内シェア。</p></div>
-      <div class="mcard"><span class="tag-pill">Account Planning</span><h4>AIアカウントカルテ生成</h4><p>議事録・組織図・SFをAIが読み、構造マップ（接点/未接触・染み出し戦略）を自動生成。人力作成からの進化。</p></div>
-      <div class="mcard"><span class="tag-pill">Pipeline Mgmt.</span><h4>2フラグ＋提案書の質</h4><p>PLシートに「PJT良好」「顧客関係性」フラグ。提案書は失注後の横展開にも効く「面の顧客体験」。1件1件落とさない。</p></div>
-    </div>
-  </div>
-
-  </details>
-
-  <details class="sec" open>
-    <summary><span class="stitle"><span class="no">4</span>案件を決める・大きくする <small>― 移行の質（人選・提案・LTV）</small></span><i class="ti ti-chevron-down chev"></i></summary>
-
-    <h3 class="sec-sub"><i class="ti ti-arrows-exchange"></i>人当て営業からソリューション営業へ <small>― なぜ変わらなければならないか</small></h3>
-
-  <div class="panel">
-    <h3 class="ph">商談1つのポテンシャルを、FSが最大化する</h3>
-    <p class="lead">育成・マインドチェンジ・技術向上はすぐには難しい人もいる。そこはAIでフォローしつつ、全員が必ず理解すべきことが一つある ── <b style="color:var(--blue-d)">なぜ「人当て（人材紹介）」から「ソリューション」へ変わらなければならないか。</b></p>
-
-    <div class="qnote" style="border-color:#f0c891;background:#fffaf3"><i class="ti ti-alert-circle" style="color:var(--orange)"></i><p>先方で要件が固まり<b>JD（人材要件）がある</b>なら、人当て営業でよい（顧客がそれを期待している）。だが今、競合はプロ人材会社だけではない ── <b>コンサル・AI関連会社・プロダクトを持つ会社</b>。彼らはソリューション／プロダクトまで提案してくる。人材要件だけを待っていては、案件数が絞られ、外部パートナーとしての深さも出ない。</p></div>
-
-    <div class="shift">
-      <div class="shift-row before">
-        <span class="slab"><i class="ti ti-clock-hour-4"></i> これまで</span>
-        <div class="chain">
-          <div class="node src">サーキュレーション<br>プロ人材</div>
-          <div class="arr">→</div>
-          <div class="node">役割・ケイパビリティ</div>
-          <div class="arr">→</div>
-          <div class="node need">ニーズ / ToBe（企業）</div>
-        </div>
-        <p class="cap">人材要件に対して、直接「人」が紐づいた。間（使い方・体制・アウトプット）は<b>顧客側が考えて埋めてくれた。</b></p>
-      </div>
-
-      <div class="shift-row after">
-        <span class="slab"><i class="ti ti-arrow-big-up-lines"></i> 現在</span>
-        <div class="chain">
-          <div class="node src">サーキュレーション<br>プロ人材</div>
-          <div class="arr">→</div>
-          <div class="node midwrap"><span class="mh">こちらが巻き取る中間地点</span><span class="mi">使い方/切り口・解決体制/アサイン・アウトプット内容・解決ロードマップ・役割/ケイパビリティ・ToBe</span></div>
-          <div class="arr">→</div>
-          <div class="node need">悩み / 課題 / 困りごと</div>
-        </div>
-        <p class="cap">外部ベンダーが入り込むフェーズが<b>深くなっている。</b>間にある「使い方・体制・アウトプット」は、かつて顧客マターだったが、今は提案側マターになっている。ここを<b>こちらが能動的に巻き取る</b>必要がある。</p>
-      </div>
-    </div>
-
-    <div class="shift-insight">
-      <div class="sih"><i class="ti ti-bulb"></i> 人材要件を「待つ」と、パイプラインを顧客に支配される</div>
-      <p>企業側で考えてから人材要件を出してくる企業も一定数いる。だが<b>それを待っていては、案件数も、こちらが出せるパイプラインも、顧客側にコントロールされる。</b>潜在／未来のパイプラインを自分たちで生むには、中間地点をこちらから能動的に巻き取るしかない。</p>
-      <div class="seq">
-        <span class="s">商談で「今必要な人材要件ありますか？」</span><span class="a">→</span><span class="s bad">「ない」で終了</span>
-      </div>
-      <div class="seq" style="margin-top:6px">
-        <span class="s">現状から潜在課題を引き出す</span><span class="a">→</span><span class="s">中間点をこちらで整理</span><span class="a">→</span><span class="s good">潜在ニーズ・未来インバウンド相談へ</span>
-      </div>
-    </div>
-  </div>
-
-    <h3 class="sec-sub"><i class="ti ti-stack-2"></i>解決策の型 <small>― 「誰を出すか」ではなく「どう解決するか」</small></h3>
-
-  <div class="panel">
-    <h3 class="ph">人とニーズの「間」を、こちらが取りに行く</h3>
-    <p class="lead">プロ人材（人）と顧客（ニーズ/ToBe）の間には、<b>解決策・解決支援体制・プロダクト・サービス</b>という層がある。かつてこの層は顧客が自分で埋めてくれた。だが今は競合（コンサル・AIベンダー・SaaS等）がここを取りに来る。<b>この層を当社が取りに行かないと、人とニーズは繋がらない。</b></p>
-    <div class="between">
-      <div class="bend person"><div class="bl">手段</div><div class="bt">人<br>（プロ人材）</div></div>
-      <div class="bmid">
-        <span class="arrl"><i class="ti ti-arrow-right"></i></span>
-        <div class="grab"><div class="gh">ここを当社が取りに行く</div><div class="gt">解決策 ／ 解決支援体制<br>プロダクト ／ サービス</div></div>
-        <span class="arrr"><i class="ti ti-arrow-right"></i></span>
-      </div>
-      <div class="bend need"><div class="bl">目的</div><div class="bt">顧客<br>（ニーズ / ToBe）</div></div>
-    </div>
-    <div class="between-cap">この「間の層」を、かつては顧客が埋めた（だから人を出せば済んだ）。今は競合がここを取りに来る。<b>手段（人）だけを差し出すと、間が埋まらず負ける。</b></div>
-    <div class="between-takeaway">だから、この層を<b>「4つの型」</b>として、こちらから提示する。</div>
-
-    <h3 class="ph" style="margin-top:24px">How We Solve ── 解決策の4つの型</h3>
-    <p class="lead">「誰を出すか」ではなく「どう解決するか」。この4つで、間の層を具体的に埋める。</p>
-    <div class="hws">
-      <div class="hwcard">
-        <div class="hwi"><i class="ti ti-sitemap"></i></div>
-        <h4>プロジェクト設計</h4>
-        <p class="hwd">ゴール・スコープ・マイルストーンを最初に握り、検証と意思決定が回るプロジェクトを設計する。</p>
-        <ul><li>論点・ゴールの言語化</li><li>フェーズ分解と検証計画</li><li>意思決定の場づくり</li></ul>
-      </div>
-      <div class="hwcard">
-        <div class="hwi"><i class="ti ti-hierarchy"></i></div>
-        <h4>体制図</h4>
-        <p class="hwd">顧客メンバー・プロ人材・既存ベンダーの役割を整理し、最小の体制で前に進む座組みを描く。</p>
-        <ul><li>社内 × プロ人材の役割分担</li><li>意思決定者とのレポートライン</li><li>巻き取り・引き継ぎの設計</li></ul>
-      </div>
-      <div class="hwcard">
-        <div class="hwi"><i class="ti ti-adjustments"></i></div>
-        <h4>使い方（関与モデル）</h4>
-        <p class="hwd">リスキリング・PM・特定領域だけ等、必要な範囲だけプロ人材を活用できる。丸ごとでなく"足りない一部"から。</p>
-        <ul><li>リスキリング / 伴走型</li><li>PM・推進役としての関与</li><li>開発・特定領域のスポット補強</li></ul>
-      </div>
-      <div class="hwcard">
-        <div class="hwi"><i class="ti ti-bulb"></i></div>
-        <h4>テーマ / 切り口</h4>
-        <p class="hwd">課題が漠然としていても、業界・機能の論点から切り口を提示し、取り組むテーマを一緒に定める。</p>
-        <ul><li>論点の引き出しと整理</li><li>優先順位づけ</li><li>他社の取り組みを踏まえた切り口</li></ul>
-      </div>
-    </div>
-  </div>
-
-    <h3 class="sec-sub"><i class="ti ti-robot"></i>オペレーション改善 <small>― GTM整備とAI自動化で工数を削る</small></h3>
-
-  <div class="panel">
-    <h3 class="ph">まず工数を削る。空いた時間をアカウントへ再投資する。</h3>
-    <p class="lead">前期は負荷を足して潰れた。今期は引いてから足す。これが決定的な差。</p>
-    <div class="mini m2" style="margin-top:14px">
-      <div class="mcard" style="background:#f7fbfe"><h4 style="color:var(--gray)"><i class="ti ti-robot"></i> AIで削る（作業）</h4><p style="margin-top:6px">・提案書作成 ── 自動生成パイプライン整備済み<br>・要件定義 ── AIで簡素化（手間減）＋高度化（精度増）<br>・議事録→SF連携 ── 自動化（情シスと構築中）</p></div>
-      <div class="mcard" style="background:linear-gradient(135deg,#0079c0,#003d5e)"><h4 style="color:#fff"><i class="ti ti-users"></i> 空いた時間で増やす（関係構築）</h4><p style="color:#e8f6ff;margin-top:6px">AIが裏方を担うからこそ、FSは一人の人格として顧客に向き合える。減らした時間を、人にしかできない関係構築へ振り向ける。</p></div>
-    </div>
-    <div class="mcard fill" style="margin-top:14px">
-      <h4 style="color:var(--blue-d)"><i class="ti ti-sitemap"></i> GTM統合フローの整備</h4>
-      <p style="margin-top:6px">リードの状態（リサイクル/休眠/未提案/稼働後）と、誰の・どんなアクションが必要かを一枚のフローに可視化。チーム全員が同じ地図で動く共通言語であり、将来の全社プロセスの原典。新メンバーのオンボーディング教材としても機能する。 <a href="../gtm/" target="_blank" style="color:var(--blue);font-weight:700;text-decoration:none">→ GTM統合フローを見る</a></p>
-    </div>
-    <div class="mcard fill" style="margin-top:14px">
-      <h4 style="color:var(--blue-d)"><i class="ti ti-map-2"></i> アカウントプランニングの「入力レス」設計</h4>
-      <p style="margin-top:6px">FSに新たな入力作業を負わせない。<b>FSは「喋るだけ」で、アカウントプランが積み上がる</b>設計にする。FS（内部情報）とマーケ・IS（外部情報）を中間の<b>情報プール</b>に集約し、<b>AIでアカウント企画を自動設計</b>。営業企画はマーケ／ISがボールを持ち、出口で<b>二経路のアプローチ</b>（空中戦・地上戦）へ展開する。</p>
-
-      <div class="apf-legend" style="margin-top:14px">
-        <div class="lg"><span class="sw mk"></span>マーケ・IS 経路（外部・デジタル＝空中戦）</div>
-        <div class="lg"><span class="sw fs"></span>FS 経路（内部・地上戦）</div>
-        <div class="lg"><span class="sw hub"></span>集約・企画（AI／Notion）</div>
-      </div>
-
-      <div class="apf">
-        <!-- ① 入力 -->
-        <div>
-          <div class="colhead"><span class="n">1</span><span class="t">入力 <small>INPUT</small></span></div>
-          <div class="col">
-            <div class="apc mk">
-              <span class="lane mk"><i class="ti ti-world"></i> マーケ・IS</span>
-              <h4>外部情報</h4>
-              <ul>
-                <li><span class="dot"></span>外部リサーチ</li>
-                <li><span class="dot"></span>電話</li>
-                <li><span class="dot"></span>メール</li>
-              </ul>
-            </div>
-            <div class="apc fs">
-              <span class="lane fs"><i class="ti ti-user-heart"></i> FS</span>
-              <h4>内部情報</h4>
-              <ul>
-                <li><span class="dot"></span>地上戦（現場の一次情報）</li>
-                <li><span class="dot"></span>PJT・案件からの学び</li>
-                <li><span class="dot"></span>顧客ヒアリング</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="apf-arr"><i class="ti ti-arrow-right"></i></div>
-
-        <!-- ② 集約・企画 -->
-        <div>
-          <div class="colhead"><span class="n">2</span><span class="t">集約・企画 <small>HUB</small></span></div>
-          <div class="apf-hub">
-            <div class="pk">INFORMATION POOL</div>
-            <div class="pt">情報プール</div>
-            <div class="ps"><i class="ti ti-brand-notion"></i> Notion に集約</div>
-            <div class="cadence"><i class="ti ti-calendar-repeat"></i> ヒアリング会は隔週開催</div>
-            <div class="hplan">
-              <div class="hh"><i class="ti ti-robot"></i> アカウントプランニング</div>
-              <p>マーケ／IS がボールを持ち、FS のヒアリングを元に <b>AI でアカウント企画を自動設計</b>。企画結果を両経路の出口へ展開する。</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="apf-arr split"><i class="ti ti-arrow-right"></i><i class="ti ti-arrow-right"></i></div>
-
-        <!-- ③ 出口 -->
-        <div>
-          <div class="colhead"><span class="n">3</span><span class="t">出口 / アプローチ <small>OUTPUT</small></span></div>
-          <div class="col">
-            <div class="apc mk">
-              <span class="lane mk"><i class="ti ti-broadcast"></i> マーケ・IS</span>
-              <h4>ハウスリスト活用 ＋ アウトバウンド</h4>
-              <p class="cap">カスタマイズアプローチと新規開拓の二本立て</p>
-              <ul>
-                <li><span class="dot"></span><b>アウトバウンド</b>（新規開拓）</li>
-                <li><span class="dot"></span>部署（文脈なし）<span class="arw">→</span>メール・電話</li>
-                <li><span class="dot"></span>コンテンツ抜粋 <span class="arw">→</span> アプローチ設計（Tier1／アカプラ・カスタム）</li>
-              </ul>
-            </div>
-            <div class="apc fs">
-              <span class="lane fs"><i class="ti ti-users"></i> FS</span>
-              <h4>地上戦・深耕営業</h4>
-              <p class="cap">既存関係を軸にした深耕アプローチ</p>
-              <ul>
-                <li><span class="dot"></span>リード（現在・過去情報）<span class="arw">→</span>メール・電話</li>
-                <li><span class="dot"></span>横展開</li>
-                <li><span class="dot"></span>レビュー MTG</li>
-                <li><span class="dot"></span>会食・ランチ／情報交換・支援同席</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="band" style="margin-top:16px"><span class="hl">運用：</span> 情報プールへの入力を起点に、<b>隔週のヒアリング会</b>でFSの一次情報を吸い上げ、AIがアカウント企画へ変換。FSに新たな入力作業は負わせず「喋るだけ」で企画が積み上がる。</div>
-    </div>
-  </div>
-
-  <div class="panel">
-    <h3 class="ph">GTMオペレーション自動化フロー ── Zoom商談後を一気通貫で</h3>
-    <p class="lead">商談終了から提案書・顧客メール下書きまで、Salesforce と Claude Cowork で自動的につなぐ。</p>
-    <div class="gop">
-      <div class="gop-node grey"><b>Zoom商談終了</b><span>録音・文字起こし</span></div>
-      <div class="gop-arrow"><i class="ti ti-arrow-down"></i></div>
-      <div class="gop-node grey"><b>SF自動格納</b><span>フェーズ更新 ＋ 要件詳細も同時記入</span></div>
-      <div class="gop-arrow"><i class="ti ti-arrow-down"></i></div>
-      <div class="gop-cowork">
-        <div class="gop-cw-h"><i class="ti ti-sparkles"></i> Claude Cowork <small>要件整理〜提案書作成まで一括</small></div>
-        <div class="gop-parallel">
-          <div class="gop-node green"><b>要件整理</b><span>ASIS / TOBE / GAP</span></div>
-          <div class="gop-node green">
-            <b>人選</b><span>候補者選定の3ステップ</span>
-            <div class="gop-steps">
-              <div class="gop-step">① 候補者検索</div>
-              <div class="gop-step">② プロへ依頼メール</div>
-              <div class="gop-step">③ 稼働確認受信</div>
-            </div>
-          </div>
-        </div>
-        <div class="gop-merge-wrap"><div class="gop-merge">▼ マージ</div></div>
-        <div class="gop-arrow"><i class="ti ti-arrow-down"></i></div>
-        <div class="gop-node green solo"><b>提案書作成</b><span>概要 / マイルストーン / 体制図 / 比較 / 詳細</span></div>
-      </div>
-      <div class="gop-arrow"><i class="ti ti-arrow-down"></i></div>
-      <div class="gop-branch">
-        <div class="gop-node grey"><b>共有ドライブ保存</b></div>
-        <div class="gop-node accent"><b>顧客メール下書き</b></div>
-      </div>
-    </div>
-  </div>
-
-  </details>
-
-  <details class="sec" open>
-    <summary><span class="stitle"><span class="no">5</span>実行体制 <small>― 人数拡充と役割の棲み分け</small></span><i class="ti ti-chevron-down chev"></i></summary>
 
     <h3 class="sec-sub"><i class="ti ti-scissors"></i>中核となる考え方 <small>― 2つの切り分け</small></h3>
 
@@ -1581,6 +1152,529 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
     <div class="mini" style="margin-top:14px;gap:14px">
       <div class="mcard" style="display:flex;gap:16px;align-items:flex-start"><div class="num amber" style="margin-bottom:0">①</div><div><h4>新規アカウントの「突破力」は型化できるか</h4><p style="margin-top:4px">今期の施策の多くは既に関係のある顧客が起点。だが「そもそも会ってもらう・返信が来る関係をゼロから作る力」は依然属人的で、型化の目処が立っていない。外部知見も得ながら探求する。</p></div></div>
       <div class="mcard" style="display:flex;gap:16px;align-items:flex-start"><div class="num amber" style="margin-bottom:0">②</div><div><h4>評価をCKと切り離せるか</h4><p style="margin-top:4px">中長期の関係構築を促すには、CK一辺倒から活動量（到達人数・定例同席・インバウンド発生）評価への移行が要るかもしれない。戦略アカウントを「報酬」でなく「責任」と定義できるか。</p></div></div>
+    </div>
+  </div>
+
+    <h3 class="sec-sub"><i class="ti ti-sitemap"></i>GTMフロー <small>― リード状態別の全体像（共通言語）</small></h3>
+
+  <div class="panel">
+    <p class="lead">リードの状態（リサイクル／休眠／未提案／稼働後）と、誰の・どんなアクションが必要かを一枚に可視化した統合フロー。チーム全員が同じ地図で動くための共通言語であり、新メンバーのオンボーディング教材にもなる。</p>
+    <a class="gtm-link" href="https://tokunagayudai.github.io/circu-Enterprise-portal/gtm/" target="_blank" rel="noopener"><i class="ti ti-external-link"></i> GTM統合フローを開く</a>
+  </div>
+
+
+  </details>
+
+  <details class="sec" open>
+    <summary><span class="stitle"><span class="no">3</span>戦術 <small>― 重点施策・マーケ・4VC・深耕・オペ改善</small></span><i class="ti ti-chevron-down chev"></i></summary>
+<h3 class="sec-sub"><i class="ti ti-star"></i>重点施策 <small>― 今期の重点アクション</small></h3>
+
+  <div class="panel">
+    <p class="lead">前期のフレームを継承し、回り方を今期版にアップデートする。</p>
+    <div class="mini m2" style="margin-top:14px">
+      <div class="mcard"><span class="tag-pill">Customer Success</span><h4>3ヶ月レビューMTG制度</h4><p>キックオフ時に1ヶ月後・3ヶ月後を固定。①品質担保＋高評価引き出し ②付随提案 ③文脈違いの染み出し。「放置→突然提案」を防ぐ。</p></div>
+      <div class="mcard"><span class="tag-pill">Lead Engagement</span><h4>Claudeアドレス自動取得＋Tier別</h4><p>キックオフで顧客チャットに当然のように追加。FSの手作業を介さず情報蓄積。Tier1=空中×地上連携／T2=引上げ／T3-4=脳内シェア。</p></div>
+      <div class="mcard"><span class="tag-pill">Account Planning</span><h4>AIアカウントカルテ生成</h4><p>議事録・組織図・SFをAIが読み、構造マップ（接点/未接触・染み出し戦略）を自動生成。人力作成からの進化。</p></div>
+      <div class="mcard"><span class="tag-pill">Pipeline Mgmt.</span><h4>2フラグ＋提案書の質</h4><p>PLシートに「PJT良好」「顧客関係性」フラグ。提案書は失注後の横展開にも効く「面の顧客体験」。1件1件落とさない。</p></div>
+    </div>
+  </div>
+
+    <h3 class="sec-sub"><i class="ti ti-broadcast"></i>マーケティング施策 <small>― 空中戦でリードを継続供給（マーケ＝松村）</small></h3>
+
+  <div class="panel">
+    <p class="lead">案件数を増やす主エンジンは、個人の新規開拓力ではなく<b>マーケティング</b>。空中戦（マーケ・IS）でリードを継続供給し、開拓を個人に頼らせない。マーケヘッド（松村）が<b>通期予算250万円</b>で、<b>ハウスリスト約8,000件（Tier1〜4 ＋ StarLead）＋約4,000件</b>を運用する。</p>
+
+    <h3 class="ph">2軸の取り組み</h3>
+    <div class="mini m2">
+      <div class="mcard"><div class="num">1</div><h4>ハウスリスト内ナーチャリング</h4><p>約8,000件のうちアクティブは5〜10%。残り約90%（約7,000件）を再活性化し、脳内シェアを継続確保。課題発生時に<b>第一想起</b>される状態をつくる。</p></div>
+      <div class="mcard"><div class="num">2</div><h4>ハウスリスト外の新規獲得</h4><p>まだ接点のない企業・担当者へリーチ。<b>新規リードを年300〜500件</b>獲得し、Tier設定 → ナーチャリングへ移行させる。</p></div>
+    </div>
+
+    <h3 class="ph" style="margin-top:20px">テーマ軸（FY14）</h3>
+    <p class="lead">顧客企業の課題テーマに合わせて、アプローチの切り口を変える。</p>
+    <div class="mini m3">
+      <div class="mcard"><span class="tag-pill">主力</span><h4>AX（AI×業務変革）</h4><p>最も感度が高い。ハウスリスト向けメールの主軸。</p></div>
+      <div class="mcard"><span class="tag-pill">攻めのDX</span><h4>DX推進部系</h4><p>IT Week等で需要あり。</p></div>
+      <div class="mcard"><span class="tag-pill">守りのDX</span><h4>基幹システム系</h4><p>年度末・年度初めに予算が動く。</p></div>
+      <div class="mcard"><span class="tag-pill">新規事業</span><h4>新規事業開発</h4><p>PoCフェーズの企業が多い。</p></div>
+      <div class="mcard"><span class="tag-pill">新規事業</span><h4>全社ビジネスコンテスト</h4><p>4月・8月にイベントが集中。</p></div>
+    </div>
+
+    <h3 class="ph" style="margin-top:20px">予算配分（通期250万円・叩き台）</h3>
+    <table class="mkt-tbl">
+      <thead><tr><th>施策カテゴリ</th><th>配分</th><th>比率</th></tr></thead>
+      <tbody>
+        <tr><td>コンテンツ・WP制作（外注）</td><td>80万</td><td><span class="bar" style="--w:85%"></span>32%</td></tr>
+        <tr><td>ウェビナー運営</td><td>54万</td><td><span class="bar" style="--w:58%"></span>22%</td></tr>
+        <tr><td>ホワイトペーパー 年4本</td><td>40万</td><td><span class="bar" style="--w:43%"></span>16%</td></tr>
+        <tr><td>LinkedIn広告（集中投下）</td><td>35万</td><td><span class="bar" style="--w:37%"></span>14%</td></tr>
+        <tr><td>Google広告（最小限）</td><td>14万</td><td><span class="bar" style="--w:15%"></span>6%</td></tr>
+        <tr><td>LP／ツール／GAS改修</td><td>10万</td><td><span class="bar" style="--w:11%"></span>4%</td></tr>
+        <tr><td>予備・緊急対応</td><td>3万</td><td><span class="bar" style="--w:3%"></span>1%</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:8px">別枠検討：Japan IT Week 秋（10月）＋20万／SEO記事＋24万（余裕があれば）。詳細な月次配分・施策一覧はマーケカレンダー（スプレッドシート）で管理。</p>
+
+    <h3 class="ph" style="margin-top:20px">現在稼働中の施策</h3>
+    <ul class="mkt-list">
+      <li>AX推進テーマでのハウスリスト向けメール（Tier別に切り口設計）</li>
+      <li>Pardot経由の自動メルマガ配信（定常ネタ：当月開始PJ・先月登録プロ人材）</li>
+      <li>商談後フォローアップの自動化（GEM ＋ Cowork Skills・進行中）</li>
+      <li>アカウントプランニング定例（FS×IS×ASS×Mgr／隔週のヒアリング会）</li>
+    </ul>
+    <div class="band"><span class="hl">狙い：</span> 案件の「入口」をマーケで太くし、深耕と移行の質に回す母数を増やす。開拓を個人の営業力だけに頼らせない。</div>
+  </div>
+
+
+    <h3 class="sec-sub"><i class="ti ti-target-arrow"></i>マーケ／IS の分担と目標KPI <small>― 空中戦で撒き、地上戦で刈る</small></h3>
+
+  <div class="panel">
+    <p class="lead">マーケが施策で需要を喚起し、ISがホットリードを刈り取る。役割を分け、KPIで接続する。</p>
+    <div class="rsplit">
+      <div class="rrow le">
+        <div class="rh"><span class="rt"><b>マーケ</b>（松村）</span><span class="rj">空中戦</span></div>
+        <p class="rd">LP・広告・ウェビナー・コンテンツ／WP・Pardotナーチャリング設計。テーマ別・Tier別に需要を喚起し、<b>MQL</b>を生む。</p>
+      </div>
+      <div class="rrow pm">
+        <div class="rh"><span class="rt"><b>IS</b></span><span class="rj">刈り取り</span></div>
+        <p class="rd">施策・広告発の<b>ホットリードへ最速で架電</b>し、アポ（SQL）を獲得。ナーチャ要素が強いリードはマーケと連携して接触内容を設計する。</p>
+      </div>
+    </div>
+
+    <h3 class="ph" style="margin-top:18px">目標KPI</h3>
+    <div class="mini m4">
+      <div class="mcard"><h4>リード獲得数</h4><p>新規ハウスリストリードの増加数（目安 年300〜500件）。</p></div>
+      <div class="mcard"><h4>MQL数</h4><p>スコアリングで抽出する有望リード数。判定基準は整備中。</p></div>
+      <div class="mcard"><h4>商談化率（SQL）</h4><p>ホットリード → アポ → 商談の転換率。</p></div>
+      <div class="mcard"><h4>受注への寄与</h4><p>施策別アトリビューション（SF×Pardot）で測る。設計中。</p></div>
+    </div>
+    <div class="band light"><span class="hl">整備中：</span> 施策ごとのアトリビューション（どの施策が商談につながったか）、ハウスリストのMQL化率・スコアリング、ウェビナー→商談化率の追跡を、順次設計していく。</div>
+  </div>
+
+
+    <h3 class="sec-sub"><i class="ti ti-refresh"></i>4 Value Cycle の今期版 <small>― 4つの活動エリアと役割分担</small></h3>
+<div class="panel">
+    <h3 class="ph">4 Value Cycle は継承する。だが一人で回すのは不可能だった。</h3>
+    <p class="lead">4つの循環は正しい。役割分担とAIで「チームで回るエンジン」に作り変える。</p>
+    <div class="vc-hint"><i class="ti ti-hand-click"></i> 各サイクルをクリックすると、目的・狙い・具体オペレーションが開きます</div>
+    <div class="cycle-wrap">
+      <div class="cycle">
+        <svg viewBox="0 0 300 300">
+          <defs>
+            <marker id="ar" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#0079c0"/></marker>
+            <linearGradient id="gctr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0079c0"/><stop offset="1" stop-color="#003d5e"/></linearGradient>
+          </defs>
+          <path d="M188,70 A100,100 0 0,1 230,112" fill="none" stroke="#0079c0" stroke-width="2.5" marker-end="url(#ar)"/>
+          <path d="M230,188 A100,100 0 0,1 188,230" fill="none" stroke="#0079c0" stroke-width="2.5" marker-end="url(#ar)"/>
+          <path d="M112,230 A100,100 0 0,1 70,188" fill="none" stroke="#0079c0" stroke-width="2.5" marker-end="url(#ar)"/>
+          <path d="M70,112 A100,100 0 0,1 112,70" fill="none" stroke="#0079c0" stroke-width="2.5" marker-end="url(#ar)"/>
+          <circle cx="150" cy="150" r="46" fill="url(#gctr)"/>
+          <text x="150" y="145" text-anchor="middle" fill="#fff" font-size="15" font-weight="800" font-family="'M PLUS Rounded 1c'">LTV</text>
+          <text x="150" y="165" text-anchor="middle" fill="#fff" font-size="12.5" font-family="'M PLUS Rounded 1c'">最大化</text>
+          <g class="vc-node" data-vc="ap" style="cursor:pointer"><rect x="92" y="20" width="116" height="56" rx="12" fill="#e8f6ff" stroke="#0079c0" stroke-width="2"/><text x="150" y="44" text-anchor="middle" fill="#0079c0" font-size="11" font-weight="700" font-family="'M PLUS Rounded 1c'">Account Planning</text><text x="150" y="62" text-anchor="middle" fill="#1a2a38" font-size="11">アカウント戦略</text></g>
+          <g class="vc-node" data-vc="le" style="cursor:pointer"><rect x="200" y="122" width="100" height="56" rx="12" fill="#e8f6ff" stroke="#0a6e8c" stroke-width="2"/><text x="250" y="146" text-anchor="middle" fill="#0a6e8c" font-size="10.5" font-weight="700" font-family="'M PLUS Rounded 1c'">Lead Engage.</text><text x="250" y="164" text-anchor="middle" fill="#1a2a38" font-size="11">リード育成</text></g>
+          <g class="vc-node" data-vc="pm" style="cursor:pointer"><rect x="92" y="224" width="116" height="56" rx="12" fill="#e8f6ff" stroke="#0079c0" stroke-width="2"/><text x="150" y="248" text-anchor="middle" fill="#0079c0" font-size="11" font-weight="700" font-family="'M PLUS Rounded 1c'">Pipeline</text><text x="150" y="266" text-anchor="middle" fill="#1a2a38" font-size="11">案件推進</text></g>
+          <g class="vc-node" data-vc="cs" style="cursor:pointer"><rect x="0" y="122" width="100" height="56" rx="12" fill="#e8f6ff" stroke="#0a6e8c" stroke-width="2"/><text x="50" y="146" text-anchor="middle" fill="#0a6e8c" font-size="9.5" font-weight="700" font-family="'M PLUS Rounded 1c'">Customer Success</text><text x="50" y="164" text-anchor="middle" fill="#1a2a38" font-size="11">顧客深耕</text></g>
+        </svg>
+      </div>
+      <div class="points">
+        <div class="pt"><div class="n">1</div><div><h4>役割を分けて回す</h4><p>戦略を描く・案件を進める・構造を読む力は別資質。一人に求めず分業し、連携させる。</p></div></div>
+        <div class="pt"><div class="n">2</div><div><h4>顧客接点は一人の人格で</h4><p>裏方（提案書・要件定義・記録）はAIで軽くし、顧客から見える担当者は一人に保つ。</p></div></div>
+        <div class="pt"><div class="n">3</div><div><h4>全員が4階層で見る</h4><p>企業→部署→リード→案件。案件進捗と顧客リレーションは常に接続している。</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  
+<div class="panel">
+    <h3 class="ph">変革後 ── 4つの活動エリアと役割分担</h3>
+    <p class="lead">「4 Value Cycle」を、実際の運用解像度で<b>4つの活動エリア</b>に更新。誰がどのエリアを担うかを明確にする。</p>
+    <div class="rsplit">
+      <div class="rrow le">
+        <div class="rh"><span class="rt"><b>①</b> リードマネジメント 〜 パイプラインジェネレーション</span><span class="rj">空中戦</span></div>
+        <div class="roles">
+          <span class="chip mk"><i class="ti ti-speakerphone"></i> マーケ</span>
+          <span class="chip is"><i class="ti ti-headset"></i> IS</span>
+        </div>
+        <p class="rd">リードへの認知を<b>アクティブ化</b>し、関係性を維持して<b>第一想起</b>を獲得する。</p>
+      </div>
+      <div class="rrow pm">
+        <div class="rh"><span class="rt"><b>②</b> パイプラインマネジメント</span></div>
+        <div class="roles">
+          <span class="chip fs"><i class="ti ti-user-heart"></i> FS</span>
+          <span class="chip as"><i class="ti ti-user"></i> アソシエイト</span>
+        </div>
+        <p class="rd">一つの接点を機会に<b>課題探索と提案</b>。ただの案件探しでなく、周辺テーマの深掘りから<b>現在・未来・周辺ニーズ</b>を獲得する。</p>
+      </div>
+      <div class="rrow cs">
+        <div class="rh"><span class="rt"><b>③</b> カスタマーサクセス</span><span class="rj">地上戦</span><span class="cs-badge">来期 最注力</span></div>
+        <div class="roles">
+          <span class="chip fs"><i class="ti ti-user-heart"></i> FS</span>
+        </div>
+        <p class="rd">受注案件の成功を確実にし、<b>追加ロール・次フェーズの未来ニーズ</b>で継続を狙う。スターリード起点の深耕でリレーションを構築する。</p>
+      </div>
+      <div class="rrow ap">
+        <div class="rh"><span class="rt"><b>④</b> アカウントプランニング</span><span class="rj">地上戦 ＋ 空中戦</span></div>
+        <div class="roles">
+          <span class="chip fs"><i class="ti ti-user-heart"></i> FS：地上戦</span>
+          <span class="chip is"><i class="ti ti-headset"></i> IS：空中戦</span>
+        </div>
+        <p class="rd">FSが地上戦で得た一次情報（<b>課題・体制図・機能役割</b>）を基に、<b>FSは地上戦アプローチ、ISは空中戦アプローチ</b>を進める。</p>
+      </div>
+    </div>
+    <div class="band"><span class="hl">重心の移動：</span> この半年は <span class="hl">①②</span> に注力（リードのアクティブ化と案件推進）。来期は <span class="hl">③④</span> に注力（継続深耕とアカウントプランニング）。</div>
+  </div>
+
+  
+
+
+    <h3 class="sec-sub"><i class="ti ti-arrow-big-right-lines"></i>AIに任せ、人は「関係構築」へ <small>― 営業に求める動き</small></h3>
+
+  <div class="panel" style="padding:0;border:none;background:none;box-shadow:none">
+    <div class="climax">
+      <div class="ckicker">NEW OPERATION ／ TO-BE</div>
+      <h3>AIとオペレーションが「作業」を引き受ける。<br>だから人は、人にしかできないことへ。</h3>
+      <p class="clead">情シスと進めている新オペレーションを発表し、改修中のToBeも共有する。狙いは一つ ── <b>営業が「関係性構築・接点づくり・脳内シェア・未来（潜在）ニーズの訴求」に時間を使えるようにすること。</b>とりわけ深耕営業は、AIにもオペレーションにも代替できない。ここは人間＝営業の仕事になる。</p>
+
+      <div class="purpose">
+        <div class="ph2"><i class="ti ti-refresh"></i> 商談の目的を、「案件探索」だけにしない</div>
+        <div class="plist">
+          <span class="pchip"><i class="ti ti-arrow-loop-right"></i> 文脈を続けていく</span>
+          <span class="pchip"><i class="ti ti-arrows-maximize"></i> ケイパビリティを広げる</span>
+          <span class="pchip"><i class="ti ti-bulb"></i> 未来ニーズ・潜在課題を会話する</span>
+          <span class="pchip"><i class="ti ti-hand-stop"></i> ご挨拶をしておく</span>
+        </div>
+        <p class="pnote">深耕の接点は、怠らない。<b>15分でも、電話でもいい。</b>全ての商談を1時間にする必要はない。リサイクルを通じて近況を報告し合い、他社事例を共有し、同じ場で同期コミュニケーションを取ること自体が重要。<b>接点の「量」を増やしにいく。</b><br><b>会食・ランチ・電話など、セールスフォースには残らない接点</b>もやってほしい。モニタリングはできないが、<b>確実に成果としてリード数・受注数に現れる。</b></p>
+      </div>
+
+      <div class="flow2">
+        <div class="fbox ai">
+          <h5><i class="ti ti-robot"></i> AI・オペレーションが担う</h5>
+          <ul>
+            <li>提案書・要件整理・議事録の生成</li>
+            <li>SFへの記録・反映（自動化）</li>
+            <li>滞留アラート・次アクション提示</li>
+            <li>定型の事務・進捗管理</li>
+          </ul>
+        </div>
+        <div class="farrow"><i class="ti ti-arrow-right"></i></div>
+        <div class="fbox human">
+          <h5><i class="ti ti-user-heart"></i> 人（営業）が担う</h5>
+          <ul>
+            <li>関係性の構築・接点づくり</li>
+            <li>脳内シェアの獲得（想起される存在に）</li>
+            <li>未来・潜在ニーズの引き出し</li>
+            <li><b>スターリードへの深耕営業</b></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="ah">営業に求める動き ── 具体的な選択肢</div>
+        <div class="asub">「案件がないと会わない」を超える。案件がなくても成立する接点を、自分の引き出しとして持つ。</div>
+        <div class="acat">
+          <div class="act"><i class="ti ti-calendar-heart"></i> 定期的な接点を作る（案件がなくても会う理由）</div>
+          <div class="achips">
+            <span class="achip"><b>レビューMTG</b>（1ヶ月後・3ヶ月後）※機会は会社が設定</span>
+            <span class="achip">四半期ごとの「ご状況伺い」定例</span>
+            <span class="achip">業界事例・他社事例の情報提供を口実にした接点</span>
+          </div>
+        </div>
+        <div class="acat">
+          <div class="act"><i class="ti ti-users-group"></i> 人間関係を広げる（縦と横）</div>
+          <div class="achips">
+            <span class="achip">キーマンの<b>上長・経営層</b>へのトップアプローチ</span>
+            <span class="achip">隣接部署キーマンへの紹介依頼</span>
+            <span class="achip">担当者個人との関係構築（会食・1on1）</span>
+          </div>
+        </div>
+        <div class="acat">
+          <div class="act"><i class="ti ti-bulb"></i> 潜在ニーズを引き出す（未来の話をする）</div>
+          <div class="achips">
+            <span class="achip">中期経営計画・部署方針から<b>未来の取り組み</b>を把握</span>
+            <span class="achip">「来期こう考えている」を聞き出す</span>
+            <span class="achip">自社事例をぶつけてニーズの種をまく</span>
+          </div>
+        </div>
+        <div class="acat">
+          <div class="act"><i class="ti ti-friends"></i> 接点の質を上げる</div>
+          <div class="achips">
+            <span class="achip"><b>対面で会いに行く</b>（オンラインで終わらせない）</span>
+            <span class="achip">目の前の案件から周辺の話へ広げる</span>
+            <span class="achip">顧客の社内定例に同席させてもらう</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="recall">
+        <div class="rh2"><i class="ti ti-brain"></i> 第一想起を取る ── 「徳永さん」として思い出される</div>
+        <div class="rcompare">
+          <div class="rc company"><div class="rcl">非同期（会社として）</div><div class="rct">「サーキュレーションさん」としての認知を維持する</div></div>
+          <div class="rc person"><div class="rcl">同期（営業担当として）</div><div class="rct">「○○さん」個人として想起される ＝ 相談ハードルが下がる</div></div>
+        </div>
+        <p class="rmsg">何か新たな課題が発生したとき、<b>真っ先に「あの人に相談しよう」と思い出してもらえるか。</b>会社の認知も必要だが、相談ハードルを考えると、個人として想起される方が圧倒的に効く。<b>データだけでは見えないところで、顧客の脳内シェアを取っておく。</b></p>
+        <div class="rsync">
+          <div class="rs"><b>非同期：</b>会社としてのナーチャリング（メルマガ・コンテンツ）で文脈を維持する。</div>
+          <div class="rs"><b>同期：</b>営業担当として文脈を維持し、新たな文脈を構築する。これが勝ち筋。</div>
+        </div>
+      </div>
+
+      <div class="msg-strong">
+        <div class="ms1">機会は会社が用意する。リレーションは、あなたが作る。</div>
+        <div class="ms2">スターリードへのレビューMTGの初期設定など、<b>「会う機会」はこちらから仕組みで提供する。</b>だが、そこで対面に行くか・何を話すか・どう関係を深めるかは型化できない。<b>行動とタッチポイントによる顧客リレーションは、属人的にあなたにお願いしたい。</b>これは仕組み化に加えて、皆さんの足で稼ぐ必要がある。遠回りに見えて、関係が温まった顧客からの相談（インバウンド）が最も受注率が高い ── 深耕営業は、最も確実な案件創出である。<br><br>そもそも、<b>FSからのメールに返信が来ないのは厳しい。それは関係が構築できていないということ。</b></div>
+      </div>
+    </div>
+  </div>
+
+    
+<div class="panel">
+    <h3 class="ph">商談は「案件探索」だけでなく「顧客構造の理解」の場</h3>
+    <p class="lead">ヒアリングで構造を積み、2方向で刈る。これが面のリレーション営業のエンジン。</p>
+    <div class="flow">
+      <div class="stack">
+        <div style="background:var(--blue-l)"><h5 style="color:var(--blue-d)">① 案件探索</h5><p style="color:var(--gray)">今すぐの案件を見つける（従来のFS）</p></div>
+        <div style="background:var(--blue-l)"><h5 style="color:var(--blue-d)">② 顧客構造の理解</h5><p style="color:var(--gray)">部署役割・競合・予算・決裁者・購買グループ</p></div>
+      </div>
+      <div class="arrowcol"><i class="ti ti-arrow-right"></i></div>
+      <div>
+        <div class="mid">商談・接点</div>
+        <div class="stack">
+          <div style="background:#fff;border:1.5px solid #d6e8f5"><h5 style="color:var(--blue-d)">アウトバウンド</h5><p style="color:var(--gray)">こちらからタイミングを測って仕掛ける。組織が動く瞬間を捉える。</p></div>
+          <div style="background:linear-gradient(135deg,#0079c0,#003d5e);color:#fff"><h5 style="color:#bfe3f7">インバウンド</h5><p style="color:#e8f6ff">課題発生時に想起される。最も受注率の高い45%の動線。</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="band light"><span class="hl">最重点：</span> 現在稼働中のスターリードを深耕する。過去稼働 ≠ 現在稼働。今まさに関係が最も温まる「スター状態」を逃さない。</div>
+  </div>
+
+    
+
+
+    <h3 class="sec-sub"><i class="ti ti-arrows-exchange"></i>人当て営業からソリューション営業へ <small>― なぜ変わらなければならないか</small></h3>
+
+  <div class="panel">
+    <h3 class="ph">商談1つのポテンシャルを、FSが最大化する</h3>
+    <p class="lead">育成・マインドチェンジ・技術向上はすぐには難しい人もいる。そこはAIでフォローしつつ、全員が必ず理解すべきことが一つある ── <b style="color:var(--blue-d)">なぜ「人当て（人材紹介）」から「ソリューション」へ変わらなければならないか。</b></p>
+
+    <div class="qnote" style="border-color:#f0c891;background:#fffaf3"><i class="ti ti-alert-circle" style="color:var(--orange)"></i><p>先方で要件が固まり<b>JD（人材要件）がある</b>なら、人当て営業でよい（顧客がそれを期待している）。だが今、競合はプロ人材会社だけではない ── <b>コンサル・AI関連会社・プロダクトを持つ会社</b>。彼らはソリューション／プロダクトまで提案してくる。人材要件だけを待っていては、案件数が絞られ、外部パートナーとしての深さも出ない。</p></div>
+
+    <div class="shift">
+      <div class="shift-row before">
+        <span class="slab"><i class="ti ti-clock-hour-4"></i> これまで</span>
+        <div class="chain">
+          <div class="node src">サーキュレーション<br>プロ人材</div>
+          <div class="arr">→</div>
+          <div class="node">役割・ケイパビリティ</div>
+          <div class="arr">→</div>
+          <div class="node need">ニーズ / ToBe（企業）</div>
+        </div>
+        <p class="cap">人材要件に対して、直接「人」が紐づいた。間（使い方・体制・アウトプット）は<b>顧客側が考えて埋めてくれた。</b></p>
+      </div>
+
+      <div class="shift-row after">
+        <span class="slab"><i class="ti ti-arrow-big-up-lines"></i> 現在</span>
+        <div class="chain">
+          <div class="node src">サーキュレーション<br>プロ人材</div>
+          <div class="arr">→</div>
+          <div class="node midwrap"><span class="mh">こちらが巻き取る中間地点</span><span class="mi">使い方/切り口・解決体制/アサイン・アウトプット内容・解決ロードマップ・役割/ケイパビリティ・ToBe</span></div>
+          <div class="arr">→</div>
+          <div class="node need">悩み / 課題 / 困りごと</div>
+        </div>
+        <p class="cap">外部ベンダーが入り込むフェーズが<b>深くなっている。</b>間にある「使い方・体制・アウトプット」は、かつて顧客マターだったが、今は提案側マターになっている。ここを<b>こちらが能動的に巻き取る</b>必要がある。</p>
+      </div>
+    </div>
+
+    <div class="shift-insight">
+      <div class="sih"><i class="ti ti-bulb"></i> 人材要件を「待つ」と、パイプラインを顧客に支配される</div>
+      <p>企業側で考えてから人材要件を出してくる企業も一定数いる。だが<b>それを待っていては、案件数も、こちらが出せるパイプラインも、顧客側にコントロールされる。</b>潜在／未来のパイプラインを自分たちで生むには、中間地点をこちらから能動的に巻き取るしかない。</p>
+      <div class="seq">
+        <span class="s">商談で「今必要な人材要件ありますか？」</span><span class="a">→</span><span class="s bad">「ない」で終了</span>
+      </div>
+      <div class="seq" style="margin-top:6px">
+        <span class="s">現状から潜在課題を引き出す</span><span class="a">→</span><span class="s">中間点をこちらで整理</span><span class="a">→</span><span class="s good">潜在ニーズ・未来インバウンド相談へ</span>
+      </div>
+    </div>
+  </div>
+
+    <h3 class="sec-sub"><i class="ti ti-stack-2"></i>解決策の型 <small>― 「誰を出すか」ではなく「どう解決するか」</small></h3>
+
+  <div class="panel">
+    <h3 class="ph">人とニーズの「間」を、こちらが取りに行く</h3>
+    <p class="lead">プロ人材（人）と顧客（ニーズ/ToBe）の間には、<b>解決策・解決支援体制・プロダクト・サービス</b>という層がある。かつてこの層は顧客が自分で埋めてくれた。だが今は競合（コンサル・AIベンダー・SaaS等）がここを取りに来る。<b>この層を当社が取りに行かないと、人とニーズは繋がらない。</b></p>
+    <div class="between">
+      <div class="bend person"><div class="bl">手段</div><div class="bt">人<br>（プロ人材）</div></div>
+      <div class="bmid">
+        <span class="arrl"><i class="ti ti-arrow-right"></i></span>
+        <div class="grab"><div class="gh">ここを当社が取りに行く</div><div class="gt">解決策 ／ 解決支援体制<br>プロダクト ／ サービス</div></div>
+        <span class="arrr"><i class="ti ti-arrow-right"></i></span>
+      </div>
+      <div class="bend need"><div class="bl">目的</div><div class="bt">顧客<br>（ニーズ / ToBe）</div></div>
+    </div>
+    <div class="between-cap">この「間の層」を、かつては顧客が埋めた（だから人を出せば済んだ）。今は競合がここを取りに来る。<b>手段（人）だけを差し出すと、間が埋まらず負ける。</b></div>
+    <div class="between-takeaway">だから、この層を<b>「4つの型」</b>として、こちらから提示する。</div>
+
+    <h3 class="ph" style="margin-top:24px">How We Solve ── 解決策の4つの型</h3>
+    <p class="lead">「誰を出すか」ではなく「どう解決するか」。この4つで、間の層を具体的に埋める。</p>
+    <div class="hws">
+      <div class="hwcard">
+        <div class="hwi"><i class="ti ti-sitemap"></i></div>
+        <h4>プロジェクト設計</h4>
+        <p class="hwd">ゴール・スコープ・マイルストーンを最初に握り、検証と意思決定が回るプロジェクトを設計する。</p>
+        <ul><li>論点・ゴールの言語化</li><li>フェーズ分解と検証計画</li><li>意思決定の場づくり</li></ul>
+      </div>
+      <div class="hwcard">
+        <div class="hwi"><i class="ti ti-hierarchy"></i></div>
+        <h4>体制図</h4>
+        <p class="hwd">顧客メンバー・プロ人材・既存ベンダーの役割を整理し、最小の体制で前に進む座組みを描く。</p>
+        <ul><li>社内 × プロ人材の役割分担</li><li>意思決定者とのレポートライン</li><li>巻き取り・引き継ぎの設計</li></ul>
+      </div>
+      <div class="hwcard">
+        <div class="hwi"><i class="ti ti-adjustments"></i></div>
+        <h4>使い方（関与モデル）</h4>
+        <p class="hwd">リスキリング・PM・特定領域だけ等、必要な範囲だけプロ人材を活用できる。丸ごとでなく"足りない一部"から。</p>
+        <ul><li>リスキリング / 伴走型</li><li>PM・推進役としての関与</li><li>開発・特定領域のスポット補強</li></ul>
+      </div>
+      <div class="hwcard">
+        <div class="hwi"><i class="ti ti-bulb"></i></div>
+        <h4>テーマ / 切り口</h4>
+        <p class="hwd">課題が漠然としていても、業界・機能の論点から切り口を提示し、取り組むテーマを一緒に定める。</p>
+        <ul><li>論点の引き出しと整理</li><li>優先順位づけ</li><li>他社の取り組みを踏まえた切り口</li></ul>
+      </div>
+    </div>
+  </div>
+
+    
+<h3 class="sec-sub"><i class="ti ti-robot"></i>オペレーション改善 <small>― GTM整備とAI自動化で工数を削る</small></h3>
+
+  <div class="panel">
+    <h3 class="ph">まず工数を削る。空いた時間をアカウントへ再投資する。</h3>
+    <p class="lead">前期は負荷を足して潰れた。今期は引いてから足す。これが決定的な差。</p>
+    <div class="mini m2" style="margin-top:14px">
+      <div class="mcard" style="background:#f7fbfe"><h4 style="color:var(--gray)"><i class="ti ti-robot"></i> AIで削る（作業）</h4><p style="margin-top:6px">・提案書作成 ── 自動生成パイプライン整備済み<br>・要件定義 ── AIで簡素化（手間減）＋高度化（精度増）<br>・議事録→SF連携 ── 自動化（情シスと構築中）</p></div>
+      <div class="mcard" style="background:linear-gradient(135deg,#0079c0,#003d5e)"><h4 style="color:#fff"><i class="ti ti-users"></i> 空いた時間で増やす（関係構築）</h4><p style="color:#e8f6ff;margin-top:6px">AIが裏方を担うからこそ、FSは一人の人格として顧客に向き合える。減らした時間を、人にしかできない関係構築へ振り向ける。</p></div>
+    </div>
+    <div class="mcard fill" style="margin-top:14px">
+      <h4 style="color:var(--blue-d)"><i class="ti ti-sitemap"></i> GTM統合フローの整備</h4>
+      <p style="margin-top:6px">リードの状態（リサイクル/休眠/未提案/稼働後）と、誰の・どんなアクションが必要かを一枚のフローに可視化。チーム全員が同じ地図で動く共通言語であり、将来の全社プロセスの原典。新メンバーのオンボーディング教材としても機能する。 <a href="../gtm/" target="_blank" style="color:var(--blue);font-weight:700;text-decoration:none">→ GTM統合フローを見る</a></p>
+    </div>
+    <div class="mcard fill" style="margin-top:14px">
+      <h4 style="color:var(--blue-d)"><i class="ti ti-map-2"></i> アカウントプランニングの「入力レス」設計</h4>
+      <p style="margin-top:6px">FSに新たな入力作業を負わせない。<b>FSは「喋るだけ」で、アカウントプランが積み上がる</b>設計にする。FS（内部情報）とマーケ・IS（外部情報）を中間の<b>情報プール</b>に集約し、<b>AIでアカウント企画を自動設計</b>。営業企画はマーケ／ISがボールを持ち、出口で<b>二経路のアプローチ</b>（空中戦・地上戦）へ展開する。</p>
+
+      <div class="apf-legend" style="margin-top:14px">
+        <div class="lg"><span class="sw mk"></span>マーケ・IS 経路（外部・デジタル＝空中戦）</div>
+        <div class="lg"><span class="sw fs"></span>FS 経路（内部・地上戦）</div>
+        <div class="lg"><span class="sw hub"></span>集約・企画（AI／Notion）</div>
+      </div>
+
+      <div class="apf">
+        <!-- ① 入力 -->
+        <div>
+          <div class="colhead"><span class="n">1</span><span class="t">入力 <small>INPUT</small></span></div>
+          <div class="col">
+            <div class="apc mk">
+              <span class="lane mk"><i class="ti ti-world"></i> マーケ・IS</span>
+              <h4>外部情報</h4>
+              <ul>
+                <li><span class="dot"></span>外部リサーチ</li>
+                <li><span class="dot"></span>電話</li>
+                <li><span class="dot"></span>メール</li>
+              </ul>
+            </div>
+            <div class="apc fs">
+              <span class="lane fs"><i class="ti ti-user-heart"></i> FS</span>
+              <h4>内部情報</h4>
+              <ul>
+                <li><span class="dot"></span>地上戦（現場の一次情報）</li>
+                <li><span class="dot"></span>PJT・案件からの学び</li>
+                <li><span class="dot"></span>顧客ヒアリング</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="apf-arr"><i class="ti ti-arrow-right"></i></div>
+
+        <!-- ② 集約・企画 -->
+        <div>
+          <div class="colhead"><span class="n">2</span><span class="t">集約・企画 <small>HUB</small></span></div>
+          <div class="apf-hub">
+            <div class="pk">INFORMATION POOL</div>
+            <div class="pt">情報プール</div>
+            <div class="ps"><i class="ti ti-brand-notion"></i> Notion に集約</div>
+            <div class="cadence"><i class="ti ti-calendar-repeat"></i> ヒアリング会は隔週開催</div>
+            <div class="hplan">
+              <div class="hh"><i class="ti ti-robot"></i> アカウントプランニング</div>
+              <p>マーケ／IS がボールを持ち、FS のヒアリングを元に <b>AI でアカウント企画を自動設計</b>。企画結果を両経路の出口へ展開する。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="apf-arr split"><i class="ti ti-arrow-right"></i><i class="ti ti-arrow-right"></i></div>
+
+        <!-- ③ 出口 -->
+        <div>
+          <div class="colhead"><span class="n">3</span><span class="t">出口 / アプローチ <small>OUTPUT</small></span></div>
+          <div class="col">
+            <div class="apc mk">
+              <span class="lane mk"><i class="ti ti-broadcast"></i> マーケ・IS</span>
+              <h4>ハウスリスト活用 ＋ アウトバウンド</h4>
+              <p class="cap">カスタマイズアプローチと新規開拓の二本立て</p>
+              <ul>
+                <li><span class="dot"></span><b>アウトバウンド</b>（新規開拓）</li>
+                <li><span class="dot"></span>部署（文脈なし）<span class="arw">→</span>メール・電話</li>
+                <li><span class="dot"></span>コンテンツ抜粋 <span class="arw">→</span> アプローチ設計（Tier1／アカプラ・カスタム）</li>
+              </ul>
+            </div>
+            <div class="apc fs">
+              <span class="lane fs"><i class="ti ti-users"></i> FS</span>
+              <h4>地上戦・深耕営業</h4>
+              <p class="cap">既存関係を軸にした深耕アプローチ</p>
+              <ul>
+                <li><span class="dot"></span>リード（現在・過去情報）<span class="arw">→</span>メール・電話</li>
+                <li><span class="dot"></span>横展開</li>
+                <li><span class="dot"></span>レビュー MTG</li>
+                <li><span class="dot"></span>会食・ランチ／情報交換・支援同席</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="band" style="margin-top:16px"><span class="hl">運用：</span> 情報プールへの入力を起点に、<b>隔週のヒアリング会</b>でFSの一次情報を吸い上げ、AIがアカウント企画へ変換。FSに新たな入力作業は負わせず「喋るだけ」で企画が積み上がる。</div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3 class="ph">GTMオペレーション自動化フロー ── Zoom商談後を一気通貫で</h3>
+    <p class="lead">商談終了から提案書・顧客メール下書きまで、Salesforce と Claude Cowork で自動的につなぐ。</p>
+    <div class="gop">
+      <div class="gop-node grey"><b>Zoom商談終了</b><span>録音・文字起こし</span></div>
+      <div class="gop-arrow"><i class="ti ti-arrow-down"></i></div>
+      <div class="gop-node grey"><b>SF自動格納</b><span>フェーズ更新 ＋ 要件詳細も同時記入</span></div>
+      <div class="gop-arrow"><i class="ti ti-arrow-down"></i></div>
+      <div class="gop-cowork">
+        <div class="gop-cw-h"><i class="ti ti-sparkles"></i> Claude Cowork <small>要件整理〜提案書作成まで一括</small></div>
+        <div class="gop-parallel">
+          <div class="gop-node green"><b>要件整理</b><span>ASIS / TOBE / GAP</span></div>
+          <div class="gop-node green">
+            <b>人選</b><span>候補者選定の3ステップ</span>
+            <div class="gop-steps">
+              <div class="gop-step">① 候補者検索</div>
+              <div class="gop-step">② プロへ依頼メール</div>
+              <div class="gop-step">③ 稼働確認受信</div>
+            </div>
+          </div>
+        </div>
+        <div class="gop-merge-wrap"><div class="gop-merge">▼ マージ</div></div>
+        <div class="gop-arrow"><i class="ti ti-arrow-down"></i></div>
+        <div class="gop-node green solo"><b>提案書作成</b><span>概要 / マイルストーン / 体制図 / 比較 / 詳細</span></div>
+      </div>
+      <div class="gop-arrow"><i class="ti ti-arrow-down"></i></div>
+      <div class="gop-branch">
+        <div class="gop-node grey"><b>共有ドライブ保存</b></div>
+        <div class="gop-node accent"><b>顧客メール下書き</b></div>
+      </div>
     </div>
   </div>
 
