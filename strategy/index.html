@@ -298,6 +298,10 @@ body{
 .mkt-list{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
 .mkt-list li{position:relative;padding-left:22px;font-size:13px;line-height:1.55;color:var(--ink)}
 .mkt-list li::before{content:'';position:absolute;left:6px;top:7px;width:8px;height:8px;border-radius:50%;background:var(--blue)}
+.mkt-tbl.lead-tbl td{white-space:normal}
+.mkt-tbl.lead-tbl td:nth-child(2){font-family:inherit;font-weight:600;color:var(--ink)}
+.mkt-tbl.lead-tbl th:last-child,.mkt-tbl.lead-tbl td:last-child{width:auto}
+.mkt-tbl.lead-tbl td b{color:var(--blue-d)}
 .gtm-link{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:13px;font-weight:800;text-decoration:none;color:#fff;background:linear-gradient(135deg,#0079c0,#003d5e);border-radius:12px;padding:11px 20px;box-shadow:0 6px 16px rgba(0,121,192,.25);transition:.15s}
 .gtm-link:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,121,192,.32)}
 .gtm-link i{font-size:16px}
@@ -1119,6 +1123,41 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
       <div class="step"><div class="n">3</div><h4>検証</h4><p>地図を使って空白に向かって動けるか。動けば、鳥の目を持たずとも実行できる。</p></div>
     </div>
     <div class="band light"><span class="hl">これはチーム全体への移植可能性を測る試金石。</span><div class="sub">動けば「概念を持つ人にAI地図を配れば鳥の目が機能する」という再現の型が確立する。</div></div>
+  </div>
+
+    <h3 class="sec-sub"><i class="ti ti-arrows-split-2"></i>リードの振り分け <small>― Tier別の担当ルールとリサイクル方針</small></h3>
+
+  <div class="panel">
+    <p class="lead">リードは <b>Tier</b> と <b>案件種別（FLEXY／Biz）</b> で担当を明確に分ける。日々の割り当て・状況管理は<b>リード管理ポータル</b>で行う。</p>
+    <a class="gtm-link" href="https://tokunagayudai.github.io/circu-lead-management/" target="_blank" rel="noopener"><i class="ti ti-external-link"></i> リード管理ポータルを開く</a>
+
+    <h3 class="ph" style="margin-top:20px">① Tier別 Biz／FLEXY 担当ルール</h3>
+    <table class="mkt-tbl lead-tbl">
+      <thead><tr><th>Tier</th><th>案件種別</th><th>担当</th></tr></thead>
+      <tbody>
+        <tr><td>Tier1・Tier2</td><td>FLEXY・Biz 問わず</td><td>担当<b>固定</b>（土田含む）</td></tr>
+        <tr><td>Tier3（土田 担当企業）</td><td>FLEXY案件（技術・エンジニア系）</td><td>引き続き <b>土田</b></td></tr>
+        <tr><td>Tier3（土田 担当企業）</td><td>Biz案件（人事・採用系など）</td><td><b>Biz側FS（岡部 など）</b>に振る</td></tr>
+        <tr><td>Tier3（その他）</td><td>非FLEXY案件</td><td><b>岡部 など別担当</b>に振る</td></tr>
+      </tbody>
+    </table>
+    <div class="band light"><span class="hl">背景：</span> 非専門領域（Biz系）を一人が抱えすぎると、周辺メンバーへの依頼が集中して負荷が増える。<b>案件種別で担当を明確に分ける</b>ことで、専門性と負荷分散を両立する。</div>
+
+    <h3 class="ph" style="margin-top:20px">② リサイクル（BANT）案件の対応方針</h3>
+    <p class="lead"><b>基本原則 ── 元の担当者が引き続き対応する。</b></p>
+    <table class="mkt-tbl lead-tbl">
+      <thead><tr><th>ケース</th><th>対応方針</th></tr></thead>
+      <tbody>
+        <tr><td>次回提案タイミング・予算感が<b>具体的に握られている</b></td><td><b>元の担当者がそのまま対応</b></td></tr>
+        <tr><td>「3ヶ月後に状況確認」程度の<b>緩いタイミング</b></td><td><b>誰が対応してもよい</b></td></tr>
+      </tbody>
+    </table>
+    <div class="mini m3" style="margin-top:14px">
+      <div class="mcard"><div class="num">1</div><h4>リサイクルは基本1回のみ</h4><p>完了後は繰り返さない。</p></div>
+      <div class="mcard"><div class="num">2</div><h4>完了時に担当を完全切替</h4><p>新担当にまとめて紐付け直す。</p></div>
+      <div class="mcard"><div class="num">3</div><h4>Tier3は引き継ぎ必須</h4><p>過去担当者のみが情報を把握しているケースが多く、リサイクル完了後は新担当への明確な引き継ぎが必須。</p></div>
+    </div>
+    <div class="band"><span class="hl">Tier別の原則：</span> <b>Tier1・Tier2</b> はアカウント担当の概念が明確なため、元担当者が対応する原則を維持。<b>Tier3</b> はリサイクル後の切り替えを徹底する。</div>
   </div>
 
     <h3 class="sec-sub"><i class="ti ti-settings"></i>オペレーション <small>― チームの動き方</small></h3>
