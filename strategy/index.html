@@ -2373,25 +2373,92 @@ details.sec>summary .chev{margin-left:8px!important}
   }
   // 4 Value Cycle：各サイクルの目的・狙い・具体オペレーション
   var VC={
-    ap:{t:'Account Planning ── アカウント戦略', h:`<p class="lead-line">アカウント（企業）全体を俯瞰し、どこを攻めるかを設計してLTVを最大化する。</p>
-<h4>目的</h4><p>案件単位ではなく<b>アカウント単位</b>で捉える。企業 → 部署 → リード → 案件 の4階層で構造を読み、未接触の空白へ計画的に展開する。</p>
-<h4>狙い</h4><p>FSが地上戦で得た一次情報（課題・体制図・機能役割）を起点に、鳥の目（戦略）と地上（実行）を分けて連携。深い地図はTier1に集中投資する。</p>
-<h4>具体オペレーション</h4><ul><li>議事録・組織図・SFをAIが読み、<b>AIアカウントカルテ</b>（接点/未接触・染み出し戦略）を自動生成</li><li>ヒアリングは<b>「喋るだけ」</b>、Notionが自動で構造化（入力レス設計）</li><li>Tier1は各FSが固定担当し、Notionに構造マップを蓄積</li></ul>`},
-    le:{t:'Lead Engagement ── リード育成', h:`<p class="lead-line">リードの認知をアクティブ化し、関係を維持して第一想起を獲得する（空中戦）。</p>
-<h4>目的</h4><p>マーケ・ISが担い、温まったリードを地上戦（FS）へ渡す。放置された大量の休眠リードを分散し、全体最適で回す。</p>
-<h4>狙い</h4><p>「案件がある時だけ」ではなく、非同期のナーチャリングで文脈を維持し、課題が発生したとき真っ先に想起される状態をつくる。</p>
-<h4>具体オペレーション</h4><ul><li>テーマを切ったメルマガ配信・コンテンツ施策（マーケ主導）</li><li>Tier別の打ち分け（Tier1＝空中×地上連携／Tier2＝引き上げ／Tier3-4＝脳内シェア）</li><li>リサイクルを回し、未提案・休眠リードを再アクティブ化</li></ul>`},
-    pm:{t:'Pipeline ── 案件推進', h:`<p class="lead-line">一つの接点を機会に課題探索と提案を行い、案件を前進させる。</p>
-<h4>目的</h4><p>ただの案件探しでなく、周辺テーマの深掘りから<b>現在・未来・周辺ニーズ</b>を獲得する。FS・アソシエイトが担い、AIで大幅にBPR。</p>
-<h4>狙い</h4><p>裏方（提案書・要件整理・記録）をAIに巻き取らせ、人は関係構築へ。一つの案件を起点に周辺担当者・部署へ染み出し、文脈を広げる。</p>
-<h4>具体オペレーション</h4><ul><li>提案書の自動生成、要件整理・議事録→SF連携の自動化で工数削減</li><li>PLシートに「PJT良好」「顧客関係性」の2フラグ（記録）</li><li>1件1件落とさない ── 提案書は失注後の横展開にも効く「面の顧客体験」</li></ul>`},
-    cs:{t:'Customer Success ── 顧客深耕', h:`<p class="lead-line">受注案件の成功を確実にし、継続と追加ロールでLTVを伸ばす（地上戦・来期の最注力）。</p>
-<h4>目的</h4><p>品質を担保しながら既顧客営業を行う。スターリード起点の深耕でリレーションを構築する。</p>
-<h4>狙い</h4><p>「放置 → 突然提案」を防ぐ。契約として最初から組み込んだ接点は形骸化しにくい。継続・追加ロール・次フェーズの未来ニーズで積み上げる。</p>
-<h4>具体オペレーション</h4><ul><li>キックオフで<b>1ヶ月・3ヶ月レビューMTG</b>を固定（器は品質レビュー、後半に付随提案を忍ばせる）</li><li>レビューで ①品質担保＋高評価 ②付随提案 ③文脈違いの染み出し</li><li>会食・電話などSalesforceに残らない接点も、量を増やす</li></ul>`}
+    ap:{t:'Account Planning ── アカウント戦略', h:`
+  <div class="panel">
+    <p class="lead">関係性があり、ポテンシャルの高いアカウントに<b>チームのリソースを集中</b>し、大型案件・他部門開拓・複数案件で<b>LTVを最大化</b>する。各メンバーの<b>Tier1アカプラ対象は決定済み</b>。その企業を「案件」ではなく<b>アカウント単位</b>で開拓する。</p>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h4>Tier1対象を選定</h4><p>関係性 × ポテンシャルで、各メンバーのアカプラ対象を決定。</p></div>
+      <div class="step"><div class="n">2</div><h4>リソースを集中</h4><p>広く浅くではなく、狙うアカウントにチームで投下。</p></div>
+      <div class="step"><div class="n">3</div><h4>アカウント単位で開拓</h4><p>大型案件・他部門開拓・複数案件を狙う。</p></div>
+      <div class="step"><div class="n">4</div><h4>LTV最大化</h4><p>1社あたりの価値を継続的に伸ばす。</p></div>
+    </div>
+  </div>
+  <div class="panel">
+    <h3 class="ph">進め方 ── 情報を集約してアカウント単位で開拓する</h3>
+    <div class="apf">
+      <div>
+        <div class="colhead"><span class="n">1</span><span class="t">入力 <small>INPUT</small></span></div>
+        <div class="col">
+          <div class="apc mk"><span class="lane mk"><i class="ti ti-world"></i> マーケ・IS</span><h4>外部情報</h4><ul><li><span class="dot"></span>外部リサーチ</li><li><span class="dot"></span>電話・メール</li></ul></div>
+          <div class="apc fs"><span class="lane fs"><i class="ti ti-user-heart"></i> FS</span><h4>内部情報</h4><ul><li><span class="dot"></span>地上戦（現場の一次情報）</li><li><span class="dot"></span>顧客ヒアリング・案件の学び</li></ul></div>
+        </div>
+      </div>
+      <div class="apf-arr"><i class="ti ti-arrow-right"></i></div>
+      <div>
+        <div class="colhead"><span class="n">2</span><span class="t">集約・企画 <small>HUB</small></span></div>
+        <div class="apf-hub"><div class="pk">INFORMATION POOL</div><div class="pt">情報プール</div><div class="ps"><i class="ti ti-brand-notion"></i> Notion に集約</div><div class="hplan"><div class="hh"><i class="ti ti-robot"></i> アカウントプランニング</div><p>Tier1対象を<b>アカウント単位</b>で構造化し、<b>AIで開拓方針を設計</b>する。</p></div></div>
+      </div>
+      <div class="apf-arr split"><i class="ti ti-arrow-right"></i><i class="ti ti-arrow-right"></i></div>
+      <div>
+        <div class="colhead"><span class="n">3</span><span class="t">出口 / 開拓 <small>OUTPUT</small></span></div>
+        <div class="col">
+          <div class="apc mk"><span class="lane mk"><i class="ti ti-broadcast"></i> 空中戦</span><h4>面（広域）で当てる</h4><ul><li><span class="dot"></span>他部門・新規部署への面のアプローチ</li></ul></div>
+          <div class="apc fs"><span class="lane fs"><i class="ti ti-users"></i> 地上戦</span><h4>深耕・複数案件</h4><ul><li><span class="dot"></span>大型案件・他部門開拓・複数案件で<b>LTV最大化</b></li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>`},
+    le:{t:'Lead Engagement ── リード育成', h:`
+  <div class="panel">
+    <p class="lead">マーケ・IS が担う<b>空中戦</b>。休眠リードを非同期のナーチャリングで温め、<b>第一想起</b>を獲得して地上戦（FS）へ渡す。</p>
+    <h3 class="ph">Tier別の打ち分け</h3>
+    <table class="mkt-tbl lead-tbl"><thead><tr><th>Tier</th><th>打ち分け</th></tr></thead><tbody>
+      <tr><td><b>Tier1</b></td><td>空中戦 × 地上戦の連携</td></tr>
+      <tr><td><b>Tier2</b></td><td>引き上げ（温めてFSへ渡す）</td></tr>
+      <tr><td><b>Tier3・4</b></td><td>脳内シェアの獲得（第一想起の維持）</td></tr>
+    </tbody></table>
+    <div class="mini m3" style="margin-top:14px">
+      <div class="mcard"><span class="tag-pill">配信</span><h4>テーマ別メルマガ・コンテンツ</h4><p>マーケ主導でテーマを切って継続配信。</p></div>
+      <div class="mcard"><span class="tag-pill">維持</span><h4>ナーチャリング</h4><p>文脈を維持し、課題発生時に想起される。</p></div>
+      <div class="mcard"><span class="tag-pill">再活性</span><h4>リサイクル</h4><p>未提案・休眠リードを再アクティブ化。</p></div>
+    </div>
+  </div>`},
+    pm:{t:'Pipeline ── 案件推進', h:`
+  <div class="panel">
+    <p class="lead">一つの接点を機会に、周辺テーマの深掘りから<b>現在・未来・周辺ニーズ</b>を獲得。裏方はAIに巻き取らせ、人は関係構築と染み出しへ。</p>
+    <h3 class="ph">PLシートの2フラグ（記録）</h3>
+    <div class="mini m2">
+      <div class="mcard"><span class="tag-pill">記録①</span><h4>PJT良好</h4><p>案件の進行品質を表すフラグ。</p></div>
+      <div class="mcard"><span class="tag-pill">記録②</span><h4>顧客関係性</h4><p>リレーションの状態を表すフラグ。</p></div>
+    </div>
+    <h3 class="ph" style="margin-top:16px">AIで工数を削る</h3>
+    <div class="mini m3">
+      <div class="mcard"><h4>提案書 自動生成</h4><p>作成工数を削減。</p></div>
+      <div class="mcard"><h4>要件整理・議事録 → SF</h4><p>連携を自動化。</p></div>
+      <div class="mcard"><h4>周辺テーマ深掘り</h4><p>現在・未来・周辺ニーズを獲得。</p></div>
+    </div>
+    <div class="band"><span class="hl">1件1件落とさない：</span> 提案書は失注後の横展開にも効く「面の顧客体験」。</div>
+  </div>`},
+    cs:{t:'Customer Success ── 顧客深耕', h:`
+  <div class="panel">
+    <p class="lead">受注案件の成功を確実にし、継続・追加ロールで<b>LTVを伸ばす</b>（地上戦・来期の最注力）。スターリード起点の深耕でリレーションを構築する。</p>
+    <h3 class="ph">レビューMTGを最初から固定する</h3>
+    <div class="steps">
+      <div class="step"><div class="n">0</div><h4>キックオフ</h4><p>契約時にレビューを組み込む。</p></div>
+      <div class="step"><div class="n">1</div><h4>1ヶ月レビュー</h4><p>立ち上がりの品質を確認。</p></div>
+      <div class="step"><div class="n">3</div><h4>3ヶ月レビュー</h4><p>品質レビュー＋付随提案を忍ばせる。</p></div>
+    </div>
+    <h3 class="ph" style="margin-top:16px">レビューで得る3つ</h3>
+    <div class="mini m3">
+      <div class="mcard"><span class="tag-pill">①</span><h4>品質担保＋高評価</h4><p>成功を確実にし、評価を引き出す。</p></div>
+      <div class="mcard"><span class="tag-pill">②</span><h4>付随提案</h4><p>継続・追加ロールへつなぐ。</p></div>
+      <div class="mcard"><span class="tag-pill">③</span><h4>文脈違いの染み出し</h4><p>別テーマ・別部署へ広げる。</p></div>
+    </div>
+    <div class="band light"><span class="hl">「放置 → 突然提案」を防ぐ：</span> 会食・電話などSalesforceに残らない接点も、量を増やす。</div>
+  </div>`}
   };
   document.querySelectorAll('.vc-node').forEach(function(g){
-    g.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();var v=VC[g.dataset.vc];if(v)openDrawer(v.t,v.h);});
+    g.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();var v=VC[g.dataset.vc];if(v)openDetail(v.t,v.h);});
   });
 
   var itemSel='.mcard,.pillar,.rolecard,.rrow,.hwcard,.lcard,.step,.achcard,.opsitem,.tier,.mk-hi,.tgt-banner,.band,.shift-row,.shift-insight,.between,.between-takeaway,.xform,.themodel,.cycle-wrap,.flow,.flow2,.funnel,.purpose,.recall,.msg-strong,.compet,.sol-ex,.qnote,.ctx-hero,.weekgrid,.org,.stats';
