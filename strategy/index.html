@@ -347,6 +347,26 @@ body{
 .vcm .vcm-h .k{display:block;font-size:9.5px;font-weight:800;letter-spacing:1px;color:var(--blue-mid);font-family:'JetBrains Mono',monospace;margin-bottom:2px}
 .vcm .vcm-ch{display:inline-block;margin:9px 0 8px;font-size:12px;font-weight:800;color:#fff;background:linear-gradient(135deg,#0079c0,#003d5e);border-radius:8px;padding:5px 11px}
 .vcm p{font-size:12px;color:var(--gray);line-height:1.6;margin:0}
+/* 4VC 縦フロー（マーケ起点の循環） */
+.vcflow{display:flex;flex-direction:column;align-items:center;margin-top:12px}
+.vcf-feed{background:linear-gradient(135deg,#0a6e8c,#0079c0);color:#fff;border-radius:12px;padding:12px 22px;font-weight:800;font-size:14.5px;text-align:center;box-shadow:0 4px 14px rgba(0,121,192,.2);display:flex;flex-direction:column;gap:3px;max-width:560px;width:100%;align-items:center}
+.vcf-feed .fh{display:flex;align-items:center;gap:7px}
+.vcf-feed i{font-size:18px}
+.vcf-feed span{font-size:11px;font-weight:600;color:#d6eefb}
+.vcf-arw{color:var(--blue-mid);line-height:1;padding:6px 0}
+.vcf-arw i{font-size:26px}
+.vcf-node{position:relative;width:100%;max-width:560px;background:#fff;border:1.5px solid var(--blue-l);border-left:6px solid var(--blue);border-radius:14px;padding:14px 18px;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 3px 12px rgba(0,121,192,.06)}
+.vcf-node:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,121,192,.16)}
+.vcf-node .k{display:block;font-size:10px;font-weight:800;letter-spacing:1px;color:var(--blue-mid);font-family:'JetBrains Mono',monospace}
+.vcf-node b{display:block;font-size:15px;color:var(--blue-d);margin:2px 0 6px}
+.vcf-node .ch{display:inline-block;font-size:11.5px;font-weight:800;color:#fff;background:linear-gradient(135deg,#0079c0,#003d5e);border-radius:7px;padding:3px 10px}
+.vcf-node.le{border-left-color:var(--moss)}
+.vcf-node.pm{border-left-color:var(--blue)}
+.vcf-node.cs{border-left-color:#7057a3}
+.vcf-node.ap{border-left-color:var(--blue-d)}
+.vcf-node::after{content:'詳細 ›';position:absolute;top:14px;right:16px;font-size:11px;font-weight:800;color:var(--blue-mid)}
+.vcf-loop{margin-top:14px;font-size:12px;font-weight:800;color:var(--blue-d);background:var(--blue-l);border:1.5px dashed var(--blue-mid);border-radius:20px;padding:7px 18px;display:flex;align-items:center;gap:8px}
+.vcf-loop i{font-size:15px}
 .gtm-link{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:13px;font-weight:800;text-decoration:none;color:#fff;background:linear-gradient(135deg,#0079c0,#003d5e);border-radius:12px;padding:11px 20px;box-shadow:0 6px 16px rgba(0,121,192,.25);transition:.15s}
 .gtm-link:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,121,192,.32)}
 .gtm-link i{font-size:16px}
@@ -1257,6 +1277,91 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
   <details class="sec" open>
     <summary><span class="stitle"><span class="no">3</span>戦術 <small>― 実行プラン・重点施策・マーケ・4VC・深耕・オペ改善</small></span><i class="ti ti-chevron-down chev"></i></summary>
 
+    <h3 class="sec-sub"><i class="ti ti-refresh"></i>4 Value Cycle の今期版 <small>― マーケ起点の循環と役割分担</small></h3>
+  <div class="panel">
+    <p class="lead">アポを取りまくるのではなく、顧客の<b>ステータス・関係性・文脈</b>を加味して必要なチャネルで接点を取る。<b>マーケティング活動</b>を起点に、4つの Value Cycle を循環で回す。</p>
+    <div class="vcflow">
+      <div class="vcf-feed"><span class="fh"><i class="ti ti-broadcast"></i> マーケティング活動</span><span>テーマコンテンツ・プロ人材／事例メルマガ・提案ポータル</span></div>
+      <div class="vcf-arw"><i class="ti ti-arrow-down"></i></div>
+      <div class="vcf-node le vc-node" data-vc="le"><span class="k">① LEAD ENGAGEMENT</span><b>リード育成</b><span class="ch">マーケによる定期リレーション</span></div>
+      <div class="vcf-arw"><i class="ti ti-arrow-down"></i></div>
+      <div class="vcf-node pm vc-node" data-vc="pm"><span class="k">② PIPELINE</span><b>パイプラインマネジメント</b><span class="ch">提案品質と移行率の最大化</span></div>
+      <div class="vcf-arw"><i class="ti ti-arrow-down"></i></div>
+      <div class="vcf-node cs vc-node" data-vc="cs"><span class="k">③ CUSTOMER SUCCESS</span><b>稼働中顧客（カスタマーサクセス）</b><span class="ch">レビューMTGからの接点</span></div>
+      <div class="vcf-arw"><i class="ti ti-arrow-down"></i></div>
+      <div class="vcf-node ap vc-node" data-vc="ap"><span class="k">④ ACCOUNT PLANNING</span><b>アカウントプランニング</b><span class="ch">Tier1対象はとにかく接点 → 具体開拓</span></div>
+      <div class="vcf-loop"><i class="ti ti-refresh"></i> LTV最大化 → マーケへ還流（循環）</div>
+    </div>
+    <p class="note" style="margin-top:10px">各ノードをタップすると、そのサイクルの目的・狙い・具体オペレーションが開きます。まずは全体像として、どの顧客状態にどのチャネルで接点を取るかを共有する。</p>
+  </div>
+
+<div class="panel">
+    <h3 class="ph">変革後 ── 4つの活動エリアと役割分担</h3>
+    <p class="lead">「4 Value Cycle」を、実際の運用解像度で<b>4つの活動エリア</b>に更新。誰がどのエリアを担うかを明確にする。</p>
+    <div class="rsplit">
+      <div class="rrow le">
+        <div class="rh"><span class="rt"><b>①</b> リードマネジメント 〜 パイプラインジェネレーション</span><span class="rj">空中戦</span></div>
+        <div class="roles">
+          <span class="chip mk"><i class="ti ti-speakerphone"></i> マーケ</span>
+          <span class="chip is"><i class="ti ti-headset"></i> IS</span>
+        </div>
+        <p class="rd">リードへの認知を<b>アクティブ化</b>し、関係性を維持して<b>第一想起</b>を獲得する。</p>
+      </div>
+      <div class="rrow pm">
+        <div class="rh"><span class="rt"><b>②</b> パイプラインマネジメント</span></div>
+        <div class="roles">
+          <span class="chip fs"><i class="ti ti-user-heart"></i> FS</span>
+          <span class="chip as"><i class="ti ti-user"></i> アソシエイト</span>
+        </div>
+        <p class="rd">一つの接点を機会に<b>課題探索と提案</b>。ただの案件探しでなく、周辺テーマの深掘りから<b>現在・未来・周辺ニーズ</b>を獲得する。</p>
+      </div>
+      <div class="rrow cs">
+        <div class="rh"><span class="rt"><b>③</b> カスタマーサクセス</span><span class="rj">地上戦</span><span class="cs-badge">来期 最注力</span></div>
+        <div class="roles">
+          <span class="chip fs"><i class="ti ti-user-heart"></i> FS</span>
+        </div>
+        <p class="rd">受注案件の成功を確実にし、<b>追加ロール・次フェーズの未来ニーズ</b>で継続を狙う。スターリード起点の深耕でリレーションを構築する。</p>
+      </div>
+      <div class="rrow ap">
+        <div class="rh"><span class="rt"><b>④</b> アカウントプランニング</span><span class="rj">地上戦 ＋ 空中戦</span></div>
+        <div class="roles">
+          <span class="chip fs"><i class="ti ti-user-heart"></i> FS：地上戦</span>
+          <span class="chip is"><i class="ti ti-headset"></i> IS：空中戦</span>
+        </div>
+        <p class="rd">FSが地上戦で得た一次情報（<b>課題・体制図・機能役割</b>）を基に、<b>FSは地上戦アプローチ、ISは空中戦アプローチ</b>を進める。</p>
+      </div>
+    </div>
+    <div class="band"><span class="hl">重心の移動：</span> この半年は <span class="hl">①②</span> に注力（リードのアクティブ化と案件推進）。来期は <span class="hl">③④</span> に注力（継続深耕とアカウントプランニング）。</div>
+  </div>
+
+  <div class="panel">
+    <h3 class="ph">具体化 ── 顧客ステータスに応じて、接点チャネルを選ぶ</h3>
+    <p class="lead">とにかくアポを取りに行くのではない。顧客の<b>ステータス・関係性・文脈</b>を加味し、4つのValue Cycleごとに<b>必要なチャネル</b>から接点を取る。</p>
+    <div class="vc-map">
+      <div class="vcm cs">
+        <div class="vcm-h"><span class="k">CUSTOMER SUCCESS</span>稼働中顧客</div>
+        <div class="vcm-ch">レビューMTGからの接点</div>
+        <p>稼働中は関係が最も温まる局面。定例レビューを起点に、継続・追加・染み出しを取りに行く。</p>
+      </div>
+      <div class="vcm ap">
+        <div class="vcm-h"><span class="k">ACCOUNT PLANNING</span>アカウントプランニング</div>
+        <div class="vcm-ch">Tier1対象は とにかく接点</div>
+        <p>Tier1アカプラ対象は接点確保を最優先。得た情報をもとに、具体的な開拓を進める。</p>
+      </div>
+      <div class="vcm pm">
+        <div class="vcm-h"><span class="k">PIPELINE</span>パイプラインマネジメント</div>
+        <div class="vcm-ch">提案品質と移行率の最大化</div>
+        <p>獲得した商談は、提案の品質を上げて確度と移行率（受注転換）を最大化する。</p>
+      </div>
+      <div class="vcm le">
+        <div class="vcm-h"><span class="k">LEAD ENGAGEMENT</span>リード育成</div>
+        <div class="vcm-ch">マーケによる定期リレーション</div>
+        <p>休眠・非アクティブ層はマーケで定期的にリレーションを構築し、第一想起を維持する。</p>
+      </div>
+    </div>
+    <div class="band light"><span class="hl">規律：</span> チャネルは「顧客の状態」で決める。空回りのアポ取りをやめ、<b>文脈に合った接点</b>に集中する。</div>
+  </div>
+
     <h3 class="sec-sub"><i class="ti ti-rocket"></i>実行プラン（通期） <small>― マーケ×FSの継続施策と8月の立ち上がり</small></h3>
 
   <div class="panel">
@@ -1440,110 +1545,6 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
     </div>
     <div class="band light"><span class="hl">整備中：</span> 施策ごとのアトリビューション（どの施策が商談につながったか）、ハウスリストのMQL化率・スコアリング、ウェビナー→商談化率の追跡を、順次設計していく。</div>
   </div>
-
-
-    <h3 class="sec-sub"><i class="ti ti-refresh"></i>4 Value Cycle の今期版 <small>― 4つの活動エリアと役割分担</small></h3>
-<div class="panel">
-    <h3 class="ph">4 Value Cycle は継承する。だが一人で回すのは不可能だった。</h3>
-    <p class="lead">4つの循環は正しい。役割分担とAIで「チームで回るエンジン」に作り変える。</p>
-    <div class="vc-hint"><i class="ti ti-hand-click"></i> 各サイクルをクリックすると、目的・狙い・具体オペレーションが開きます</div>
-    <div class="cycle-wrap">
-      <div class="cycle">
-        <svg viewBox="0 0 300 300">
-          <defs>
-            <marker id="ar" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#0079c0"/></marker>
-            <linearGradient id="gctr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0079c0"/><stop offset="1" stop-color="#003d5e"/></linearGradient>
-          </defs>
-          <path d="M188,70 A100,100 0 0,1 230,112" fill="none" stroke="#0079c0" stroke-width="2.5" marker-end="url(#ar)"/>
-          <path d="M230,188 A100,100 0 0,1 188,230" fill="none" stroke="#0079c0" stroke-width="2.5" marker-end="url(#ar)"/>
-          <path d="M112,230 A100,100 0 0,1 70,188" fill="none" stroke="#0079c0" stroke-width="2.5" marker-end="url(#ar)"/>
-          <path d="M70,112 A100,100 0 0,1 112,70" fill="none" stroke="#0079c0" stroke-width="2.5" marker-end="url(#ar)"/>
-          <circle cx="150" cy="150" r="46" fill="url(#gctr)"/>
-          <text x="150" y="145" text-anchor="middle" fill="#fff" font-size="15" font-weight="800" font-family="'M PLUS Rounded 1c'">LTV</text>
-          <text x="150" y="165" text-anchor="middle" fill="#fff" font-size="12.5" font-family="'M PLUS Rounded 1c'">最大化</text>
-          <g class="vc-node" data-vc="ap" style="cursor:pointer"><rect x="92" y="20" width="116" height="56" rx="12" fill="#e8f6ff" stroke="#0079c0" stroke-width="2"/><text x="150" y="44" text-anchor="middle" fill="#0079c0" font-size="11" font-weight="700" font-family="'M PLUS Rounded 1c'">Account Planning</text><text x="150" y="62" text-anchor="middle" fill="#1a2a38" font-size="11">アカウント戦略</text></g>
-          <g class="vc-node" data-vc="le" style="cursor:pointer"><rect x="200" y="122" width="100" height="56" rx="12" fill="#e8f6ff" stroke="#0a6e8c" stroke-width="2"/><text x="250" y="146" text-anchor="middle" fill="#0a6e8c" font-size="10.5" font-weight="700" font-family="'M PLUS Rounded 1c'">Lead Engage.</text><text x="250" y="164" text-anchor="middle" fill="#1a2a38" font-size="11">リード育成</text></g>
-          <g class="vc-node" data-vc="pm" style="cursor:pointer"><rect x="92" y="224" width="116" height="56" rx="12" fill="#e8f6ff" stroke="#0079c0" stroke-width="2"/><text x="150" y="248" text-anchor="middle" fill="#0079c0" font-size="11" font-weight="700" font-family="'M PLUS Rounded 1c'">Pipeline</text><text x="150" y="266" text-anchor="middle" fill="#1a2a38" font-size="11">案件推進</text></g>
-          <g class="vc-node" data-vc="cs" style="cursor:pointer"><rect x="0" y="122" width="100" height="56" rx="12" fill="#e8f6ff" stroke="#0a6e8c" stroke-width="2"/><text x="50" y="146" text-anchor="middle" fill="#0a6e8c" font-size="9.5" font-weight="700" font-family="'M PLUS Rounded 1c'">Customer Success</text><text x="50" y="164" text-anchor="middle" fill="#1a2a38" font-size="11">顧客深耕</text></g>
-        </svg>
-      </div>
-      <div class="points">
-        <div class="pt"><div class="n">1</div><div><h4>役割を分けて回す</h4><p>戦略を描く・案件を進める・構造を読む力は別資質。一人に求めず分業し、連携させる。</p></div></div>
-        <div class="pt"><div class="n">2</div><div><h4>顧客接点は一人の人格で</h4><p>裏方（提案書・要件定義・記録）はAIで軽くし、顧客から見える担当者は一人に保つ。</p></div></div>
-        <div class="pt"><div class="n">3</div><div><h4>全員が4階層で見る</h4><p>企業→部署→リード→案件。案件進捗と顧客リレーションは常に接続している。</p></div></div>
-      </div>
-    </div>
-  </div>
-
-  
-<div class="panel">
-    <h3 class="ph">変革後 ── 4つの活動エリアと役割分担</h3>
-    <p class="lead">「4 Value Cycle」を、実際の運用解像度で<b>4つの活動エリア</b>に更新。誰がどのエリアを担うかを明確にする。</p>
-    <div class="rsplit">
-      <div class="rrow le">
-        <div class="rh"><span class="rt"><b>①</b> リードマネジメント 〜 パイプラインジェネレーション</span><span class="rj">空中戦</span></div>
-        <div class="roles">
-          <span class="chip mk"><i class="ti ti-speakerphone"></i> マーケ</span>
-          <span class="chip is"><i class="ti ti-headset"></i> IS</span>
-        </div>
-        <p class="rd">リードへの認知を<b>アクティブ化</b>し、関係性を維持して<b>第一想起</b>を獲得する。</p>
-      </div>
-      <div class="rrow pm">
-        <div class="rh"><span class="rt"><b>②</b> パイプラインマネジメント</span></div>
-        <div class="roles">
-          <span class="chip fs"><i class="ti ti-user-heart"></i> FS</span>
-          <span class="chip as"><i class="ti ti-user"></i> アソシエイト</span>
-        </div>
-        <p class="rd">一つの接点を機会に<b>課題探索と提案</b>。ただの案件探しでなく、周辺テーマの深掘りから<b>現在・未来・周辺ニーズ</b>を獲得する。</p>
-      </div>
-      <div class="rrow cs">
-        <div class="rh"><span class="rt"><b>③</b> カスタマーサクセス</span><span class="rj">地上戦</span><span class="cs-badge">来期 最注力</span></div>
-        <div class="roles">
-          <span class="chip fs"><i class="ti ti-user-heart"></i> FS</span>
-        </div>
-        <p class="rd">受注案件の成功を確実にし、<b>追加ロール・次フェーズの未来ニーズ</b>で継続を狙う。スターリード起点の深耕でリレーションを構築する。</p>
-      </div>
-      <div class="rrow ap">
-        <div class="rh"><span class="rt"><b>④</b> アカウントプランニング</span><span class="rj">地上戦 ＋ 空中戦</span></div>
-        <div class="roles">
-          <span class="chip fs"><i class="ti ti-user-heart"></i> FS：地上戦</span>
-          <span class="chip is"><i class="ti ti-headset"></i> IS：空中戦</span>
-        </div>
-        <p class="rd">FSが地上戦で得た一次情報（<b>課題・体制図・機能役割</b>）を基に、<b>FSは地上戦アプローチ、ISは空中戦アプローチ</b>を進める。</p>
-      </div>
-    </div>
-    <div class="band"><span class="hl">重心の移動：</span> この半年は <span class="hl">①②</span> に注力（リードのアクティブ化と案件推進）。来期は <span class="hl">③④</span> に注力（継続深耕とアカウントプランニング）。</div>
-  </div>
-
-  <div class="panel">
-    <h3 class="ph">具体化 ── 顧客ステータスに応じて、接点チャネルを選ぶ</h3>
-    <p class="lead">とにかくアポを取りに行くのではない。顧客の<b>ステータス・関係性・文脈</b>を加味し、4つのValue Cycleごとに<b>必要なチャネル</b>から接点を取る。</p>
-    <div class="vc-map">
-      <div class="vcm cs">
-        <div class="vcm-h"><span class="k">CUSTOMER SUCCESS</span>稼働中顧客</div>
-        <div class="vcm-ch">レビューMTGからの接点</div>
-        <p>稼働中は関係が最も温まる局面。定例レビューを起点に、継続・追加・染み出しを取りに行く。</p>
-      </div>
-      <div class="vcm ap">
-        <div class="vcm-h"><span class="k">ACCOUNT PLANNING</span>アカウントプランニング</div>
-        <div class="vcm-ch">Tier1対象は とにかく接点</div>
-        <p>Tier1アカプラ対象は接点確保を最優先。得た情報をもとに、具体的な開拓を進める。</p>
-      </div>
-      <div class="vcm pm">
-        <div class="vcm-h"><span class="k">PIPELINE</span>パイプラインマネジメント</div>
-        <div class="vcm-ch">提案品質と移行率の最大化</div>
-        <p>獲得した商談は、提案の品質を上げて確度と移行率（受注転換）を最大化する。</p>
-      </div>
-      <div class="vcm le">
-        <div class="vcm-h"><span class="k">LEAD ENGAGEMENT</span>リード育成</div>
-        <div class="vcm-ch">マーケによる定期リレーション</div>
-        <p>休眠・非アクティブ層はマーケで定期的にリレーションを構築し、第一想起を維持する。</p>
-      </div>
-    </div>
-    <div class="band light"><span class="hl">規律：</span> チャネルは「顧客の状態」で決める。空回りのアポ取りをやめ、<b>文脈に合った接点</b>に集中する。</div>
-  </div>
-
-  
 
 
     <h3 class="sec-sub"><i class="ti ti-arrow-big-right-lines"></i>AIに任せ、人は「関係構築」へ <small>― 営業に求める動き</small></h3>
@@ -2454,7 +2455,7 @@ details.sec>summary .chev{margin-left:8px!important}
   var CARD_CFG={
     '現状認識・課題分析':null,
     '戦略':['顧客の「4階層」','体制','GTMフロー'],
-    '戦術':['実行プラン（通期）','重点施策','マーケティング施策','マーケ／IS の分担と目標KPI','4 Value Cycle の今期版','AIに任せ、人は「関係構築」へ','オペレーション改善']
+    '戦術':['実行プラン（通期）','重点施策','マーケティング施策','マーケ／IS の分担と目標KPI','AIに任せ、人は「関係構築」へ','オペレーション改善']
   };
   var CARD_TITLE={'AIに任せ、人は「関係構築」へ':'案件を深める・決める','マーケ／IS の分担と目標KPI':'マーケ／IS の分担と目標KPI'};
   var CARD_SUM={
