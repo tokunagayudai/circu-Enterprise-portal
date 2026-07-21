@@ -322,6 +322,31 @@ body{
 .augitem li b{color:var(--blue-d)}
 .augitem .ai-kpi{margin-top:10px;font-size:11.5px;color:var(--blue-d);background:#eef7fd;border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:8px 12px;line-height:1.6}
 .augitem .ai-kpi b{color:var(--orange)}
+/* 施策マップ（マーケ×FS 2エンジン） */
+.engine2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
+@media(max-width:640px){.engine2{grid-template-columns:1fr}}
+.eng{border-radius:14px;padding:16px 18px;border:1.5px solid var(--blue-l);background:#fff}
+.eng.mk{border-color:#cfe0ee;background:linear-gradient(160deg,#f5fbff,#eef7fd)}
+.eng.fs{border-color:#c8e6d2;background:linear-gradient(160deg,#f4fcf6,#eaf7ee)}
+.eng .eng-h{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:800;color:var(--blue-d);margin-bottom:10px}
+.eng.fs .eng-h{color:var(--green-d)}
+.eng .eng-h i{font-size:20px}
+.eng .eng-h span{font-size:11px;font-weight:800;color:#fff;background:var(--blue);border-radius:20px;padding:3px 10px;margin-left:2px}
+.eng.fs .eng-h span{background:var(--green)}
+.eng ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.eng li{position:relative;padding-left:20px;font-size:13px;line-height:1.55;color:var(--ink);font-weight:600}
+.eng li::before{content:'';position:absolute;left:5px;top:7px;width:8px;height:8px;border-radius:50%;background:var(--blue)}
+.eng.fs li::before{background:var(--green)}
+/* 4VC具体化：ステータス別チャネル */
+.vc-map{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:12px}
+@media(max-width:640px){.vc-map{grid-template-columns:1fr}}
+.vcm{border:1.5px solid var(--blue-l);border-radius:14px;padding:15px 16px;background:#fff;position:relative;overflow:hidden}
+.vcm::before{content:'';position:absolute;top:0;left:0;bottom:0;width:5px}
+.vcm.cs::before{background:#7057a3}.vcm.ap::before{background:var(--blue-d)}.vcm.pm::before{background:var(--blue)}.vcm.le::before{background:var(--moss)}
+.vcm .vcm-h{font-size:14.5px;font-weight:800;color:var(--blue-d);line-height:1.35}
+.vcm .vcm-h .k{display:block;font-size:9.5px;font-weight:800;letter-spacing:1px;color:var(--blue-mid);font-family:'JetBrains Mono',monospace;margin-bottom:2px}
+.vcm .vcm-ch{display:inline-block;margin:9px 0 8px;font-size:12px;font-weight:800;color:#fff;background:linear-gradient(135deg,#0079c0,#003d5e);border-radius:8px;padding:5px 11px}
+.vcm p{font-size:12px;color:var(--gray);line-height:1.6;margin:0}
 .gtm-link{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:13px;font-weight:800;text-decoration:none;color:#fff;background:linear-gradient(135deg,#0079c0,#003d5e);border-radius:12px;padding:11px 20px;box-shadow:0 6px 16px rgba(0,121,192,.25);transition:.15s}
 .gtm-link:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,121,192,.32)}
 .gtm-link i{font-size:16px}
@@ -1230,12 +1255,39 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
   </details>
 
   <details class="sec" open>
-    <summary><span class="stitle"><span class="no">3</span>戦術 <small>― 8月アクション・重点施策・マーケ・4VC・深耕・オペ改善</small></span><i class="ti ti-chevron-down chev"></i></summary>
+    <summary><span class="stitle"><span class="no">3</span>戦術 <small>― 実行プラン・重点施策・マーケ・4VC・深耕・オペ改善</small></span><i class="ti ti-chevron-down chev"></i></summary>
 
-    <h3 class="sec-sub"><i class="ti ti-rocket"></i>8月アクションプラン <small>― 誰が・いつ・どこまで（立ち上がりフェーズ）</small></h3>
+    <h3 class="sec-sub"><i class="ti ti-rocket"></i>実行プラン（通期） <small>― マーケ×FSの継続施策と8月の立ち上がり</small></h3>
 
   <div class="panel">
-    <p class="lead">戦略を「8月に何をやるか」まで落とす。8月の多くは<b>開始・整備の立ち上がりフェーズ</b>であり、<b>モニタリング・KPI評価は9月以降</b>。ここで期待値を上げすぎない。</p>
+    <p class="lead">アポを取りまくるのではなく、顧客のステータス・関係性・文脈を加味して必要なチャネルから接点を取る。マーケ（案件を増やす）とFS（案件を受注する）の施策を、単発でなく<b>期を通して一貫・継続</b>する。</p>
+
+    <h3 class="ph">施策マップ ── 2つのエンジンを、期を通して回す</h3>
+    <div class="engine2">
+      <div class="eng mk">
+        <div class="eng-h"><i class="ti ti-broadcast"></i> マーケ <span>案件の増加</span></div>
+        <ul>
+          <li>テーマコンテンツの<b>月1運用</b></li>
+          <li>プロ人材＆事例メルマガ</li>
+          <li>提案ポータルによる顧客接点</li>
+        </ul>
+      </div>
+      <div class="eng fs">
+        <div class="eng-h"><i class="ti ti-user-heart"></i> FS <span>案件の受注</span></div>
+        <ul>
+          <li>スターリードへのレビューMTG運用</li>
+          <li>アカウントプランニング運用開始</li>
+          <li>人選だけでない「<b>提案書送付</b>」の徹底</li>
+          <li>提案ポータルでの提案活用</li>
+        </ul>
+      </div>
+    </div>
+    <div class="band"><span class="hl">一貫性・継続性：</span> これらは8月に立ち上げて終わりではなく、<b>期を通して回し続ける</b>。8月はその立ち上がりフェーズ。</div>
+  </div>
+
+  <div class="panel">
+    <h3 class="ph">8月の立ち上がり ── 誰が・いつ・どこまで</h3>
+    <p class="lead">8月の多くは<b>開始・整備の立ち上がりフェーズ</b>であり、<b>モニタリング・KPI評価は9月以降</b>。ここで期待値を上げすぎない。</p>
     <div class="augplan">
       <div class="augitem">
         <div class="ai-h"><span class="ai-n">1</span><span class="ai-t">スターリードへのレビューMTG運用</span><span class="ai-tag now">運用開始済み</span></div>
@@ -1461,6 +1513,34 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
       </div>
     </div>
     <div class="band"><span class="hl">重心の移動：</span> この半年は <span class="hl">①②</span> に注力（リードのアクティブ化と案件推進）。来期は <span class="hl">③④</span> に注力（継続深耕とアカウントプランニング）。</div>
+  </div>
+
+  <div class="panel">
+    <h3 class="ph">具体化 ── 顧客ステータスに応じて、接点チャネルを選ぶ</h3>
+    <p class="lead">とにかくアポを取りに行くのではない。顧客の<b>ステータス・関係性・文脈</b>を加味し、4つのValue Cycleごとに<b>必要なチャネル</b>から接点を取る。</p>
+    <div class="vc-map">
+      <div class="vcm cs">
+        <div class="vcm-h"><span class="k">CUSTOMER SUCCESS</span>稼働中顧客</div>
+        <div class="vcm-ch">レビューMTGからの接点</div>
+        <p>稼働中は関係が最も温まる局面。定例レビューを起点に、継続・追加・染み出しを取りに行く。</p>
+      </div>
+      <div class="vcm ap">
+        <div class="vcm-h"><span class="k">ACCOUNT PLANNING</span>アカウントプランニング</div>
+        <div class="vcm-ch">Tier1対象は とにかく接点</div>
+        <p>Tier1アカプラ対象は接点確保を最優先。得た情報をもとに、具体的な開拓を進める。</p>
+      </div>
+      <div class="vcm pm">
+        <div class="vcm-h"><span class="k">PIPELINE</span>パイプラインマネジメント</div>
+        <div class="vcm-ch">提案品質と移行率の最大化</div>
+        <p>獲得した商談は、提案の品質を上げて確度と移行率（受注転換）を最大化する。</p>
+      </div>
+      <div class="vcm le">
+        <div class="vcm-h"><span class="k">LEAD ENGAGEMENT</span>リード育成</div>
+        <div class="vcm-ch">マーケによる定期リレーション</div>
+        <p>休眠・非アクティブ層はマーケで定期的にリレーションを構築し、第一想起を維持する。</p>
+      </div>
+    </div>
+    <div class="band light"><span class="hl">規律：</span> チャネルは「顧客の状態」で決める。空回りのアポ取りをやめ、<b>文脈に合った接点</b>に集中する。</div>
   </div>
 
   
@@ -2374,7 +2454,7 @@ details.sec>summary .chev{margin-left:8px!important}
   var CARD_CFG={
     '現状認識・課題分析':null,
     '戦略':['顧客の「4階層」','体制','GTMフロー'],
-    '戦術':['8月アクションプラン','重点施策','マーケティング施策','マーケ／IS の分担と目標KPI','4 Value Cycle の今期版','AIに任せ、人は「関係構築」へ','オペレーション改善']
+    '戦術':['実行プラン（通期）','重点施策','マーケティング施策','マーケ／IS の分担と目標KPI','4 Value Cycle の今期版','AIに任せ、人は「関係構築」へ','オペレーション改善']
   };
   var CARD_TITLE={'AIに任せ、人は「関係構築」へ':'案件を深める・決める','マーケ／IS の分担と目標KPI':'マーケ／IS の分担と目標KPI'};
   var CARD_SUM={
