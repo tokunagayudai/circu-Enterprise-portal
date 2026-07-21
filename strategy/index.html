@@ -367,6 +367,8 @@ body{
 .vcf-node::after{content:'詳細 ›';position:absolute;top:14px;right:16px;font-size:11px;font-weight:800;color:var(--blue-mid)}
 .vcf-loop{margin-top:14px;font-size:12px;font-weight:800;color:var(--blue-d);background:var(--blue-l);border:1.5px dashed var(--blue-mid);border-radius:20px;padding:7px 18px;display:flex;align-items:center;gap:8px}
 .vcf-loop i{font-size:15px}
+.subchips{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0 4px}
+.subchips span{font-size:11px;font-weight:700;color:var(--blue-d);background:var(--blue-l);border:1.5px solid #cfe6f6;border-radius:8px;padding:4px 11px}
 .gtm-link{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:13px;font-weight:800;text-decoration:none;color:#fff;background:linear-gradient(135deg,#0079c0,#003d5e);border-radius:12px;padding:11px 20px;box-shadow:0 6px 16px rgba(0,121,192,.25);transition:.15s}
 .gtm-link:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,121,192,.32)}
 .gtm-link i{font-size:16px}
@@ -1307,43 +1309,8 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
     <p class="note" style="margin-top:10px">まずは全体像として、どの顧客状態にどのチャネルで接点を取るかを共有する。</p>
   </div>
 
-<div class="panel">
-    <h3 class="ph">変革後 ── 4つの活動エリアと役割分担</h3>
-    <p class="lead">「4 Value Cycle」を、実際の運用解像度で<b>4つの活動エリア</b>に更新。誰がどのエリアを担うかを明確にする。</p>
-    <div class="rsplit">
-      <div class="rrow le">
-        <div class="rh"><span class="rt"><b>①</b> リードマネジメント 〜 パイプラインジェネレーション</span><span class="rj">空中戦</span></div>
-        <div class="roles">
-          <span class="chip mk"><i class="ti ti-speakerphone"></i> マーケ</span>
-          <span class="chip is"><i class="ti ti-headset"></i> IS</span>
-        </div>
-        <p class="rd">リードへの認知を<b>アクティブ化</b>し、関係性を維持して<b>第一想起</b>を獲得する。</p>
-      </div>
-      <div class="rrow pm">
-        <div class="rh"><span class="rt"><b>②</b> パイプラインマネジメント</span></div>
-        <div class="roles">
-          <span class="chip fs"><i class="ti ti-user-heart"></i> FS</span>
-          <span class="chip as"><i class="ti ti-user"></i> アソシエイト</span>
-        </div>
-        <p class="rd">一つの接点を機会に<b>課題探索と提案</b>。ただの案件探しでなく、周辺テーマの深掘りから<b>現在・未来・周辺ニーズ</b>を獲得する。</p>
-      </div>
-      <div class="rrow cs">
-        <div class="rh"><span class="rt"><b>③</b> カスタマーサクセス</span><span class="rj">地上戦</span><span class="cs-badge">来期 最注力</span></div>
-        <div class="roles">
-          <span class="chip fs"><i class="ti ti-user-heart"></i> FS</span>
-        </div>
-        <p class="rd">受注案件の成功を確実にし、<b>追加ロール・次フェーズの未来ニーズ</b>で継続を狙う。スターリード起点の深耕でリレーションを構築する。</p>
-      </div>
-      <div class="rrow ap">
-        <div class="rh"><span class="rt"><b>④</b> アカウントプランニング</span><span class="rj">地上戦 ＋ 空中戦</span></div>
-        <div class="roles">
-          <span class="chip fs"><i class="ti ti-user-heart"></i> FS：地上戦</span>
-          <span class="chip is"><i class="ti ti-headset"></i> IS：空中戦</span>
-        </div>
-        <p class="rd">FSが地上戦で得た一次情報（<b>課題・体制図・機能役割</b>）を基に、<b>FSは地上戦アプローチ、ISは空中戦アプローチ</b>を進める。</p>
-      </div>
-    </div>
-    <div class="band"><span class="hl">重心の移動：</span> この半年は <span class="hl">①②</span> に注力（リードのアクティブ化と案件推進）。来期は <span class="hl">③④</span> に注力（継続深耕とアカウントプランニング）。</div>
+<div class="panel" style="padding:14px 16px">
+    <div class="band"><span class="hl">重心の移動：</span> この半年は <span class="hl">①②</span>（リード育成・案件推進）に注力。来期は <span class="hl">③④</span>（継続深耕・アカウントプランニング）に注力する。各サイクルの<b>担い手（体制）</b>と<b>GTMの詳細プロセス</b>は、サイクルをクリックすると開く。</div>
   </div>
 
   <div class="panel">
@@ -2376,6 +2343,7 @@ details.sec>summary .chev{margin-left:8px!important}
     ap:{t:'Account Planning ── アカウント戦略', h:`
   <div class="panel">
     <p class="lead">関係性があり、ポテンシャルの高いアカウントに<b>チームのリソースを集中</b>し、大型案件・他部門開拓・複数案件で<b>LTVを最大化</b>する。各メンバーの<b>Tier1アカプラ対象は決定済み</b>。その企業を「案件」ではなく<b>アカウント単位</b>で開拓する。</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 14px"><span style="font-size:11px;font-weight:800;color:#6b6864">担い手</span><span class="chip fs"><i class="ti ti-user-heart"></i> FS：地上戦</span><span class="chip is"><i class="ti ti-headset"></i> IS：空中戦</span></div>
     <div class="steps">
       <div class="step"><div class="n">1</div><h4>Tier1対象を選定</h4><p>関係性 × ポテンシャルで、各メンバーのアカプラ対象を決定。</p></div>
       <div class="step"><div class="n">2</div><h4>リソースを集中</h4><p>広く浅くではなく、狙うアカウントにチームで投下。</p></div>
@@ -2407,10 +2375,12 @@ details.sec>summary .chev{margin-left:8px!important}
         </div>
       </div>
     </div>
-  </div>`},
+  </div>
+  <div class="panel" style="padding:14px 16px"><a class="gtm-link" href="../gtm/" target="_blank" rel="noopener"><i class="ti ti-sitemap"></i> GTMフロー全体（詳細プロセス）を見る</a></div>`},
     le:{t:'Lead Engagement ── リード育成', h:`
   <div class="panel">
     <p class="lead">マーケ・IS が担う<b>空中戦</b>。休眠リードを非同期のナーチャリングで温め、<b>第一想起</b>を獲得して地上戦（FS）へ渡す。</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 14px"><span style="font-size:11px;font-weight:800;color:#6b6864">担い手</span><span class="chip mk"><i class="ti ti-speakerphone"></i> マーケ</span><span class="chip is"><i class="ti ti-headset"></i> IS</span><span style="font-size:11px;font-weight:700;color:#5599be">空中戦</span></div>
     <h3 class="ph">Tier別の打ち分け</h3>
     <table class="mkt-tbl lead-tbl"><thead><tr><th>Tier</th><th>打ち分け</th></tr></thead><tbody>
       <tr><td><b>Tier1</b></td><td>空中戦 × 地上戦の連携</td></tr>
@@ -2422,10 +2392,17 @@ details.sec>summary .chev{margin-left:8px!important}
       <div class="mcard"><span class="tag-pill">維持</span><h4>ナーチャリング</h4><p>文脈を維持し、課題発生時に想起される。</p></div>
       <div class="mcard"><span class="tag-pill">再活性</span><h4>リサイクル</h4><p>未提案・休眠リードを再アクティブ化。</p></div>
     </div>
+  </div>
+  <div class="panel">
+    <h3 class="ph">獲得チャネル（GTMフロー：リードジェネレーション）</h3>
+    <p class="lead">新規リードをハウスリストに入れる入口。各チャネルは並行・独立で強化する。</p>
+    <div class="subchips"><span>広告（LinkedIn / Google）</span><span>ウェビナー</span><span>ホワイトペーパー</span><span>SEO記事</span><span>展示会</span></div>
+    <a class="gtm-link" href="../gtm/#leadgen" target="_blank" rel="noopener"><i class="ti ti-sitemap"></i> GTMフローで詳細プロセスを見る</a>
   </div>`},
     pm:{t:'Pipeline ── 案件推進', h:`
   <div class="panel">
     <p class="lead">一つの接点を機会に、周辺テーマの深掘りから<b>現在・未来・周辺ニーズ</b>を獲得。裏方はAIに巻き取らせ、人は関係構築と染み出しへ。</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 14px"><span style="font-size:11px;font-weight:800;color:#6b6864">担い手</span><span class="chip fs"><i class="ti ti-user-heart"></i> FS</span><span class="chip as"><i class="ti ti-user"></i> アソシエイト</span></div>
     <h3 class="ph">PLシートの2フラグ（記録）</h3>
     <div class="mini m2">
       <div class="mcard"><span class="tag-pill">記録①</span><h4>PJT良好</h4><p>案件の進行品質を表すフラグ。</p></div>
@@ -2438,10 +2415,17 @@ details.sec>summary .chev{margin-left:8px!important}
       <div class="mcard"><h4>周辺テーマ深掘り</h4><p>現在・未来・周辺ニーズを獲得。</p></div>
     </div>
     <div class="band"><span class="hl">1件1件落とさない：</span> 提案書は失注後の横展開にも効く「面の顧客体験」。</div>
+  </div>
+  <div class="panel">
+    <h3 class="ph">案件プロセス（GTMフロー：パイプラインマネジメント）</h3>
+    <p class="lead">商談から受注までを8フェーズで前進させる。各フェーズの合意ゲートで確度を管理する。</p>
+    <div class="subchips"><span>01 商談</span><span>02 要件・人選</span><span>03 提案</span><span>04 面談</span><span>05 見積</span><span>06 稟議</span><span>07 契約</span><span>08 受注</span></div>
+    <a class="gtm-link" href="../gtm/#pipeline" target="_blank" rel="noopener"><i class="ti ti-sitemap"></i> GTMフローで詳細プロセスを見る</a>
   </div>`},
     cs:{t:'Customer Success ── 顧客深耕', h:`
   <div class="panel">
     <p class="lead">受注案件の成功を確実にし、継続・追加ロールで<b>LTVを伸ばす</b>（地上戦・来期の最注力）。スターリード起点の深耕でリレーションを構築する。</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 14px"><span style="font-size:11px;font-weight:800;color:#6b6864">担い手</span><span class="chip fs"><i class="ti ti-user-heart"></i> FS</span><span style="font-size:11px;font-weight:700;color:#a5600f">地上戦・来期最注力</span></div>
     <h3 class="ph">レビューMTGを最初から固定する</h3>
     <div class="steps">
       <div class="step"><div class="n">0</div><h4>キックオフ</h4><p>契約時にレビューを組み込む。</p></div>
@@ -2455,6 +2439,12 @@ details.sec>summary .chev{margin-left:8px!important}
       <div class="mcard"><span class="tag-pill">③</span><h4>文脈違いの染み出し</h4><p>別テーマ・別部署へ広げる。</p></div>
     </div>
     <div class="band light"><span class="hl">「放置 → 突然提案」を防ぐ：</span> 会食・電話などSalesforceに残らない接点も、量を増やす。</div>
+  </div>
+  <div class="panel">
+    <h3 class="ph">深耕プロセス（GTMフロー：カスタマーサクセス）</h3>
+    <p class="lead">稼働後の関係を起点に、継続・追加・紹介で LTV を伸ばす。</p>
+    <div class="subchips"><span>レビューMTG</span><span>案件継続・契約更新</span><span>追加案件・追加ロール</span><span>追加部署・担当者紹介</span></div>
+    <a class="gtm-link" href="../gtm/#cs" target="_blank" rel="noopener"><i class="ti ti-sitemap"></i> GTMフローで詳細プロセスを見る</a>
   </div>`}
   };
   document.querySelectorAll('.vc-node').forEach(function(g){

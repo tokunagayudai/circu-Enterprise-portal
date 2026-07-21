@@ -921,7 +921,7 @@ const TRACKS={
 };
 
 let curTrack='acquire', curStep=0;
-function setTrack(k){ curTrack=k; curStep=0; renderConsole(); document.getElementById('gtm-app').scrollIntoView({behavior:'smooth',block:'start'}); }
+function setTrack(k){ curTrack=k; curStep=0; try{history.replaceState(null,'','#'+k);}catch(e){} renderConsole(); document.getElementById('gtm-app').scrollIntoView({behavior:'smooth',block:'start'}); }
 function setStep(i){ const st=TRACKS[curTrack].steps; if(i<0||i>=st.length)return; curStep=i; renderConsole(); }
 
 function opBtns(links){
@@ -3229,6 +3229,8 @@ function closeP(){
 // ══════════════════════════════════════
 let _rz; window.addEventListener('resize', ()=>{ clearTimeout(_rz); _rz=setTimeout(redrawConn,150); });
 window.addEventListener('load', redrawConn);
+(function(){var h=(location.hash||'').replace('#','');if(TRACKS[h])curTrack=h;})();
+window.addEventListener('hashchange',function(){var h=(location.hash||'').replace('#','');if(TRACKS[h]&&h!==curTrack){curTrack=h;curStep=0;renderConsole();}});
 setTimeout(drawAll, 60);
 </script>
 </body>
