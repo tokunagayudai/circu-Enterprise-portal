@@ -170,6 +170,12 @@ body{
 .mp h4{font-size:15px;font-weight:800;color:#fff;margin-bottom:7px}
 .mp p{font-size:11.5px;line-height:1.75;color:#e4f1fa}
 .mp p b{color:#fff}
+/* マーケ配信フロー（番号付きステップ） */
+.mflow{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.mf{display:flex;gap:12px;align-items:flex-start;background:#f7fbfe;border:1px solid #e3eef7;border-radius:10px;padding:11px 14px}
+.mf .mfn{flex:none;width:22px;height:22px;border-radius:50%;background:var(--blue);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;margin-top:1px}
+.mf h5{font-size:13px;font-weight:800;color:var(--blue-d);margin:1px 0 3px}
+.mf p{font-size:11.5px;line-height:1.65;color:#5b6b78}
 .flow{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;margin-top:8px}
 .flow .mid{background:linear-gradient(135deg,#0079c0,#005a92);color:#fff;border-radius:12px;padding:20px 12px;text-align:center;font-weight:800;font-size:15px;margin-bottom:12px}
 .flow .stack > div{border-radius:12px;padding:13px 16px;margin-bottom:10px}
@@ -2346,28 +2352,56 @@ details.sec>summary .chev{margin-left:8px!important}
     <table class="lhm">
       <thead><tr>
         <th class="lhm-corner"><span class="cy">▼ 企業 Tier</span><span class="cx">リード状態 ▶</span></th>
-        <th class="lhm-state"><span class="i">🏃</span><span class="t">現在稼働</span></th>
-        <th class="lhm-state"><span class="i">🔁</span><span class="t">過去稼働後</span></th>
-        <th class="lhm-state"><span class="i">♻️</span><span class="t">リサイクル</span></th>
-        <th class="lhm-state"><span class="i">💤</span><span class="t">休眠</span></th>
-        <th class="lhm-state"><span class="i">✨</span><span class="t">未提案</span></th>
+        <th class="lhm-state" style="background:#0a7b3a"><span class="i">🏃</span><span class="t">現在稼働</span></th>
+        <th class="lhm-state" style="background:#2e9e5b"><span class="i">🔁</span><span class="t">過去稼働後</span></th>
+        <th class="lhm-state" style="background:#e08a1e"><span class="i">♻️</span><span class="t">リサイクル</span></th>
+        <th class="lhm-state" style="background:#6b7680"><span class="i">💤</span><span class="t">休眠</span></th>
+        <th class="lhm-state" style="background:#3a93c9"><span class="i">✨</span><span class="t">未提案</span></th>
       </tr></thead>
       <tbody>
-        <tr><td class="lhm-tier"><span class="t">Tier1</span><span class="d">最重要</span></td><td class="lhm-cell p1">最優先</td><td class="lhm-cell p1">最優先</td><td class="lhm-cell p1">最優先</td><td class="lhm-cell p1">最優先</td><td class="lhm-cell p2">優先</td></tr>
-        <tr><td class="lhm-tier"><span class="t">Tier2</span><span class="d">重点</span></td><td class="lhm-cell p1">最優先</td><td class="lhm-cell p1">最優先</td><td class="lhm-cell p1">最優先</td><td class="lhm-cell p2">優先</td><td class="lhm-cell p3">通常</td></tr>
-        <tr><td class="lhm-tier"><span class="t">Tier3</span><span class="d">標準</span></td><td class="lhm-cell p1">最優先</td><td class="lhm-cell p2">優先</td><td class="lhm-cell p2">優先</td><td class="lhm-cell p3">通常</td><td class="lhm-cell p4">低</td></tr>
-        <tr><td class="lhm-tier"><span class="t">Tier4</span><span class="d">広く浅く</span></td><td class="lhm-cell p2">優先</td><td class="lhm-cell p3">通常</td><td class="lhm-cell p3">通常</td><td class="lhm-cell p4">低</td><td class="lhm-cell p4">低</td></tr>
+        <tr><td class="lhm-tier" style="background:#0b3d6b"><span class="t">Tier1</span><span class="d">最重要</span></td><td class="lhm-cell p1">最優先</td><td class="lhm-cell p1">最優先</td><td class="lhm-cell p1">最優先</td><td class="lhm-cell p1">最優先</td><td class="lhm-cell p2">優先</td></tr>
+        <tr><td class="lhm-tier" style="background:#1668ad"><span class="t">Tier2</span><span class="d">重点</span></td><td class="lhm-cell p1">最優先</td><td class="lhm-cell p1">最優先</td><td class="lhm-cell p1">最優先</td><td class="lhm-cell p2">優先</td><td class="lhm-cell p3">通常</td></tr>
+        <tr><td class="lhm-tier" style="background:#3f86c4"><span class="t">Tier3</span><span class="d">標準</span></td><td class="lhm-cell p1">最優先</td><td class="lhm-cell p2">優先</td><td class="lhm-cell p2">優先</td><td class="lhm-cell p3">通常</td><td class="lhm-cell p4">低</td></tr>
+        <tr><td class="lhm-tier" style="background:#79b0da"><span class="t">Tier4</span><span class="d">広く浅く</span></td><td class="lhm-cell p2">優先</td><td class="lhm-cell p3">通常</td><td class="lhm-cell p3">通常</td><td class="lhm-cell p4">低</td><td class="lhm-cell p4">低</td></tr>
       </tbody>
     </table>
     </div>
     <div class="lhm-legend"><span class="lab">優先度</span><span class="l p1">最優先</span><span class="l p2">優先</span><span class="l p3">通常</span><span class="l p4">低</span></div>
-    <div class="lhm-take">💡 <b>現在稼働リードは全Tierで最優先</b> ── 左上（高Tier × 温かい状態）に手を厚く、右下（低Tier × 休眠・未提案）は後回しでよい。<a href="../gtm/#acquire" target="_blank" rel="noopener" style="color:var(--blue);font-weight:700;text-decoration:none">→ GTMフローで各状態の定義を見る</a></div>
+    <div class="lhm-take">💡 <b>現在稼働リードは全Tierで最優先</b> ── 左上（高Tier × 温かい状態）に手を厚く、右下（低Tier × 休眠・未提案）は後回しでよい。</div>
   </div>
   <div class="panel">
-    <h3 class="ph">獲得チャネル（GTMフロー：リードジェネレーション）</h3>
-    <p class="lead">新規リードをハウスリストに入れる入口。各チャネルは並行・独立で強化する。</p>
-    <div class="subchips"><span>広告（LinkedIn / Google）</span><span>ウェビナー</span><span>ホワイトペーパー</span><span>SEO記事</span><span>展示会</span></div>
-    <a class="gtm-link" href="../gtm/#leadgen" target="_blank" rel="noopener"><i class="ti ti-sitemap"></i> GTMフローで詳細プロセスを見る</a>
+    <h3 class="ph">エンプラマーケ配信（ハウスリストへ）</h3>
+    <p class="lead">月次テーマ配信・週次紹介で<b>第一想起と反応（MQL）</b>をつくる。担当＝エンプラマーケ（松村・徳永）。</p>
+
+    <h3 class="ph" style="font-size:15px;margin-top:16px">① テーマメルマガ（月1配信）</h3>
+    <div class="mflow">
+      <div class="mf"><span class="mfn">1</span><div><h5>テーマ選定（顧客商談ヒアリングから）</h5><p>4月 AX推進「AI研修→AX推進」／5月 新規事業「AI時代の新規事業」／6月 BPR×M365「M365×AIプロ人材によるBPR支援」／7月〜 要協議。商談ヒアリング・ディスカッションを元に選定。</p></div></div>
+      <div class="mf"><span class="mfn">2</span><div><h5>コンテンツ制作（徳永Mgr）</h5><p>テーマ資料・事例資料・アカプラ企業向けカスタム資料。Geminiでベース作成→Googleスライド格納。個社カスタムはSF抽出→Gemini/Claude。メール文面もGemini生成→承認。</p></div></div>
+      <div class="mf"><span class="mfn">3</span><div><h5>配信リスト作成・準備</h5><p>SFからターゲット企業・担当者を抽出（ダッシュボード）。GASスクリプトをGeminiで作成・調整。アカプラ企業は個別GAS/スプシ＋FSレクチャー。</p></div></div>
+      <div class="mf"><span class="mfn">4</span><div><h5>配信作業（3経路）</h5><p>① IS配信：Tier1・2／Tier3商談ありへGASで手動送付 ② FS配信：FSのアプローチメールにCC ③ Pardot配信：Tier4・Tier3未提案。</p></div></div>
+      <div class="mf"><span class="mfn">5</span><div><h5>効果測定・フォロー</h5><p>開封・クリックをPardotで検知→ISフォローコール依頼。翌朝、反応リード（eeasy／資料クリック）をスプシでISへ共有→当日フォロー→SF記録。</p></div></div>
+    </div>
+
+    <h3 class="ph" style="font-size:15px;margin-top:18px">② 週1配信（稼働案件・プロ人材紹介）</h3>
+    <div class="mflow">
+      <div class="mf"><span class="mfn">1</span><div><h5>データ抽出（松村）</h5><p>SFレポート（ピックアップ人材／開始プロジェクト）から対象を抽出。</p></div></div>
+      <div class="mf"><span class="mfn">2</span><div><h5>コンテンツ制作</h5><p>Geminiで資料作成（プロンプトあり）→Googleスライド格納。</p></div></div>
+      <div class="mf"><span class="mfn">3</span><div><h5>配信リスト作成（3パターン）</h5><p>AE動的リスト／組合せセグメント／SF抽出→AEインポート。既存テンプレからメールドラフト作成。</p></div></div>
+      <div class="mf"><span class="mfn">4</span><div><h5>配信テスト・送付</h5><p>AEで配信テスト→日時を予約して送付実行。</p></div></div>
+      <div class="mf"><span class="mfn">5</span><div><h5>効果測定・フォロー</h5><p>閲覧検知→ISフォロー依頼。開封率・返信率・商談化率を施策別に集計。スプシ＋GAS Webアプリで管理し、ISへリスト共有。</p></div></div>
+    </div>
+    <div class="subchips" style="margin-top:12px"><span>Gemini</span><span>Salesforce</span><span>GAS</span><span>Gmail</span><span>Pardot / AE</span></div>
+  </div>
+
+  <div class="panel">
+    <h3 class="ph">獲得チャネル ── 新規リードの入口</h3>
+    <p class="lead">新規リードをハウスリストに入れる入口。各チャネルは並行・独立で強化し、獲得リードは<b>SF登録→Tier付与</b>する。</p>
+    <div class="mini m4">
+      <div class="mcard"><span class="tag-pill">運用型広告</span><h4>LinkedIn / Google</h4><p>予算策定（9〜10月）・期末（2〜3月）・新年度（4月）の3期に集中投下。</p></div>
+      <div class="mcard"><span class="tag-pill">コンテンツ</span><h4>ウェビナー / WP / SEO / 展示会</h4><p>月次ウェビナー（下半期は隔月）・WP年4本・SEO月1〜2本・展示会。</p></div>
+      <div class="mcard"><span class="tag-pill">紹介・共催</span><h4>PKSHA共催 / 顧問紹介</h4><p>PKSHA共同ウェビナー年2回・顧問経由のハイレイヤー紹介。</p></div>
+      <div class="mcard"><span class="tag-pill">FS拡張</span><h4>担当者紹介・リード拡張</h4><p>課題発生→新担当からの相談（インバウンド受注率45%）、隣接部署・上位職への能動深耕、PJT中の名刺交換。</p></div>
+    </div>
   </div>`},
     pm:{t:'Pipeline Management ── 案件推進', h:`
   <div class="panel">
