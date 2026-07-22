@@ -100,6 +100,27 @@ body{
 .kpi-b{display:block;margin-top:10px;background:#eef7fd;border:1px solid #cfe6f6;border-radius:8px;padding:7px 10px;font-size:11.5px;font-weight:800;color:var(--blue-d);line-height:1.5}
 .kpi-aware{display:block;margin-top:6px;font-size:10.5px;color:var(--gray);line-height:1.55}
 .kpi-aware b{color:#51606d;font-weight:800}
+/* チーム全体の重要指標目標ボード */
+.tgt-hero{display:flex;align-items:center;gap:20px;background:linear-gradient(135deg,#003d5e,#0079c0);border-radius:14px;padding:18px 22px;color:#fff;flex-wrap:wrap;margin-top:6px}
+.tgt-hero .th-main{display:flex;flex-direction:column;gap:3px;flex:none}
+.tgt-hero .th-lbl{font-size:11.5px;font-weight:800;opacity:.92;letter-spacing:.03em}
+.tgt-hero .th-val{font-size:42px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.tgt-hero .th-val small{font-size:15px;font-weight:700;margin-left:3px}
+.tgt-eq{font-size:22px;font-weight:800;opacity:.6;flex:none}
+.tgt-hero .th-split{display:flex;gap:10px;flex:1;flex-wrap:wrap;min-width:240px}
+.tgt-hero .ts{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:10px;padding:9px 14px;flex:1;min-width:118px}
+.tgt-hero .ts .tn{font-size:10.5px;font-weight:800;opacity:.92;display:block}
+.tgt-hero .ts .tv{font-size:23px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.15}
+.tgt-hero .ts .tv small{font-size:11px;font-weight:700;opacity:.85}
+.tgt-hero .ts .tnote{font-size:9px;opacity:.82;display:block;line-height:1.35}
+.tgt-funnel{display:flex;align-items:stretch;gap:8px;margin-top:12px;flex-wrap:wrap}
+.tgt-f{flex:1;min-width:140px;background:#fff;border:1.5px solid #d6e8f5;border-radius:12px;padding:14px 16px;text-align:center}
+.tgt-f .tfl{font-size:11px;font-weight:800;color:var(--blue-d);display:block;margin-bottom:6px}
+.tgt-f .tfl .tag{display:inline-block;font-size:9px;background:#eef7fd;border:1px solid #cfe6f6;border-radius:6px;padding:1px 6px;margin-right:4px;color:var(--blue)}
+.tgt-f .tfv{font-size:30px;font-weight:800;color:var(--blue);font-variant-numeric:tabular-nums;line-height:1}
+.tgt-f .tfv small{font-size:12px;color:var(--gray);font-weight:700}
+.tgt-arrow{display:flex;align-items:center;color:#9fb0bf;font-size:22px;font-weight:800;flex:none}
+@media(max-width:640px){.tgt-arrow{transform:rotate(90deg);justify-content:center;width:100%}}
 .flow{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;margin-top:8px}
 .flow .mid{background:linear-gradient(135deg,#0079c0,#005a92);color:#fff;border-radius:12px;padding:20px 12px;text-align:center;font-weight:800;font-size:15px;margin-bottom:12px}
 .flow .stack > div{border-radius:12px;padding:13px 16px;margin-bottom:10px}
@@ -1298,6 +1319,27 @@ details.sec>summary .stitle{letter-spacing:.01em}
       <div class="mcard"><span class="tag-pill">IS</span><h4>商談化（刈り取り）</h4><p>施策・広告発のホットリードへ最速架電しアポを獲得。</p><span class="kpi-b">KPI：①商談数（P1）・②面談数（P4）</span><span class="kpi-aware"><b>意識項目：</b>SQL数・案件化率</span></div>
       <div class="mcard"><span class="tag-pill">アソシエイト</span><h4>案件推進の裏方</h4><p>人選・提案書作成などをAI活用で高速化し、FSを支える。</p><span class="kpi-b">KPI：①面談数（P4）・②受注数（P8新規）</span><span class="kpi-aware"><b>意識項目：</b>人選リードタイム ／ 提案書の提出率・質</span></div>
       <div class="mcard"><span class="tag-pill">FS</span><h4>受注・深耕（地上戦）</h4><p>提案の質と関係構築で受注し、継続・追加で伸ばす。</p><span class="kpi-b">KPI：①面談数（P4）・②受注数（P8新規）</span><span class="kpi-aware"><b>意識項目：</b>受注率・移行率 ／ LTV（継続・追加）</span></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3 class="ph">チーム全体の重要指標目標（月間）</h3>
+    <p class="lead">個々のKPIは、チーム全体では以下の目標に束ねられる。<b>P1商談を入口に、提案(P3)→面談(P4)→受注(P8)</b>へと積み上げる。<span style="color:var(--gray)">※土田の数字を含むチーム全体値。</span></p>
+    <div class="tgt-hero">
+      <div class="th-main"><span class="th-lbl">P1商談（入口）</span><span class="th-val">120<small>件</small></span></div>
+      <span class="tgt-eq">＝</span>
+      <div class="th-split">
+        <div class="ts"><span class="tn">マーケ経由</span><span class="tv">10<small>件</small></span><span class="tnote">問い合わせ含む</span></div>
+        <div class="ts"><span class="tn">IS経由</span><span class="tv">60<small>件</small></span><span class="tnote">コンテンツ2M含む</span></div>
+        <div class="ts"><span class="tn">FS経由</span><span class="tv">50<small>件</small></span><span class="tnote">既存深耕・インバウンド</span></div>
+      </div>
+    </div>
+    <div class="tgt-funnel">
+      <div class="tgt-f"><span class="tfl"><span class="tag">KSF</span>提案(P3)</span><span class="tfv">40<small>件</small></span></div>
+      <div class="tgt-arrow">→</div>
+      <div class="tgt-f"><span class="tfl"><span class="tag">KPI</span>面談(P4)</span><span class="tfv">28<small>件</small></span></div>
+      <div class="tgt-arrow">→</div>
+      <div class="tgt-f"><span class="tfl"><span class="tag">KGI</span>受注(P8)</span><span class="tfv">16<small>件</small></span></div>
     </div>
   </div>
 
