@@ -349,10 +349,12 @@ body{
 .vcm p{font-size:12px;color:var(--gray);line-height:1.6;margin:0}
 /* 4VC 縦フロー（マーケ起点の循環） */
 .vcflow{display:flex;flex-direction:column;align-items:center;margin-top:12px}
-.vcf-feed{background:linear-gradient(135deg,#0a6e8c,#0079c0);color:#fff;border-radius:12px;padding:12px 22px;font-weight:800;font-size:14.5px;text-align:center;box-shadow:0 4px 14px rgba(0,121,192,.2);display:flex;flex-direction:column;gap:3px;max-width:560px;width:100%;align-items:center}
+.vcf-feed{background:linear-gradient(135deg,#0a6e8c,#0079c0);color:#fff;border-radius:12px;padding:12px 22px;font-weight:800;font-size:14.5px;text-align:center;box-shadow:0 4px 14px rgba(0,121,192,.2);display:flex;flex-direction:column;gap:3px;max-width:560px;width:100%;align-items:center;cursor:pointer;transition:transform .15s,box-shadow .15s;position:relative}
+.vcf-feed:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,121,192,.32)}
 .vcf-feed .fh{display:flex;align-items:center;gap:7px}
 .vcf-feed i{font-size:18px}
 .vcf-feed span{font-size:11px;font-weight:600;color:#d6eefb}
+.vcf-feed .vf-more{margin-top:5px;font-size:10.5px;font-weight:800;color:#fff;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);border-radius:20px;padding:3px 12px}
 .vcf-arw{color:var(--blue-mid);line-height:1;padding:6px 0}
 .vcf-arw i{font-size:26px}
 .vcf-node{position:relative;width:100%;max-width:560px;background:#fff;border:1.5px solid var(--blue-l);border-left:6px solid var(--blue);border-radius:14px;padding:14px 18px;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 3px 12px rgba(0,121,192,.06)}
@@ -1393,7 +1395,7 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
   <div class="panel">
     <p class="lead">アポを取りまくるのではなく、顧客の<b>ステータス・関係性・文脈</b>を加味して必要なチャネルで接点を取る。<b>マーケティング活動</b>を起点に、4つの Value Cycle を循環で回す。</p>
     <div class="vcflow">
-      <div class="vcf-feed"><span class="fh"><i class="ti ti-broadcast"></i> マーケティング活動</span><span>テーマコンテンツ・プロ人材／事例メルマガ・提案ポータル</span></div>
+      <div class="vcf-feed" id="mkt-feed"><span class="fh"><i class="ti ti-broadcast"></i> マーケティング活動</span><span>テーマコンテンツ・プロ人材／事例メルマガ・提案ポータル</span><span class="vf-more">タップでマーケティング施策の詳細 ›</span></div>
       <div class="vcf-arw"><i class="ti ti-arrow-down"></i></div>
       <div class="cycle">
         <svg viewBox="0 0 300 300">
@@ -1462,54 +1464,6 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
       <div class="mcard"><span class="tag-pill">Pipeline Mgmt.</span><h4>2フラグ＋提案書の質</h4><p>PLシートに「PJT良好」「顧客関係性」フラグ。提案書は失注後の横展開にも効く「面の顧客体験」。1件1件落とさない。</p></div>
     </div>
   </div>
-
-    <h3 class="sec-sub"><i class="ti ti-broadcast"></i>マーケティング施策 <small>― 空中戦でリードを継続供給（マーケ＝松村）</small></h3>
-
-  <div class="panel">
-    <p class="lead">案件数を増やす主エンジンは、個人の新規開拓力ではなく<b>マーケティング</b>。空中戦（マーケ・IS）でリードを継続供給し、開拓を個人に頼らせない。マーケヘッド（松村）が<b>通期予算250万円</b>で、<b>ハウスリスト約8,000件（Tier1〜4 ＋ StarLead）＋約4,000件</b>を運用する。</p>
-    <a class="gtm-link" href="https://kahomatsumura-maker.github.io/mail-strategy-monitoring/" target="_blank" rel="noopener"><i class="ti ti-chart-line"></i> マーケ施策モニタリングを開く</a>
-
-    <h3 class="ph">2軸の取り組み</h3>
-    <div class="mini m2">
-      <div class="mcard"><div class="num">1</div><h4>ハウスリスト内ナーチャリング</h4><p>約8,000件のうちアクティブは5〜10%。残り約90%（約7,000件）を再活性化し、脳内シェアを継続確保。課題発生時に<b>第一想起</b>される状態をつくる。</p></div>
-      <div class="mcard"><div class="num">2</div><h4>ハウスリスト外の新規獲得</h4><p>まだ接点のない企業・担当者へリーチ。<b>新規リードを年300〜500件</b>獲得し、Tier設定 → ナーチャリングへ移行させる。</p></div>
-    </div>
-
-    <h3 class="ph" style="margin-top:20px">テーマ軸（FY14）</h3>
-    <p class="lead">顧客企業の課題テーマに合わせて、アプローチの切り口を変える。</p>
-    <div class="mini m3">
-      <div class="mcard"><span class="tag-pill">主力</span><h4>AX（AI×業務変革）</h4><p>最も感度が高い。ハウスリスト向けメールの主軸。</p></div>
-      <div class="mcard"><span class="tag-pill">攻めのDX</span><h4>DX推進部系</h4><p>IT Week等で需要あり。</p></div>
-      <div class="mcard"><span class="tag-pill">守りのDX</span><h4>基幹システム系</h4><p>年度末・年度初めに予算が動く。</p></div>
-      <div class="mcard"><span class="tag-pill">新規事業</span><h4>新規事業開発</h4><p>PoCフェーズの企業が多い。</p></div>
-      <div class="mcard"><span class="tag-pill">新規事業</span><h4>全社ビジネスコンテスト</h4><p>4月・8月にイベントが集中。</p></div>
-    </div>
-
-    <h3 class="ph" style="margin-top:20px">予算配分（通期250万円・叩き台）</h3>
-    <table class="mkt-tbl">
-      <thead><tr><th>施策カテゴリ</th><th>配分</th><th>比率</th></tr></thead>
-      <tbody>
-        <tr><td>コンテンツ・WP制作（外注）</td><td>80万</td><td><span class="bar" style="--w:85%"></span>32%</td></tr>
-        <tr><td>ウェビナー運営</td><td>54万</td><td><span class="bar" style="--w:58%"></span>22%</td></tr>
-        <tr><td>ホワイトペーパー 年4本</td><td>40万</td><td><span class="bar" style="--w:43%"></span>16%</td></tr>
-        <tr><td>LinkedIn広告（集中投下）</td><td>35万</td><td><span class="bar" style="--w:37%"></span>14%</td></tr>
-        <tr><td>Google広告（最小限）</td><td>14万</td><td><span class="bar" style="--w:15%"></span>6%</td></tr>
-        <tr><td>LP／ツール／GAS改修</td><td>10万</td><td><span class="bar" style="--w:11%"></span>4%</td></tr>
-        <tr><td>予備・緊急対応</td><td>3万</td><td><span class="bar" style="--w:3%"></span>1%</td></tr>
-      </tbody>
-    </table>
-    <p class="note" style="margin-top:8px">別枠検討：Japan IT Week 秋（10月）＋20万／SEO記事＋24万（余裕があれば）。詳細な月次配分・施策一覧はマーケカレンダー（スプレッドシート）で管理。</p>
-
-    <h3 class="ph" style="margin-top:20px">現在稼働中の施策</h3>
-    <ul class="mkt-list">
-      <li>AX推進テーマでのハウスリスト向けメール（Tier別に切り口設計）</li>
-      <li>Pardot経由の自動メルマガ配信（定常ネタ：当月開始PJ・先月登録プロ人材）</li>
-      <li>商談後フォローアップの自動化（GEM ＋ Cowork Skills・進行中）</li>
-      <li>アカウントプランニング定例（FS×IS×ASS×Mgr／隔週のヒアリング会）</li>
-    </ul>
-    <div class="band"><span class="hl">狙い：</span> 案件の「入口」をマーケで太くし、深耕と移行の質に回す母数を増やす。開拓を個人の営業力だけに頼らせない。</div>
-  </div>
-
 
     <h3 class="sec-sub"><i class="ti ti-arrow-big-right-lines"></i>AIに任せ、人は「関係構築」へ <small>― 営業に求める動き</small></h3>
 
@@ -2122,6 +2076,52 @@ details.sec>summary .chev{margin-left:8px!important}
 .exwrap .ex-focus{outline:3px solid var(--orange);outline-offset:3px;border-radius:14px}
 @media(max-width:520px){.ex-pane{width:96vw;max-height:90vh}}
 </style>
+<div id="mkt-detail" style="display:none">
+<div class="panel">
+    <p class="lead">案件数を増やす主エンジンは、個人の新規開拓力ではなく<b>マーケティング</b>。空中戦（マーケ・IS）でリードを継続供給し、開拓を個人に頼らせない。マーケヘッド（松村）が<b>通期予算250万円</b>で、<b>ハウスリスト約8,000件（Tier1〜4 ＋ StarLead）＋約4,000件</b>を運用する。</p>
+    <a class="gtm-link" href="https://kahomatsumura-maker.github.io/mail-strategy-monitoring/" target="_blank" rel="noopener"><i class="ti ti-chart-line"></i> マーケ施策モニタリングを開く</a>
+
+    <h3 class="ph">2軸の取り組み</h3>
+    <div class="mini m2">
+      <div class="mcard"><div class="num">1</div><h4>ハウスリスト内ナーチャリング</h4><p>約8,000件のうちアクティブは5〜10%。残り約90%（約7,000件）を再活性化し、脳内シェアを継続確保。課題発生時に<b>第一想起</b>される状態をつくる。</p></div>
+      <div class="mcard"><div class="num">2</div><h4>ハウスリスト外の新規獲得</h4><p>まだ接点のない企業・担当者へリーチ。<b>新規リードを年300〜500件</b>獲得し、Tier設定 → ナーチャリングへ移行させる。</p></div>
+    </div>
+
+    <h3 class="ph" style="margin-top:20px">テーマ軸（FY14）</h3>
+    <p class="lead">顧客企業の課題テーマに合わせて、アプローチの切り口を変える。</p>
+    <div class="mini m3">
+      <div class="mcard"><span class="tag-pill">主力</span><h4>AX（AI×業務変革）</h4><p>最も感度が高い。ハウスリスト向けメールの主軸。</p></div>
+      <div class="mcard"><span class="tag-pill">攻めのDX</span><h4>DX推進部系</h4><p>IT Week等で需要あり。</p></div>
+      <div class="mcard"><span class="tag-pill">守りのDX</span><h4>基幹システム系</h4><p>年度末・年度初めに予算が動く。</p></div>
+      <div class="mcard"><span class="tag-pill">新規事業</span><h4>新規事業開発</h4><p>PoCフェーズの企業が多い。</p></div>
+      <div class="mcard"><span class="tag-pill">新規事業</span><h4>全社ビジネスコンテスト</h4><p>4月・8月にイベントが集中。</p></div>
+    </div>
+
+    <h3 class="ph" style="margin-top:20px">予算配分（通期250万円・叩き台）</h3>
+    <table class="mkt-tbl">
+      <thead><tr><th>施策カテゴリ</th><th>配分</th><th>比率</th></tr></thead>
+      <tbody>
+        <tr><td>コンテンツ・WP制作（外注）</td><td>80万</td><td><span class="bar" style="--w:85%"></span>32%</td></tr>
+        <tr><td>ウェビナー運営</td><td>54万</td><td><span class="bar" style="--w:58%"></span>22%</td></tr>
+        <tr><td>ホワイトペーパー 年4本</td><td>40万</td><td><span class="bar" style="--w:43%"></span>16%</td></tr>
+        <tr><td>LinkedIn広告（集中投下）</td><td>35万</td><td><span class="bar" style="--w:37%"></span>14%</td></tr>
+        <tr><td>Google広告（最小限）</td><td>14万</td><td><span class="bar" style="--w:15%"></span>6%</td></tr>
+        <tr><td>LP／ツール／GAS改修</td><td>10万</td><td><span class="bar" style="--w:11%"></span>4%</td></tr>
+        <tr><td>予備・緊急対応</td><td>3万</td><td><span class="bar" style="--w:3%"></span>1%</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:8px">別枠検討：Japan IT Week 秋（10月）＋20万／SEO記事＋24万（余裕があれば）。詳細な月次配分・施策一覧はマーケカレンダー（スプレッドシート）で管理。</p>
+
+    <h3 class="ph" style="margin-top:20px">現在稼働中の施策</h3>
+    <ul class="mkt-list">
+      <li>AX推進テーマでのハウスリスト向けメール（Tier別に切り口設計）</li>
+      <li>Pardot経由の自動メルマガ配信（定常ネタ：当月開始PJ・先月登録プロ人材）</li>
+      <li>商談後フォローアップの自動化（GEM ＋ Cowork Skills・進行中）</li>
+      <li>アカウントプランニング定例（FS×IS×ASS×Mgr／隔週のヒアリング会）</li>
+    </ul>
+    <div class="band"><span class="hl">狙い：</span> 案件の「入口」をマーケで太くし、深耕と移行の質に回す母数を増やす。開拓を個人の営業力だけに頼らせない。</div>
+  </div>
+</div>
 <div class="exdrawer" id="exdrawer">
   <div class="ex-ov"></div>
   <aside class="ex-pane">
@@ -2442,6 +2442,8 @@ details.sec>summary .chev{margin-left:8px!important}
   document.querySelectorAll('.vc-node').forEach(function(g){
     g.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();var v=VC[g.dataset.vc];if(v)openDetail(v.t,v.h);});
   });
+  var _feed=document.getElementById('mkt-feed');
+  if(_feed){_feed.addEventListener('click',function(){var el=document.getElementById('mkt-detail');if(el)openDetail('マーケティング施策 ── 空中戦でリードを継続供給（マーケ＝松村）',el.innerHTML);});}
 
   var itemSel='.mcard,.pillar,.rolecard,.rrow,.hwcard,.lcard,.step,.achcard,.opsitem,.tier,.mk-hi,.tgt-banner,.band,.shift-row,.shift-insight,.between,.between-takeaway,.xform,.themodel,.cycle-wrap,.flow,.flow2,.funnel,.purpose,.recall,.msg-strong,.compet,.sol-ex,.qnote,.ctx-hero,.weekgrid,.org,.stats';
   document.querySelectorAll('details.sec').forEach(function(sec,secIndex){
@@ -2516,7 +2518,7 @@ details.sec>summary .chev{margin-left:8px!important}
   var CARD_CFG={
     '現状認識・課題分析':null,
     '戦略':['顧客の「4階層」','各役割の分担と目標KPI','実行プラン（通期）','体制','GTMフロー'],
-    '戦術':['重点施策','マーケティング施策','AIに任せ、人は「関係構築」へ','オペレーション改善']
+    '戦術':['重点施策','AIに任せ、人は「関係構築」へ','オペレーション改善']
   };
   var CARD_TITLE={'AIに任せ、人は「関係構築」へ':'案件を深める・決める'};
   var CARD_SUM={
