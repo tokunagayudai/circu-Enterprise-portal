@@ -176,6 +176,19 @@ body{
 .mf .mfn{flex:none;width:22px;height:22px;border-radius:50%;background:var(--blue);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;margin-top:1px}
 .mf h5{font-size:13px;font-weight:800;color:var(--blue-d);margin:1px 0 3px}
 .mf p{font-size:11.5px;line-height:1.65;color:#5b6b78}
+/* エグゼクティブサマリー：CXメッセージ */
+.cx-hero{background:linear-gradient(150deg,#0b2b45,#0a6e8c);border-radius:16px;padding:28px 30px;color:#fff}
+.cx-eyebrow{font-size:11px;font-weight:800;letter-spacing:.16em;color:#8fd0f0;margin-bottom:12px}
+.cx-title{font-size:25px;font-weight:800;line-height:1.55;color:#fff;text-wrap:balance;margin-bottom:16px}
+.cx-title em{font-style:normal;color:#8fd0f0}
+.cx-bg{font-size:13px;line-height:1.9;color:#dbeaf4}
+.cx-bg b{color:#fff}
+.cx-roles{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:12px}
+@media(max-width:860px){.cx-roles{grid-template-columns:1fr 1fr}}
+.cxr{background:#fff;border:1px solid #dbe8f3;border-radius:12px;padding:14px 15px}
+.cxr-t{display:inline-block;font-size:12px;font-weight:800;color:#fff;background:linear-gradient(135deg,#003d5e,#0079c0);border-radius:20px;padding:4px 13px;margin-bottom:9px}
+.cxr p{font-size:11px;line-height:1.7;color:#51606d}
+.cxr p b{color:var(--blue-d)}
 .flow{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;margin-top:8px}
 .flow .mid{background:linear-gradient(135deg,#0079c0,#005a92);color:#fff;border-radius:12px;padding:20px 12px;text-align:center;font-weight:800;font-size:15px;margin-bottom:12px}
 .flow .stack > div{border-radius:12px;padding:13px 16px;margin-bottom:10px}
@@ -1065,13 +1078,19 @@ details.sec>summary .stitle{letter-spacing:.01em}
 
 
   <div class="panel">
-    <div class="es-frame">これは新しい戦略ではない。<b>以前共有したモデル（4 Value Cycle）を整理</b>し、<b>分析で見えた課題に打ち手を紐づけ</b>、<b>体制の変更で実行</b>する ── その全体像。</div>
+    <div class="cx-hero">
+      <div class="cx-eyebrow">FY14–FY15 メッセージ</div>
+      <h2 class="cx-title">顧客との「<em>文脈</em>」をもとに、<em>一貫性</em>を持ったプロセス活動で、<em>顧客体験（CX）</em>を最大化する。</h2>
+      <p class="cx-bg">いま世の中にはソリューションが溢れ、当社の競合も業態が様々になっている。その中で、<b>認知 → プロジェクト → サポートまで一貫した良質な顧客体験</b>が、継続的なインバウンド相談を生む。逆に、この体験が途切れれば、顧客はすぐに他のソリューションへ流れてしまう。</p>
+    </div>
 
-    <div class="band" style="margin-top:14px"><span class="hl">現状の要点（FY13下期＝前回戦略の結果）：</span> <b>提案化(P2→P3)は47%→56%に改善</b>、既顧客新規も +47%。一方<b>純新規は減少</b>。最大の発見は <b>FS経由とIS経由で受注効率に5倍超の差</b> ── 勝ち筋は<b>FS経由の深耕</b>。</div>
-    <div class="es-now">
-      <div class="enf good"><span class="p">22%</span><span class="l">FS経由　商談 → 受注（P1→P8）</span></div>
-      <span class="enf-a">vs</span>
-      <div class="enf bad"><span class="p">4%</span><span class="l">IS経由　商談 → 受注（P1→P8）</span></div>
+    <h3 class="ph" style="margin-top:18px">一貫したCXを、役割で支える</h3>
+    <div class="cx-roles">
+      <div class="cxr"><span class="cxr-t">マネジメント</span><p>トレンド・潮流・流れを読んで全体戦略を捉え、実効性を伴う施策を講じる。現場・顧客の声を理解し、<b>顧客起点の価値創出</b>を最大化する。</p></div>
+      <div class="cxr"><span class="cxr-t">マーケティング</span><p>顧客起点で施策を回す。<b>認知獲得〜認知維持〜ケイパビリティ拡張</b>を一貫性を持って行う。</p></div>
+      <div class="cxr"><span class="cxr-t">IS</span><p>顧客起点での商談化。顧客に魅力的な訴求を行い、<b>解決策の出発点</b>となる。</p></div>
+      <div class="cxr"><span class="cxr-t">アソシエイト</span><p>課題解決・プロジェクト成功に向けた適切な提案。<b>潜在・未来ニーズ</b>も捉えた包括的な提案をサポートする。</p></div>
+      <div class="cxr"><span class="cxr-t">FS</span><p>顧客のインターフェースとして、一貫性・継続性ある良質なCXを提供。一時的な案件探索でなく<b>顧客との文脈構築</b>（顧客満足＝CS）。</p></div>
     </div>
 
     <div class="es-grid">
