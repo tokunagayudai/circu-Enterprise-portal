@@ -121,6 +121,30 @@ body{
 .tgt-f .tfv small{font-size:12px;color:var(--gray);font-weight:700}
 .tgt-arrow{display:flex;align-items:center;color:#9fb0bf;font-size:22px;font-weight:800;flex:none}
 @media(max-width:640px){.tgt-arrow{transform:rotate(90deg);justify-content:center;width:100%}}
+/* 月次KPI達成状況バー */
+.kpa-gh{font-size:11px;font-weight:800;color:var(--gray);letter-spacing:.03em;margin:18px 0 9px;display:flex;align-items:center;gap:8px}
+.kpa-gh .gtag{font-size:9.5px;font-weight:800;color:#fff;border-radius:6px;padding:2px 9px}
+.kpa-gh .gtag.in{background:#0079c0}.kpa-gh .gtag.mid{background:#d24a3f}.kpa-gh .gtag.out{background:#1a7d38}
+.kpa-row{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.kpa-name{flex:none;width:132px;font-size:12px;font-weight:800;color:var(--blue-d)}
+.kpa-name small{display:block;font-size:9px;font-weight:600;color:var(--gray)}
+.kpa-track{flex:1;height:24px;background:#eef2f6;border-radius:7px;overflow:hidden}
+.kpa-fill{height:100%;border-radius:7px;display:flex;align-items:center;justify-content:flex-end;padding-right:9px;color:#fff;font-size:11px;font-weight:800;min-width:42px;white-space:nowrap}
+.kpa-fill.good{background:linear-gradient(90deg,#0b6b34,#22a047)}
+.kpa-fill.warn{background:linear-gradient(90deg,#b8791a,#e0a52e)}
+.kpa-fill.bad{background:linear-gradient(90deg,#9e2f28,#d24a3f)}
+.kpa-vt{flex:none;width:80px;text-align:right;font-size:13px;font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums}
+.kpa-vt small{color:var(--gray);font-weight:600;font-size:10px}
+.kpa-flag{flex:none;width:64px;font-size:10px;font-weight:800;color:#d24a3f;text-align:right}
+/* exec 現状ファネル */
+.es-now{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:13px 0 0}
+.enf{flex:1;min-width:92px;border-radius:11px;padding:11px 10px;text-align:center;color:#fff}
+.enf.good{background:linear-gradient(135deg,#0b6b34,#22a047)}
+.enf.bad{background:linear-gradient(135deg,#9e2f28,#d24a3f)}
+.enf .p{display:block;font-size:23px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.enf .l{display:block;font-size:10.5px;font-weight:700;opacity:.95;margin-top:3px}
+.enf-a{flex:none;color:#9fb0bf;font-size:15px;font-weight:800}
+@media(max-width:600px){.enf-a{display:none}}
 .flow{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;margin-top:8px}
 .flow .mid{background:linear-gradient(135deg,#0079c0,#005a92);color:#fff;border-radius:12px;padding:20px 12px;text-align:center;font-weight:800;font-size:15px;margin-bottom:12px}
 .flow .stack > div{border-radius:12px;padding:13px 16px;margin-bottom:10px}
@@ -1012,6 +1036,17 @@ details.sec>summary .stitle{letter-spacing:.01em}
   <div class="panel">
     <div class="es-frame">これは新しい戦略ではない。<b>以前共有したモデル（4 Value Cycle）を整理</b>し、<b>分析で見えた課題に打ち手を紐づけ</b>、<b>体制の変更で実行</b>する ── その全体像。</div>
 
+    <div class="band" style="margin-top:14px"><span class="hl">現状の要点（7月）：</span> 勝ち筋（<b>FS経由の既存深耕</b>）は明確。だが月次で見ると<b>商談・受注は好調な一方、中盤の提案・面談が未達</b>。伸びしろは「中盤の推進」にある。</div>
+    <div class="es-now">
+      <div class="enf good"><span class="p">84%</span><span class="l">商談 P1</span></div>
+      <span class="enf-a">▶</span>
+      <div class="enf bad"><span class="p">25%</span><span class="l">提案 P3</span></div>
+      <span class="enf-a">▶</span>
+      <div class="enf bad"><span class="p">39%</span><span class="l">面談 P4</span></div>
+      <span class="enf-a">▶</span>
+      <div class="enf good"><span class="p">89%</span><span class="l">受注 P8</span></div>
+    </div>
+
     <div class="es-grid">
       <!-- 左：実績スナップ -->
       <div class="es-stats">
@@ -1054,6 +1089,26 @@ details.sec>summary .stitle{letter-spacing:.01em}
   <details class="sec" open>
     <summary><span class="stitle"><span class="no">1</span>現状認識・課題分析 <small>― 総論は正しい。直すのは各論</small></span><i class="ti ti-chevron-down chev"></i></summary>
 
+
+    <h3 class="sec-sub"><i class="ti ti-gauge"></i>月次KPI達成状況（7月時点） <small>― どこで詰まっているか</small></h3>
+  <div class="panel">
+    <p class="lead">入口（商談）と出口（受注）は目標に近い。だが<b>中盤の提案(P3)・面談(P4)が大幅に未達</b>。案件を「作って・進める」中盤の推進力が、いま最大の伸びしろ。</p>
+
+    <div class="kpa-gh"><span class="gtag in">入口</span> 商談（P1）── 目標近くまで取れている</div>
+    <div class="kpa-row"><div class="kpa-name">商談 合計<small>P1</small></div><div class="kpa-track"><div class="kpa-fill good" style="width:84%">84%</div></div><div class="kpa-vt">63<small>/75</small></div><div class="kpa-flag"></div></div>
+    <div class="kpa-row"><div class="kpa-name">└ IS経由</div><div class="kpa-track"><div class="kpa-fill good" style="width:82%">82%</div></div><div class="kpa-vt">37<small>/45</small></div><div class="kpa-flag"></div></div>
+    <div class="kpa-row"><div class="kpa-name">└ FS経由</div><div class="kpa-track"><div class="kpa-fill good" style="width:87%">87%</div></div><div class="kpa-vt">26<small>/30</small></div><div class="kpa-flag"></div></div>
+
+    <div class="kpa-gh"><span class="gtag mid">中盤</span> 提案・面談 ── ここが詰まっている</div>
+    <div class="kpa-row"><div class="kpa-name">提案（KSF）<small>P3</small></div><div class="kpa-track"><div class="kpa-fill bad" style="width:25%">25%</div></div><div class="kpa-vt">12<small>/48</small></div><div class="kpa-flag">残り36</div></div>
+    <div class="kpa-row"><div class="kpa-name">面談（KPI）<small>P4</small></div><div class="kpa-track"><div class="kpa-fill bad" style="width:39%">39%</div></div><div class="kpa-vt">14<small>/36</small></div><div class="kpa-flag">残り22</div></div>
+
+    <div class="kpa-gh"><span class="gtag out">出口</span> 受注（KGI）── 目標に肉薄</div>
+    <div class="kpa-row"><div class="kpa-name">受注<small>P8</small></div><div class="kpa-track"><div class="kpa-fill good" style="width:89%">89%</div></div><div class="kpa-vt">16<small>/18</small></div><div class="kpa-flag"></div></div>
+
+    <div class="band" style="margin-top:16px"><span class="hl">ボトルネックは中盤：</span> 商談(84%)・受注(89%)は取れている。詰まっているのは <b>商談 → 提案(25%) → 面談(39%)</b> の中盤。だから注力を <b>①提案の質とスピード（パイプラインマネジメント）</b> と <b>②中盤に流す母数（マーケ × リード管理）</b> に絞る。</div>
+    <p class="note">※ 7月時点の達成状況（各指標の月内目標に対する進捗）。数字はダッシュボード（土田含むチーム全体）より。</p>
+  </div>
 
     <h3 class="sec-sub"><i class="ti ti-chart-dots"></i>定量で見る現状 <small>― 契約数の分解と、課題 → 打ち手</small></h3>
     <div class="panel">
