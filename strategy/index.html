@@ -119,7 +119,8 @@ body{
 .tgt-f .tfl .tag{display:inline-block;font-size:9px;background:#eef7fd;border:1px solid #cfe6f6;border-radius:6px;padding:1px 6px;margin-right:4px;color:var(--blue)}
 .tgt-f .tfv{font-size:30px;font-weight:800;color:var(--blue);font-variant-numeric:tabular-nums;line-height:1}
 .tgt-f .tfv small{font-size:12px;color:var(--gray);font-weight:700}
-.tgt-arrow{display:flex;align-items:center;color:#9fb0bf;font-size:22px;font-weight:800;flex:none}
+.tgt-arrow{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#9fb0bf;font-size:20px;font-weight:800;flex:none;line-height:1}
+.tgt-arrow .rate{font-size:11px;font-weight:800;color:var(--blue);margin-top:3px;white-space:nowrap}
 @media(max-width:640px){.tgt-arrow{transform:rotate(90deg);justify-content:center;width:100%}}
 /* 月次KPI達成状況バー */
 .kpa-gh{font-size:11px;font-weight:800;color:var(--gray);letter-spacing:.03em;margin:18px 0 9px;display:flex;align-items:center;gap:8px}
@@ -1315,12 +1316,15 @@ details.sec>summary .stitle{letter-spacing:.01em}
       </div>
     </div>
     <div class="tgt-funnel">
+      <div class="tgt-f"><span class="tfl">商談(P1)</span><span class="tfv">120<small>件</small></span></div>
+      <div class="tgt-arrow"><span>→</span><span class="rate">33%</span></div>
       <div class="tgt-f"><span class="tfl"><span class="tag">KSF</span>提案(P3)</span><span class="tfv">40<small>件</small></span></div>
-      <div class="tgt-arrow">→</div>
+      <div class="tgt-arrow"><span>→</span><span class="rate">70%</span></div>
       <div class="tgt-f"><span class="tfl"><span class="tag">KPI</span>面談(P4)</span><span class="tfv">28<small>件</small></span></div>
-      <div class="tgt-arrow">→</div>
+      <div class="tgt-arrow"><span>→</span><span class="rate">57%</span></div>
       <div class="tgt-f"><span class="tfl"><span class="tag">KGI</span>受注(P8)</span><span class="tfv">16<small>件</small></span></div>
     </div>
+    <p class="note" style="margin-top:10px">移行率は<b>下期実績に概ね準拠</b>（提案化・受注率はやや引き上げ）。全体 <b>P1→受注 13%</b>（下期実績 10%）。提案→面談 <b>70%</b>（下期 70%）／面談→受注 <b>57%</b>（下期 50%）。</p>
   </div>
 
 
