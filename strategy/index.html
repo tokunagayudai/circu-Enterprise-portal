@@ -145,6 +145,17 @@ body{
 .enf .l{display:block;font-size:10.5px;font-weight:700;opacity:.95;margin-top:3px}
 .enf-a{flex:none;color:#9fb0bf;font-size:15px;font-weight:800}
 @media(max-width:600px){.enf-a{display:none}}
+/* 下期の結果スコアカード（前期比） */
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:6px}
+@media(max-width:640px){.rev-grid{grid-template-columns:1fr 1fr}}
+.rev{background:#f7fbfe;border:1px solid #dbe8f3;border-radius:11px;padding:13px 15px}
+.rev .rk{font-size:11px;font-weight:800;color:var(--gray)}
+.rev .rv{font-size:26px;font-weight:800;color:var(--blue-d);font-variant-numeric:tabular-nums;line-height:1.1;margin-top:3px}
+.rev .rv small{font-size:12px;font-weight:700;color:var(--gray);margin-left:2px}
+.rev .rd{font-size:10.5px;font-weight:800;margin-top:5px}
+.rev .rd.up{color:#1a7d38}
+.rev .rd.flat{color:var(--gray)}
+.rev .rd.down{color:#c0392b}
 .flow{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;margin-top:8px}
 .flow .mid{background:linear-gradient(135deg,#0079c0,#005a92);color:#fff;border-radius:12px;padding:20px 12px;text-align:center;font-weight:800;font-size:15px;margin-bottom:12px}
 .flow .stack > div{border-radius:12px;padding:13px 16px;margin-bottom:10px}
@@ -1146,13 +1157,16 @@ details.sec>summary .stitle{letter-spacing:.01em}
   </div>
 
   <div class="panel">
-    <p class="lead" style="margin-top:0">勝ち筋は「既存アカウントの深掘り」にある ── 数字が裏づけている。</p>
-    <div class="stats">
-      <div class="stat"><div class="big">22%</div><div class="lab">FS経由（既存深掘り）受注率 P1→P8</div></div>
-      <div class="stat"><div class="big">4%</div><div class="lab">IS経由（新規/リサイクル）受注率 P1→P8</div></div>
-      <div class="stat dark"><div class="big">73%</div><div class="lab">新規系受注の73%がFS経由（売上の柱は既存アカウント）</div></div>
+    <h3 class="ph">下期の結果 ── 主要指標の前期比</h3>
+    <div class="rev-grid">
+      <div class="rev"><div class="rk">商談数（P1）</div><div class="rv">462<small>件</small></div><div class="rd up">前期 436 ・+6%</div></div>
+      <div class="rev"><div class="rk">受注数（P8）</div><div class="rv">45<small>件</small></div><div class="rd up">前期 38 ・+18%</div></div>
+      <div class="rev"><div class="rk">受注率（P1→P8）</div><div class="rv">10<small>%</small></div><div class="rd up">前期 9%</div></div>
+      <div class="rev"><div class="rk">平均CK単価</div><div class="rv">148<small>万円/件</small></div><div class="rd up">前期 104万・+42%</div></div>
+      <div class="rev"><div class="rk">平均契約期間</div><div class="rv">4<small>ヶ月</small></div><div class="rd flat">前期 3〜4ヶ月・横ばい</div></div>
+      <div class="rev"><div class="rk">受注CK（受注ベース）</div><div class="rv">237<small>百万円</small></div><div class="rd up">前期 163百万・+46%</div></div>
     </div>
-    <p class="note">※ 経路別受注率は並記で示す（FS経由22% vs IS経由4%・下期）。倍率表現は用いない。</p>
+    <p class="note">※ CK・単価は受注ベース。商談・移行率は新規＋既顧客新規。<b>売上・粗利率（上期39%）</b>の下期確定値は別途反映。</p>
   </div>
   <div class="panel">
     <h3 class="ph" style="color:#c0392b"><i class="ti ti-alert-triangle"></i> 課題 ── 回りきらなかった点（前期比）</h3>
@@ -1170,8 +1184,8 @@ details.sec>summary .stitle{letter-spacing:.01em}
     <p class="lead">精神論や努力不足ではない。仕組みが生んだ構造要因。</p>
     <div class="mini m3" style="margin-top:14px">
       <div class="mcard"><div class="num">1</div><h4>FSのみで4サイクルを回す限界</h4><p>4 Value Cycle を<b>1人で全工程</b>循環させることの限界。一人分の動きをそのまま全員に求めたため、動くことができなかった。</p></div>
-      <div class="mcard"><div class="num">2</div><h4>CK月次が中長期を殺す</h4><p>評価は半期だがCKは毎月追う。成果に時間のかかるアカウント開拓は後回しに。達成意識が高い人ほど目先へ向かう。</p></div>
-      <div class="mcard"><div class="num">3</div><h4>FS起点の施策は形骸化</h4><p>工数を増やす施策は防衛本能で淘汰される。送付除外、ボタン放置。FSの能動的アクションを入り口にした施策は必ず死ぬ。</p></div>
+      <div class="mcard"><div class="num">2</div><h4>案件増でキャパシティが逼迫</h4><p>案件数が増える中、提案・<b>事務業務</b>まで含めた稼働が個人のキャパシティ限界に。結果として <b>FS経由案件の受注が減少</b>。回すための時間と体制が追いつかなかった。</p></div>
+      <div class="mcard"><div class="num">3</div><h4>FSへの施策協力は分散を招いた</h4><p>FSにも企画・施策協力を担ってもらおうとしたが、<b>脳内リソースの分散</b>を起こしてしまった。今後は<b>企画側で巻き取って完結させる</b>方針。</p></div>
     </div>
     <div class="band"><span class="hl">結論：</span> 変えるのは「何をやるか（What）」ではない。<b>「どう回すか（How / Who）」</b>である。</div>
   </div>
