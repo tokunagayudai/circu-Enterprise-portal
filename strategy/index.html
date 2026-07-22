@@ -884,7 +884,23 @@ details.sec>summary .stitle{letter-spacing:.01em}
 /* ボタン系アクセント */
 .gtm-link{background:#0079c0;border-radius:10px;box-shadow:0 2px 8px rgba(0,121,192,.2)}
 .gtm-link:hover{background:#0b2b45}
-/* スクロールバー等の細部は据え置き */
+/* スライドデッキ（章内を横送り） */
+.deck{margin:16px 2px 4px}
+.deck-bar{display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.deck-tabs{display:flex;gap:7px;overflow-x:auto;flex:1;padding-bottom:3px}
+.deck-tab{flex:none;background:#fff;border:1px solid #dfe6ee;border-radius:20px;padding:7px 15px;font-size:12px;font-weight:700;color:#51606d;cursor:pointer;white-space:nowrap;font-family:inherit;display:flex;align-items:center;gap:6px}
+.deck-tab .dt-n{font-family:'JetBrains Mono',monospace;font-size:10px;color:#9fb0bf}
+.deck-tab:hover{border-color:#0079c0;color:#0b2b45}
+.deck-tab.active{background:#0b2b45;border-color:#0b2b45;color:#fff}
+.deck-tab.active .dt-n{color:#8fd0f0}
+.deck-arrow{flex:none;width:38px;height:38px;border-radius:50%;border:1px solid #dfe6ee;background:#fff;color:#0b2b45;font-size:22px;line-height:1;cursor:pointer;display:grid;place-items:center;transition:.12s;font-family:inherit}
+.deck-arrow:hover{background:#0079c0;color:#fff;border-color:#0079c0}
+.deck-arrow:disabled{opacity:.3;cursor:default;background:#fff;color:#0b2b45;border-color:#dfe6ee}
+.deck-count{flex:none;font-size:11px;font-weight:800;color:#8093a3;font-family:'JetBrains Mono',monospace;min-width:46px;text-align:center}
+.deck-slide{display:none}
+.deck-slide.active{display:block;animation:deckin .3s ease}
+@keyframes deckin{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
+.deck-slide>.sec-sub:first-child{margin-top:0}
 </style>
 </head>
 <body>
@@ -908,8 +924,8 @@ details.sec>summary .stitle{letter-spacing:.01em}
 
   <div class="ctrl-bar">
     <div class="ex-legend">
-      <i class="ti ti-notebook"></i>
-      <span>各章の <b>解説</b> ボタン／各項目の <b><i class="ti ti-info-circle"></i></b> をクリックすると、右側に<b>説明</b>がスライド表示されます</span>
+      <i class="ti ti-arrows-horizontal"></i>
+      <span>各章は<b>スライド形式</b>。上部のタブ、または <b>◀ ▶</b> で1トピックずつ切り替えて閲覧できます</span>
     </div>
     <div class="toggle-bar">
       <button onclick="document.querySelectorAll('details.sec').forEach(d=>d.open=true)"><i class="ti ti-chevrons-down"></i> すべて開く</button>
@@ -2660,6 +2676,38 @@ details.sec>summary .chev{margin-left:8px!important}
     return '';
   }
   // 章名 → 主要カード境界（null=各 sec-sub をカード化）／タイトル上書き
+  function accordionize(wrap){
+    var kids=[].slice.call(wrap.children);
+    var subIdx=[]; kids.forEach(function(c,i){ if(c.classList&&c.classList.contains('sec-sub')) subIdx.push(i); });
+    if(subIdx.length<2) return;
+    var frag=document.createElement('div');
+    for(var i=0;i<subIdx[0];i++) frag.appendChild(kids[i]);
+    for(var s=0;s<subIdx.length;s++){
+      var start=subIdx[s], end=(s+1<subIdx.length)?subIdx[s+1]:kids.length;
+      var bodyNodes=kids.slice(start+1,end);
+      if(!bodyNodes.length) continue;
+      var headEl=kids[start];
+      var ic=headEl.querySelector('i'); var icls=ic?ic.className:'ti ti-point';
+      var c2=headEl.cloneNode(true); var sm=c2.querySelector('small'); var smt=sm?sm.textContent.replace(/^[\s―\-]+/,'').trim():'';
+      if(sm)sm.remove(); var ic0=c2.querySelector('i'); if(ic0)ic0.remove(); var no=c2.querySelector('.no'); if(no)no.remove();
+      var mt=c2.textContent.replace(/\s+/g,' ').trim();
+      var open=!frag.querySelector('.acc-item');
+      var item=document.createElement('div'); item.className='acc-item'+(open?' open':'');
+      var h=document.createElement('div'); h.className='acc-head';
+      h.innerHTML='<i class="ah-ic '+icls+'"></i><span class="ah-t">'+mt+(smt?' <small>'+smt+'</small>':'')+'</span><i class="ah-cv ti ti-chevron-down"></i>';
+      h.addEventListener('click',function(){this.parentNode.classList.toggle('open');});
+      var body=document.createElement('div'); body.className='acc-body';
+      bodyNodes.forEach(function(n){body.appendChild(n);});
+      item.appendChild(h); item.appendChild(body); frag.appendChild(item);
+    }
+    wrap.innerHTML=''; wrap.appendChild(frag);
+  }
+  function bindVc(wrap){
+    wrap.querySelectorAll('.vc-node').forEach(function(g){
+      g.style.cursor='pointer';
+      g.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();var v=VC[g.dataset.vc];if(v)openDetail(v.t,v.h);});
+    });
+  }
   var CARD_CFG={
     '現状認識・課題分析':null,
     '戦略':['顧客の「4階層」','各役割の分担と目標KPI','実行プラン（通期）','体制','GTMフロー'],
@@ -2695,30 +2743,43 @@ details.sec>summary .chev{margin-left:8px!important}
       sg.sum=CARD_SUM[sg.title]||firstSummary(sg.nodes.length?sg.nodes:[sg.head]);
       sg.html=tmp.innerHTML;
     });
-    // 解説ボタンは撤去（カードで代替）
+    // 解説ボタンは撤去
     var seb=sec.querySelector('summary .sec-explain'); if(seb) seb.remove();
     // 元コンテンツを隠す（pre は残す）
     kids.forEach(function(ch){ if(pre.indexOf(ch)<0) ch.style.display='none'; });
-    // カードグリッド生成
-    var hint=document.createElement('div'); hint.className='topic-hint';
-    hint.innerHTML='<i class="ti ti-hand-click"></i> 各カードをタップすると詳細が開きます';
-    var grid=document.createElement('div'); grid.className='topic-grid';
+    // ── スライドデッキ生成（タブ＋◀▶で1トピックずつ横送り）──
+    var deck=document.createElement('div'); deck.className='deck';
+    var bar=document.createElement('div'); bar.className='deck-bar';
+    var prev=document.createElement('button'); prev.type='button'; prev.className='deck-arrow'; prev.setAttribute('aria-label','前へ'); prev.innerHTML='‹';
+    var tabs=document.createElement('div'); tabs.className='deck-tabs';
+    var next=document.createElement('button'); next.type='button'; next.className='deck-arrow'; next.setAttribute('aria-label','次へ'); next.innerHTML='›';
+    var count=document.createElement('div'); count.className='deck-count';
+    var stage=document.createElement('div'); stage.className='deck-stage';
     segs.forEach(function(sg,i){
-      var card=document.createElement('button'); card.type='button'; card.className='topic-card';
-      card.innerHTML='<span class="tc-n">'+('0'+(i+1)).slice(-2)+'</span>'
-        +'<span class="tc-ic"><i class="'+sg.icon+'"></i></span>'
-        +'<span class="tc-t">'+sg.title+'</span>'
-        +(sg.sub?'<span class="tc-s">'+sg.sub+'</span>':'')
-        +(sg.sum?'<span class="tc-d">'+sg.sum+'</span>':'')
-        +'<span class="tc-go">詳細を見る <i class="ti ti-arrow-right"></i></span>';
-      card.addEventListener('click',function(){openDetail(sg.title,sg.html);});
-      grid.appendChild(card);
+      var tab=document.createElement('button'); tab.type='button'; tab.className='deck-tab'; tab.dataset.i=i;
+      tab.innerHTML='<span class="dt-n">'+('0'+(i+1)).slice(-2)+'</span> '+sg.title;
+      tabs.appendChild(tab);
+      var slide=document.createElement('div'); slide.className='deck-slide'; slide.dataset.i=i;
+      slide.innerHTML=sg.html; accordionize(slide); bindVc(slide);
+      stage.appendChild(slide);
     });
+    bar.appendChild(prev); bar.appendChild(tabs); bar.appendChild(count); bar.appendChild(next);
+    deck.appendChild(bar); deck.appendChild(stage);
+    var idx=0;
+    function dshow(n){ idx=Math.max(0,Math.min(segs.length-1,n));
+      tabs.querySelectorAll('.deck-tab').forEach(function(t){t.classList.toggle('active',+t.dataset.i===idx);});
+      stage.querySelectorAll('.deck-slide').forEach(function(s){s.classList.toggle('active',+s.dataset.i===idx);});
+      count.textContent=(idx+1)+' / '+segs.length;
+      prev.disabled=idx===0; next.disabled=idx===segs.length-1;
+      var at=tabs.querySelector('.deck-tab.active'); if(at&&at.scrollIntoView) at.scrollIntoView({block:'nearest',inline:'center'});
+    }
+    prev.addEventListener('click',function(){dshow(idx-1);});
+    next.addEventListener('click',function(){dshow(idx+1);});
+    tabs.addEventListener('click',function(e){var tb=e.target.closest('.deck-tab'); if(tb)dshow(+tb.dataset.i);});
     var anchor=sec.querySelector('summary');
-    // pre がある場合はその後ろ、なければ summary 直後
     var insAfter=pre.length?pre[pre.length-1]:anchor;
-    insAfter.parentNode.insertBefore(grid, insAfter.nextSibling);
-    insAfter.parentNode.insertBefore(hint, grid);
+    insAfter.parentNode.insertBefore(deck, insAfter.nextSibling);
+    dshow(0);
   });
 })();
 </script>
