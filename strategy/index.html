@@ -2510,25 +2510,8 @@ details.sec>summary .chev{margin-left:8px!important}
   var _feed=document.getElementById('mkt-feed');
   if(_feed){_feed.addEventListener('click',function(){var el=document.getElementById('mkt-detail');if(el)openDetail('マーケティング施策 ── 空中戦でリードを継続供給（マーケ＝松村）',el.innerHTML);});}
 
-  var itemSel='.mcard,.pillar,.rolecard,.rrow,.hwcard,.lcard,.step,.achcard,.opsitem,.tier,.mk-hi,.tgt-banner,.band,.shift-row,.shift-insight,.between,.between-takeaway,.xform,.themodel,.cycle-wrap,.flow,.flow2,.funnel,.purpose,.recall,.msg-strong,.compet,.sol-ex,.qnote,.ctx-hero,.weekgrid,.org,.stats';
-  document.querySelectorAll('details.sec').forEach(function(sec,secIndex){
-    sec.dataset.exsec=secIndex;
-    // 章ヘッダーの解説ボタン
-    var sum=sec.querySelector('summary');
-    var b=document.createElement('button'); b.className='sec-explain'; b.type='button';
-    b.innerHTML='<i class="ti ti-notebook"></i> 解説';
-    b.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();openSec(sec);});
-    var chev=sum.querySelector('.chev'); if(chev) sum.insertBefore(b,chev); else sum.appendChild(b);
-    // 各項目のⓘバッジ（入れ子は最外側のみ）→ その章の解説を開く
-    [].forEach.call(sec.querySelectorAll(itemSel),function(it){
-      if(it.parentElement && it.parentElement.closest(itemSel)) return;
-      if(getComputedStyle(it).position==='static') it.style.position='relative';
-      var ib=document.createElement('button'); ib.className='exi'; ib.type='button'; ib.title='この章の解説';
-      ib.innerHTML='<i class="ti ti-info-circle"></i>';
-      ib.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();openSec(sec);});
-      it.appendChild(ib);
-    });
-  });
+  // 章ヘッダーの「解説」ボタン／項目のⓘバッジは廃止（カード詳細と内容が重複するため）
+  document.querySelectorAll('details.sec').forEach(function(sec,secIndex){ sec.dataset.exsec=secIndex; });
 
   // ── 章内カード化：主要トピックをカードにし、タップで詳細をドロワー表示 ──
   // detail を .exwrap で表示（openSec と同じパネル整形＋vc-node 再バインド）
