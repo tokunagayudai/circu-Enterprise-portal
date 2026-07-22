@@ -924,18 +924,18 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
 .ctx-hero p b{color:#fff}
 .themodel{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center;margin-top:18px;position:relative;z-index:2}
 .themodel .tm{border-radius:12px;padding:15px 16px}
-.themodel .tm.old{background:rgba(255,255,255,.1)}
-.themodel .tm.new{background:#fff;color:var(--ink)}
+.themodel .tm.old{background:#eef4f8;border:1px solid #dbe6ef}
+.themodel .tm.new{background:#e8f6ff;color:var(--ink);border:1px solid #bfe0f5}
 .themodel .tm h5{font-size:12px;font-weight:800;margin-bottom:7px;display:flex;align-items:center;gap:6px}
-.themodel .tm.old h5{color:#9db8c9}
+.themodel .tm.old h5{color:#6b7680}
 .themodel .tm.new h5{color:var(--blue)}
 .themodel .tm p{font-size:12px;line-height:1.6;color:inherit}
-.themodel .tm.old p{color:#cdd9e3}
+.themodel .tm.old p{color:#5b6b78}
 .themodel .tm.new p{color:var(--ink)}
-.themodel .tmarrow{color:#7fc4ec;font-size:24px;display:grid;place-items:center}
+.themodel .tmarrow{color:var(--blue);font-size:24px;display:grid;place-items:center}
 .layers{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;position:relative;z-index:2}
-.layers .ly{background:rgba(255,255,255,.12);border-radius:20px;padding:6px 14px;font-size:11.5px;font-weight:700;color:#eaf4fb}
-.layers .ly i{color:#7fc4ec;margin-right:4px}
+.layers .ly{background:#eef4f8;border:1px solid #dbe6ef;border-radius:20px;padding:6px 14px;font-size:11.5px;font-weight:700;color:var(--blue-d)}
+.layers .ly i{color:var(--blue);margin-right:4px}
 .compet{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .compet .cp{background:#fff;border:1.5px solid #d6e8f5;border-radius:10px;padding:9px 14px;font-size:12.5px;font-weight:700;color:var(--blue-d);display:flex;align-items:center;gap:7px}
 .compet .cp i{color:var(--orange)}
@@ -1575,7 +1575,7 @@ details.sec>summary .stitle{letter-spacing:.01em}
     </div>
   </div>
 
-<h3 class="sec-sub"><i class="ti ti-robot"></i>オペレーション改善 <small>― GTM整備とAI自動化で工数を削る</small></h3>
+<h3 class="sec-sub"><i class="ti ti-robot"></i>オペレーション改善 <small>― AI自動化で工数を削り、関係構築へ再投資</small></h3>
 
   <div class="panel">
     <h3 class="ph">まず工数を削る。空いた時間をアカウントへ再投資する。</h3>
@@ -1584,130 +1584,8 @@ details.sec>summary .stitle{letter-spacing:.01em}
       <div class="mcard" style="background:#f7fbfe"><h4 style="color:var(--gray)"><i class="ti ti-robot"></i> AIで削る（作業）</h4><p style="margin-top:6px">・提案書作成 ── 自動生成パイプライン整備済み<br>・要件定義 ── AIで簡素化（手間減）＋高度化（精度増）<br>・議事録→SF連携 ── 自動化（情シスと構築中）</p></div>
       <div class="mcard" style="background:linear-gradient(135deg,#0079c0,#003d5e)"><h4 style="color:#fff"><i class="ti ti-users"></i> 空いた時間で増やす（関係構築）</h4><p style="color:#e8f6ff;margin-top:6px">AIが裏方を担うからこそ、FSは一人の人格として顧客に向き合える。減らした時間を、人にしかできない関係構築へ振り向ける。</p></div>
     </div>
-    <div class="mcard fill" style="margin-top:14px">
-      <h4 style="color:var(--blue-d)"><i class="ti ti-sitemap"></i> GTM統合フローの整備</h4>
-      <p style="margin-top:6px">リードの状態（リサイクル/休眠/未提案/稼働後）と、誰の・どんなアクションが必要かを一枚のフローに可視化。チーム全員が同じ地図で動く共通言語であり、将来の全社プロセスの原典。新メンバーのオンボーディング教材としても機能する。 <a href="../gtm/" target="_blank" style="color:var(--blue);font-weight:700;text-decoration:none">→ GTM統合フローを見る</a></p>
-    </div>
-    <div class="mcard fill" style="margin-top:14px">
-      <h4 style="color:var(--blue-d)"><i class="ti ti-map-2"></i> アカウントプランニングの「入力レス」設計</h4>
-      <p style="margin-top:6px">FSに新たな入力作業を負わせない。<b>FSは「喋るだけ」で、アカウントプランが積み上がる</b>設計にする。FS（内部情報）とマーケ・IS（外部情報）を中間の<b>情報プール</b>に集約し、<b>AIでアカウント企画を自動設計</b>。営業企画はマーケ／ISがボールを持ち、出口で<b>二経路のアプローチ</b>（空中戦・地上戦）へ展開する。</p>
-
-      <div class="apf-legend" style="margin-top:14px">
-        <div class="lg"><span class="sw mk"></span>マーケ・IS 経路（外部・デジタル＝空中戦）</div>
-        <div class="lg"><span class="sw fs"></span>FS 経路（内部・地上戦）</div>
-        <div class="lg"><span class="sw hub"></span>集約・企画（AI／Notion）</div>
-      </div>
-
-      <div class="apf">
-        <!-- ① 入力 -->
-        <div>
-          <div class="colhead"><span class="n">1</span><span class="t">入力 <small>INPUT</small></span></div>
-          <div class="col">
-            <div class="apc mk">
-              <span class="lane mk"><i class="ti ti-world"></i> マーケ・IS</span>
-              <h4>外部情報</h4>
-              <ul>
-                <li><span class="dot"></span>外部リサーチ</li>
-                <li><span class="dot"></span>電話</li>
-                <li><span class="dot"></span>メール</li>
-              </ul>
-            </div>
-            <div class="apc fs">
-              <span class="lane fs"><i class="ti ti-user-heart"></i> FS</span>
-              <h4>内部情報</h4>
-              <ul>
-                <li><span class="dot"></span>地上戦（現場の一次情報）</li>
-                <li><span class="dot"></span>PJT・案件からの学び</li>
-                <li><span class="dot"></span>顧客ヒアリング</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="apf-arr"><i class="ti ti-arrow-right"></i></div>
-
-        <!-- ② 集約・企画 -->
-        <div>
-          <div class="colhead"><span class="n">2</span><span class="t">集約・企画 <small>HUB</small></span></div>
-          <div class="apf-hub">
-            <div class="pk">INFORMATION POOL</div>
-            <div class="pt">情報プール</div>
-            <div class="ps"><i class="ti ti-brand-notion"></i> Notion に集約</div>
-            <div class="cadence"><i class="ti ti-calendar-repeat"></i> ヒアリング会は隔週開催</div>
-            <div class="hplan">
-              <div class="hh"><i class="ti ti-robot"></i> アカウントプランニング</div>
-              <p>マーケ／IS がボールを持ち、FS のヒアリングを元に <b>AI でアカウント企画を自動設計</b>。企画結果を両経路の出口へ展開する。</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="apf-arr split"><i class="ti ti-arrow-right"></i><i class="ti ti-arrow-right"></i></div>
-
-        <!-- ③ 出口 -->
-        <div>
-          <div class="colhead"><span class="n">3</span><span class="t">出口 / アプローチ <small>OUTPUT</small></span></div>
-          <div class="col">
-            <div class="apc mk">
-              <span class="lane mk"><i class="ti ti-broadcast"></i> マーケ・IS</span>
-              <h4>ハウスリスト活用 ＋ アウトバウンド</h4>
-              <p class="cap">カスタマイズアプローチと新規開拓の二本立て</p>
-              <ul>
-                <li><span class="dot"></span><b>アウトバウンド</b>（新規開拓）</li>
-                <li><span class="dot"></span>部署（文脈なし）<span class="arw">→</span>メール・電話</li>
-                <li><span class="dot"></span>コンテンツ抜粋 <span class="arw">→</span> アプローチ設計（Tier1／アカプラ・カスタム）</li>
-              </ul>
-            </div>
-            <div class="apc fs">
-              <span class="lane fs"><i class="ti ti-users"></i> FS</span>
-              <h4>地上戦・深耕営業</h4>
-              <p class="cap">既存関係を軸にした深耕アプローチ</p>
-              <ul>
-                <li><span class="dot"></span>リード（現在・過去情報）<span class="arw">→</span>メール・電話</li>
-                <li><span class="dot"></span>横展開</li>
-                <li><span class="dot"></span>レビュー MTG</li>
-                <li><span class="dot"></span>会食・ランチ／情報交換・支援同席</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="band" style="margin-top:16px"><span class="hl">運用：</span> 情報プールへの入力を起点に、<b>隔週のヒアリング会</b>でFSの一次情報を吸い上げ、AIがアカウント企画へ変換。FSに新たな入力作業は負わせず「喋るだけ」で企画が積み上がる。</div>
-    </div>
   </div>
 
-  <div class="panel">
-    <h3 class="ph">GTMオペレーション自動化フロー ── Zoom商談後を一気通貫で</h3>
-    <p class="lead">商談終了から提案書・顧客メール下書きまで、Salesforce と Claude Cowork で自動的につなぐ。</p>
-    <div class="gop">
-      <div class="gop-node grey"><b>Zoom商談終了</b><span>録音・文字起こし</span></div>
-      <div class="gop-arrow"><i class="ti ti-arrow-down"></i></div>
-      <div class="gop-node grey"><b>SF自動格納</b><span>フェーズ更新 ＋ 要件詳細も同時記入</span></div>
-      <div class="gop-arrow"><i class="ti ti-arrow-down"></i></div>
-      <div class="gop-cowork">
-        <div class="gop-cw-h"><i class="ti ti-sparkles"></i> Claude Cowork <small>要件整理〜提案書作成まで一括</small></div>
-        <div class="gop-parallel">
-          <div class="gop-node green"><b>要件整理</b><span>ASIS / TOBE / GAP</span></div>
-          <div class="gop-node green">
-            <b>人選</b><span>候補者選定の3ステップ</span>
-            <div class="gop-steps">
-              <div class="gop-step">① 候補者検索</div>
-              <div class="gop-step">② プロへ依頼メール</div>
-              <div class="gop-step">③ 稼働確認受信</div>
-            </div>
-          </div>
-        </div>
-        <div class="gop-merge-wrap"><div class="gop-merge">▼ マージ</div></div>
-        <div class="gop-arrow"><i class="ti ti-arrow-down"></i></div>
-        <div class="gop-node green solo"><b>提案書作成</b><span>概要 / マイルストーン / 体制図 / 比較 / 詳細</span></div>
-      </div>
-      <div class="gop-arrow"><i class="ti ti-arrow-down"></i></div>
-      <div class="gop-branch">
-        <div class="gop-node grey"><b>共有ドライブ保存</b></div>
-        <div class="gop-node accent"><b>顧客メール下書き</b></div>
-      </div>
-    </div>
-  </div>
 
     <h3 class="sec-sub"><i class="ti ti-checklist"></i>ルール <small>― チームの動き方（同期は最小・間は非同期）</small></h3>
 
