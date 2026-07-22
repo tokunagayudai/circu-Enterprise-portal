@@ -347,6 +347,9 @@ body{
 .vcm .vcm-h .k{display:block;font-size:9.5px;font-weight:800;letter-spacing:1px;color:var(--blue-mid);font-family:'JetBrains Mono',monospace;margin-bottom:2px}
 .vcm .vcm-ch{display:inline-block;margin:9px 0 8px;font-size:12px;font-weight:800;color:#fff;background:linear-gradient(135deg,#0079c0,#003d5e);border-radius:8px;padding:5px 11px}
 .vcm p{font-size:12px;color:var(--gray);line-height:1.6;margin:0}
+.cyc-ch{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:800;color:#fff;background:linear-gradient(135deg,#0079c0,#003d5e);border-radius:10px;padding:9px 16px;margin-bottom:12px;box-shadow:0 3px 10px rgba(0,121,192,.18)}
+.cyc-ch i{font-size:16px;color:#8fd0f0}
+.cyc-ch .lbl{font-size:10.5px;font-weight:800;letter-spacing:.5px;color:#bfe3f7}
 /* 4VC 縦フロー（マーケ起点の循環） */
 .vcflow{display:flex;flex-direction:column;align-items:center;margin-top:12px}
 .vcf-feed{background:linear-gradient(135deg,#0a6e8c,#0079c0);color:#fff;border-radius:12px;padding:12px 22px;font-weight:800;font-size:14.5px;text-align:center;box-shadow:0 4px 14px rgba(0,121,192,.2);display:flex;flex-direction:column;gap:3px;max-width:560px;width:100%;align-items:center;cursor:pointer;transition:transform .15s,box-shadow .15s;position:relative}
@@ -1443,10 +1446,7 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
     <div class="vcflow">
       <div class="vcf-feed" id="mkt-feed"><span class="fh"><i class="ti ti-broadcast"></i> マーケティング活動</span><span>テーマコンテンツ・プロ人材／事例メルマガ・提案ポータル</span><span class="vf-more">タップでマーケティング施策の詳細 ›</span></div>
       <div class="vcf-arw"><i class="ti ti-arrow-down"></i></div>
-      <div class="cyc-grid">
-        <div class="ca ap"><span class="k">ACCOUNT PLANNING</span><b>アカウント戦略</b><span class="ch">Tier1対象は とにかく接点</span></div>
-        <div class="ca cs"><span class="k">CUSTOMER SUCCESS</span><b>稼働中顧客</b><span class="ch">レビューMTGからの接点</span></div>
-        <div class="cycle">
+      <div class="cycle">
           <svg viewBox="0 0 300 300">
             <defs>
               <marker id="arv" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#0079c0"/></marker>
@@ -1465,9 +1465,6 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
             <g class="vc-node" data-vc="cs" style="cursor:pointer"><rect x="0" y="122" width="100" height="56" rx="12" fill="#e8f6ff" stroke="#0a6e8c" stroke-width="2"/><text x="50" y="146" text-anchor="middle" fill="#0a6e8c" font-size="9.5" font-weight="700" font-family="'M PLUS Rounded 1c'">Customer Success</text><text x="50" y="164" text-anchor="middle" fill="#1a2a38" font-size="11">顧客深耕</text></g>
           </svg>
         </div>
-        <div class="ca le"><span class="k">LEAD ENGAGEMENT</span><b>リード育成</b><span class="ch">マーケによる定期リレーション</span></div>
-        <div class="ca pm"><span class="k">PIPELINE MANAGEMENT</span><b>案件推進</b><span class="ch">提案品質と移行率の最大化</span></div>
-      </div>
       <div class="vcf-loop"><i class="ti ti-refresh"></i> 4つのサイクルを循環させ、LTVを最大化する</div>
     </div>
     <div class="band light" style="margin-top:12px"><span class="hl">規律：</span> チャネルは「顧客の状態」で決める。空回りのアポ取りをやめ、<b>文脈に合った接点</b>に集中する。</div>
@@ -2385,6 +2382,7 @@ details.sec>summary .chev{margin-left:8px!important}
   var VC={
     ap:{t:'Account Planning ── アカウント戦略', h:`
   <div class="panel">
+    <div class="cyc-ch"><i class="ti ti-plug-connected"></i><span class="lbl">接点チャネル</span> Tier1対象は とにかく接点</div>
     <p class="lead">関係性があり、ポテンシャルの高いアカウントに<b>チームのリソースを集中</b>し、大型案件・他部門開拓・複数案件で<b>LTVを最大化</b>する。各メンバーの<b>Tier1アカプラ対象は決定済み</b>。その企業を「案件」ではなく<b>アカウント単位</b>で開拓する。</p>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 14px"><span style="font-size:11px;font-weight:800;color:#6b6864">担い手</span><span class="chip fs"><i class="ti ti-user-heart"></i> FS：地上戦</span><span class="chip is"><i class="ti ti-headset"></i> IS：空中戦</span></div>
     <div class="mtg-stepper">
@@ -2422,6 +2420,7 @@ details.sec>summary .chev{margin-left:8px!important}
   <div class="panel" style="padding:14px 16px"><a class="gtm-link" href="../gtm/" target="_blank" rel="noopener"><i class="ti ti-sitemap"></i> GTMフロー全体（詳細プロセス）を見る</a></div>`},
     le:{t:'Lead Engagement ── リード育成', h:`
   <div class="panel">
+    <div class="cyc-ch"><i class="ti ti-plug-connected"></i><span class="lbl">接点チャネル</span> マーケによる定期リレーション</div>
     <p class="lead">マーケ・IS が担う<b>空中戦</b>。休眠リードを非同期のナーチャリングで温め、<b>第一想起</b>を獲得して地上戦（FS）へ渡す。</p>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 14px"><span style="font-size:11px;font-weight:800;color:#6b6864">担い手</span><span class="chip mk"><i class="ti ti-speakerphone"></i> マーケ</span><span class="chip is"><i class="ti ti-headset"></i> IS</span><span style="font-size:11px;font-weight:700;color:#5599be">空中戦</span></div>
     <h3 class="ph">Tier別の打ち分け</h3>
@@ -2444,6 +2443,7 @@ details.sec>summary .chev{margin-left:8px!important}
   </div>`},
     pm:{t:'Pipeline Management ── 案件推進', h:`
   <div class="panel">
+    <div class="cyc-ch"><i class="ti ti-plug-connected"></i><span class="lbl">接点チャネル</span> 提案品質と移行率の最大化</div>
     <p class="lead">一つの接点を機会に、周辺テーマの深掘りから<b>現在・未来・周辺ニーズ</b>を獲得。裏方はAIに巻き取らせ、人は関係構築と染み出しへ。</p>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 14px"><span style="font-size:11px;font-weight:800;color:#6b6864">担い手</span><span class="chip fs"><i class="ti ti-user-heart"></i> FS</span><span class="chip as"><i class="ti ti-user"></i> アソシエイト</span></div>
     <h3 class="ph">PLシートの2フラグ（記録）</h3>
@@ -2467,6 +2467,7 @@ details.sec>summary .chev{margin-left:8px!important}
   </div>`},
     cs:{t:'Customer Success ── 顧客深耕', h:`
   <div class="panel">
+    <div class="cyc-ch"><i class="ti ti-plug-connected"></i><span class="lbl">接点チャネル</span> レビューMTGからの接点</div>
     <p class="lead">受注案件の成功を確実にし、継続・追加ロールで<b>LTVを伸ばす</b>（地上戦・来期の最注力）。スターリード起点の深耕でリレーションを構築する。</p>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 14px"><span style="font-size:11px;font-weight:800;color:#6b6864">担い手</span><span class="chip fs"><i class="ti ti-user-heart"></i> FS</span><span style="font-size:11px;font-weight:700;color:#a5600f">地上戦・来期最注力</span></div>
     <h3 class="ph">レビューMTGを最初から固定する</h3>
