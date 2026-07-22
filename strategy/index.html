@@ -352,6 +352,12 @@ body{
 .eng li{position:relative;padding-left:20px;font-size:13px;line-height:1.55;color:var(--ink);font-weight:600}
 .eng li::before{content:'';position:absolute;left:5px;top:7px;width:8px;height:8px;border-radius:50%;background:var(--blue)}
 .eng.fs li::before{background:var(--green)}
+.eng .st-grp{margin-top:9px}
+.eng .st-lbl{display:inline-block;font-size:10px;font-weight:800;border-radius:6px;padding:2px 10px;margin-bottom:5px}
+.eng .st-lbl.now{background:#e6f7ec;color:var(--green-d);border:1.5px solid #b9e6c7}
+.eng .st-lbl.plan{background:var(--blue-l);color:var(--blue-d);border:1.5px solid #cfe6f6}
+.eng .st-lbl.prep{background:#fff3e0;color:#a5600f;border:1.5px solid #f4d9b0}
+.eng .st-grp ul{margin:0}
 /* 4VC具体化：ステータス別チャネル */
 .vc-map{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:12px}
 @media(max-width:640px){.vc-map{grid-template-columns:1fr}}
@@ -2175,13 +2181,25 @@ details.sec>summary .chev{margin-left:8px!important}
       </div>
       <div class="eng mk">
         <div class="eng-h"><i class="ti ti-user-plus"></i> ② ハウスリスト外 <span>新規獲得</span></div>
-        <p style="font-size:12px;color:var(--gray);line-height:1.6;margin:0 0 10px">まだ接点のない企業・担当者へリーチ。<b>新規リードを獲得</b>し、商談 → ナーチャリングへ移行させる。</p>
-        <ul>
-          <li>LinkedIn広告（集中投下）／Google広告</li>
-          <li>新規ウェビナー・外部集客</li>
-          <li>ホワイトペーパー（新規DL獲得）</li>
-          <li>SEO記事・展示会（Japan IT Week）</li>
-        </ul>
+        <p style="font-size:12px;color:var(--gray);line-height:1.6;margin:0 0 6px">まだ接点のない企業・担当者へリーチ。<b>新規リードを獲得</b>し、商談 → ナーチャリングへ移行させる。</p>
+        <div class="st-grp"><span class="st-lbl now">実施中</span>
+          <ul>
+            <li>全社ウェビナー</li>
+            <li>全社HP／WP問い合わせ</li>
+          </ul>
+        </div>
+        <div class="st-grp"><span class="st-lbl plan">実施予定</span>
+          <ul>
+            <li>エンプラ用 WP／LP ＆ 広告運用</li>
+            <li>PKSHA・展示会</li>
+          </ul>
+        </div>
+        <div class="st-grp"><span class="st-lbl prep">実施準備</span>
+          <ul>
+            <li>SNS（LinkedIn）アプローチ</li>
+            <li>顧問活用（ABM）</li>
+          </ul>
+        </div>
       </div>
     </div>
 
