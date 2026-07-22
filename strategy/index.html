@@ -370,17 +370,21 @@ body{
 .subchips{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0 4px}
 .subchips span{font-size:11px;font-weight:700;color:var(--blue-d);background:var(--blue-l);border:1.5px solid #cfe6f6;border-radius:8px;padding:4px 11px}
 /* 横ステッパー（レビューMTG・アカウント戦略の流れ） */
-.mtg-stepper{display:flex;align-items:flex-start;margin:16px 0 4px}
+.mtg-stepper{position:relative;display:flex;align-items:flex-start;margin:16px 0 4px}
+.mtg-stepper.has-fork{padding-top:46px;padding-bottom:14px}
+.ms-steps{display:flex;flex:1}
+.mtg-stepper.has-fork .ms-steps{width:62%;flex:none}
 .mtg-step{flex:1;text-align:center;position:relative;padding:0 6px}
 .mtg-step:not(:last-child)::after{content:'';position:absolute;top:19px;left:50%;width:100%;height:3px;background:linear-gradient(90deg,#0079c0,#5599be);z-index:0}
+.mtg-stepper.has-fork .ms-steps .mtg-step:last-child::after{content:'';position:absolute;top:19px;left:50%;width:calc(100% + 62px);height:3px;background:linear-gradient(90deg,#5599be,#22a047);z-index:0}
 .mtg-step .c{position:relative;z-index:2;width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#0079c0,#003d5e);color:#fff;display:grid;place-items:center;margin:0 auto 9px;font-weight:800;font-size:15px;font-family:'JetBrains Mono',monospace;box-shadow:0 3px 10px rgba(0,121,192,.25)}
 .mtg-step .l{font-size:13.5px;font-weight:800;color:var(--blue-d);line-height:1.35}
 .mtg-step .cap{font-size:11.5px;color:var(--gray);margin-top:4px;line-height:1.55}
-.mtg-branch{flex:1.35;display:flex;flex-direction:column;gap:9px;position:relative;padding-left:24px;padding-top:2px}
-.mtg-branch::before{content:'';position:absolute;left:0;top:19px;bottom:18px;width:3px;background:var(--green);border-radius:2px}
-.mtg-branch .mb-item{position:relative;background:#eef8f0;border:1.5px solid #c8e6d2;border-radius:10px;padding:9px 13px;font-size:12.5px;font-weight:800;color:var(--green-d);text-align:left;line-height:1.4}
-.mtg-branch .mb-item::before{content:'';position:absolute;left:-24px;top:50%;width:24px;height:3px;background:var(--green)}
-@media(max-width:560px){.mtg-stepper{flex-direction:column;gap:14px}.mtg-step:not(:last-child)::after{display:none}.mtg-branch{padding-left:0}.mtg-branch::before,.mtg-branch .mb-item::before{display:none}}
+.mtg-fork{position:absolute;right:0;top:65px;transform:translateY(-50%);width:35%;display:flex;flex-direction:column;gap:11px;padding-left:26px}
+.mtg-fork::before{content:'';position:absolute;left:0;top:21px;bottom:21px;width:3px;background:var(--green);border-radius:2px}
+.mtg-fork .mb-item{position:relative;background:#eef8f0;border:1.5px solid #c8e6d2;border-radius:10px;padding:9px 13px;font-size:12.5px;font-weight:800;color:var(--green-d);text-align:left;line-height:1.4}
+.mtg-fork .mb-item::before{content:'';position:absolute;left:-26px;top:50%;width:26px;height:3px;background:var(--green)}
+@media(max-width:600px){.mtg-stepper{flex-direction:column;gap:14px}.mtg-stepper.has-fork{padding-top:0}.mtg-stepper.has-fork .ms-steps{width:auto}.mtg-step:not(:last-child)::after,.mtg-stepper.has-fork .ms-steps .mtg-step:last-child::after{display:none}.mtg-fork{position:static;transform:none;width:auto;padding-left:0}.mtg-fork::before,.mtg-fork .mb-item::before{display:none}}
 .gtm-link{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:13px;font-weight:800;text-decoration:none;color:#fff;background:linear-gradient(135deg,#0079c0,#003d5e);border-radius:12px;padding:11px 20px;box-shadow:0 6px 16px rgba(0,121,192,.25);transition:.15s}
 .gtm-link:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,121,192,.32)}
 .gtm-link i{font-size:16px}
@@ -1047,7 +1051,7 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
   </details>
 
   <details class="sec" open>
-    <summary><span class="stitle"><span class="no">2</span>戦略 <small>― 4階層で見る・体制・GTM</small></span><i class="ti ti-chevron-down chev"></i></summary>
+    <summary><span class="stitle"><span class="no">2</span>戦略 <small>― 4階層・各役割KPI・実行プラン・体制・GTM</small></span><i class="ti ti-chevron-down chev"></i></summary>
 
     <h3 class="sec-sub"><i class="ti ti-stack-2"></i>顧客の「4階層」 <small>― 案件ではなくアカウントで見る</small></h3>
 <div class="panel">
@@ -1063,6 +1067,100 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
   </div>
 
   
+
+    <h3 class="sec-sub"><i class="ti ti-target-arrow"></i>各役割の分担と目標KPI <small>― マーケ・IS・アソシエイト・FS</small></h3>
+
+  <div class="panel">
+    <p class="lead">マーケが需要を撒き、ISが刈り取り、アソシエイトが案件推進を支え、FSが受注・深耕する。役割を分け、<b>各役割のKPI</b>で接続する。</p>
+    <div class="mini m4">
+      <div class="mcard"><span class="tag-pill">マーケ</span><h4>需要創出（空中戦）</h4><p>LP・広告・ウェビナー・コンテンツ／WP・Pardotナーチャで需要を喚起。<br><b>KPI：リード獲得数 ／ MQL数</b></p></div>
+      <div class="mcard"><span class="tag-pill">IS</span><h4>商談化（刈り取り）</h4><p>施策・広告発のホットリードへ最速架電しアポを獲得。<br><b>KPI：商談化率（SQL）／ アポ獲得数</b></p></div>
+      <div class="mcard"><span class="tag-pill">アソシエイト</span><h4>案件推進の裏方</h4><p>人選・提案書作成などをAI活用で高速化し、FSを支える。<br><b>KPI：人選リードタイム ／ 提案書の提出率・質</b></p></div>
+      <div class="mcard"><span class="tag-pill">FS</span><h4>受注・深耕（地上戦）</h4><p>提案の質と関係構築で受注し、継続・追加で伸ばす。<br><b>KPI：受注率・移行率 ／ LTV（継続・追加）</b></p></div>
+    </div>
+    <div class="band light"><span class="hl">整備中：</span> 施策別アトリビューション（SF×Pardot）、ハウスリストのMQL化率・スコアリング、ウェビナー→商談化率の追跡を順次設計する。</div>
+  </div>
+
+
+    <h3 class="sec-sub"><i class="ti ti-rocket"></i>実行プラン（通期） <small>― マーケ×FSの継続施策と8月の立ち上がり</small></h3>
+
+  <div class="panel">
+    <p class="lead">アポを取りまくるのではなく、顧客のステータス・関係性・文脈を加味して必要なチャネルから接点を取る。マーケ（案件を増やす）とFS（案件を受注する）の施策を、単発でなく<b>期を通して一貫・継続</b>する。</p>
+
+    <h3 class="ph">施策マップ ── 2つのエンジンを、期を通して回す</h3>
+    <div class="engine2">
+      <div class="eng mk">
+        <div class="eng-h"><i class="ti ti-broadcast"></i> マーケ <span>案件の増加</span></div>
+        <ul>
+          <li>テーマコンテンツの<b>月1運用</b></li>
+          <li>プロ人材＆事例メルマガ</li>
+          <li>提案ポータルによる顧客接点</li>
+        </ul>
+      </div>
+      <div class="eng fs">
+        <div class="eng-h"><i class="ti ti-user-heart"></i> FS <span>案件の受注</span></div>
+        <ul>
+          <li>スターリードへのレビューMTG運用</li>
+          <li>アカウントプランニング運用開始</li>
+          <li>人選だけでない「<b>提案書送付</b>」の徹底</li>
+          <li>提案ポータルでの提案活用</li>
+        </ul>
+      </div>
+    </div>
+    <div class="band"><span class="hl">一貫性・継続性：</span> これらは8月に立ち上げて終わりではなく、<b>期を通して回し続ける</b>。8月はその立ち上がりフェーズ。</div>
+  </div>
+
+  <div class="panel">
+    <h3 class="ph">8月の立ち上がり ── 誰が・いつ・どこまで</h3>
+    <p class="lead">8月の多くは<b>開始・整備の立ち上がりフェーズ</b>であり、<b>モニタリング・KPI評価は9月以降</b>。ここで期待値を上げすぎない。</p>
+    <div class="augplan">
+      <div class="augitem">
+        <div class="ai-h"><span class="ai-n">1</span><span class="ai-t">スターリードへのレビューMTG運用</span><span class="ai-tag now">運用開始済み</span></div>
+        <div class="ai-own"><span class="o">まず <b>木曽</b></span><span class="o">モニタリング：<b>松村</b></span><span class="o">関連：重点施策 / CS</span></div>
+        <ul>
+          <li>キックオフ／レビュー／進捗確認／継続確認／日程調整の<b>5種メールテンプレ整備済み</b>（今週から運用開始）</li>
+        </ul>
+        <div class="ai-kpi">8月は<b>立ち上がりフェーズ</b>として扱い、モニタリングまでは期待値を上げない。</div>
+      </div>
+
+      <div class="augitem">
+        <div class="ai-h"><span class="ai-n">2</span><span class="ai-t">アカウントプランニング（アカプラ）運用開始</span><span class="ai-tag start">8月開始</span></div>
+        <div class="ai-own"><span class="o">設計主導：<b>林・松村</b></span><span class="o">実行：<b>パル・栫</b>中心</span><span class="o">対象：<b>三菱電機 1社</b>限定</span></div>
+        <ul>
+          <li>方式：FSに戦略を作らせるのではなく<b>「情報の引き出し」に徹する</b>。顧客インタビュー形式 → Notionが自動構造化</li>
+          <li>KPI：<b>新規受注・新規リード数</b>（金額でなく件数、まだ小さくてOK）</li>
+        </ul>
+        <div class="ai-kpi">8月は<b>クオリティを求めない</b>。モニタリングも8月は行わず、<b>様子見期間</b>として明示。</div>
+      </div>
+
+      <div class="augitem">
+        <div class="ai-h"><span class="ai-n">3</span><span class="ai-t">GTMオペレーション自動化（Claude Cowork）</span><span class="ai-tag build">8月は設計・構築</span></div>
+        <div class="ai-own"><span class="o">権限移譲：<b>凛</b></span><span class="o">関連：オペレーション改善</span></div>
+        <ul>
+          <li>Zoom商談終了 → <b>SF自動格納</b>（フェーズ更新＋要件詳細を同時記入） → <b>Claude Cowork</b>が要件整理・人選・提案書作成を並行実行 → 共有ドライブ保存・顧客メール下書きまで自動化</li>
+        </ul>
+        <div class="ai-kpi">8月時点は<b>設計・構築フェーズ</b>。凛への権限移譲も並行して進める。</div>
+      </div>
+
+      <div class="augitem">
+        <div class="ai-h"><span class="ai-n">4</span><span class="ai-t">マーケコンテンツ</span><span class="ai-tag start">8月は再放送＋検証</span></div>
+        <div class="ai-own"><span class="o">テーマ選定：<b>徳永／AI</b></span><span class="o">関連：マーケティング施策</span></div>
+        <ul>
+          <li>7月分は作成済み。<b>8月分はスキップ</b>し、M365／Google版の<b>再放送</b>で代替</li>
+          <li>8月中に、テーマ選定は徳永／AIが担い、<b>切り口作成のAI活用可否を検証</b></li>
+        </ul>
+      </div>
+
+      <div class="augitem">
+        <div class="ai-h"><span class="ai-n">5</span><span class="ai-t">アシスタント業務の仕組み化</span><span class="ai-tag next">9月本格始動</span></div>
+        <div class="ai-own"><span class="o"><b>小松田</b>の業務整理・巻き取り</span><span class="o">関連：体制</span></div>
+        <ul>
+          <li>7月に準備し、<b>9月から本格実施</b>（8月は土田・小野のジョインと重なるため9月始動）</li>
+        </ul>
+      </div>
+    </div>
+    <div class="band"><span class="hl">8月の考え方：</span> 立ち上げ・整備を確実に進める月。数字での評価は焦らず、<b>9月以降にモニタリングとKPIを本格化</b>する。</div>
+  </div>
 
     <h3 class="sec-sub"><i class="ti ti-users-group"></i>体制 <small>― 人数拡充と役割の棲み分け</small></h3>
 
@@ -1289,7 +1387,7 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
   </details>
 
   <details class="sec" open>
-    <summary><span class="stitle"><span class="no">3</span>戦術 <small>― 実行プラン・重点施策・マーケ・4VC・深耕・オペ改善</small></span><i class="ti ti-chevron-down chev"></i></summary>
+    <summary><span class="stitle"><span class="no">3</span>戦術 <small>― 4 Value Cycle・重点施策・マーケ・深耕・オペ改善</small></span><i class="ti ti-chevron-down chev"></i></summary>
 
     <h3 class="sec-sub"><i class="ti ti-refresh"></i>4 Value Cycle の今期版 <small>― マーケ起点の循環と役割分担</small></h3>
   <div class="panel">
@@ -1353,105 +1451,6 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
     <div class="band light"><span class="hl">規律：</span> チャネルは「顧客の状態」で決める。空回りのアポ取りをやめ、<b>文脈に合った接点</b>に集中する。</div>
   </div>
 
-    <h3 class="sec-sub"><i class="ti ti-rocket"></i>実行プラン（通期） <small>― マーケ×FSの継続施策と8月の立ち上がり</small></h3>
-
-  <div class="panel">
-    <p class="lead">アポを取りまくるのではなく、顧客のステータス・関係性・文脈を加味して必要なチャネルから接点を取る。マーケ（案件を増やす）とFS（案件を受注する）の施策を、単発でなく<b>期を通して一貫・継続</b>する。</p>
-
-    <h3 class="ph">施策マップ ── 2つのエンジンを、期を通して回す</h3>
-    <div class="engine2">
-      <div class="eng mk">
-        <div class="eng-h"><i class="ti ti-broadcast"></i> マーケ <span>案件の増加</span></div>
-        <ul>
-          <li>テーマコンテンツの<b>月1運用</b></li>
-          <li>プロ人材＆事例メルマガ</li>
-          <li>提案ポータルによる顧客接点</li>
-        </ul>
-      </div>
-      <div class="eng fs">
-        <div class="eng-h"><i class="ti ti-user-heart"></i> FS <span>案件の受注</span></div>
-        <ul>
-          <li>スターリードへのレビューMTG運用</li>
-          <li>アカウントプランニング運用開始</li>
-          <li>人選だけでない「<b>提案書送付</b>」の徹底</li>
-          <li>提案ポータルでの提案活用</li>
-        </ul>
-      </div>
-    </div>
-    <div class="band"><span class="hl">一貫性・継続性：</span> これらは8月に立ち上げて終わりではなく、<b>期を通して回し続ける</b>。8月はその立ち上がりフェーズ。</div>
-  </div>
-
-  <div class="panel">
-    <h3 class="ph">8月の立ち上がり ── 誰が・いつ・どこまで</h3>
-    <p class="lead">8月の多くは<b>開始・整備の立ち上がりフェーズ</b>であり、<b>モニタリング・KPI評価は9月以降</b>。ここで期待値を上げすぎない。</p>
-    <div class="augplan">
-      <div class="augitem">
-        <div class="ai-h"><span class="ai-n">1</span><span class="ai-t">スターリードへのレビューMTG運用</span><span class="ai-tag now">運用開始済み</span></div>
-        <div class="ai-own"><span class="o">まず <b>木曽</b></span><span class="o">モニタリング：<b>松村</b></span><span class="o">関連：重点施策 / CS</span></div>
-        <ul>
-          <li>キックオフ／レビュー／進捗確認／継続確認／日程調整の<b>5種メールテンプレ整備済み</b>（今週から運用開始）</li>
-        </ul>
-        <div class="ai-kpi">8月は<b>立ち上がりフェーズ</b>として扱い、モニタリングまでは期待値を上げない。</div>
-      </div>
-
-      <div class="augitem">
-        <div class="ai-h"><span class="ai-n">2</span><span class="ai-t">アカウントプランニング（アカプラ）運用開始</span><span class="ai-tag start">8月開始</span></div>
-        <div class="ai-own"><span class="o">設計主導：<b>林・松村</b></span><span class="o">実行：<b>パル・栫</b>中心</span><span class="o">対象：<b>三菱電機 1社</b>限定</span></div>
-        <ul>
-          <li>方式：FSに戦略を作らせるのではなく<b>「情報の引き出し」に徹する</b>。顧客インタビュー形式 → Notionが自動構造化</li>
-          <li>KPI：<b>新規受注・新規リード数</b>（金額でなく件数、まだ小さくてOK）</li>
-        </ul>
-        <div class="ai-kpi">8月は<b>クオリティを求めない</b>。モニタリングも8月は行わず、<b>様子見期間</b>として明示。</div>
-      </div>
-
-      <div class="augitem">
-        <div class="ai-h"><span class="ai-n">3</span><span class="ai-t">GTMオペレーション自動化（Claude Cowork）</span><span class="ai-tag build">8月は設計・構築</span></div>
-        <div class="ai-own"><span class="o">権限移譲：<b>凛</b></span><span class="o">関連：オペレーション改善</span></div>
-        <ul>
-          <li>Zoom商談終了 → <b>SF自動格納</b>（フェーズ更新＋要件詳細を同時記入） → <b>Claude Cowork</b>が要件整理・人選・提案書作成を並行実行 → 共有ドライブ保存・顧客メール下書きまで自動化</li>
-        </ul>
-        <div class="ai-kpi">8月時点は<b>設計・構築フェーズ</b>。凛への権限移譲も並行して進める。</div>
-      </div>
-
-      <div class="augitem">
-        <div class="ai-h"><span class="ai-n">4</span><span class="ai-t">土田・小野の体制確定</span><span class="ai-tag start">8月確定</span></div>
-        <div class="ai-own"><span class="o"><b>土田</b>：フロント</span><span class="o"><b>小野</b>：企画</span><span class="o">関連：体制図</span></div>
-        <ul>
-          <li><b>土田</b>：Tier1中心（FLEXY・Biz問わず）、Tier2/3は案件ごと、Tier4は自由アサイン</li>
-          <li><b>小野</b>：企画側。DX系のTier3/4への同席、アカプラ協力、リード関連の事務局ハブ機能</li>
-        </ul>
-      </div>
-
-      <div class="augitem">
-        <div class="ai-h"><span class="ai-n">5</span><span class="ai-t">リード管理の再配分</span><span class="ai-tag start">8月中に完了</span></div>
-        <div class="ai-own"><span class="o">Farming：<b>栫・中村・土田</b></span><span class="o">Hunting：メンバー層</span><span class="o">関連：リードの振り分け</span></div>
-        <ul>
-          <li>栫のTier2リードを大幅に削減済み（費用対効果が低いため）</li>
-          <li><b>エキスパート層（栫・中村・土田）＝Farming</b>（深耕強化・Tier1中心）／<b>メンバー層＝Hunting</b>（開拓強化・新規）</li>
-          <li>8月中にリード整備を完了させる</li>
-        </ul>
-      </div>
-
-      <div class="augitem">
-        <div class="ai-h"><span class="ai-n">6</span><span class="ai-t">マーケコンテンツ</span><span class="ai-tag start">8月は再放送＋検証</span></div>
-        <div class="ai-own"><span class="o">テーマ選定：<b>徳永／AI</b></span><span class="o">関連：マーケティング施策</span></div>
-        <ul>
-          <li>7月分は作成済み。<b>8月分はスキップ</b>し、M365／Google版の<b>再放送</b>で代替</li>
-          <li>8月中に、テーマ選定は徳永／AIが担い、<b>切り口作成のAI活用可否を検証</b></li>
-        </ul>
-      </div>
-
-      <div class="augitem">
-        <div class="ai-h"><span class="ai-n">7</span><span class="ai-t">アシスタント業務の仕組み化</span><span class="ai-tag next">9月本格始動</span></div>
-        <div class="ai-own"><span class="o"><b>小松田</b>の業務整理・巻き取り</span><span class="o">関連：体制</span></div>
-        <ul>
-          <li>7月に準備し、<b>9月から本格実施</b>（8月は土田・小野のジョインと重なるため9月始動）</li>
-        </ul>
-      </div>
-    </div>
-    <div class="band"><span class="hl">8月の考え方：</span> 立ち上げ・整備を確実に進める月。数字での評価は焦らず、<b>9月以降にモニタリングとKPIを本格化</b>する。</div>
-  </div>
-
 <h3 class="sec-sub"><i class="ti ti-star"></i>重点施策 <small>― 今期の重点アクション</small></h3>
 
   <div class="panel">
@@ -1509,32 +1508,6 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
       <li>アカウントプランニング定例（FS×IS×ASS×Mgr／隔週のヒアリング会）</li>
     </ul>
     <div class="band"><span class="hl">狙い：</span> 案件の「入口」をマーケで太くし、深耕と移行の質に回す母数を増やす。開拓を個人の営業力だけに頼らせない。</div>
-  </div>
-
-
-    <h3 class="sec-sub"><i class="ti ti-target-arrow"></i>マーケ／IS の分担と目標KPI <small>― 空中戦で撒き、地上戦で刈る</small></h3>
-
-  <div class="panel">
-    <p class="lead">マーケが施策で需要を喚起し、ISがホットリードを刈り取る。役割を分け、KPIで接続する。</p>
-    <div class="rsplit">
-      <div class="rrow le">
-        <div class="rh"><span class="rt"><b>マーケ</b>（松村）</span><span class="rj">空中戦</span></div>
-        <p class="rd">LP・広告・ウェビナー・コンテンツ／WP・Pardotナーチャリング設計。テーマ別・Tier別に需要を喚起し、<b>MQL</b>を生む。</p>
-      </div>
-      <div class="rrow pm">
-        <div class="rh"><span class="rt"><b>IS</b></span><span class="rj">刈り取り</span></div>
-        <p class="rd">施策・広告発の<b>ホットリードへ最速で架電</b>し、アポ（SQL）を獲得。ナーチャ要素が強いリードはマーケと連携して接触内容を設計する。</p>
-      </div>
-    </div>
-
-    <h3 class="ph" style="margin-top:18px">目標KPI</h3>
-    <div class="mini m4">
-      <div class="mcard"><h4>リード獲得数</h4><p>新規ハウスリストリードの増加数（目安 年300〜500件）。</p></div>
-      <div class="mcard"><h4>MQL数</h4><p>スコアリングで抽出する有望リード数。判定基準は整備中。</p></div>
-      <div class="mcard"><h4>商談化率（SQL）</h4><p>ホットリード → アポ → 商談の転換率。</p></div>
-      <div class="mcard"><h4>受注への寄与</h4><p>施策別アトリビューション（SF×Pardot）で測る。設計中。</p></div>
-    </div>
-    <div class="band light"><span class="hl">整備中：</span> 施策ごとのアトリビューション（どの施策が商談につながったか）、ハウスリストのMQL化率・スコアリング、ウェビナー→商談化率の追跡を、順次設計していく。</div>
   </div>
 
 
@@ -2439,11 +2412,13 @@ details.sec>summary .chev{margin-left:8px!important}
     <p class="lead">受注案件の成功を確実にし、継続・追加ロールで<b>LTVを伸ばす</b>（地上戦・来期の最注力）。スターリード起点の深耕でリレーションを構築する。</p>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 14px"><span style="font-size:11px;font-weight:800;color:#6b6864">担い手</span><span class="chip fs"><i class="ti ti-user-heart"></i> FS</span><span style="font-size:11px;font-weight:700;color:#a5600f">地上戦・来期最注力</span></div>
     <h3 class="ph">レビューMTGを最初から固定する</h3>
-    <div class="mtg-stepper">
-      <div class="mtg-step"><div class="c">1</div><div class="l">キックオフ</div><div class="cap">契約時にレビューを組み込む</div></div>
-      <div class="mtg-step"><div class="c">2</div><div class="l">1ヶ月レビュー</div><div class="cap">立ち上がりの品質を確認</div></div>
-      <div class="mtg-step"><div class="c">3</div><div class="l">3ヶ月レビュー</div><div class="cap">品質レビュー＋付随提案を忍ばせる</div></div>
-      <div class="mtg-branch">
+    <div class="mtg-stepper has-fork">
+      <div class="ms-steps">
+        <div class="mtg-step"><div class="c">1</div><div class="l">キックオフ</div><div class="cap">契約時にレビューを組み込む</div></div>
+        <div class="mtg-step"><div class="c">2</div><div class="l">1ヶ月レビュー</div><div class="cap">立ち上がりの品質を確認</div></div>
+        <div class="mtg-step"><div class="c">3</div><div class="l">3ヶ月レビュー</div><div class="cap">品質レビュー＋付随提案を忍ばせる</div></div>
+      </div>
+      <div class="mtg-fork">
         <div class="mb-item">継続獲得</div>
         <div class="mb-item">追加ロール獲得</div>
         <div class="mb-item">別担当者 / 部署開拓</div>
@@ -2540,10 +2515,10 @@ details.sec>summary .chev{margin-left:8px!important}
   // 章名 → 主要カード境界（null=各 sec-sub をカード化）／タイトル上書き
   var CARD_CFG={
     '現状認識・課題分析':null,
-    '戦略':['顧客の「4階層」','体制','GTMフロー'],
-    '戦術':['実行プラン（通期）','重点施策','マーケティング施策','マーケ／IS の分担と目標KPI','AIに任せ、人は「関係構築」へ','オペレーション改善']
+    '戦略':['顧客の「4階層」','各役割の分担と目標KPI','実行プラン（通期）','体制','GTMフロー'],
+    '戦術':['重点施策','マーケティング施策','AIに任せ、人は「関係構築」へ','オペレーション改善']
   };
-  var CARD_TITLE={'AIに任せ、人は「関係構築」へ':'案件を深める・決める','マーケ／IS の分担と目標KPI':'マーケ／IS の分担と目標KPI'};
+  var CARD_TITLE={'AIに任せ、人は「関係構築」へ':'案件を深める・決める'};
   var CARD_SUM={
     '案件を深める・決める':'AIに裏方を任せ、人は関係構築へ。人当てからソリューション営業への転換と解決策の型。',
     '体制':'FSの2層分担、Farming／Hunting、企画・テーマUnit。人数拡充と役割の棲み分け。'
