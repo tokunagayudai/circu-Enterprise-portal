@@ -191,6 +191,19 @@ body{
 .cxr p b{color:var(--blue-d)}
 .celebrate{background:linear-gradient(135deg,#0a6e8c,#1a9e56);color:#fff;border-radius:12px;padding:14px 18px;font-size:15px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .celebrate span{font-size:12px;font-weight:600;opacity:.95}
+/* Pipeline Management：コアメッセージ・一貫性フロー・フラット見出し */
+.pm-msg{background:linear-gradient(135deg,#0b2b45,#0079c0);color:#fff;border-radius:12px;padding:16px 19px;margin:12px 0;font-size:15px;line-height:1.7}
+.pm-msg b{color:#fff}.pm-msg em{font-style:normal;color:#8fd0f0}
+.pm-msg span{display:block;font-size:12.5px;color:#cfe8f7;font-weight:600;margin-top:6px}
+.pm-flow{display:flex;align-items:stretch;gap:6px;flex-wrap:wrap;margin-top:14px}
+.pm-flow>.ar{display:flex;align-items:center;color:#9fb0bf;font-weight:800;font-size:14px}
+.pm-flow .pf{flex:1;min-width:92px;background:#f2f7fb;border:1px solid #dbe8f3;border-radius:10px;padding:9px 10px;font-size:11.5px;font-weight:800;color:var(--blue-d);text-align:center;display:flex;flex-direction:column;justify-content:center;gap:2px}
+.pm-flow .pf small{font-size:9px;font-weight:600;color:var(--gray)}
+.pm-flow .pf.hot{background:linear-gradient(135deg,#0a7b3a,#22a047);color:#fff;border-color:transparent}
+.pm-flow .pf.hot small{color:#e6f5ec}
+.pm-h{font-size:16px;font-weight:800;color:var(--blue-d);margin:24px 0 6px;display:flex;align-items:center;gap:8px;padding-left:11px;border-left:4px solid var(--blue);line-height:1.45}
+.pm-h small{font-size:11.5px;font-weight:600;color:var(--gray)}
+.pm-h i{color:var(--blue)}
 .flow{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;margin-top:8px}
 .flow .mid{background:linear-gradient(135deg,#0079c0,#005a92);color:#fff;border-radius:12px;padding:20px 12px;text-align:center;font-weight:800;font-size:15px;margin-bottom:12px}
 .flow .stack > div{border-radius:12px;padding:13px 16px;margin-bottom:10px}
@@ -2298,12 +2311,20 @@ details.sec>summary .chev{margin-left:8px!important}
   </div>`},
     pm:{t:'Pipeline Management ── 案件推進', h:`
   <div class="panel">
-    <div class="cyc-ch"><i class="ti ti-plug-connected"></i><span class="lbl">接点チャネル</span> 提案品質と移行率の最大化</div>
-    <p class="lead">一つの接点を「案件探索」で終わらせない。<b>顧客構造の理解</b>と<b>深耕</b>で現在・未来・周辺ニーズを取りに行く。裏方はAI・オペに巻き取らせ、人は関係構築へ。<span style="color:var(--blue-mid);font-weight:700">▼ 各テーマをタップで開く</span></p>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0"><span style="font-size:11px;font-weight:800;color:#6b6864">担い手</span><span class="chip fs"><i class="ti ti-user-heart"></i> FS</span><span class="chip as"><i class="ti ti-user"></i> アソシエイト</span></div>
+    <div class="pm-msg"><b>FSは、商談・提案・クロージングの<em>すべての顧客体験</em>でお客様に見られている。それを最高のCXにする。</b><span>案件を追うだけでなく、顧客との<b style="color:#fff">文脈と関係性</b>を築く。</span></div>
+    <p class="lead">ISのアポからすぐ受注は<b>奇跡に近い（IS経由 受注率 4%）</b>。ISが作ったタッチポイントを起点に、商談で<b>未来・潜在ニーズの文脈</b>を築き、IS・マーケと共にその文脈を維持する。顧客側で課題が発生したとき<b>第一想起</b>されるよう線で繋ぎ、生まれた<b>インバウンド相談を確実に決め切る</b>。そしてCSを通じて顧客を拡張し、<b>面で提案</b>していく ── この一貫性が受注を生む。</p>
+    <div class="pm-flow">
+      <div class="pf">IS接点</div><span class="ar">→</span>
+      <div class="pf">商談で文脈構築<small>未来・潜在ニーズ</small></div><span class="ar">→</span>
+      <div class="pf">文脈を維持<small>IS・マーケと</small></div><span class="ar">→</span>
+      <div class="pf">第一想起<small>課題発生時に</small></div><span class="ar">→</span>
+      <div class="pf hot">インバウンド相談<small>確実に決め切る</small></div><span class="ar">→</span>
+      <div class="pf">CSで拡張<small>面で提案</small></div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:14px"><span style="font-size:11px;font-weight:800;color:#6b6864">担い手</span><span class="chip fs"><i class="ti ti-user-heart"></i> FS</span><span class="chip as"><i class="ti ti-user"></i> アソシエイト</span></div>
   </div>
 
-  <h3 class="sec-sub"><i class="ti ti-list-numbers"></i>案件プロセス ── 8フェーズ <small>― 提案〜受注がメイン</small></h3>
+  <h3 class="pm-h"><i class="ti ti-list-numbers"></i>案件プロセス ── 8フェーズ <small>― 提案〜受注がメイン</small></h3>
   <div class="panel">
     <p class="lead">商談から受注まで、左から右へ<b>8フェーズ</b>で前進させ、各<b>合意ゲート</b>で確度を管理する。<b>提案〜受注（Phase3〜8）がメイン</b>。<span style="color:var(--blue-mid);font-weight:700">フェーズをタップで重要な動きが開く。</span></p>
     <div class="gproc">
@@ -2325,8 +2346,6 @@ details.sec>summary .chev{margin-left:8px!important}
           <li><b>ディスカッション</b>：解決の切り口・他社事例・未来ニーズの共通化</li>
           <li><b>仮説提案・ネクストアクション確認</b>（提案書送付の合意＝案件化の条件）</li>
         </ul>
-        <div class="gp-ai"><b>AI：</b> Zoom録画 → 8項目100点で自動採点 → 即日SlackフィードバックF（実装済み）。60点未満はMgrへ自動エスカレーション。</div>
-        <div class="gp-gate"><b>合意ゲート（提案合意）：</b> ①今すぐ解決したい具体ペイン ②プロ人材提案への合意 ── 両方でPhase2へ。迷ったら必ずDEAD。</div>
       </div>
       <div class="gp-detail" data-gp="2">
         <div class="gpd-h"><h4>02 要件・人選</h4><span class="gpd-role">FS ＋ ASS</span></div>
@@ -2334,8 +2353,6 @@ details.sec>summary .chev{margin-left:8px!important}
           <li><b>GEMで要件整理</b>（ASIS/TOBE/GAP・人材要件・DEAD判定・御礼メール）→ SF格納</li>
           <li>ASSが<b>人選KWを5個生成</b>し、案件相談メール（6項目）を作成・打診</li>
         </ul>
-        <div class="gp-ai"><b>TO-BE：</b> Zoom完了 → n8nが全自動（GEM実行 → SF自動格納 → Gmail下書き → ASSへSlack通知）。SF自動格納は情シス対応中。</div>
-        <div class="gp-gate"><b>合意ゲート（稼働合意）：</b> プロ人材が稼働可能である合意。ASSの稼働確保後に通過。</div>
       </div>
       <div class="gp-detail" data-gp="3">
         <div class="gpd-h"><h4>03 提案</h4><span class="gpd-role">FS ＋ ASS</span></div>
@@ -2343,8 +2360,6 @@ details.sec>summary .chev{margin-left:8px!important}
           <li><b>提案書を作成・送付</b>（既存スレッドで返信）。送付後に面談合意を確認</li>
           <li>ASSが<b>プロの稼働を確保</b>（返信対応・条件仮合意・候補者リスト連携）</li>
         </ul>
-        <div class="gp-ai"><b>AI：</b> 職歴書を貼るだけで<b>6章構成の提案書を自動生成</b>（①課題全体図②スコープ③プロ比較④推薦理由⑤MS⑥稼働条件／Claude+Gemini+Slides）。</div>
-        <div class="gp-gate"><b>合意ゲート（面談合意）：</b> 提案書を見て面談したい合意 → Phase4。合意なし→DEAD。</div>
       </div>
       <div class="gp-detail" data-gp="4">
         <div class="gpd-h"><h4>04 面談</h4><span class="gpd-role">FS ＋ ASS</span></div>
@@ -2353,8 +2368,6 @@ details.sec>summary .chev{margin-left:8px!important}
           <li>ASSが<b>日程調整・Zoom発行・アジェンダ送付</b></li>
           <li>クロージング・SF更新（プロの第三者評価・次ステップ合意）</li>
         </ul>
-        <div class="gp-ai"><b>AI：</b> 面談前アジェンダ自動生成／面談後は議事録を自動生成 → SF更新、追加要件を検出しASSへ通知。</div>
-        <div class="gp-gate"><b>合意ゲート（活用合意）：</b> プロ人材活用の口頭合意 → Phase5。合意なし→DEAD。</div>
       </div>
       <div class="gp-detail" data-gp="5">
         <div class="gpd-h"><h4>05 見積・要件定義</h4><span class="gpd-role">FS</span></div>
@@ -2362,7 +2375,6 @@ details.sec>summary .chev{margin-left:8px!important}
           <li>面談議事録をもとに<b>見積書を作成</b>（フォーマット統一が課題）</li>
           <li>業務詳細（契約書文言）を整理</li>
         </ul>
-        <div class="gp-ai"><b>AI：</b> 業務詳細を<b>4行形式でAI自動生成</b>。担当者によるバラつきをゼロ化（設計済み）。</div>
       </div>
       <div class="gp-detail" data-gp="6">
         <div class="gpd-h"><h4>06 稟議・反社チェック</h4><span class="gpd-role">FS</span></div>
@@ -2390,7 +2402,7 @@ details.sec>summary .chev{margin-left:8px!important}
     <div class="band"><span class="hl">要点：</span> <b>Phase4・Phase8への前進率とスピード</b>をKPIに。AIで裏方（要件整理・提案書・業務詳細）を巻き取り、FSは提案の質と関係構築へ。<a href="../gtm/#pipeline" target="_blank" rel="noopener" style="color:#bfe3f7;font-weight:800;text-decoration:none">→ 詳細はGTMフロー</a></div>
   </div>
 
-  <h3 class="sec-sub"><i class="ti ti-robot"></i>作業はAI・オペ、人は「人にしかできないこと」へ <small>― NEW OPERATION／TO-BE</small></h3>
+  <h3 class="pm-h"><i class="ti ti-robot"></i>作業はAI・オペ、人は「人にしかできないこと」へ <small>― NEW OPERATION／TO-BE</small></h3>
   <div class="panel">
     <p class="lead">情シスと進める新オペレーションで<b>作業をAI・オペが引き受ける</b>。空いた時間を、人にしかできない深耕へ。<b>深耕営業はAIにもオペにも代替できない</b> ── ここは人間＝営業の仕事。</p>
     <div class="engine2">
@@ -2406,7 +2418,7 @@ details.sec>summary .chev{margin-left:8px!important}
     <div class="band light"><span class="hl">記録の仕組み：</span> PLシートに「PJT良好」「顧客関係性」の2フラグ。1件1件落とさない ── 提案書は失注後の横展開にも効く「面の顧客体験」。</div>
   </div>
 
-  <h3 class="sec-sub"><i class="ti ti-target-arrow"></i>商談は「顧客構造の理解」の場 <small>― 案件探索だけにしない</small></h3>
+  <h3 class="pm-h"><i class="ti ti-target-arrow"></i>商談は「顧客構造の理解」の場 <small>― 案件探索だけにしない</small></h3>
   <div class="panel">
     <div class="mini m2">
       <div class="mcard"><span class="tag-pill">① 案件探索</span><h4>今すぐの案件</h4><p>従来のFS。目の前の案件を見つける。</p></div>
@@ -2419,7 +2431,7 @@ details.sec>summary .chev{margin-left:8px!important}
     <div class="band"><span class="hl">最重点：</span> <b>現在稼働中のスターリードを深耕</b>（過去稼働 ≠ 現在稼働）。接点は怠らない ── 15分・電話でもよい。会食・電話などSFに残らない接点も量を増やす（受注数に確実に効く）。</div>
   </div>
 
-  <h3 class="sec-sub"><i class="ti ti-arrow-big-right-lines"></i>営業に求める動き <small>― 案件がなくても成立する接点を持つ</small></h3>
+  <h3 class="pm-h"><i class="ti ti-arrow-big-right-lines"></i>営業に求める動き <small>― 案件がなくても成立する接点を持つ</small></h3>
   <div class="panel">
     <p class="lead">「案件がないと会わない」を超える。案件がなくても成立する接点を、自分の引き出しとして持つ。</p>
     <div class="mini m2">
@@ -2430,7 +2442,7 @@ details.sec>summary .chev{margin-left:8px!important}
     </div>
   </div>
 
-  <h3 class="sec-sub"><i class="ti ti-bulb"></i>第一想起を取る <small>― 「○○さん」として思い出される</small></h3>
+  <h3 class="pm-h"><i class="ti ti-bulb"></i>第一想起を取る <small>― 「○○さん」として思い出される</small></h3>
   <div class="panel">
     <div class="mini m2">
       <div class="mcard"><span class="tag-pill">非同期（会社）</span><h4>会社としての認知</h4><p>メルマガ・コンテンツのナーチャリングで「サーキュレーションさん」の認知・文脈を維持。</p></div>
@@ -2439,7 +2451,7 @@ details.sec>summary .chev{margin-left:8px!important}
     <div class="band light"><span class="hl">機会は会社が用意する。リレーションは、あなたが作る。</span> 会う機会（レビューMTG初期設定など）は仕組みで提供するが、対面に行くか・何を話すか・どう深めるかは型化できない ── 足で稼ぐ。関係が温まった顧客のインバウンドが最も受注率が高い。<b>深耕営業は最も確実な案件創出</b>。</div>
   </div>
 
-  <h3 class="sec-sub"><i class="ti ti-arrows-exchange"></i>人当て → ソリューションへ <small>― なぜ変わらなければならないか</small></h3>
+  <h3 class="pm-h"><i class="ti ti-arrows-exchange"></i>人当て → ソリューションへ <small>― なぜ変わらなければならないか</small></h3>
   <div class="panel">
     <p class="lead">競合はプロ人材会社だけではない ── コンサル・AI関連・プロダクト企業がソリューションまで提案してくる。人材要件を「待つ」と、案件数もパイプラインも<b>顧客に支配される</b>。</p>
     <div class="mini m2">
@@ -2450,7 +2462,7 @@ details.sec>summary .chev{margin-left:8px!important}
     <div class="band"><span class="hl">転換：</span> 「今必要な人材要件は？」→「ない」で終わらせない。現状から潜在課題を引き出し、中間地点を整理して、<b>未来・インバウンド相談</b>へつなぐ。</div>
   </div>
 
-  <h3 class="sec-sub"><i class="ti ti-stack-2"></i>解決策の4つの型（How We Solve） <small>― 「どう解決するか」で間を埋める</small></h3>
+  <h3 class="pm-h"><i class="ti ti-stack-2"></i>解決策の4つの型（How We Solve） <small>― 「どう解決するか」で間を埋める</small></h3>
   <div class="panel">
     <p class="lead">「誰を出すか」ではなく「どう解決するか」。この4つで、人とニーズの<b>間の層</b>を具体的に埋める。</p>
     <div class="mini m2">
@@ -2461,7 +2473,7 @@ details.sec>summary .chev{margin-left:8px!important}
     </div>
   </div>
 
-  <h3 class="sec-sub"><i class="ti ti-messages"></i>商談の型 <small>― 顧客体験を「1時間」に凝縮する</small></h3>
+  <h3 class="pm-h"><i class="ti ti-messages"></i>商談の型 <small>― 顧客体験を「1時間」に凝縮する</small></h3>
   <div class="panel">
     <p class="lead">営業は <b>商談 → 面談 → キックオフ</b> の3段階。商談は<b>最初の10分で信頼をつくり</b>、後工程（ヒアリング）を楽にするための<b>入り口の土台設計</b>が最重要。全体の顧客体験を1時間に、ミスなく凝縮する。</p>
     <h3 class="ph">会社説明 ── 「体制を作って売る」</h3>
@@ -2472,7 +2484,7 @@ details.sec>summary .chev{margin-left:8px!important}
     <p class="lead">この時点で顧客は当社・営業を<b>品定め</b>している。回答になっていない／長い／結論から言えていないと印象が落ちる。<b>相手の言葉の背景を理解し、結論から</b>返し、他社事例を添えて信頼性を上げる。</p>
   </div>
 
-  <h3 class="sec-sub"><i class="ti ti-hand-stop"></i>入り口 ── 前提合わせとラポール <small>― 「あなたのこと、分かってます」</small></h3>
+  <h3 class="pm-h"><i class="ti ti-hand-stop"></i>入り口 ── 前提合わせとラポール <small>― 「あなたのこと、分かってます」</small></h3>
   <div class="panel">
     <p class="lead">元気に・笑顔で・<b>こちらから挨拶</b>。天気などのアイスブレイクは不要。ただし<b>「前提合わせ」＝アジェンダ設計はこちらがボールを持つ</b>。</p>
     <div class="dodont">
@@ -2488,7 +2500,7 @@ details.sec>summary .chev{margin-left:8px!important}
     <div class="qex"><span class="ql">セリフ例（三菱電機）</span>「いつもBI本部の皆さんにお世話になっていて、去年のビジネスコンテストも4名のプロ人材と一緒に設計させていただきました。数年来のお付き合いです。今日はサービス説明もしながら、後ほど〇〇さんの課題や現部署のミッションをお伺いできれば」</div>
   </div>
 
-  <h3 class="sec-sub"><i class="ti ti-ear"></i>ヒアリングの型 <small>― 喋ってもらう構造をこちらが作る</small></h3>
+  <h3 class="pm-h"><i class="ti ti-ear"></i>ヒアリングの型 <small>― 喋ってもらう構造をこちらが作る</small></h3>
   <div class="panel">
     <p class="lead">ガイドしすぎると相手は言いたいことを言えない。<b>共感しながら、とにかく喋ってもらう</b> ── 自分が作った土台の上で。</p>
     <div class="mini m3">
@@ -2501,7 +2513,7 @@ details.sec>summary .chev{margin-left:8px!important}
     <p class="lead">一点に飛びつかない。<b>過去（これまでどうしてた）・内製できない理由・未来（この後のフェーズ）</b>を巻き取ってから具体へ。そうしないと「なぜ困っているか」の真意が掴めず、提案の構成を誤る。</p>
   </div>
 
-  <h3 class="sec-sub"><i class="ti ti-arrows-maximize"></i>染み出し・要件確定・クロージング <small>― 1商談を最大化する</small></h3>
+  <h3 class="pm-h"><i class="ti ti-arrows-maximize"></i>染み出し・要件確定・クロージング <small>― 1商談を最大化する</small></h3>
   <div class="panel">
     <h3 class="ph">1商談を拡張する3フェーズ</h3>
     <div class="mini m3">
