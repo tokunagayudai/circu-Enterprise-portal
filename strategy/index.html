@@ -369,6 +369,14 @@ body{
 .vcf-loop i{font-size:15px}
 .subchips{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0 4px}
 .subchips span{font-size:11px;font-weight:700;color:var(--blue-d);background:var(--blue-l);border:1.5px solid #cfe6f6;border-radius:8px;padding:4px 11px}
+/* 横ステッパー（レビューMTG・アカウント戦略の流れ） */
+.mtg-stepper{display:flex;align-items:flex-start;margin:16px 0 4px}
+.mtg-step{flex:1;text-align:center;position:relative;padding:0 6px}
+.mtg-step:not(:last-child)::after{content:'';position:absolute;top:19px;left:50%;width:100%;height:3px;background:linear-gradient(90deg,#0079c0,#5599be);z-index:0}
+.mtg-step .c{position:relative;z-index:2;width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#0079c0,#003d5e);color:#fff;display:grid;place-items:center;margin:0 auto 9px;font-weight:800;font-size:15px;font-family:'JetBrains Mono',monospace;box-shadow:0 3px 10px rgba(0,121,192,.25)}
+.mtg-step .l{font-size:13.5px;font-weight:800;color:var(--blue-d);line-height:1.35}
+.mtg-step .cap{font-size:11.5px;color:var(--gray);margin-top:4px;line-height:1.55}
+@media(max-width:560px){.mtg-stepper{flex-direction:column;gap:14px}.mtg-step:not(:last-child)::after{display:none}}
 .gtm-link{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:13px;font-weight:800;text-decoration:none;color:#fff;background:linear-gradient(135deg,#0079c0,#003d5e);border-radius:12px;padding:11px 20px;box-shadow:0 6px 16px rgba(0,121,192,.25);transition:.15s}
 .gtm-link:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,121,192,.32)}
 .gtm-link i{font-size:16px}
@@ -2344,11 +2352,11 @@ details.sec>summary .chev{margin-left:8px!important}
   <div class="panel">
     <p class="lead">関係性があり、ポテンシャルの高いアカウントに<b>チームのリソースを集中</b>し、大型案件・他部門開拓・複数案件で<b>LTVを最大化</b>する。各メンバーの<b>Tier1アカプラ対象は決定済み</b>。その企業を「案件」ではなく<b>アカウント単位</b>で開拓する。</p>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 14px"><span style="font-size:11px;font-weight:800;color:#6b6864">担い手</span><span class="chip fs"><i class="ti ti-user-heart"></i> FS：地上戦</span><span class="chip is"><i class="ti ti-headset"></i> IS：空中戦</span></div>
-    <div class="steps">
-      <div class="step"><div class="n">1</div><h4>Tier1対象を選定</h4><p>関係性 × ポテンシャルで、各メンバーのアカプラ対象を決定。</p></div>
-      <div class="step"><div class="n">2</div><h4>リソースを集中</h4><p>広く浅くではなく、狙うアカウントにチームで投下。</p></div>
-      <div class="step"><div class="n">3</div><h4>アカウント単位で開拓</h4><p>大型案件・他部門開拓・複数案件を狙う。</p></div>
-      <div class="step"><div class="n">4</div><h4>LTV最大化</h4><p>1社あたりの価値を継続的に伸ばす。</p></div>
+    <div class="mtg-stepper">
+      <div class="mtg-step"><div class="c">1</div><div class="l">Tier1対象を選定</div><div class="cap">関係性 × ポテンシャルで、各メンバーのアカプラ対象を決定</div></div>
+      <div class="mtg-step"><div class="c">2</div><div class="l">リソースを集中</div><div class="cap">広く浅くではなく、狙うアカウントにチームで投下</div></div>
+      <div class="mtg-step"><div class="c">3</div><div class="l">アカウント単位で開拓</div><div class="cap">大型案件・他部門開拓・複数案件を狙う</div></div>
+      <div class="mtg-step"><div class="c">4</div><div class="l">LTV最大化</div><div class="cap">1社あたりの価値を継続的に伸ばす</div></div>
     </div>
   </div>
   <div class="panel">
@@ -2427,10 +2435,10 @@ details.sec>summary .chev{margin-left:8px!important}
     <p class="lead">受注案件の成功を確実にし、継続・追加ロールで<b>LTVを伸ばす</b>（地上戦・来期の最注力）。スターリード起点の深耕でリレーションを構築する。</p>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 14px"><span style="font-size:11px;font-weight:800;color:#6b6864">担い手</span><span class="chip fs"><i class="ti ti-user-heart"></i> FS</span><span style="font-size:11px;font-weight:700;color:#a5600f">地上戦・来期最注力</span></div>
     <h3 class="ph">レビューMTGを最初から固定する</h3>
-    <div class="steps">
-      <div class="step"><div class="n">0</div><h4>キックオフ</h4><p>契約時にレビューを組み込む。</p></div>
-      <div class="step"><div class="n">1</div><h4>1ヶ月レビュー</h4><p>立ち上がりの品質を確認。</p></div>
-      <div class="step"><div class="n">3</div><h4>3ヶ月レビュー</h4><p>品質レビュー＋付随提案を忍ばせる。</p></div>
+    <div class="mtg-stepper">
+      <div class="mtg-step"><div class="c">1</div><div class="l">キックオフ</div><div class="cap">契約時にレビューを組み込む</div></div>
+      <div class="mtg-step"><div class="c">2</div><div class="l">1ヶ月レビュー</div><div class="cap">立ち上がりの品質を確認</div></div>
+      <div class="mtg-step"><div class="c">3</div><div class="l">3ヶ月レビュー</div><div class="cap">品質レビュー＋付随提案を忍ばせる</div></div>
     </div>
     <h3 class="ph" style="margin-top:16px">レビューで得る3つ</h3>
     <div class="mini m3">
