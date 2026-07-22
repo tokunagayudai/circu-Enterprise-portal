@@ -601,6 +601,8 @@ body{
 .tl-ap b{color:#bfe3f7}
 .tl-down{text-align:center;color:var(--blue-mid);font-size:11px;font-weight:800;margin:7px 0}
 .tl-down i{font-size:18px;display:block}
+.tl-up{text-align:center;color:var(--blue-mid);font-size:11px;font-weight:800;margin:10px 0 7px}
+.tl-up i{font-size:18px;display:block}
 .tl-row{display:grid;grid-template-columns:0.8fr 22px 0.8fr 22px 1.85fr 22px 0.8fr;align-items:stretch;gap:0}
 .tl-arw{display:flex;align-items:center;justify-content:center;color:var(--blue-mid)}
 .tl-arw i{font-size:24px}
@@ -609,7 +611,8 @@ body{
 .tl-stage.cs{border-top:4px solid #7057a3}
 .tl-stage h4{font-size:13px;color:var(--blue-d);margin:4px 0 2px}
 .tl-stage p{font-size:11.5px;color:var(--gray);line-height:1.55;margin:0}
-.tl-pipe{border:1.5px solid #cfe0ee;border-radius:12px;padding:12px 14px;background:#f5fbff}
+.tl-pipe{position:relative;border:2.5px solid #d24a3f;border-radius:12px;padding:16px 15px 13px;background:#fff;box-shadow:0 6px 22px rgba(210,74,63,.20)}
+.tl-pipe::before{content:'★ 最重要 ── ここが決まらないと始まらない';position:absolute;top:-11px;left:50%;transform:translateX(-50%);white-space:nowrap;background:#d24a3f;color:#fff;font-size:10px;font-weight:800;letter-spacing:.3px;padding:3px 12px;border-radius:20px;box-shadow:0 2px 6px rgba(210,74,63,.3)}
 .tl-pipe-h{font-size:12px;font-weight:800;color:var(--blue-d);margin-bottom:9px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
 .tl-phases{display:flex;gap:4px;align-items:center}
 .tl-ph{flex:1;text-align:center;background:#fff;border:1.5px solid #cfe6f6;border-radius:7px;padding:8px 1px;font-size:11px;font-weight:800;color:var(--blue-d);font-family:'JetBrains Mono',monospace;line-height:1.2}
@@ -1387,7 +1390,6 @@ details.sec>summary .stitle{letter-spacing:.01em}
               <div class="org-aim"><i class="ti ti-target"></i> 新規パイプラインの開拓（幅広いパイプライン推進）</div>
               <div class="members">
                 <div class="mem">岡部</div>
-                <div class="mem">福本 <span class="role">50%</span></div>
                 <div class="mem">木曽</div>
                 <div class="mem">飯田 <span class="role">PKSHA出向</span></div>
               </div>
@@ -1395,7 +1397,7 @@ details.sec>summary .stitle{letter-spacing:.01em}
             <div class="front-rail">
               <div class="assist-bar">
                 <div class="ab-h">アシスタント</div>
-                <div class="ab-seg"><span class="nm">派遣社員</span><small>土田 専属</small></div>
+                <div class="ab-seg"><span class="nm">関（派遣）</span><small>土田 専属</small></div>
                 <div class="ab-seg fill"><span class="nm">小松田</span><small>中村・栫・岡部・福本・木曽・飯田</small></div>
               </div>
               <div class="theme-bar">
@@ -1524,9 +1526,6 @@ details.sec>summary .stitle{letter-spacing:.01em}
     <h3 class="ph">GTM ── 時間軸で見る一連の流れ</h3>
     <p class="lead">循環図の詳細はそのまま。ここでは<b>時系列</b>で「誰が・どの順で動くか」の全体像を共有する。<a href="../gtm/" target="_blank" rel="noopener" style="color:var(--blue);font-weight:700;text-decoration:none">→ 詳細プロセスはGTMフロー</a></p>
 
-    <div class="tl-ap"><span class="tl-tag ap">Account Planning</span> Phase1の手前（左側）から、<b>IS / マーケ / FS</b> が情報をもとに ABM戦略 を立案し、どこを攻めるかを設計する</div>
-    <div class="tl-down"><i class="ti ti-arrow-down"></i>戦略に基づき着手</div>
-
     <div class="tl-flow">
     <div class="tl-row">
       <div class="tl-stage lg">
@@ -1565,6 +1564,9 @@ details.sec>summary .stitle{letter-spacing:.01em}
     <svg class="tl-conn" aria-hidden="true"></svg>
     <div class="tl-return-lbl">追加提案 → 新パイプライン（Phase2）へ</div>
     </div>
+
+    <div class="tl-up"><i class="ti ti-arrow-up"></i>この全工程を、上流の戦略設計が支える</div>
+    <div class="tl-ap"><span class="tl-tag ap">Account Planning</span> 全工程の土台。<b>IS / マーケ / FS</b> が情報をもとに ABM戦略 を立案し、<b>どこを・どの順で攻めるか</b>を設計する。ここが決まって初めて一連の流れが動き出す。</div>
   </div>
 
 <div class="panel" style="padding:14px 16px">
