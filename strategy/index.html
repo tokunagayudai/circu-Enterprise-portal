@@ -385,6 +385,36 @@ body{
 .ca.cs::after{content:'';position:absolute;left:100%;top:50%;transform:translateY(-50%);height:2px;width:16px;background:repeating-linear-gradient(to right,var(--blue-mid) 0 4px,transparent 4px 7px)}
 .ca.le::after{content:'';position:absolute;right:100%;top:50%;transform:translateY(-50%);height:2px;width:16px;background:repeating-linear-gradient(to right,var(--blue-mid) 0 4px,transparent 4px 7px)}
 @media(max-width:640px){.cyc-grid{grid-template-columns:1fr;grid-template-rows:none;gap:10px}.cyc-grid .cycle,.ca{grid-column:1!important;grid-row:auto!important;justify-self:center!important;max-width:100%}.ca::after{display:none}}
+/* 時間軸フロー（4サイクルの連携を1枚で） */
+.tl-tag{display:inline-block;font-size:10px;font-weight:800;border-radius:6px;padding:2px 9px}
+.tl-tag.ap{background:rgba(255,255,255,.22);color:#fff}
+.tl-tag.le{background:var(--moss);color:#fff}
+.tl-tag.pm{background:var(--blue);color:#fff}
+.tl-tag.cs{background:#7057a3;color:#fff}
+.tl-tag.as{background:#e7edf3;color:#4a5a68}
+.tl-ap{background:linear-gradient(135deg,#003d5e,#0079c0);color:#fff;border-radius:12px;padding:12px 16px;font-size:12.5px;font-weight:700;text-align:center;line-height:1.6}
+.tl-ap b{color:#bfe3f7}
+.tl-down{text-align:center;color:var(--blue-mid);font-size:11px;font-weight:800;margin:7px 0}
+.tl-down i{font-size:18px;display:block}
+.tl-row{display:grid;grid-template-columns:0.95fr 28px 2.1fr 28px 0.95fr;align-items:stretch;gap:0}
+.tl-arw{display:flex;align-items:center;justify-content:center;color:var(--blue-mid)}
+.tl-arw i{font-size:24px}
+.tl-stage{border:1.5px solid var(--blue-l);border-radius:12px;padding:12px 14px;background:#fff;display:flex;flex-direction:column;gap:4px}
+.tl-stage.le{border-top:4px solid var(--moss)}
+.tl-stage.cs{border-top:4px solid #7057a3}
+.tl-stage h4{font-size:13px;color:var(--blue-d);margin:4px 0 2px}
+.tl-stage p{font-size:11.5px;color:var(--gray);line-height:1.55;margin:0}
+.tl-pipe{border:1.5px solid #cfe0ee;border-radius:12px;padding:12px 14px;background:#f5fbff}
+.tl-pipe-h{font-size:12px;font-weight:800;color:var(--blue-d);margin-bottom:9px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.tl-phases{display:flex;gap:4px;align-items:center}
+.tl-ph{flex:1;text-align:center;background:#fff;border:1.5px solid #cfe6f6;border-radius:7px;padding:8px 1px;font-size:11px;font-weight:800;color:var(--blue-d);font-family:'JetBrains Mono',monospace;line-height:1.2}
+.tl-ph small{display:block;font-family:'M PLUS Rounded 1c';font-size:8.5px;font-weight:700;color:var(--gray);margin-top:2px}
+.tl-ph.main{border-color:var(--blue);background:#eaf4fd}
+.tl-ph.won{background:linear-gradient(135deg,#22a047,#1a7d38);color:#fff;border-color:#1a7d38}
+.tl-ph.won small{color:#dcf5e3}
+.tl-assoc{margin-top:10px;font-size:11px;color:var(--ink);background:#fff;border:1.5px dashed #cfd8e0;border-radius:8px;padding:7px 10px;line-height:1.5}
+.tl-loop{margin-top:12px;text-align:center;font-size:11.5px;font-weight:800;color:#7057a3;background:#f3effb;border:1.5px dashed #b9a9db;border-radius:20px;padding:8px 16px}
+@media(max-width:760px){.tl-row{grid-template-columns:1fr;gap:8px}.tl-arw i{transform:rotate(90deg)}}
 .subchips{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0 4px}
 .subchips span{font-size:11px;font-weight:700;color:var(--blue-d);background:var(--blue-l);border:1.5px solid #cfe6f6;border-radius:8px;padding:4px 11px}
 /* 横ステッパー（レビューMTG・アカウント戦略の流れ） */
@@ -1441,6 +1471,44 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
       <div class="vcf-loop"><i class="ti ti-refresh"></i> 4つのサイクルを循環させ、LTVを最大化する</div>
     </div>
     <div class="band light" style="margin-top:12px"><span class="hl">規律：</span> チャネルは「顧客の状態」で決める。空回りのアポ取りをやめ、<b>文脈に合った接点</b>に集中する。</div>
+  </div>
+
+  <div class="panel">
+    <h3 class="ph">一連の流れ ── 時間軸で見る4サイクルの連携</h3>
+    <p class="lead">循環図の詳細はそのまま。ここでは<b>時系列</b>で「誰が・どの順で動くか」の全体像を共有する。<a href="../gtm/" target="_blank" rel="noopener" style="color:var(--blue);font-weight:700;text-decoration:none">→ 詳細プロセスはGTMフロー</a></p>
+
+    <div class="tl-ap"><span class="tl-tag ap">Account Planning</span> Phase1の手前（左側）から、<b>IS / マーケ / FS</b> が情報をもとにアカウント戦略を立案し、どこを攻めるかを設計する</div>
+    <div class="tl-down"><i class="ti ti-arrow-down"></i>戦略に基づき着手</div>
+
+    <div class="tl-row">
+      <div class="tl-stage le">
+        <span class="tl-tag le">リード育成</span>
+        <h4>ナーチャリング</h4>
+        <p><b>マーケ・IS</b> が休眠リードを温め、商談（Phase1）へ供給する。</p>
+      </div>
+      <div class="tl-arw"><i class="ti ti-arrow-right"></i></div>
+      <div class="tl-pipe">
+        <div class="tl-pipe-h"><span class="tl-tag pm">Pipeline Management（FS）</span> 提案の質とスピードを上げる ── 提案〜受注がメイン</div>
+        <div class="tl-phases">
+          <div class="tl-ph">1<small>商談</small></div>
+          <div class="tl-ph">2<small>要件</small></div>
+          <div class="tl-ph main">3<small>提案</small></div>
+          <div class="tl-ph main">4<small>面談</small></div>
+          <div class="tl-ph main">5<small>見積</small></div>
+          <div class="tl-ph main">6<small>稟議</small></div>
+          <div class="tl-ph main">7<small>契約</small></div>
+          <div class="tl-ph won">8<small>受注</small></div>
+        </div>
+        <div class="tl-assoc"><span class="tl-tag as">Associate</span> 人選・提案書の質を上げ、<b>Phase4・Phase8 への前進（前進率とスピード）</b>を支える。</div>
+      </div>
+      <div class="tl-arw"><i class="ti ti-arrow-right"></i></div>
+      <div class="tl-stage cs">
+        <span class="tl-tag cs">Customer Success</span>
+        <h4>受注後の深耕</h4>
+        <p>稼働を起点に<b>追加提案</b>を狙う。継続・追加ロール・部署紹介でLTVを伸ばす。</p>
+      </div>
+    </div>
+    <div class="tl-loop"><i class="ti ti-refresh"></i> 追加提案が発生 → 新しいパイプライン（Phase2）として循環する</div>
   </div>
 
 <div class="panel" style="padding:14px 16px">
