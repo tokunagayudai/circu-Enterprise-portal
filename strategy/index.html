@@ -7,7 +7,7 @@
 <title>FY14 戦略｜エンタープライズ ポータル｜株式会社サーキュレーション</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.11.0/dist/tabler-icons.min.css">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap');
 :root{
   --blue:#0079c0; --blue-d:#003d5e; --blue-mid:#5599be; --blue-l:#e8f6ff;
   --moss:#0a6e8c; --green:#22a047; --orange:#ed7d31; --purple:#7057a3; --ink:#1a2a38; --gray:#6b6864;
@@ -829,6 +829,62 @@ details.sec > summary .stitle{display:flex;align-items:center;gap:8px;flex-wrap:
   .tier{flex-direction:column}.tier .h{width:100%}
   .flayer{width:100%!important}
 }
+/* ══════════════════════════════════════════════════
+   コンサルデッキ調テーマ（全体上書き）── フラット・余白・端正
+   ══════════════════════════════════════════════════ */
+body{font-family:'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif;background:#eef1f5;color:#1f2b38;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1200px;padding:24px 30px 0}
+/* トップバー：フラットな濃紺 */
+.topbar{background:#0b2b45;box-shadow:0 1px 0 rgba(0,0,0,.08)}
+/* ヒーロー：白・薄罫・左寄せ寄りの端正な扉 */
+.hero{background:#fff;border:1px solid #e2e8ef;border-radius:14px;box-shadow:0 1px 3px rgba(20,40,60,.05);padding:30px 34px}
+.hero::before,.hero::after{display:none}
+.hero h2{color:#0b2b45;letter-spacing:.02em}
+.hero .tagline b{color:#0079c0}
+/* セクション（details）：白カード・薄罫 */
+details.sec{background:#fff;border:1px solid #e2e8ef!important;border-radius:14px!important;box-shadow:0 1px 3px rgba(20,40,60,.05)!important}
+details.sec>summary .stitle{letter-spacing:.01em}
+/* パネル：白・細罫・控えめ影・角丸控えめ */
+.panel{border:1px solid #e5eaf0;border-radius:11px;box-shadow:none;padding:24px 26px 26px}
+.exdrawer .exwrap .panel,.panel{background:#fff}
+/* 見出し：左に罫アクセント（コンサル定番） */
+.panel h3.ph{font-size:16.5px;color:#0b2b45;padding-left:13px;position:relative;letter-spacing:.01em;margin-bottom:12px}
+.panel h3.ph::before{content:'';position:absolute;left:0;top:3px;bottom:3px;width:4px;border-radius:2px;background:#0079c0}
+/* リード＝ガバニングメッセージ（読みやすく） */
+.panel .lead{font-size:13.5px;color:#3c4b59;line-height:1.9}
+.panel .lead b{color:#0b2b45}
+/* サブ見出し（sec-sub）：番号レス・端正 */
+.sec-sub{background:#f4f7fa;border-left:5px solid #0079c0;color:#0b2b45;font-weight:800}
+/* mクリーンなタイル（フラット） */
+.mcard{border:1px solid #e5eaf0;border-radius:10px;padding:18px 18px}
+.mcard::before{height:3px;background:#0079c0}
+.mcard.fill{background:#f4f8fc}
+.mcard h4{color:#0b2b45;font-weight:700}
+.mcard p{color:#51606d;line-height:1.7}
+.mcard .num{background:#eaf2fb;color:#0079c0;border-radius:9px}
+.tag-pill{border-radius:6px;letter-spacing:.02em}
+/* バンド（メッセージ帯）：濃紺のステートメント */
+.band{background:#0b2b45;border-radius:10px}
+.band .hl{color:#8fd0f0}
+.band.light{background:#eef4fa;color:#20313f;border:1px solid #dce6f0}
+.band.light .hl{color:#0079c0}
+.band.light .sub{color:#516272}
+/* トピックカード：クリーンなコンテンツタイル */
+.topic-card{border:1px solid #e2e8ef;border-radius:12px;box-shadow:0 1px 3px rgba(20,40,60,.05)}
+.topic-card:hover{box-shadow:0 8px 22px rgba(11,43,69,.12);border-color:#b9cddd}
+.topic-card .tc-ic{background:#eef4fa;border-radius:10px}
+.topic-card .tc-t{color:#0b2b45}
+.topic-hint{background:#f4f7fa;border:1px dashed #cdd9e4;color:#0079c0}
+/* モーダル：端正なヘッダ */
+.ex-head{background:#0b2b45}
+.ex-body{background:#f4f6f9}
+.exwrap .cyc-ch{background:#0b2b45}
+/* テーブル見出しを濃紺で統一 */
+.mkt-tbl th,.lm-tbl th{background:#0b2b45}
+/* ボタン系アクセント */
+.gtm-link{background:#0079c0;border-radius:10px;box-shadow:0 2px 8px rgba(0,121,192,.2)}
+.gtm-link:hover{background:#0b2b45}
+/* スクロールバー等の細部は据え置き */
 </style>
 </head>
 <body>
