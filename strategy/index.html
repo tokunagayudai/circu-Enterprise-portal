@@ -317,6 +317,30 @@ body{
 .lm-tbl td.p4{background:#fbfbfc;color:#b7bec5}
 .lm-legend{font-size:10.5px;color:var(--gray);margin-top:8px;line-height:1.7}
 .lm-legend b{color:var(--blue-d)}
+/* 案件プロセス：クリックできる横フロー */
+.gproc{margin-top:12px}
+.gp-steps{display:flex;gap:0;align-items:flex-start;overflow-x:auto;padding:2px 0 6px}
+.gp-step{flex:1;min-width:76px;background:none;border:none;cursor:pointer;text-align:center;position:relative;padding:0 2px;font-family:inherit}
+.gp-step:not(:last-child)::after{content:'';position:absolute;top:17px;left:50%;width:100%;height:3px;background:#cfe0ee;z-index:0}
+.gp-step .n{position:relative;z-index:1;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;margin:0 auto 6px;background:#fff;border:2px solid #cfe0ee;color:#8aa0b3;font-weight:800;font-size:12px;font-family:'JetBrains Mono',monospace;transition:.15s}
+.gp-step .l{font-size:11px;font-weight:700;color:var(--gray);line-height:1.3}
+.gp-step:hover .n{border-color:var(--blue-mid)}
+.gp-step.active .n{background:linear-gradient(135deg,#0079c0,#003d5e);border-color:#003d5e;color:#fff;box-shadow:0 3px 10px rgba(0,121,192,.3)}
+.gp-step.active .l{color:var(--blue-d);font-weight:800}
+.gp-step.won .n{border-color:#22a047;color:#22a047}
+.gp-step.active.won .n{background:linear-gradient(135deg,#22a047,#1a7d38);border-color:#1a7d38;color:#fff}
+.gp-detail{display:none;margin-top:14px;border:1.5px solid var(--blue-l);border-radius:12px;padding:15px 17px;background:#fff}
+.gp-detail.active{display:block}
+.gp-detail .gpd-h{display:flex;align-items:center;gap:10px;margin-bottom:2px;flex-wrap:wrap}
+.gp-detail .gpd-h h4{font-size:15px;font-weight:800;color:var(--blue-d);margin:0}
+.gp-detail .gpd-role{font-size:10.5px;font-weight:800;color:#fff;background:var(--blue);border-radius:6px;padding:2px 10px}
+.gp-detail ul{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:7px}
+.gp-detail li{position:relative;padding-left:18px;font-size:12.5px;line-height:1.55;color:var(--ink)}
+.gp-detail li::before{content:'';position:absolute;left:5px;top:7px;width:7px;height:7px;border-radius:50%;background:var(--blue-mid)}
+.gp-detail li b{color:var(--blue-d)}
+.gp-ai{margin-top:10px;font-size:11.5px;color:var(--blue-d);background:#eef7fd;border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:7px 11px;line-height:1.55}
+.gp-gate{margin-top:8px;font-size:11.5px;color:var(--green-d);background:#eef8f0;border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:7px 11px;line-height:1.55}
+.gp-ai b,.gp-gate b{font-weight:800}
 /* 8月アクションプラン */
 .augplan{display:flex;flex-direction:column;gap:14px;margin-top:8px}
 .augitem{border:1.5px solid var(--blue-l);border-radius:14px;padding:15px 17px;background:#fff;box-shadow:0 3px 12px rgba(0,121,192,.05)}
@@ -2218,6 +2242,14 @@ details.sec>summary .chev{margin-left:8px!important}
   function close(){dr.classList.remove('open');document.body.style.overflow='';}
   ov.addEventListener('click',close); xb.addEventListener('click',close);
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&dr.classList.contains('open'))close();});
+  // 案件プロセス横フロー：フェーズをクリックで詳細を切替（動的に注入される内容を委譲で処理）
+  bd.addEventListener('click',function(e){
+    var btn=e.target.closest('.gp-step'); if(!btn)return;
+    var root=btn.closest('.gproc'); if(!root)return;
+    var gp=btn.getAttribute('data-gp');
+    root.querySelectorAll('.gp-step').forEach(function(s){s.classList.toggle('active',s===btn);});
+    root.querySelectorAll('.gp-detail').forEach(function(d){d.classList.toggle('active',d.getAttribute('data-gp')===gp);});
+  });
 
   function secName(sec){
     var st=sec.querySelector('.stitle'); if(!st) return '解説';
@@ -2318,21 +2350,89 @@ details.sec>summary .chev{margin-left:8px!important}
 
   <h3 class="sec-sub"><i class="ti ti-list-numbers"></i>案件プロセス ── 8フェーズ <small>― 提案〜受注がメイン</small></h3>
   <div class="panel">
-    <p class="lead">商談から受注までを<b>8フェーズ</b>で前進させ、各<b>合意ゲート</b>で確度を管理する。<b>提案〜受注（Phase3〜8）がメイン</b>。</p>
-    <table class="mkt-tbl lead-tbl">
-      <thead><tr><th>フェーズ</th><th>担当</th><th>主な動き（AI・ツール）</th></tr></thead>
-      <tbody>
-        <tr><td><b>01 商談</b></td><td>FS</td><td>会社説明・ヒアリング・仮説提案。「話を聞きたい」の商談合意で着手。</td></tr>
-        <tr><td><b>02 要件・人選</b></td><td>FS ＋ ASS</td><td><b>GEM</b>で要件整理 → SF入力。並行してASSが人材を人選・打診。</td></tr>
-        <tr><td><b>03 提案</b></td><td>FS ＋ ASS</td><td><b>Claude</b>で提案書を作成・送付。ASSがプロの稼働を確保。</td></tr>
-        <tr><td><b>04 面談</b></td><td>FS ＋ ASS</td><td>顧客 × プロ × 当社の3者面談。ASSが日程調整。</td></tr>
-        <tr><td><b>05 見積・要件定義</b></td><td>FS</td><td>面談議事録をもとに見積書を作成。業務詳細は<b>GEM</b>で生成。</td></tr>
-        <tr><td><b>06 稟議・反社チェック</b></td><td>FS</td><td>粗利率確認・マネージャー承認・反社チェック。</td></tr>
-        <tr><td><b>07 契約</b></td><td>FS</td><td>電子契約で締結。PROBASE登録・ツール確認などの初動。</td></tr>
-        <tr><td><b>08 受注</b></td><td>FS</td><td>締結＝受注。稼働開始し、カスタマーサクセスへ移行。</td></tr>
-      </tbody>
-    </table>
-    <div class="band"><span class="hl">要点：</span> <b>Phase4・Phase8への前進率とスピード</b>をKPIに。合意ゲートで確度管理。<a href="../gtm/#pipeline" target="_blank" rel="noopener" style="color:#bfe3f7;font-weight:800;text-decoration:none">→ 詳細はGTMフロー</a></div>
+    <p class="lead">商談から受注まで、左から右へ<b>8フェーズ</b>で前進させ、各<b>合意ゲート</b>で確度を管理する。<b>提案〜受注（Phase3〜8）がメイン</b>。<span style="color:var(--blue-mid);font-weight:700">フェーズをタップで重要な動きが開く。</span></p>
+    <div class="gproc">
+      <div class="gp-steps">
+        <button type="button" class="gp-step active" data-gp="1"><span class="n">01</span><span class="l">商談</span></button>
+        <button type="button" class="gp-step" data-gp="2"><span class="n">02</span><span class="l">要件・人選</span></button>
+        <button type="button" class="gp-step" data-gp="3"><span class="n">03</span><span class="l">提案</span></button>
+        <button type="button" class="gp-step" data-gp="4"><span class="n">04</span><span class="l">面談</span></button>
+        <button type="button" class="gp-step" data-gp="5"><span class="n">05</span><span class="l">見積</span></button>
+        <button type="button" class="gp-step" data-gp="6"><span class="n">06</span><span class="l">稟議</span></button>
+        <button type="button" class="gp-step" data-gp="7"><span class="n">07</span><span class="l">契約</span></button>
+        <button type="button" class="gp-step won" data-gp="8"><span class="n">08</span><span class="l">受注</span></button>
+      </div>
+      <div class="gp-detail active" data-gp="1">
+        <div class="gpd-h"><h4>01 商談</h4><span class="gpd-role">FS</span></div>
+        <ul>
+          <li><b>会社説明</b>：サービス・プロシェアリングの仕組みと活用事例</li>
+          <li><b>ヒアリング</b>：部門ミッション・課題・予算・マイルストーン</li>
+          <li><b>ディスカッション</b>：解決の切り口・他社事例・未来ニーズの共通化</li>
+          <li><b>仮説提案・ネクストアクション確認</b>（提案書送付の合意＝案件化の条件）</li>
+        </ul>
+        <div class="gp-ai"><b>AI：</b> Zoom録画 → 8項目100点で自動採点 → 即日SlackフィードバックF（実装済み）。60点未満はMgrへ自動エスカレーション。</div>
+        <div class="gp-gate"><b>合意ゲート（提案合意）：</b> ①今すぐ解決したい具体ペイン ②プロ人材提案への合意 ── 両方でPhase2へ。迷ったら必ずDEAD。</div>
+      </div>
+      <div class="gp-detail" data-gp="2">
+        <div class="gpd-h"><h4>02 要件・人選</h4><span class="gpd-role">FS ＋ ASS</span></div>
+        <ul>
+          <li><b>GEMで要件整理</b>（ASIS/TOBE/GAP・人材要件・DEAD判定・御礼メール）→ SF格納</li>
+          <li>ASSが<b>人選KWを5個生成</b>し、案件相談メール（6項目）を作成・打診</li>
+        </ul>
+        <div class="gp-ai"><b>TO-BE：</b> Zoom完了 → n8nが全自動（GEM実行 → SF自動格納 → Gmail下書き → ASSへSlack通知）。SF自動格納は情シス対応中。</div>
+        <div class="gp-gate"><b>合意ゲート（稼働合意）：</b> プロ人材が稼働可能である合意。ASSの稼働確保後に通過。</div>
+      </div>
+      <div class="gp-detail" data-gp="3">
+        <div class="gpd-h"><h4>03 提案</h4><span class="gpd-role">FS ＋ ASS</span></div>
+        <ul>
+          <li><b>提案書を作成・送付</b>（既存スレッドで返信）。送付後に面談合意を確認</li>
+          <li>ASSが<b>プロの稼働を確保</b>（返信対応・条件仮合意・候補者リスト連携）</li>
+        </ul>
+        <div class="gp-ai"><b>AI：</b> 職歴書を貼るだけで<b>6章構成の提案書を自動生成</b>（①課題全体図②スコープ③プロ比較④推薦理由⑤MS⑥稼働条件／Claude+Gemini+Slides）。</div>
+        <div class="gp-gate"><b>合意ゲート（面談合意）：</b> 提案書を見て面談したい合意 → Phase4。合意なし→DEAD。</div>
+      </div>
+      <div class="gp-detail" data-gp="4">
+        <div class="gpd-h"><h4>04 面談</h4><span class="gpd-role">FS ＋ ASS</span></div>
+        <ul>
+          <li><b>3者面談</b>（案件概要→プロ自己紹介→質疑→2社間協議）をFSがファシリ</li>
+          <li>ASSが<b>日程調整・Zoom発行・アジェンダ送付</b></li>
+          <li>クロージング・SF更新（プロの第三者評価・次ステップ合意）</li>
+        </ul>
+        <div class="gp-ai"><b>AI：</b> 面談前アジェンダ自動生成／面談後は議事録を自動生成 → SF更新、追加要件を検出しASSへ通知。</div>
+        <div class="gp-gate"><b>合意ゲート（活用合意）：</b> プロ人材活用の口頭合意 → Phase5。合意なし→DEAD。</div>
+      </div>
+      <div class="gp-detail" data-gp="5">
+        <div class="gpd-h"><h4>05 見積・要件定義</h4><span class="gpd-role">FS</span></div>
+        <ul>
+          <li>面談議事録をもとに<b>見積書を作成</b>（フォーマット統一が課題）</li>
+          <li>業務詳細（契約書文言）を整理</li>
+        </ul>
+        <div class="gp-ai"><b>AI：</b> 業務詳細を<b>4行形式でAI自動生成</b>。担当者によるバラつきをゼロ化（設計済み）。</div>
+      </div>
+      <div class="gp-detail" data-gp="6">
+        <div class="gpd-h"><h4>06 稟議・反社チェック</h4><span class="gpd-role">FS</span></div>
+        <ul>
+          <li><b>粗利率の確認</b></li>
+          <li><b>マネージャー承認</b></li>
+          <li><b>反社チェック</b></li>
+        </ul>
+      </div>
+      <div class="gp-detail" data-gp="7">
+        <div class="gpd-h"><h4>07 契約</h4><span class="gpd-role">FS</span></div>
+        <ul>
+          <li><b>電子契約で締結</b>（顧客・プロ人材の双方）</li>
+          <li>PROBASE登録・ツール確認などの契約後の初動</li>
+        </ul>
+      </div>
+      <div class="gp-detail" data-gp="8">
+        <div class="gpd-h"><h4>08 受注 → 稼働開始</h4><span class="gpd-role">FS</span></div>
+        <ul>
+          <li><b>締結＝受注</b>。稼働を開始する</li>
+          <li>ここから <b>カスタマーサクセス</b>（深耕）へ移行し、追加提案を狙う</li>
+        </ul>
+      </div>
+    </div>
+    <div class="band"><span class="hl">要点：</span> <b>Phase4・Phase8への前進率とスピード</b>をKPIに。AIで裏方（要件整理・提案書・業務詳細）を巻き取り、FSは提案の質と関係構築へ。<a href="../gtm/#pipeline" target="_blank" rel="noopener" style="color:#bfe3f7;font-weight:800;text-decoration:none">→ 詳細はGTMフロー</a></div>
   </div>
 
   <h3 class="sec-sub"><i class="ti ti-robot"></i>作業はAI・オペ、人は「人にしかできないこと」へ <small>― NEW OPERATION／TO-BE</small></h3>
