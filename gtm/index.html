@@ -374,21 +374,40 @@ html,body{overflow:auto!important;height:auto!important;
 .mtx>summary .ms-arrow{margin-left:auto;font-size:12px;transition:transform .2s}
 .mtx[open]>summary .ms-arrow{transform:rotate(180deg)}
 .mtx-body{padding:16px 18px}
-.mtx-table{border-collapse:separate;border-spacing:4px;width:100%}
-.mtx-table th,.mtx-table td{border-radius:8px;vertical-align:middle}
-.mtx-corner{background:#eef5fb;color:var(--blue-deep);font-size:10px;font-weight:800;padding:8px 10px}
-.mtx-state{color:#fff;padding:9px 10px;cursor:pointer;transition:.14s;text-align:center}
-.mtx-state:hover{filter:brightness(1.08);transform:translateY(-1px)}
-.mtx-state .mst-t{font-size:11px;font-weight:800}
-.mtx-state .mst-d{font-size:8.5px;font-weight:600;opacity:.92;margin-top:1px}
-.mtx-tier{color:#fff;padding:9px 11px;cursor:pointer;white-space:nowrap;transition:.14s}
-.mtx-tier:hover{filter:brightness(1.08)}
-.mtx-tier .mt-t{font-size:11px;font-weight:800}
-.mtx-tier .mt-d{font-size:8px;font-weight:500;opacity:.9}
-.mtx-cell{background:rgba(0,121,192,.05);font-size:9.5px;color:var(--ink);padding:8px 11px;line-height:1.5}
-.mtx-cell b{color:var(--blue-d)}
-.mtx-hint{font-size:9.5px;color:var(--ink2);margin-top:10px;line-height:1.6}
-.mtx-hint b{color:var(--blue)}
+/* リード管理ヒートマップ（優先度＝背景色で一目で読む） */
+.mtx-axes{display:flex;gap:10px;margin:4px 0 14px;flex-wrap:wrap}
+.mtx-ax{display:flex;align-items:center;gap:10px;background:#f2f7fb;border:1px solid #dbe8f3;border-radius:11px;padding:9px 14px;flex:1;min-width:210px}
+.mtx-ax .axi{font-size:19px;line-height:1}
+.mtx-ax b{font-size:12px;color:var(--blue-deep);display:block}
+.mtx-ax small{font-size:10px;color:var(--ink2)}
+.mtx-table{border-collapse:separate;border-spacing:5px;width:100%}
+.mtx-table th,.mtx-table td{border-radius:9px;vertical-align:middle;text-align:center}
+.mtx-corner{background:#0b2b45;color:#fff;padding:7px 9px}
+.mtx-corner .mc-y{display:block;font-size:9px;font-weight:700;opacity:.85}
+.mtx-corner .mc-x{display:block;font-size:9px;font-weight:700;opacity:.85;margin-top:2px}
+.mtx-state{background:#12507f;color:#fff;padding:9px 8px;cursor:pointer;transition:.14s}
+.mtx-state:hover{background:#0079c0;transform:translateY(-1px)}
+.mtx-state .mst-i{display:block;font-size:17px;line-height:1}
+.mtx-state .mst-t{display:block;font-size:10.5px;font-weight:800;margin-top:3px}
+.mtx-tier{background:#12507f;color:#fff;padding:9px 12px;cursor:pointer;white-space:nowrap;transition:.14s;text-align:left}
+.mtx-tier:hover{background:#0079c0}
+.mtx-tier .mt-t{display:block;font-size:12px;font-weight:800}
+.mtx-tier .mt-d{display:block;font-size:8.5px;font-weight:600;opacity:.8}
+.mtx-cell{font-size:11px;font-weight:800;padding:13px 8px;letter-spacing:.02em}
+.mtx-cell.p1{background:#0b4f8a;color:#fff}
+.mtx-cell.p2{background:#5a9bcf;color:#fff}
+.mtx-cell.p3{background:#cfe3f3;color:#0b4f8a}
+.mtx-cell.p4{background:#eef2f6;color:#9aa7b2}
+.mtx-legend{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:13px}
+.mtx-legend .lg-lab{font-size:10px;font-weight:800;color:var(--ink2);margin-right:2px}
+.mtx-legend .lg{font-size:10px;font-weight:800;padding:3px 11px;border-radius:20px}
+.mtx-legend .lg.p1{background:#0b4f8a;color:#fff}
+.mtx-legend .lg.p2{background:#5a9bcf;color:#fff}
+.mtx-legend .lg.p3{background:#cfe3f3;color:#0b4f8a}
+.mtx-legend .lg.p4{background:#eef2f6;color:#9aa7b2}
+.mtx-legend .lg-note{font-size:9.5px;color:var(--ink2);margin-left:4px}
+.mtx-take{margin-top:12px;background:#f2f7fb;border-left:3px solid #0079c0;border-radius:0 9px 9px 0;padding:11px 15px;font-size:11.5px;color:#274156;line-height:1.65}
+.mtx-take b{color:var(--blue-deep)}
 .mx-flex{display:flex;gap:22px;flex-wrap:wrap}
 .mx-col{flex:1;min-width:240px}
 .mx-h{font-size:11px;font-weight:800;margin-bottom:8px}
@@ -935,20 +954,27 @@ function opBtns(links){
 
 // リード管理：Tier（企業）× リード状態（担当者）優先度マトリクス
 function matrixGrid(){
-  const states=[['lead_active','🏃 現在稼働','#0a7b3a',4],['lead_ob','◆ 過去稼働後','#34a853',3],['lead_recycle','🔄 リサイクル','#F39312',3],['lead_sleep','💤 休眠','#9aa0a6',2],['lead_new','🆕 未提案','#5BA6D5',1]];
-  const tiers=[['tier1','Tier1','#0079C0',4],['tier2','Tier2','#3E7CB1',3],['tier3','Tier3','#5BA6D5',2],['tier4','Tier4','#8FC4E3',1]];
-  const pr=(t,s)=>{const v=t+s;return v>=6?['◎','#0a7b3a','最優先']:v===5?['○','#0079C0','優先']:v===4?['△','#7a7f86','通常']:['▲','#aab0b6','低'];};
-  let head=`<tr><th class="mtx-corner">Tier（企業）＼ リード状態（担当者）</th>`;
-  states.forEach(s=>head+=`<th class="mtx-state" style="background:${s[1+1]}" onclick="openPanel('${s[0]}')"><div class="mst-t">${s[1]}</div><div class="mst-d">クリックで定義</div></th>`);
+  const states=[['lead_active','現在稼働','🏃',4],['lead_ob','過去稼働後','🔁',3],['lead_recycle','リサイクル','♻️',3],['lead_sleep','休眠','💤',2],['lead_new','未提案','✨',1]];
+  const tiers=[['tier1','Tier1','最重要',4],['tier2','Tier2','重点',3],['tier3','Tier3','標準',2],['tier4','Tier4','広く浅く',1]];
+  const pr=v=>v>=6?['p1','最優先']:v===5?['p2','優先']:v===4?['p3','通常']:['p4','低'];
+  let head=`<tr><th class="mtx-corner"><span class="mc-y">▼ 企業 Tier</span><span class="mc-x">リード状態 ▶</span></th>`;
+  states.forEach(s=>head+=`<th class="mtx-state" onclick="openPanel('${s[0]}')"><span class="mst-i">${s[2]}</span><span class="mst-t">${s[1]}</span></th>`);
   head+=`</tr>`;
   let rows='';
   tiers.forEach(t=>{
-    rows+=`<tr><td class="mtx-tier" style="background:${t[2]}" onclick="openPanel('${t[0]}')"><div class="mt-t">${t[1]}</div></td>`;
-    states.forEach(s=>{const[mk,col,lab]=pr(t[3],s[3]);rows+=`<td class="mtx-cell" style="text-align:center"><div style="font-size:16px;font-weight:800;color:${col};line-height:1">${mk}</div><div style="font-size:8px;color:${col};font-weight:700">${lab}</div></td>`;});
+    rows+=`<tr><td class="mtx-tier" onclick="openPanel('${t[0]}')"><span class="mt-t">${t[1]}</span><span class="mt-d">${t[2]}</span></td>`;
+    states.forEach(s=>{const[k,lab]=pr(t[3]+s[3]);rows+=`<td class="mtx-cell ${k}">${lab}</td>`;});
     rows+=`</tr>`;
   });
-  return `<div style="overflow-x:auto;margin-bottom:14px"><table class="mtx-table" style="min-width:660px">${head}${rows}</table>
-    <div class="mtx-hint">◎最優先 ○優先 △通常 ▲低（Tierの重要度 × リード状態の意欲度の目安）。<b>企業＝Tier（マーケが管理）</b>／<b>担当者＝リード状態（ISが管理）</b>。見出しをクリックすると定義が右に出ます。</div></div>`;
+  return `<div style="margin-bottom:14px">
+    <div class="mtx-axes">
+      <div class="mtx-ax"><span class="axi">🏢</span><div><b>企業の重要度 ＝ Tier</b><small>マーケが管理（Tier1〜4）</small></div></div>
+      <div class="mtx-ax"><span class="axi">👤</span><div><b>担当者の状態 ＝ リード状態</b><small>ISが管理（稼働〜未提案）</small></div></div>
+    </div>
+    <div style="overflow-x:auto"><table class="mtx-table" style="min-width:640px">${head}${rows}</table></div>
+    <div class="mtx-legend"><span class="lg-lab">優先度</span><span class="lg p1">最優先</span><span class="lg p2">優先</span><span class="lg p3">通常</span><span class="lg p4">低</span><span class="lg-note">見出しをクリックで定義が開きます</span></div>
+    <div class="mtx-take">💡 <b>現在稼働リードは全Tierで最優先</b> ── ここが全アクションの起点。左上（高Tier × 温かい状態）に手を厚く、右下（低Tier × 休眠・未提案）は後回しでよい。</div>
+  </div>`;
 }
 
 function renderTask(t){

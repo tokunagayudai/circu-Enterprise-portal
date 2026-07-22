@@ -317,6 +317,37 @@ body{
 .lm-tbl td.p4{background:#fbfbfc;color:#b7bec5}
 .lm-legend{font-size:10.5px;color:var(--gray);margin-top:8px;line-height:1.7}
 .lm-legend b{color:var(--blue-d)}
+/* リード管理ヒートマップ（優先度＝背景色で一目で読む） */
+.lhm-axes{display:flex;gap:10px;margin:4px 0 14px;flex-wrap:wrap}
+.lhm-ax{display:flex;align-items:center;gap:10px;background:#f2f7fb;border:1px solid #dbe8f3;border-radius:11px;padding:9px 14px;flex:1;min-width:210px}
+.lhm-ax .axi{font-size:19px;line-height:1}
+.lhm-ax b{font-size:12.5px;color:var(--blue-d);display:block}
+.lhm-ax small{font-size:10.5px;color:var(--gray)}
+.lhm{border-collapse:separate;border-spacing:5px;width:100%;min-width:560px}
+.lhm th,.lhm td{border-radius:9px;vertical-align:middle;text-align:center}
+.lhm-corner{background:#0b2b45;color:#fff;padding:7px 9px}
+.lhm-corner .cy,.lhm-corner .cx{display:block;font-size:9.5px;font-weight:700;opacity:.85}
+.lhm-corner .cx{margin-top:2px}
+.lhm-state{background:#12507f;color:#fff;padding:9px 8px}
+.lhm-state .i{display:block;font-size:17px;line-height:1}
+.lhm-state .t{display:block;font-size:11px;font-weight:800;margin-top:3px}
+.lhm-tier{background:#12507f;color:#fff;padding:9px 12px;white-space:nowrap;text-align:left}
+.lhm-tier .t{display:block;font-size:12.5px;font-weight:800}
+.lhm-tier .d{display:block;font-size:9px;font-weight:600;opacity:.8}
+.lhm-cell{font-size:11.5px;font-weight:800;padding:13px 8px}
+.lhm-cell.p1{background:#0b4f8a;color:#fff}
+.lhm-cell.p2{background:#5a9bcf;color:#fff}
+.lhm-cell.p3{background:#cfe3f3;color:#0b4f8a}
+.lhm-cell.p4{background:#eef2f6;color:#9aa7b2}
+.lhm-legend{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:13px}
+.lhm-legend .lab{font-size:10.5px;font-weight:800;color:var(--gray);margin-right:2px}
+.lhm-legend .l{font-size:10.5px;font-weight:800;padding:3px 11px;border-radius:20px}
+.lhm-legend .l.p1{background:#0b4f8a;color:#fff}
+.lhm-legend .l.p2{background:#5a9bcf;color:#fff}
+.lhm-legend .l.p3{background:#cfe3f3;color:#0b4f8a}
+.lhm-legend .l.p4{background:#eef2f6;color:#9aa7b2}
+.lhm-take{margin-top:12px;background:#f2f7fb;border-left:3px solid #0079c0;border-radius:0 9px 9px 0;padding:11px 15px;font-size:11.5px;color:#274156;line-height:1.65}
+.lhm-take b{color:var(--blue-d)}
 /* 案件プロセス：クリックできる横フロー */
 .gproc{margin-top:12px}
 .gp-steps{display:flex;gap:0;align-items:flex-start;overflow-x:auto;padding:2px 0 6px}
@@ -2033,21 +2064,6 @@ details.sec>summary .chev{margin-left:8px!important}
       <div class="mcard"><span class="tag-pill">可視化</span><h4>メールCC・カレンダー参加者</h4><p>やり取りの関係者を把握し、SFへリード登録して関係性を可視化。</p></div>
     </div>
 
-    <h3 class="ph" style="margin-top:22px">リード管理（母集団）── Tier × リード状態</h3>
-    <p class="lead">企業は <b>Tier1〜4</b>（マーケ管理）、担当者は <b>リード状態</b>（IS管理）で管理する。<b>現在稼働が最優先</b> ── 全アクションの優先度の起点。</p>
-    <div style="overflow-x:auto">
-    <table class="lm-tbl">
-      <thead><tr><th class="rowh">Tier ＼ リード状態</th><th>現在稼働</th><th>過去稼働後</th><th>リサイクル</th><th>休眠</th><th>未提案</th></tr></thead>
-      <tbody>
-        <tr><td class="tier">Tier1</td><td class="p1">◎</td><td class="p1">◎</td><td class="p1">◎</td><td class="p1">◎</td><td class="p2">○</td></tr>
-        <tr><td class="tier">Tier2</td><td class="p1">◎</td><td class="p1">◎</td><td class="p1">◎</td><td class="p2">○</td><td class="p3">△</td></tr>
-        <tr><td class="tier">Tier3</td><td class="p1">◎</td><td class="p2">○</td><td class="p2">○</td><td class="p3">△</td><td class="p4">▲</td></tr>
-        <tr><td class="tier">Tier4</td><td class="p2">○</td><td class="p3">△</td><td class="p3">△</td><td class="p4">▲</td><td class="p4">▲</td></tr>
-      </tbody>
-    </table>
-    </div>
-    <p class="lm-legend">◎ <b>最優先</b> ／ ○ 優先 ／ △ 通常 ／ ▲ 低（Tierの重要度 × リード状態の意欲度の目安）。<a href="../gtm/#acquire" target="_blank" rel="noopener" style="color:var(--blue);font-weight:700;text-decoration:none">→ 詳細はGTMフロー</a></p>
-
     <h3 class="ph" style="margin-top:22px">テーマ軸（FY14）</h3>
     <p class="lead">顧客企業の課題テーマに合わせて、アプローチの切り口を変える。</p>
     <div class="mini m3">
@@ -2326,6 +2342,34 @@ details.sec>summary .chev{margin-left:8px!important}
       <div class="mcard"><span class="tag-pill">維持</span><h4>ナーチャリング</h4><p>文脈を維持し、課題発生時に想起される。</p></div>
       <div class="mcard"><span class="tag-pill">再活性</span><h4>リサイクル</h4><p>未提案・休眠リードを再アクティブ化。</p></div>
     </div>
+  </div>
+  <div class="panel">
+    <h3 class="ph">リード管理（母集団）── Tier × リード状態</h3>
+    <p class="lead">育成の起点は<b>母集団の優先度づけ</b>。企業は <b>Tier</b>（マーケが管理）、担当者は <b>リード状態</b>（ISが管理）で管理し、<b>現在稼働が全Tierで最優先</b>。ここが全アクションの優先度の起点になる。</p>
+    <div class="lhm-axes">
+      <div class="lhm-ax"><span class="axi">🏢</span><div><b>企業の重要度 ＝ Tier</b><small>マーケが管理（Tier1〜4）</small></div></div>
+      <div class="lhm-ax"><span class="axi">👤</span><div><b>担当者の状態 ＝ リード状態</b><small>ISが管理（稼働〜未提案）</small></div></div>
+    </div>
+    <div style="overflow-x:auto">
+    <table class="lhm">
+      <thead><tr>
+        <th class="lhm-corner"><span class="cy">▼ 企業 Tier</span><span class="cx">リード状態 ▶</span></th>
+        <th class="lhm-state"><span class="i">🏃</span><span class="t">現在稼働</span></th>
+        <th class="lhm-state"><span class="i">🔁</span><span class="t">過去稼働後</span></th>
+        <th class="lhm-state"><span class="i">♻️</span><span class="t">リサイクル</span></th>
+        <th class="lhm-state"><span class="i">💤</span><span class="t">休眠</span></th>
+        <th class="lhm-state"><span class="i">✨</span><span class="t">未提案</span></th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="lhm-tier"><span class="t">Tier1</span><span class="d">最重要</span></td><td class="lhm-cell p1">最優先</td><td class="lhm-cell p1">最優先</td><td class="lhm-cell p1">最優先</td><td class="lhm-cell p1">最優先</td><td class="lhm-cell p2">優先</td></tr>
+        <tr><td class="lhm-tier"><span class="t">Tier2</span><span class="d">重点</span></td><td class="lhm-cell p1">最優先</td><td class="lhm-cell p1">最優先</td><td class="lhm-cell p1">最優先</td><td class="lhm-cell p2">優先</td><td class="lhm-cell p3">通常</td></tr>
+        <tr><td class="lhm-tier"><span class="t">Tier3</span><span class="d">標準</span></td><td class="lhm-cell p1">最優先</td><td class="lhm-cell p2">優先</td><td class="lhm-cell p2">優先</td><td class="lhm-cell p3">通常</td><td class="lhm-cell p4">低</td></tr>
+        <tr><td class="lhm-tier"><span class="t">Tier4</span><span class="d">広く浅く</span></td><td class="lhm-cell p2">優先</td><td class="lhm-cell p3">通常</td><td class="lhm-cell p3">通常</td><td class="lhm-cell p4">低</td><td class="lhm-cell p4">低</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="lhm-legend"><span class="lab">優先度</span><span class="l p1">最優先</span><span class="l p2">優先</span><span class="l p3">通常</span><span class="l p4">低</span></div>
+    <div class="lhm-take">💡 <b>現在稼働リードは全Tierで最優先</b> ── 左上（高Tier × 温かい状態）に手を厚く、右下（低Tier × 休眠・未提案）は後回しでよい。<a href="../gtm/#acquire" target="_blank" rel="noopener" style="color:var(--blue);font-weight:700;text-decoration:none">→ GTMフローで各状態の定義を見る</a></div>
   </div>
   <div class="panel">
     <h3 class="ph">獲得チャネル（GTMフロー：リードジェネレーション）</h3>
