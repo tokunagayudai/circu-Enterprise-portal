@@ -241,8 +241,10 @@ body{
 .closing::before{content:'';position:absolute;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.07);bottom:-90px;right:-30px}
 .closing::after{content:'';position:absolute;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.08);bottom:-30px;right:80px}
 .closing .l1{font-size:18px;color:#cdeafb;font-weight:500;position:relative;z-index:2}
-.closing .l2{font-size:23px;font-weight:800;margin-top:4px;position:relative;z-index:2}
-.closing .l3{color:#bfe3f7;font-size:14px;margin-top:14px;position:relative;z-index:2}
+.closing .l2{font-size:23px;font-weight:800;margin-top:4px;line-height:1.55;position:relative;z-index:2}
+.closing .l3{color:#bfe3f7;font-size:14px;line-height:1.75;margin-top:14px;position:relative;z-index:2}
+.closing .l3 b{color:#fff;font-weight:800}
+.closing .cl-tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:1.5px;color:#bfe3f7;background:rgba(255,255,255,.14);border-radius:20px;padding:4px 13px;margin-bottom:14px;position:relative;z-index:2}
 .foot{text-align:center;margin-top:32px;font-size:11px;color:var(--gray);font-family:'JetBrains Mono',monospace}
 /* quant outline (1章 定量) */
 .qnote{display:flex;gap:10px;align-items:flex-start;background:#f7fbfe;border:1.5px dashed var(--blue-mid);border-radius:12px;padding:13px 16px;margin-top:10px}
@@ -1661,9 +1663,9 @@ details.sec>summary .stitle{letter-spacing:.01em}
   </details>
 
   <div class="closing">
-    <div class="l1">リードをアクティブ化し、パイプラインを前に進め、</div>
-    <div class="l2">受注したスターリードを、拡張する。</div>
-    <div class="l3">この循環を、一人ではなく、チームとAIで回し続ける。</div>
+    <div class="cl-tag">FY14–FY15 メッセージ</div>
+    <div class="l2">顧客との「文脈」をもとに、一貫性を持ったプロセス活動で、顧客体験（CX）を最大化する。</div>
+    <div class="l3">いま世の中にはソリューションが溢れ、当社の競合も業態が様々になっている。その中で、<b>認知 → 提案 → プロジェクト → サポート</b>まで一貫した良質な顧客体験が、継続的なインバウンド相談を生む。逆に、この体験が途切れれば、顧客はすぐに他のソリューションへ流れてしまう。</div>
   </div>
 
   <div class="foot">© 株式会社サーキュレーション　Enterprise Team Portal ｜ FY14 Strategy</div>
