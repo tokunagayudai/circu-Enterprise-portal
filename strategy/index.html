@@ -40,6 +40,12 @@ body{
 .sec-title .no{flex:none;width:24px;height:24px;border-radius:7px;background:linear-gradient(135deg,#0079c0,#5599be);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:800;font-family:'JetBrains Mono',monospace}
 .sec-title i{font-size:18px;color:var(--blue)}
 .sec-title small{font-weight:500;color:var(--gray);font-size:11px}
+.dash-link{display:flex;align-items:center;gap:11px;text-decoration:none;background:linear-gradient(135deg,#003d5e,#0079c0);color:#fff;border-radius:14px;padding:14px 18px;margin:4px 0 18px;box-shadow:0 4px 14px rgba(0,121,192,.18);transition:transform .12s,box-shadow .12s}
+.dash-link:hover{transform:translateY(-1px);box-shadow:0 7px 20px rgba(0,121,192,.28)}
+.dash-link>i{font-size:20px;flex:none}
+.dash-link span{font-size:13.5px;font-weight:700;line-height:1.4}
+.dash-link span small{display:block;font-weight:500;font-size:11px;color:#cfe8f8}
+.dash-link .ar{margin-left:auto;font-size:18px;color:#bfe3f7}
 .panel{background:#fff;border-radius:18px;border:1.5px solid #d6e8f5;padding:24px 24px 26px;position:relative;overflow:hidden;margin-bottom:18px;box-shadow:0 4px 14px rgba(0,121,192,.06)}
 .panel .lead{font-size:13px;color:var(--gray);line-height:1.7;margin-bottom:8px}
 .panel h3.ph{font-size:18px;font-weight:800;color:var(--blue-d);margin-bottom:10px;letter-spacing:.01em}
@@ -1130,6 +1136,7 @@ details.sec>summary .stitle{letter-spacing:.01em}
   <details class="sec" open>
     <summary><span class="stitle"><span class="no">02</span>現状認識・課題分析 <small>― 総論は正しい。直すのは各論</small></span><i class="ti ti-chevron-down chev"></i></summary>
 
+    <a class="dash-link" href="https://tokunagayudai.github.io/Circulation-Enterprise-dashboard/" target="_blank" rel="noopener"><i class="ti ti-external-link"></i><span><b>分析ダッシュボード</b>を開く<small>― 本章の数値ソース（リアルタイム）</small></span><i class="ti ti-arrow-right ar"></i></a>
 
     <h3 class="sec-sub"><i class="ti ti-history"></i>FY13下期の振り返り <small>― できたこと／回りきらなかったこと</small></h3>
 
