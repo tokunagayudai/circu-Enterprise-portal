@@ -1076,21 +1076,34 @@ details.sec>summary .stitle{letter-spacing:.01em}
 @keyframes deckin{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
 .deck-slide>.sec-sub:first-child{margin-top:0}
 
-/* ── 印刷（PDF保存）：全スライドを展開して1本の資料に ── */
+/* ── 印刷（PDF保存）：全スライドを展開し「1トピック＝1ページ」で整える ── */
 @media print{
-  @page{size:A4;margin:12mm 10mm}
+  @page{size:A4;margin:11mm 10mm}
   html,body{background:#fff!important}
   .topbar,.ctrl-bar,.storymap,.deck-bar,.pdf-btn,.back,#exdrawer,.exwrap,.quant-fold>summary{display:none!important}
   .wrap{max-width:none!important;padding:0!important;margin:0!important}
-  .hero{box-shadow:none!important;border:1px solid #d6e8f5!important}
-  details.sec{display:block!important;open:true;break-inside:auto;page-break-after:always;box-shadow:none!important;border:none!important;margin:0 0 6mm!important}
-  details.sec:last-of-type{page-break-after:auto}
-  details.sec>summary{list-style:none;cursor:default;pointer-events:none}
+  .hero{box-shadow:none!important;border:1px solid #d6e8f5!important;break-inside:avoid}
+
+  /* 章：それぞれ改ページで開始 */
+  details.sec{display:block!important;box-shadow:none!important;border:none!important;margin:0!important;padding:0!important}
+  details.sec{break-before:page;page-break-before:always}
+  details.sec:first-of-type{break-before:auto;page-break-before:auto}
+  details.sec>summary{list-style:none;cursor:default;pointer-events:none;break-after:avoid;page-break-after:avoid;margin-bottom:8px}
   details.sec>summary .chev{display:none!important}
-  .deck-slide{display:block!important;animation:none!important;margin-bottom:8mm!important}
-  .deck-slide:not(:first-child){border-top:1px dashed #cfe0ee;padding-top:6mm}
-  .panel,.mcard,.rev,.celebrate,table,.mini,.tl-flow,.dash-link,.dodont,.qex,.band{break-inside:avoid;page-break-inside:avoid}
-  .panel{box-shadow:none!important}
+
+  /* デッキ：全スライドを展開して自然に流す（改ページはセクション単位） */
+  .deck{margin:0!important}
+  .deck-slide{display:block!important;animation:none!important;margin:0 0 4mm!important;padding:0!important}
+  .deck-slide:not(:first-child){border-top:none!important;padding-top:0!important}
+
+  /* 見出しは直後の内容と必ず同じページに（孤立見出しを防ぐ） */
+  .sec-sub,.ph,.pm-h,h3,h4{break-after:avoid;page-break-after:avoid;break-inside:avoid}
+
+  /* パネルはページをまたいでOK。ただし内部要素は絶対に途中で切らない */
+  .panel{box-shadow:none!important;margin-bottom:10px!important;break-inside:auto}
+  .mcard,.rev,.celebrate,tr,.mini,.tl-flow,.dash-link,.dodont,.qex,.band,.opsitem,.flayer,.cxr,.mp,.pyr-row,.pyr,.mtg-stepper,.pm-flow,.subchips,.lhm,.closing,.foot,.qblock,.rev-grid,.cx-hero,.msg-hero,.tgt-hero,.tgt-funnel,.kpi-b,.themodel,.mini .mcard,.org,.front-split{break-inside:avoid;page-break-inside:avoid}
+  .closing{break-before:page;page-break-before:always}
+
   a[href]{color:inherit!important;text-decoration:none!important}
   *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
 }
