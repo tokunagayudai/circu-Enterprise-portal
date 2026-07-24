@@ -131,6 +131,11 @@ body{
 .mini-link.disabled:hover{background:#f3f4f5;color:var(--gray);border-color:#e3e5e7;transform:none}
 .mini-link i{font-size:15px;flex-shrink:0}
 .mini-link .ml-sub{margin-left:auto;font-size:9px;font-weight:700;opacity:.7}
+/* ── 営業Bot：プラットフォーム別・サブBot ── */
+.bot-plat + .bot-plat{margin-top:11px}
+.bot-sub{display:flex;flex-wrap:wrap;gap:5px;margin:6px 2px 0 4px}
+.bot-sub .bchip{font-size:10px;font-weight:700;color:var(--purple);background:#f1ecf8;border:1px solid #ddd0ef;border-radius:6px;padding:2px 8px}
+.bot-sub .bchip i{font-size:10px;margin-right:2px;opacity:.7}
 /* ── フッター ── */
 .foot{text-align:center;margin-top:36px;font-size:11px;color:var(--gray);font-family:'JetBrains Mono',monospace}
 </style>
@@ -229,6 +234,27 @@ body{
       <span class="card-link">提案ポータルを開く <i class="ti ti-arrow-right"></i></span>
     </a>
 
+    <div class="card purple">
+      <span class="card-badge live"><i class="ti ti-circle-filled" style="font-size:8px"></i> 公開中</span>
+      <div class="card-icon"><i class="ti ti-robot"></i></div>
+      <h3>徳永Mgr 営業Bot</h3>
+      <p>徳永Mgrが作成した営業支援Bot。商談の事前準備・フィードバック・提案相談に活用できる。</p>
+      <div class="card-links2">
+        <div class="bot-plat">
+          <a class="mini-link" href="claude://cowork/shared-artifact?uuid=019f8e4a-d875-74fb-a37e-4a59b3eec4b2">
+            <i class="ti ti-sparkles"></i> Claude Cowork で開く <span class="ml-sub">開く ↗</span>
+          </a>
+          <div class="bot-sub"><span class="bchip">事前準備Bot</span><span class="bchip">商談FB Bot</span><span class="bchip">提案相談Bot</span></div>
+        </div>
+        <div class="bot-plat">
+          <a class="mini-link" href="https://gemini.google.com/gem/1TIRYgTxP6aQeo58WA3FWx76uKJEFImJm?usp=sharing" target="_blank" rel="noopener">
+            <i class="ti ti-brand-google"></i> Gemini で開く <span class="ml-sub">開く ↗</span>
+          </a>
+          <div class="bot-sub"><span class="bchip">商談FB Bot</span></div>
+        </div>
+      </div>
+    </div>
+
     <a class="card purple" href="#" onclick="return false">
       <span class="card-badge wip"><i class="ti ti-tools" style="font-size:10px"></i> 準備中</span>
       <div class="card-icon"><i class="ti ti-users-group"></i></div>
@@ -251,12 +277,12 @@ body{
   <div class="sec-title"><i class="ti ti-file-invoice"></i>事務作業 <small>― 月次オペレーション（守り）</small></div>
   <div class="grid">
 
-    <a class="card orange" href="./closing/" target="_blank" rel="noopener">
-      <span class="card-badge live"><i class="ti ti-circle-filled" style="font-size:8px"></i> 公開中</span>
+    <a class="card orange" href="#" onclick="return false">
+      <span class="card-badge wip"><i class="ti ti-tools" style="font-size:10px"></i> 準備中</span>
       <div class="card-icon"><i class="ti ti-file-invoice"></i></div>
       <h3>請求・締め ダッシュボード</h3>
-      <p>月次の締め（全件・候補者稼働承認完了）までの進捗を1画面に集約。工程別ステータス・締めゲージ・詰まっている案件・担当別フィルタ。Slack催促をやめ、毎朝ここを見れば分かる状態に。</p>
-      <span class="card-link">締め状況を見る <i class="ti ti-arrow-right"></i></span>
+      <p>月次の締め（全件・候補者稼働承認完了）までの進捗を1画面に集約。工程別ステータス・締めゲージ・詰まっている案件・担当別フィルタ。Slack催促をやめ、毎朝ここを見れば分かる状態に。（準備中）</p>
+      <span class="card-link">準備中 <i class="ti ti-dots"></i></span>
     </a>
 
   </div>
