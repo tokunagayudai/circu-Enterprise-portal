@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>テンプレ集｜エンタープライズ ポータル｜株式会社サーキュレーション</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMGE4ZmQ2Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDA0ZjgyIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNyIgZmlsbD0idXJsKCNnKSIvPjxyZWN0IHg9IjguNSIgeT0iNyIgd2lkdGg9IjcuNSIgaGVpZ2h0PSIxOCIgcng9IjEuMiIgZmlsbD0iI2ZmZmZmZiIvPjxyZWN0IHg9IjE3IiB5PSIxMS41IiB3aWR0aD0iNi41IiBoZWlnaHQ9IjEzLjUiIHJ4PSIxLjIiIGZpbGw9IiNiZmUzZmIiLz48ZyBmaWxsPSIjMGE3MmI4Ij48cmVjdCB4PSIxMC40IiB5PSI5LjQiIHdpZHRoPSIxLjciIGhlaWdodD0iMS43Ii8+PHJlY3QgeD0iMTMiIHk9IjkuNCIgd2lkdGg9IjEuNyIgaGVpZ2h0PSIxLjciLz48cmVjdCB4PSIxMC40IiB5PSIxMi42IiB3aWR0aD0iMS43IiBoZWlnaHQ9IjEuNyIvPjxyZWN0IHg9IjEzIiB5PSIxMi42IiB3aWR0aD0iMS43IiBoZWlnaHQ9IjEuNyIvPjxyZWN0IHg9IjEwLjQiIHk9IjE1LjgiIHdpZHRoPSIxLjciIGhlaWdodD0iMS43Ii8+PHJlY3QgeD0iMTMiIHk9IjE1LjgiIHdpZHRoPSIxLjciIGhlaWdodD0iMS43Ii8+PHJlY3QgeD0iMTAuNCIgeT0iMTkiIHdpZHRoPSIxLjciIGhlaWdodD0iMS43Ii8+PHJlY3QgeD0iMTMiIHk9IjE5IiB3aWR0aD0iMS43IiBoZWlnaHQ9IjEuNyIvPjwvZz48ZyBmaWxsPSIjNTU5OWJlIj48cmVjdCB4PSIxOC43IiB5PSIxMy44IiB3aWR0aD0iMS41IiBoZWlnaHQ9IjEuNSIvPjxyZWN0IHg9IjIwLjgiIHk9IjEzLjgiIHdpZHRoPSIxLjUiIGhlaWdodD0iMS41Ii8+PHJlY3QgeD0iMTguNyIgeT0iMTYuOCIgd2lkdGg9IjEuNSIgaGVpZ2h0PSIxLjUiLz48cmVjdCB4PSIyMC44IiB5PSIxNi44IiB3aWR0aD0iMS41IiBoZWlnaHQ9IjEuNSIvPjxyZWN0IHg9IjE4LjciIHk9IjE5LjgiIHdpZHRoPSIxLjUiIGhlaWdodD0iMS41Ii8+PHJlY3QgeD0iMjAuOCIgeT0iMTkuOCIgd2lkdGg9IjEuNSIgaGVpZ2h0PSIxLjUiLz48L2c+PC9zdmc+Cg==">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.11.0/dist/tabler-icons.min.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+:root{
+  --blue:#0079c0; --blue-d:#003d5e; --blue-mid:#5599be; --blue-l:#e8f6ff;
+  --green:#22a047; --orange:#ed7d31; --purple:#7057a3; --ink:#1a2a38; --gray:#6b6864;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'M PLUS Rounded 1c','Hiragino Kaku Gothic ProN',sans-serif;
+  background:linear-gradient(160deg,#e8f6ff 0%,#d8eefb 100%);
+  color:var(--ink); min-height:100vh; padding:0 0 60px;
+}
+.topbar{background:linear-gradient(135deg,#0079c0,#005a92);color:#fff;padding:16px 24px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 12px rgba(0,121,192,.25);position:sticky;top:0;z-index:40}
+.topbar i{font-size:22px}
+.topbar h1{font-size:17px;font-weight:800;letter-spacing:.01em}
+.topbar-badge{background:rgba(255,255,255,.2);border-radius:20px;padding:3px 12px;font-size:11px;font-weight:500;margin-left:4px}
+.topbar-spacer{flex:1}
+.back{color:#fff;text-decoration:none;font-size:12px;font-weight:600;display:flex;align-items:center;gap:5px;opacity:.92}
+.back:hover{opacity:1}
+.wrap{max-width:1360px;margin:0 auto;padding:28px 28px 0}
+.hero{background:linear-gradient(135deg,#fff,#f1ecf8);border:2px solid #b9a9db;border-radius:20px;padding:30px 30px 26px;margin-bottom:26px;text-align:center;position:relative;overflow:hidden}
+.hero-icon{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,#7057a3,#9b7fc4);display:inline-flex;align-items:center;justify-content:center;margin-bottom:14px;box-shadow:0 6px 16px rgba(112,87,163,.3)}
+.hero-icon i{font-size:28px;color:#fff}
+.hero h2{font-size:24px;font-weight:800;color:var(--purple);margin-bottom:10px}
+.hero p{font-size:13px;color:var(--gray);line-height:1.7}
+.sec-title{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--blue-d);margin:26px 4px 14px}
+.sec-title i{font-size:18px}
+.sec-title small{font-weight:500;color:var(--gray);font-size:11px}
+.sec-title.t-doc i{color:var(--blue)} .sec-title.t-mail i{color:var(--green)} .sec-title.t-ai i{color:var(--purple)}
+/* グリッド */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.grid{grid-template-columns:1fr}}
+.tcard{background:#fff;border-radius:16px;border:1.5px solid #d6e8f5;padding:20px 20px 18px;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:transform .15s,box-shadow .15s,border-color .15s}
+.tcard::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;transform:scaleX(0);transform-origin:left;transition:transform .2s}
+.tcard:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,121,192,.14)}
+.tcard:hover::before{transform:scaleX(1)}
+.tcard.doc::before{background:linear-gradient(90deg,#5599be,#0079c0)} .tcard.doc{border-color:#cfe6f6}
+.tcard.mail::before{background:linear-gradient(90deg,#5ab870,#22a047)}
+.tcard.ai::before{background:linear-gradient(90deg,#9b7fc4,#7057a3)}
+.tc-ico{width:42px;height:42px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;margin-bottom:12px}
+.tcard.doc .tc-ico{background:var(--blue-l)} .tcard.doc .tc-ico i{color:var(--blue)}
+.tcard.mail .tc-ico{background:#e6f7ee} .tcard.mail .tc-ico i{color:var(--green)}
+.tcard.ai .tc-ico{background:#f1ecf8} .tcard.ai .tc-ico i{color:var(--purple)}
+.tc-ico i{font-size:22px}
+.tcard h3{font-size:15px;font-weight:700;margin-bottom:5px}
+.tcard p{font-size:11.5px;color:var(--gray);line-height:1.6;margin-bottom:13px;flex:1}
+.tc-act{display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;font-family:inherit;font-size:12px;font-weight:700;border-radius:10px;padding:8px 13px;cursor:pointer;text-decoration:none;border:1.5px solid transparent;transition:.14s}
+.btn-copy{background:#f1ecf8;color:var(--purple);border-color:#ddd0ef}
+.btn-copy:hover{background:var(--purple);color:#fff;border-color:var(--purple)}
+.tcard.mail .btn-copy{background:#e6f7ee;color:var(--green);border-color:#bfe6cd}
+.tcard.mail .btn-copy:hover{background:var(--green);color:#fff;border-color:var(--green)}
+.btn-view{background:#eef7fd;color:var(--blue);border-color:#cfe6f6}
+.btn-view:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+.btn-link{background:#eef7fd;color:var(--blue);border-color:#cfe6f6}
+.btn-link:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+.btn.disabled{background:#f3f4f5;color:var(--gray);border-color:#e3e5e7;cursor:default}
+.btn.disabled:hover{background:#f3f4f5;color:var(--gray);border-color:#e3e5e7}
+.btn i{font-size:15px}
+.tag-soon{position:absolute;top:14px;right:14px;font-size:10px;font-weight:700;color:var(--orange);background:#fff3e0;border:1.5px solid var(--orange);border-radius:20px;padding:3px 9px}
+/* モーダル */
+.ov{position:fixed;inset:0;background:rgba(10,30,50,.55);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;z-index:100;padding:24px}
+.ov.show{display:flex}
+.modal{background:#fff;border-radius:18px;max-width:760px;width:100%;max-height:86vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.modal-h{display:flex;align-items:center;gap:10px;padding:18px 22px;background:#0b2b45;color:#fff}
+.modal-h .mh-ico{width:34px;height:34px;border-radius:10px;background:rgba(255,255,255,.16);display:grid;place-items:center;flex:none}
+.modal-h .mh-ico i{font-size:19px}
+.modal-h h3{font-size:15px;font-weight:800;flex:1}
+.modal-h .mh-x{background:rgba(255,255,255,.14);border:none;color:#fff;width:32px;height:32px;border-radius:9px;cursor:pointer;font-size:18px;display:grid;place-items:center;transition:.14s}
+.modal-h .mh-x:hover{background:rgba(255,255,255,.3)}
+.modal-desc{padding:12px 22px 0;font-size:12px;color:var(--gray);line-height:1.6}
+.modal-body{padding:14px 22px 20px;overflow:auto}
+.modal-body pre{white-space:pre-wrap;word-break:break-word;font-family:'M PLUS Rounded 1c',sans-serif;font-size:13px;line-height:1.75;color:var(--ink);background:#f5f8fb;border:1.5px solid #dbe8f2;border-radius:12px;padding:16px 18px}
+.modal-body pre b,.modal-body pre .ph{color:var(--purple);font-weight:700}
+.modal-foot{display:flex;gap:10px;justify-content:flex-end;padding:14px 22px;border-top:1.5px solid #eef2f6}
+.modal-foot .btn-copy{background:var(--purple);color:#fff;border-color:var(--purple)}
+.modal-foot .btn-copy:hover{background:#5a4589}
+.foot{text-align:center;margin-top:36px;font-size:11px;color:var(--gray);font-family:'JetBrains Mono',monospace}
+/* トースト */
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:#0b2b45;color:#fff;font-size:13px;font-weight:700;padding:11px 20px;border-radius:24px;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:.2s;z-index:200;display:flex;align-items:center;gap:8px}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.note{font-size:11px;color:var(--gray);margin:2px 4px 0;line-height:1.6}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <i class="ti ti-template"></i>
+  <h1>テンプレ集</h1>
+  <span class="topbar-badge">CIRCULATION</span>
+  <div class="topbar-spacer"></div>
+  <a class="back" href="../"><i class="ti ti-arrow-left"></i> ポータルへ戻る</a>
+</div>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div class="hero-icon"><i class="ti ti-template"></i></div>
+    <h2>テンプレ集</h2>
+    <p>資料・メール・AIプロンプトの雛形をまとめた場所です。<strong>ゼロから作らず、型から始める</strong>。<br>AIプロンプト・メール文例は<strong>「コピー」ですぐ使えます</strong>。</p>
+  </div>
+
+  <!-- 資料テンプレ -->
+  <div class="sec-title t-doc"><i class="ti ti-file-text"></i>資料テンプレ <small>― 提案書・見積・資料フォーマット</small></div>
+  <div class="grid">
+    <div class="tcard doc">
+      <div class="tc-ico"><i class="ti ti-file-text"></i></div>
+      <h3>資料作成フォーマット</h3>
+      <p>提案・報告資料の標準レイアウト（表紙・課題整理・提案・体制・スケジュール）。トンマナ統一済みの雛形。</p>
+      <div class="tc-act"><a class="btn btn-link disabled" data-slot="doc-format"><i class="ti ti-external-link"></i> リンク設定待ち</a></div>
+    </div>
+    <div class="tcard doc">
+      <div class="tc-ico"><i class="ti ti-receipt"></i></div>
+      <h3>見積書フォーマット</h3>
+      <p>プロ人材アサインの見積書テンプレート。ポジション・単価・期間・稼働工数の記入枠つき。</p>
+      <div class="tc-act"><a class="btn btn-link disabled" data-slot="quote-format"><i class="ti ti-external-link"></i> リンク設定待ち</a></div>
+    </div>
+    <div class="tcard doc">
+      <div class="tc-ico"><i class="ti ti-presentation"></i></div>
+      <h3>提案書テンプレート</h3>
+      <p>初回提案〜推奨アサイン案までの提案書スライド雛形。AsIs-ToBe・体制図・候補者ページを含む。</p>
+      <div class="tc-act"><a class="btn btn-link disabled" data-slot="proposal-format"><i class="ti ti-external-link"></i> リンク設定待ち</a></div>
+    </div>
+  </div>
+  <p class="note">※ ドキュメント系はGoogleドライブ／スライドの雛形にリンクします。共有URLが決まり次第、各カードに設定します。</p>
+
+  <!-- メールテンプレ -->
+  <div class="sec-title t-mail"><i class="ti ti-mail"></i>メールテンプレ <small>― 商談前後の定型文（コピーして使う）</small></div>
+  <div class="grid" id="grid-mail"></div>
+
+  <!-- AIプロンプト -->
+  <div class="sec-title t-ai"><i class="ti ti-sparkles"></i>AIプロンプト <small>― そのまま貼って使えるプロンプト集</small></div>
+  <div class="grid" id="grid-ai"></div>
+
+  <div class="foot">© 株式会社サーキュレーション　Enterprise Team Portal ｜ テンプレ集</div>
+
+</div>
+
+<!-- モーダル -->
+<div class="ov" id="ov" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="modal-h">
+      <div class="mh-ico"><i class="ti ti-file-text" id="m-ico"></i></div>
+      <h3 id="m-title">タイトル</h3>
+      <button class="mh-x" onclick="closeModal()"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="modal-desc" id="m-desc"></div>
+    <div class="modal-body"><pre id="m-body"></pre></div>
+    <div class="modal-foot">
+      <button class="btn btn-copy" onclick="copyFromModal(this)"><i class="ti ti-copy"></i> 全文をコピー</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"><i class="ti ti-check"></i> <span>コピーしました</span></div>
+
+<script>
+/* ── テンプレ定義 ── */
+var MAIL=[
+  {id:'thanks',ico:'ti-mood-smile',title:'商談後のお礼メール',desc:'初回商談当日〜翌日に送る御礼＋ネクスト確認。',
+   body:`{{お客様名}} 様
+
+本日はお忙しい中、貴重なお時間をいただき誠にありがとうございました。
+{{テーマ／課題}} について、現状と目指す姿を詳しくお伺いでき大変勉強になりました。
+
+本日のお話を踏まえ、{{ネクスト（例：ご支援イメージと候補となるプロ人材）}} を
+{{提出予定日}} までに整理し、改めてご提案させていただきます。
+
+引き続きどうぞよろしくお願いいたします。
+
+株式会社サーキュレーション
+{{氏名}}`},
+  {id:'send',ico:'ti-send',title:'提案書送付メール',desc:'提案書・人選資料を送付するときの本文。',
+   body:`{{お客様名}} 様
+
+お世話になっております。サーキュレーションの{{氏名}}です。
+先日ご相談いただいた {{テーマ}} について、ご提案資料をお送りいたします。
+
+▼ ご提案のポイント
+・{{ポイント1}}
+・{{ポイント2}}
+・{{ポイント3}}
+
+ご不明点や調整したい点がございましたら、オンラインで{{所要時間（例：30分）}}ほど
+お時間をいただき、擦り合わせさせていただけますと幸いです。
+下記より、ご都合のよい日時をお知らせください。
+{{日程候補 or 予約リンク}}
+
+何卒よろしくお願いいたします。
+
+株式会社サーキュレーション
+{{氏名}}`},
+  {id:'schedule',ico:'ti-calendar',title:'日程調整メール',desc:'次回商談・面談の日程を打診する定型文。',
+   body:`{{お客様名}} 様
+
+お世話になっております。サーキュレーションの{{氏名}}です。
+次回の打ち合わせについて、下記日程で候補をお送りいたします。
+
+・{{候補1：MM/DD（曜）HH:MM〜}}
+・{{候補2：MM/DD（曜）HH:MM〜}}
+・{{候補3：MM/DD（曜）HH:MM〜}}
+
+いずれもオンライン（{{ツール}}）を想定しております。
+ご都合が合わない場合は、いくつか候補をいただけますと幸いです。
+
+何卒よろしくお願いいたします。
+
+株式会社サーキュレーション
+{{氏名}}`}
+];
+var AI=[
+  {id:'proposal',ico:'ti-file-pencil',title:'提案書ドラフト作成',desc:'商談メモから提案の骨子を作らせるプロンプト。',
+   body:`あなたはプロ人材活用（プロシェアリング）の提案を作る優秀な法人営業です。
+以下の商談メモをもとに、提案書の骨子を作成してください。
+
+# 商談メモ
+{{商談メモ／議事録を貼り付け}}
+
+# 出力してほしい構成
+1. お客様の現状（AsIs）と目指す姿（ToBe）の整理
+2. 論点・課題の構造化（なぜ内製では難しいか含む）
+3. 提案の全体像（どのテーマに・どんなプロを・どの関与モデルで・どの期間）
+4. 想定体制図（社内 × プロ人材の役割分担）
+5. スケジュールとネクストアクション
+
+# 条件
+- 事実はメモの範囲で。不明点は「確認事項」として明示する
+- 抽象論を避け、お客様の言葉・固有名詞を使う
+- 各項目は箇条書き中心で簡潔に`},
+  {id:'research',ico:'ti-search',title:'商談準備・企業リサーチ',desc:'商談前に企業と論点の仮説を用意するプロンプト。',
+   body:`あなたはエンタープライズ担当の法人営業です。
+これから商談する企業について、事前準備の仮説を整理してください。
+
+# 対象
+企業名：{{企業名}}
+部署／役職：{{相手の部署・役職}}
+想定テーマ：{{テーマ}}
+
+# 出力
+1. 企業概要と直近の動き（IR・ニュース・採用から読み取れる注力領域）
+2. その部署が抱えていそうな課題の仮説（3つ）
+3. 各課題に対するプロ人材活用の切り口
+4. 商談で確認すべき質問リスト（体制→フェーズ→時期の順）
+5. 想定される競合・比較検討先と、当社の差別化ポイント
+
+# 条件
+- 断定せず「仮説」として提示する
+- 一般論ではなく、この企業・この部署に寄せる`},
+  {id:'minutes',ico:'ti-list-check',title:'議事録の要約・ネクスト整理',desc:'文字起こしから要点とToDoを抽出するプロンプト。',
+   body:`以下の商談の文字起こしを、営業が使いやすい形に整理してください。
+
+# 文字起こし
+{{文字起こしを貼り付け}}
+
+# 出力
+1. 要約（3〜5行）
+2. お客様の課題・ニーズ（顕在／潜在に分けて）
+3. 決定事項
+4. ネクストアクション（担当・期限つき）
+5. 案件化の可能性と、次に握るべき条件（予算・時期・体制・承認フロー）
+6. フォローメールの下書き（お礼＋ネクスト確認）
+
+# 条件
+- 事実と解釈を分ける。推測には「（推測）」を付ける`}
+];
+
+/* ── 描画 ── */
+function cardHTML(t,cls){
+  return '<div class="tcard '+cls+'">'
+    +'<div class="tc-ico"><i class="ti '+t.ico+'"></i></div>'
+    +'<h3>'+t.title+'</h3><p>'+t.desc+'</p>'
+    +'<div class="tc-act">'
+    +'<button class="btn btn-view" onclick="openModal(\''+cls+'\',\''+t.id+'\')"><i class="ti ti-eye"></i> 見る</button>'
+    +'<button class="btn btn-copy" onclick="copyText(\''+cls+'\',\''+t.id+'\',this)"><i class="ti ti-copy"></i> コピー</button>'
+    +'</div></div>';
+}
+document.getElementById('grid-mail').innerHTML=MAIL.map(function(t){return cardHTML(t,'mail');}).join('');
+document.getElementById('grid-ai').innerHTML=AI.map(function(t){return cardHTML(t,'ai');}).join('');
+
+function find(cls,id){var arr=cls==='mail'?MAIL:AI;for(var i=0;i<arr.length;i++){if(arr[i].id===id)return arr[i];}return null;}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+var curText='';
+function openModal(cls,id){
+  var t=find(cls,id); if(!t)return;
+  document.getElementById('m-ico').className='ti '+t.ico;
+  document.getElementById('m-title').textContent=t.title;
+  document.getElementById('m-desc').textContent=t.desc+(cls==='ai'?'（{{ }} の部分を埋めて使用）':'（{{ }} を実際の内容に置き換えてください）');
+  document.getElementById('m-body').innerHTML=esc(t.body).replace(/\{\{(.+?)\}\}/g,'<b>{{$1}}</b>');
+  curText=t.body;
+  document.getElementById('ov').classList.add('show');
+}
+function closeModal(){document.getElementById('ov').classList.remove('show');}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+
+function doCopy(text){
+  if(navigator.clipboard&&navigator.clipboard.writeText){return navigator.clipboard.writeText(text);}
+  return new Promise(function(res){var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);res();});
+}
+function toast(){var el=document.getElementById('toast');el.classList.add('show');setTimeout(function(){el.classList.remove('show');},1600);}
+function copyText(cls,id,btn){var t=find(cls,id);if(!t)return;doCopy(t.body).then(function(){toast();flash(btn);});}
+function copyFromModal(btn){doCopy(curText).then(function(){toast();flash(btn);});}
+function flash(btn){var o=btn.innerHTML;btn.innerHTML='<i class="ti ti-check"></i> コピー済み';setTimeout(function(){btn.innerHTML=o;},1400);}
+</script>
+
+</body>
+</html>
