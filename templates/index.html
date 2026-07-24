@@ -4,240 +4,660 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>テンプレ集｜エンタープライズ ポータル｜株式会社サーキュレーション</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMGE4ZmQ2Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDA0ZjgyIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNyIgZmlsbD0idXJsKCNnKSIvPjxyZWN0IHg9IjguNSIgeT0iNyIgd2lkdGg9IjcuNSIgaGVpZ2h0PSIxOCIgcng9IjEuMiIgZmlsbD0iI2ZmZmZmZiIvPjxyZWN0IHg9IjE3IiB5PSIxMS41IiB3aWR0aD0iNi41IiBoZWlnaHQ9IjEzLjUiIHJ4PSIxLjIiIGZpbGw9IiNiZmUzZmIiLz48ZyBmaWxsPSIjMGE3MmI4Ij48cmVjdCB4PSIxMC40IiB5PSI5LjQiIHdpZHRoPSIxLjciIGhlaWdodD0iMS43Ii8+PHJlY3QgeD0iMTMiIHk9IjkuNCIgd2lkdGg9IjEuNyIgaGVpZ2h0PSIxLjciLz48cmVjdCB4PSIxMC40IiB5PSIxMi42IiB3aWR0aD0iMS43IiBoZWlnaHQ9IjEuNyIvPjxyZWN0IHg9IjEzIiB5PSIxMi42IiB3aWR0aD0iMS43IiBoZWlnaHQ9IjEuNyIvPjxyZWN0IHg9IjEwLjQiIHk9IjE1LjgiIHdpZHRoPSIxLjciIGhlaWdodD0iMS43Ii8+PHJlY3QgeD0iMTMiIHk9IjE1LjgiIHdpZHRoPSIxLjciIGhlaWdodD0iMS43Ii8+PHJlY3QgeD0iMTAuNCIgeT0iMTkiIHdpZHRoPSIxLjciIGhlaWdodD0iMS43Ii8+PHJlY3QgeD0iMTMiIHk9IjE5IiB3aWR0aD0iMS43IiBoZWlnaHQ9IjEuNyIvPjwvZz48ZyBmaWxsPSIjNTU5OWJlIj48cmVjdCB4PSIxOC43IiB5PSIxMy44IiB3aWR0aD0iMS41IiBoZWlnaHQ9IjEuNSIvPjxyZWN0IHg9IjIwLjgiIHk9IjEzLjgiIHdpZHRoPSIxLjUiIGhlaWdodD0iMS41Ii8+PHJlY3QgeD0iMTguNyIgeT0iMTYuOCIgd2lkdGg9IjEuNSIgaGVpZ2h0PSIxLjUiLz48cmVjdCB4PSIyMC44IiB5PSIxNi44IiB3aWR0aD0iMS41IiBoZWlnaHQ9IjEuNSIvPjxyZWN0IHg9IjE4LjciIHk9IjE5LjgiIHdpZHRoPSIxLjUiIGhlaWdodD0iMS41Ii8+PHJlY3QgeD0iMjAuOCIgeT0iMTkuOCIgd2lkdGg9IjEuNSIgaGVpZ2h0PSIxLjUiLz48L2c+PC9zdmc+Cg==">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.11.0/dist/tabler-icons.min.css">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
-:root{
-  --blue:#0079c0; --blue-d:#003d5e; --blue-mid:#5599be; --blue-l:#e8f6ff;
-  --green:#22a047; --orange:#ed7d31; --purple:#7057a3; --ink:#1a2a38; --gray:#6b6864;
-}
+:root{--blue:#0079c0;--blue-d:#003d5e;--blue-mid:#5599be;--blue-l:#e8f6ff;--green:#22a047;--orange:#ed7d31;--purple:#7057a3;--ink:#1a2a38;--gray:#6b6864}
 *{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:'M PLUS Rounded 1c','Hiragino Kaku Gothic ProN',sans-serif;
-  background:linear-gradient(160deg,#e8f6ff 0%,#d8eefb 100%);
-  color:var(--ink); min-height:100vh; padding:0 0 60px;
-}
+body{font-family:'M PLUS Rounded 1c','Hiragino Kaku Gothic ProN',sans-serif;background:linear-gradient(160deg,#e8f6ff 0%,#d8eefb 100%);color:var(--ink);min-height:100vh;padding:0 0 60px}
 .topbar{background:linear-gradient(135deg,#0079c0,#005a92);color:#fff;padding:16px 24px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 12px rgba(0,121,192,.25);position:sticky;top:0;z-index:40}
-.topbar i{font-size:22px}
-.topbar h1{font-size:17px;font-weight:800;letter-spacing:.01em}
+.topbar i{font-size:22px}.topbar h1{font-size:17px;font-weight:800}
 .topbar-badge{background:rgba(255,255,255,.2);border-radius:20px;padding:3px 12px;font-size:11px;font-weight:500;margin-left:4px}
 .topbar-spacer{flex:1}
-.back{color:#fff;text-decoration:none;font-size:12px;font-weight:600;display:flex;align-items:center;gap:5px;opacity:.92}
-.back:hover{opacity:1}
-.wrap{max-width:1360px;margin:0 auto;padding:28px 28px 0}
-.hero{background:linear-gradient(135deg,#fff,#f1ecf8);border:2px solid #b9a9db;border-radius:20px;padding:30px 30px 26px;margin-bottom:26px;text-align:center;position:relative;overflow:hidden}
-.hero-icon{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,#7057a3,#9b7fc4);display:inline-flex;align-items:center;justify-content:center;margin-bottom:14px;box-shadow:0 6px 16px rgba(112,87,163,.3)}
-.hero-icon i{font-size:28px;color:#fff}
-.hero h2{font-size:24px;font-weight:800;color:var(--purple);margin-bottom:10px}
+.back{color:#fff;text-decoration:none;font-size:12px;font-weight:600;display:flex;align-items:center;gap:5px;opacity:.92}.back:hover{opacity:1}
+.wrap{max-width:1360px;margin:0 auto;padding:26px 28px 0}
+.hero{background:linear-gradient(135deg,#fff,#f1ecf8);border:2px solid #b9a9db;border-radius:20px;padding:28px 30px 24px;margin-bottom:8px;text-align:center;position:relative;overflow:hidden}
+.hero-icon{width:52px;height:52px;border-radius:15px;background:linear-gradient(135deg,#7057a3,#9b7fc4);display:inline-flex;align-items:center;justify-content:center;margin-bottom:12px;box-shadow:0 6px 16px rgba(112,87,163,.3)}
+.hero-icon i{font-size:26px;color:#fff}
+.hero h2{font-size:23px;font-weight:800;color:var(--purple);margin-bottom:9px}
 .hero p{font-size:13px;color:var(--gray);line-height:1.7}
-.sec-title{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--blue-d);margin:26px 4px 14px}
-.sec-title i{font-size:18px}
-.sec-title small{font-weight:500;color:var(--gray);font-size:11px}
-.sec-title.t-doc i{color:var(--blue)} .sec-title.t-mail i{color:var(--green)} .sec-title.t-ai i{color:var(--purple)}
+.group-h{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:800;color:var(--blue-d);margin:28px 4px 6px;padding-bottom:9px;border-bottom:2px solid #cfe0ee}
+.group-h .gi{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;flex:none;color:#fff}
+.group-h .gi i{font-size:17px}
+.group-note{font-size:11.5px;color:var(--gray);margin:8px 4px 12px;line-height:1.6}
+/* フェーズ小見出し */
+.ph-row{display:flex;align-items:center;gap:9px;margin:18px 4px 11px}
+.ph-badge{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:800;color:#fff;background:linear-gradient(135deg,#7057a3,#9b7fc4);border-radius:8px;width:34px;height:26px;display:grid;place-items:center;flex:none}
+.ph-name{font-size:13px;font-weight:800;color:var(--purple)}
+.ph-line{flex:1;height:1.5px;background:#e6ddf2}
 /* グリッド */
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
 @media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.grid{grid-template-columns:1fr}}
-.tcard{background:#fff;border-radius:16px;border:1.5px solid #d6e8f5;padding:20px 20px 18px;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:transform .15s,box-shadow .15s,border-color .15s}
+.tcard{background:#fff;border-radius:15px;border:1.5px solid #d6e8f5;padding:17px 18px 15px;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:transform .14s,box-shadow .14s}
 .tcard::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;transform:scaleX(0);transform-origin:left;transition:transform .2s}
-.tcard:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,121,192,.14)}
+.tcard:hover{transform:translateY(-2px);box-shadow:0 9px 24px rgba(0,121,192,.13)}
 .tcard:hover::before{transform:scaleX(1)}
-.tcard.doc::before{background:linear-gradient(90deg,#5599be,#0079c0)} .tcard.doc{border-color:#cfe6f6}
+.tcard.doc::before{background:linear-gradient(90deg,#5599be,#0079c0)}
 .tcard.mail::before{background:linear-gradient(90deg,#5ab870,#22a047)}
 .tcard.ai::before{background:linear-gradient(90deg,#9b7fc4,#7057a3)}
-.tc-ico{width:42px;height:42px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;margin-bottom:12px}
-.tcard.doc .tc-ico{background:var(--blue-l)} .tcard.doc .tc-ico i{color:var(--blue)}
-.tcard.mail .tc-ico{background:#e6f7ee} .tcard.mail .tc-ico i{color:var(--green)}
-.tcard.ai .tc-ico{background:#f1ecf8} .tcard.ai .tc-ico i{color:var(--purple)}
-.tc-ico i{font-size:22px}
-.tcard h3{font-size:15px;font-weight:700;margin-bottom:5px}
-.tcard p{font-size:11.5px;color:var(--gray);line-height:1.6;margin-bottom:13px;flex:1}
-.tc-act{display:flex;gap:8px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:6px;font-family:inherit;font-size:12px;font-weight:700;border-radius:10px;padding:8px 13px;cursor:pointer;text-decoration:none;border:1.5px solid transparent;transition:.14s}
-.btn-copy{background:#f1ecf8;color:var(--purple);border-color:#ddd0ef}
-.btn-copy:hover{background:var(--purple);color:#fff;border-color:var(--purple)}
-.tcard.mail .btn-copy{background:#e6f7ee;color:var(--green);border-color:#bfe6cd}
-.tcard.mail .btn-copy:hover{background:var(--green);color:#fff;border-color:var(--green)}
-.btn-view{background:#eef7fd;color:var(--blue);border-color:#cfe6f6}
-.btn-view:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
-.btn-link{background:#eef7fd;color:var(--blue);border-color:#cfe6f6}
-.btn-link:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
-.btn.disabled{background:#f3f4f5;color:var(--gray);border-color:#e3e5e7;cursor:default}
-.btn.disabled:hover{background:#f3f4f5;color:var(--gray);border-color:#e3e5e7}
-.btn i{font-size:15px}
-.tag-soon{position:absolute;top:14px;right:14px;font-size:10px;font-weight:700;color:var(--orange);background:#fff3e0;border:1.5px solid var(--orange);border-radius:20px;padding:3px 9px}
+.tc-top{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.role-tag{font-size:10px;font-weight:800;padding:2px 9px;border-radius:20px;background:#eef2f6;color:#51606d}
+.role-tag.FS{background:#e6f7ee;color:#1a7d38}.role-tag.IS{background:#e8f6ff;color:#0079c0}
+.role-tag.マーケ{background:#fff3e0;color:#b34700}.role-tag.ASS{background:#f1ecf8;color:#7057a3}
+.tcard h3{font-size:14.5px;font-weight:700;margin-bottom:5px;line-height:1.35}
+.tcard p{font-size:11.5px;color:var(--gray);line-height:1.6;margin-bottom:12px;flex:1}
+.tc-act{display:flex;gap:7px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:5px;font-family:inherit;font-size:11.5px;font-weight:700;border-radius:9px;padding:7px 12px;cursor:pointer;text-decoration:none;border:1.5px solid transparent;transition:.14s}
+.btn i{font-size:14px}
+.btn-view{background:#f1ecf8;color:var(--purple);border-color:#ddd0ef}.btn-view:hover{background:var(--purple);color:#fff}
+.btn-copy{background:#eef7fd;color:var(--blue);border-color:#cfe6f6}.btn-copy:hover{background:var(--blue);color:#fff}
+.btn-link{background:#eef7fd;color:var(--blue);border-color:#cfe6f6}.btn-link:hover{background:var(--blue);color:#fff}
+.btn.disabled{background:#f3f4f5;color:var(--gray);border-color:#e3e5e7;cursor:default}.btn.disabled:hover{background:#f3f4f5;color:var(--gray)}
+.foot{text-align:center;margin-top:34px;font-size:11px;color:var(--gray);font-family:'JetBrains Mono',monospace}
 /* モーダル */
 .ov{position:fixed;inset:0;background:rgba(10,30,50,.55);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;z-index:100;padding:24px}
 .ov.show{display:flex}
-.modal{background:#fff;border-radius:18px;max-width:760px;width:100%;max-height:86vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.3)}
-.modal-h{display:flex;align-items:center;gap:10px;padding:18px 22px;background:#0b2b45;color:#fff}
-.modal-h .mh-ico{width:34px;height:34px;border-radius:10px;background:rgba(255,255,255,.16);display:grid;place-items:center;flex:none}
-.modal-h .mh-ico i{font-size:19px}
+.modal{background:#fff;border-radius:18px;max-width:780px;width:100%;max-height:88vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.modal-h{display:flex;align-items:center;gap:10px;padding:16px 20px;background:#0b2b45;color:#fff}
+.modal-h .mh-ico{font-size:20px}
 .modal-h h3{font-size:15px;font-weight:800;flex:1}
-.modal-h .mh-x{background:rgba(255,255,255,.14);border:none;color:#fff;width:32px;height:32px;border-radius:9px;cursor:pointer;font-size:18px;display:grid;place-items:center;transition:.14s}
+.modal-h .mh-x{background:rgba(255,255,255,.14);border:none;color:#fff;width:32px;height:32px;border-radius:9px;cursor:pointer;font-size:18px;display:grid;place-items:center}
 .modal-h .mh-x:hover{background:rgba(255,255,255,.3)}
-.modal-desc{padding:12px 22px 0;font-size:12px;color:var(--gray);line-height:1.6}
-.modal-body{padding:14px 22px 20px;overflow:auto}
-.modal-body pre{white-space:pre-wrap;word-break:break-word;font-family:'M PLUS Rounded 1c',sans-serif;font-size:13px;line-height:1.75;color:var(--ink);background:#f5f8fb;border:1.5px solid #dbe8f2;border-radius:12px;padding:16px 18px}
-.modal-body pre b,.modal-body pre .ph{color:var(--purple);font-weight:700}
-.modal-foot{display:flex;gap:10px;justify-content:flex-end;padding:14px 22px;border-top:1.5px solid #eef2f6}
-.modal-foot .btn-copy{background:var(--purple);color:#fff;border-color:var(--purple)}
-.modal-foot .btn-copy:hover{background:#5a4589}
-.foot{text-align:center;margin-top:36px;font-size:11px;color:var(--gray);font-family:'JetBrains Mono',monospace}
-/* トースト */
+.m-tabs{display:flex;gap:7px;flex-wrap:wrap;padding:14px 20px 0}
+.m-tab{font-family:inherit;font-size:11.5px;font-weight:700;color:#51606d;background:#fff;border:1.5px solid #dfe6ee;border-radius:18px;padding:6px 13px;cursor:pointer}
+.m-tab.active,.m-tab:hover{background:var(--purple);color:#fff;border-color:var(--purple)}
+.m-body{padding:14px 20px 18px;overflow:auto;position:relative}
+.m-copy{position:absolute;top:16px;right:26px;z-index:2;background:var(--purple);color:#fff;border:none;border-radius:9px;font-family:inherit;font-size:11.5px;font-weight:700;padding:7px 13px;cursor:pointer;display:inline-flex;align-items:center;gap:5px}
+.m-copy.copied{background:var(--green)}
+.m-text{white-space:pre-wrap;word-break:break-word;font-size:12.5px;line-height:1.75;color:var(--ink);background:#f5f8fb;border:1.5px solid #dbe8f2;border-radius:12px;padding:16px 18px}
+.m-text a{color:var(--purple);text-decoration:underline;word-break:break-all}
+.m-text b{color:var(--purple);font-weight:700}
 .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:#0b2b45;color:#fff;font-size:13px;font-weight:700;padding:11px 20px;border-radius:24px;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:.2s;z-index:200;display:flex;align-items:center;gap:8px}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.note{font-size:11px;color:var(--gray);margin:2px 4px 0;line-height:1.6}
 </style>
 </head>
 <body>
-
 <div class="topbar">
-  <i class="ti ti-template"></i>
-  <h1>テンプレ集</h1>
-  <span class="topbar-badge">CIRCULATION</span>
+  <i class="ti ti-template"></i><h1>テンプレ集</h1><span class="topbar-badge">CIRCULATION</span>
   <div class="topbar-spacer"></div>
   <a class="back" href="../"><i class="ti ti-arrow-left"></i> ポータルへ戻る</a>
 </div>
-
 <div class="wrap">
-
   <div class="hero">
     <div class="hero-icon"><i class="ti ti-template"></i></div>
     <h2>テンプレ集</h2>
-    <p>資料・メール・AIプロンプトの雛形をまとめた場所です。<strong>ゼロから作らず、型から始める</strong>。<br>AIプロンプト・メール文例は<strong>「コピー」ですぐ使えます</strong>。</p>
+    <p>GTMフローで使うテンプレ・AI・メールを<strong>フェーズ順（01–08）に図書館化</strong>しました。<br>各カードの<strong>「見る」で本文表示 → コピー</strong>してそのまま使えます。</p>
   </div>
-
-  <!-- 資料テンプレ -->
-  <div class="sec-title t-doc"><i class="ti ti-file-text"></i>資料テンプレ <small>― 提案書・見積・資料フォーマット</small></div>
-  <div class="grid">
-    <div class="tcard doc">
-      <div class="tc-ico"><i class="ti ti-file-text"></i></div>
-      <h3>資料作成フォーマット</h3>
-      <p>提案・報告資料の標準レイアウト（表紙・課題整理・提案・体制・スケジュール）。トンマナ統一済みの雛形。</p>
-      <div class="tc-act"><a class="btn btn-link disabled" data-slot="doc-format"><i class="ti ti-external-link"></i> リンク設定待ち</a></div>
-    </div>
-    <div class="tcard doc">
-      <div class="tc-ico"><i class="ti ti-receipt"></i></div>
-      <h3>見積書フォーマット</h3>
-      <p>プロ人材アサインの見積書テンプレート。ポジション・単価・期間・稼働工数の記入枠つき。</p>
-      <div class="tc-act"><a class="btn btn-link disabled" data-slot="quote-format"><i class="ti ti-external-link"></i> リンク設定待ち</a></div>
-    </div>
-    <div class="tcard doc">
-      <div class="tc-ico"><i class="ti ti-presentation"></i></div>
-      <h3>提案書テンプレート</h3>
-      <p>初回提案〜推奨アサイン案までの提案書スライド雛形。AsIs-ToBe・体制図・候補者ページを含む。</p>
-      <div class="tc-act"><a class="btn btn-link disabled" data-slot="proposal-format"><i class="ti ti-external-link"></i> リンク設定待ち</a></div>
-    </div>
-  </div>
-  <p class="note">※ ドキュメント系はGoogleドライブ／スライドの雛形にリンクします。共有URLが決まり次第、各カードに設定します。</p>
-
-  <!-- メールテンプレ -->
-  <div class="sec-title t-mail"><i class="ti ti-mail"></i>メールテンプレ <small>― 商談前後の定型文（コピーして使う）</small></div>
-  <div class="grid" id="grid-mail"></div>
-
-  <!-- AIプロンプト -->
-  <div class="sec-title t-ai"><i class="ti ti-sparkles"></i>AIプロンプト <small>― そのまま貼って使えるプロンプト集</small></div>
-  <div class="grid" id="grid-ai"></div>
-
+  <div id="lib"></div>
   <div class="foot">© 株式会社サーキュレーション　Enterprise Team Portal ｜ テンプレ集</div>
-
 </div>
 
-<!-- モーダル -->
 <div class="ov" id="ov" onclick="if(event.target===this)closeModal()">
   <div class="modal">
-    <div class="modal-h">
-      <div class="mh-ico"><i class="ti ti-file-text" id="m-ico"></i></div>
-      <h3 id="m-title">タイトル</h3>
-      <button class="mh-x" onclick="closeModal()"><i class="ti ti-x"></i></button>
-    </div>
-    <div class="modal-desc" id="m-desc"></div>
-    <div class="modal-body"><pre id="m-body"></pre></div>
-    <div class="modal-foot">
-      <button class="btn btn-copy" onclick="copyFromModal(this)"><i class="ti ti-copy"></i> 全文をコピー</button>
-    </div>
+    <div class="modal-h"><span class="mh-ico"><i class="ti ti-file-text"></i></span><h3 id="m-title"></h3><button class="mh-x" onclick="closeModal()"><i class="ti ti-x"></i></button></div>
+    <div class="m-tabs" id="m-tabs"></div>
+    <div class="m-body"><button class="m-copy" id="m-copy" onclick="copyModal()"><i class="ti ti-copy"></i> コピー</button><div class="m-text" id="m-text"></div></div>
   </div>
 </div>
-
 <div class="toast" id="toast"><i class="ti ti-check"></i> <span>コピーしました</span></div>
 
 <script>
-/* ── テンプレ定義 ── */
-var MAIL=[
-  {id:'thanks',ico:'ti-mood-smile',title:'商談後のお礼メール',desc:'初回商談当日〜翌日に送る御礼＋ネクスト確認。',
-   body:`{{お客様名}} 様
+const TMPL_DATA = {
+  gyomu_gem: {
+    title: '業務詳細 生成GEM（面談議事録 → 契約書の業務詳細）',
+    tabs: [
+      {
+        label: '🤖 GEMを開く',
+        content: `【業務詳細 生成GEM】見積書・契約書の「業務詳細」を自動生成
 
-本日はお忙しい中、貴重なお時間をいただき誠にありがとうございました。
-{{テーマ／課題}} について、現状と目指す姿を詳しくお伺いでき大変勉強になりました。
+決定した候補プロ人材との面談議事録（録画 or 文字起こし）をもとに、
+契約書の【業務詳細】を「ずれない・簡潔・専門的」に生成します。
 
-本日のお話を踏まえ、{{ネクスト（例：ご支援イメージと候補となるプロ人材）}} を
-{{提出予定日}} までに整理し、改めてご提案させていただきます。
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ GEM リンク
+━━━━━━━━━━━━━━━━━━━━━━━━
+https://gemini.google.com/gem/1N3NjZO_fsWpuVozCPFc4Xcnjpo_ecHzt?usp=sharing
 
-引き続きどうぞよろしくお願いいたします。
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ 使い方
+━━━━━━━━━━━━━━━━━━━━━━━━
+1. 上記GEMを開く
+2. 面談（商談）の録画 または 文字起こしを貼り付ける
+3. 【業務詳細】が4行構成で自動生成される
+4. 見積書・契約書の「業務詳細」欄にそのまま転記
 
-株式会社サーキュレーション
-{{氏名}}`},
-  {id:'send',ico:'ti-send',title:'提案書送付メール',desc:'提案書・人選資料を送付するときの本文。',
-   body:`{{お客様名}} 様
+※プロンプト本文は「📋 プロンプト」タブに格納。`
+      },
+      {
+        label: '📋 プロンプト',
+        content: `あなたはプロフェッショナル人材マッチングエージェントの契約担当です。
 
-お世話になっております。サーキュレーションの{{氏名}}です。
-先日ご相談いただいた {{テーマ}} について、ご提案資料をお送りいたします。
+提供された商談録画（または文字起こし）から、契約書の【業務詳細】を作成してください。「ずれない・簡潔・専門的」を徹底し、以下の制約条件を厳守してください。
 
-▼ ご提案のポイント
-・{{ポイント1}}
-・{{ポイント2}}
-・{{ポイント3}}
+【制約条件】
 
-ご不明点や調整したい点がございましたら、オンラインで{{所要時間（例：30分）}}ほど
-お時間をいただき、擦り合わせさせていただけますと幸いです。
-下記より、ご都合のよい日時をお知らせください。
-{{日程候補 or 予約リンク}}
+4行限定: 箇条書き（・）の項目は、重要度の高い順に整理し、必ず合計4行で構成すること。
 
-何卒よろしくお願いいたします。
+情報の統合: 複数の細かいタスク（例：RFP作成、ベンダー交渉、コンペ支援）は、「ベンダー選定および導入支援」のように、契約書として適切な包括的表現にまとめること。
 
-株式会社サーキュレーション
-{{氏名}}`},
-  {id:'schedule',ico:'ti-calendar',title:'日程調整メール',desc:'次回商談・面談の日程を打診する定型文。',
-   body:`{{お客様名}} 様
+具体的な数値: 稼働工数は商談内容に基づき「月XX%（XX時間目安）」と記載すること。
 
-お世話になっております。サーキュレーションの{{氏名}}です。
-次回の打ち合わせについて、下記日程で候補をお送りいたします。
+語尾の統一: 契約書文言として「〜の支援」「〜の実施」等、体言止めまたは適切な語尾を用いること。
 
-・{{候補1：MM/DD（曜）HH:MM〜}}
-・{{候補2：MM/DD（曜）HH:MM〜}}
-・{{候補3：MM/DD（曜）HH:MM〜}}
+【出力フォーマット】
 
-いずれもオンライン（{{ツール}}）を想定しております。
-ご都合が合わない場合は、いくつか候補をいただけますと幸いです。
+【業務詳細】
 
-何卒よろしくお願いいたします。
+XXXX支援（以下「本業務」という）を実施するものとする。
 
-株式会社サーキュレーション
-{{氏名}}`}
-];
-var AI=[
-  {id:'proposal',ico:'ti-file-pencil',title:'提案書ドラフト作成',desc:'商談メモから提案の骨子を作らせるプロンプト。',
-   body:`あなたはプロ人材活用（プロシェアリング）の提案を作る優秀な法人営業です。
-以下の商談メモをもとに、提案書の骨子を作成してください。
+・XXXX
 
-# 商談メモ
-{{商談メモ／議事録を貼り付け}}
+・XXXX
 
-# 出力してほしい構成
-1. お客様の現状（AsIs）と目指す姿（ToBe）の整理
-2. 論点・課題の構造化（なぜ内製では難しいか含む）
-3. 提案の全体像（どのテーマに・どんなプロを・どの関与モデルで・どの期間）
-4. 想定体制図（社内 × プロ人材の役割分担）
-5. スケジュールとネクストアクション
+・XXXX
 
-# 条件
-- 事実はメモの範囲で。不明点は「確認事項」として明示する
-- 抽象論を避け、お客様の言葉・固有名詞を使う
-- 各項目は箇条書き中心で簡潔に`},
-  {id:'research',ico:'ti-search',title:'商談準備・企業リサーチ',desc:'商談前に企業と論点の仮説を用意するプロンプト。',
-   body:`あなたはエンタープライズ担当の法人営業です。
+・XXXX
+
+・業務方法（対面訪問・リモート）は甲乙協議の上決定するものとする。
+
+・原則稼動工数を月XX%（月XX時間目安）とし、プロジェクト推進を行う。
+
+・メール・電話での相談・対応等は業務遂行範囲内にて双方合意の上随時行うものとする。
+
+・その他活動に関しては、甲乙双方協議の上、同意のもとで決定されるものとする。`
+      }
+    ]
+  },
+  mkt_mail: {
+    title: '月1テーマメルマガ — テーマ資料・テンプレ格納',
+    tabs: [
+      {
+        label: '📁 テーマ資料（4〜6月）',
+        content: `【月次テーマと配信コンテンツ｜2026年 4〜6月】
+
+各テーマのベース資料（Googleスライド）。配信メール／個社カスタム資料の元ネタに使用。
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ ① AI研修 → AX推進 実行支援
+━━━━━━━━━━━━━━━━━━━━━━━━
+【株式会社サーキュレーション】「AI研修 → AX推進」実行支援
+https://docs.google.com/presentation/d/1J-PzWVzOhqUGybO9eJBAgBCiEuPhws6_/edit
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ ② AI時代における新規事業 支援_2026
+━━━━━━━━━━━━━━━━━━━━━━━━
+【株式会社サーキュレーション】AI時代における新規事業 支援_2026
+https://docs.google.com/presentation/d/1a-Ve0n1RJixfuOtLKKbRqW5W_GiBIxs1tvc_TH6gC7w/edit
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ ③ Microsoft 365 × AIプロ人材によるBPR支援
+━━━━━━━━━━━━━━━━━━━━━━━━
+【株式会社サーキュレーション】Microsoft 365 × AIプロ人材によるBPR支援
+https://docs.google.com/presentation/d/1d2uQDJFRpOCrUqxZPMBVIlBDgec7H_aRtWsPunukgDY/edit
+
+※テーマは年間マーケカレンダー（4〜3月）に沿って更新。7月以降は協議中。`
+      },
+      {
+        label: '🔁 毎月の回し方（STEP1〜5）',
+        content: `【月1テーマメルマガ｜運用STEP】
+
+■ STEP1 データ抽出（SF）
+SFレポートから対象企業・担当者・稼働案件を抽出（松村）。
+
+■ STEP2 コンテンツ制作（Gemini / Claude）
+①ベース資料：上記テーマ資料を元にGeminiで作成→指定Googleスライドに格納
+②アカプラ企業向けカスタム資料：SFから支援テーマ・概要・プロ人材概要を抽出→Gemini/Claudeで個社別に作成
+③メール文面：Geminiで生成→徳永Mgrが確認・承認
+
+■ STEP3 配信リスト作成（SF / Pardot / GAS）
+ターゲット企業・担当者を抽出→GASスクリプト/スプシ、またはPardot動的リストを作成。
+
+■ STEP4 配信（3経路）
+①IS配信：Tier1.2提案／Tier3商談あり → GAS（Gmail下書きを100件ずつ送付）
+②FS配信：FSのアプローチメールにCC
+③Pardot配信：Tier4・Tier3未提案
+
+■ STEP5 効果測定 → IS共有
+開封・クリック・DL・eeasyクリックを検知→当日中にISへフォロー依頼。結果をSFに記録。`
+      }
+    ]
+  },
+  cs_contact: {
+    title: 'スターリード深耕レビュー設計（定例レビューMTG）',
+    tabs: [
+      {
+        label: '🎯 設計思想',
+        content: `【スターリード深耕レビュー設計】
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ 目的
+━━━━━━━━━━━━━━━━━━━━━━━━
+稼働中顧客（スターリード）に対し、FSが「営業させられている」と
+感じずに、①CS品質管理を主目的としながら②既顧客深耕
+（追加案件・隣部署/担当者開拓）の会話が自然に生まれる仕組みを作る。
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ 核となる考え方
+━━━━━━━━━━━━━━━━━━━━━━━━
+キックオフ時に1ヶ月・3ヶ月・半年のレビューMTGを「契約として」
+予約し、日程調整ツールで先に枠を取る。
+
+後から入れる接点は形骸化するが、最初から仕組みに
+組み込まれた接点は形骸化しない。
+
+・レビューMTGは①プロジェクト品質管理が主目的（FSが受け入れやすい）
+・②は後半に忍ばせる（他社事例・隣部署紹介）
+・枠（いつ会うか）は強制、中身（何を話すか）はFSに委ねる
+・②の弾（他社事例・隣部署紹介の切り口）はAIが事前準備
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ 各レビューの設計
+━━━━━━━━━━━━━━━━━━━━━━━━
+【1ヶ月レビュー】
+主目的：立ち上がり確認・期待値ズレのearly catch・プロ人材との相性確認
+②：まだ出さない（関係構築に専念）
+AIが準備：初月報告サマリ・想定論点
+
+【3ヶ月レビュー】
+主目的：中間成果レビュー。御礼も兼ねて少し上の層も同席
+②：他社事例の共有（情報提供の体で）
+AIが準備：類似業界の他社事例・出すべき事例の選定
+
+【半年レビュー】
+主目的：成果総括。更新意向の確認
+②：隣部署紹介の打診・追加ロールの示唆
+AIが準備：隣部署紹介の切り口・追加提案の構成案`
+      },
+      {
+        label: '📧 キックオフメール',
+        content: `件名：【プロジェクト開始のご案内とレビューMTGのご予約】〇〇株式会社様｜〇〇支援／サーキュレーション 徳永
+
+〇〇株式会社 〇〇様
+
+いつも大変お世話になっております。
+サーキュレーションの〇〇でございます。
+
+このたびはご契約をいただき誠にありがとうございました。
+プロジェクトを着実に前進させ、確実に成果を出すため、
+弊社では以下の通り定例レビューMTGをご用意しております。
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ 定例レビューMTG（品質管理のため必ず実施）
+━━━━━━━━━━━━━━━━━━━━━━━━
+プロジェクトの立ち上がり・中間・総括の各タイミングで、
+進捗と成果を一緒に振り返る場を設けております。
+
+・1ヶ月レビュー：立ち上がり状況の確認（〇月〇日 候補）
+・3ヶ月レビュー：中間成果の振り返り（〇月〇日 候補）
+・半年レビュー ：成果総括と今後のご相談（〇月〇日 候補）
+
+つきましては、先に日程を仮押さえさせていただけますと幸いです。
+以下より候補日をお選びください：
+（日程調整ツールURL）
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ プロジェクト推進体制
+━━━━━━━━━━━━━━━━━━━━━━━━
+・プロ人材：〇〇 様
+・弊社担当：徳永 雄大（yudai.tokunaga@circu.co.jp / 070-1305-8775）
+
+引き続き、どうぞよろしくお願い申し上げます。
+
+以上`
+      },
+      {
+        label: '🚩 ステータスフラグ',
+        content: `【全92件 軽量ステータスフラグ】
+
+FSを②開拓に追い込む道具ではなく、介入すべき案件を
+絞り込むトリアージとして設計する。
+FSは「②をやれ」と迫られるのではなく「今こういう状態です」と置くだけ。
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+🔴 ①不調
+状態：プロジェクトがうまくいっていない
+次アクション：②提案対象外。①の立て直しに集中
+
+🟡 ①安定・関係浅い
+状態：PJTは順調だがカウンターパートと関係が薄い
+次アクション：レビューMTGで接触頻度を積む。②はまだ出さない
+
+🟢 ①安定・関係良好
+状態：PJT順調かつキーマンと信頼がある
+次アクション：②の起点候補。レビュー後半で他社事例・隣部署を打診
+
+⭐ ②シグナルあり
+状態：AIまたはFSが②のタネを検出
+次アクション：徳永/松村も巻き込んで具体アクション
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+ポイント：🟢🟢⭐になった案件にだけ②の能動アクションを集中。
+全92件に②を期待しない。`
+      }
+    ]
+  },
+  sf: {
+    title: '要件整理 — GEM & SF入力ガイド',
+    tabs: [
+      {
+        label: '🤖 GEM（要件整理AI）を開く',
+        content: `GEM（要件整理自動化AI）を使って商談後の要件整理を行います。
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ GEM リンク
+━━━━━━━━━━━━━━━━━━━━━━━━
+以下のURLをクリックしてGEMを開いてください：
+
+https://gemini.google.com/gem/1VMuaczRb2h2OW7lrgXJV2VO38Cv1EyeC?usp=sharing
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ GEM の使い方
+━━━━━━━━━━━━━━━━━━━━━━━━
+1. 上記URLからGEMを開く
+2. Zoomの文字起こし（トランスクリプト）をペースト
+3. GEMが自動で以下を生成：
+   - SF入力用の要件整理
+   - ASIS/TOBE/GAP整理
+   - 人材要件
+   - マイルストーン
+   - 御礼メール下書き
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ SF（Salesforce）入力項目
+━━━━━━━━━━━━━━━━━━━━━━━━
+・企業名・担当者名
+・ASIS（現状と背景）
+・TOBE（目指す姿・ゴール）
+・GAP（解決すべき課題）
+・人材要件（求めるプロ人材のケイパビリティ）
+・期待する役割
+・稼働条件（期間・工数・場所・報酬）
+・マイルストーン
+・予算感・決裁フロー`
+      },
+      {
+        label: '📋 SF入力チェックリスト',
+        content: `【SF入力チェックリスト】商談後・要件整理時
+
+□ 企業名・担当者名・部署
+□ 商談日・次回アクション日
+□ ASIS（現状と背景）3〜10行
+□ TOBE（目指す姿・ゴール）3行以上
+□ GAP（解決すべき課題）3行以上
+□ 人材要件（ケイパビリティ）
+□ プロへの依頼内容（役割）
+□ 稼働期間（開始〜）
+□ 稼働工数（月〇回程度）
+□ 勤務場所（リモート可否）
+□ 稼働報酬（目安）
+□ 予算感・決裁フロー
+□ マイルストーン（キックオフ目安等）
+□ 次回アクション入力済み
+
+⚠️ GEMを使えば上記を自動生成できます`
+      }
+    ]
+  },
+  select: {
+    title: '人選・案件相談 — プロ人材への打診メール',
+    tabs: [
+      {
+        label: '📧 案件打診メール（プロ人材向け）',
+        content: `【案件打診テンプレート】プロ人材への案件相談メール
+
+件名：【案件ご相談】〇〇株式会社様｜〇〇支援／サーキュレーション〇〇（担当者名）
+
+〇〇様
+
+お世話になっております。
+サーキュレーション／エンタープライズチーム〇〇（担当者名）です。
+
+この度、表記案件のご相談にてご連絡いたしました。
+「〇〇株式会社様｜〇〇支援」の案件でございます。
+
+大変お手数ですが、案件概要について以下ご確認いただけますと幸いでございます。
+また、判断にあたって追加でご確認事項等がございましたら、お知らせくださいませ。
+
+【ご確認依頼事項】
+◯ 本案件へのご興味の有無
+◯ 捻出可能な稼働率・希望報酬（目安で構いません）
+◯ 直近のレジュメ（もしお手元にあればで構いません）
+◯ 本案件の類似の実績（簡単な内容で結構ですので複数いただけますと幸いです）
+
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
+企業名：〇〇株式会社：（企業URL）
+
+ASIS（現状と背景）：
+・〇〇
+・〇〇
+・〇〇
+
+TOBE（目指す姿・ゴール）：
+・〇〇
+・〇〇
+・〇〇
+
+GAP（解決すべき課題）：
+・〇〇
+・〇〇
+・〇〇
+
+人材要件（求めるプロ人材のケイパビリティ）：
+・〇〇
+・〇〇
+・〇〇
+
+プロ人材への依頼内容（期待する役割）：
+・〇〇
+・〇〇
+・〇〇
+
+稼働条件（想定）：
+・稼働期間：〇〇年〇月〜（まずは〇ヶ月スポットを想定、成果に応じて継続）
+・稼働工数：月〇〜〇回程度（定例会参加＋随時アドバイザリー）
+・勤務場所：リモート可（一部対面あり）
+・稼働報酬：応相談
+
+【今後の進め方】
+ご支援の可否をご確認後、クライアントとのオンライン面談の日程調整を進める予定です。
+
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
+その他ご不明点等ございましたらお気軽にご連絡ください。
+何卒よろしくお願い申し上げます。
+
+以上`
+      },
+      {
+        label: '💡 使い方メモ（チーム共有）',
+        content: `【案件打診メール 使い方メモ】チーム共有用
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ 件名の形式
+━━━━━━━━━━━━━━━━━━━━━━━━
+【案件ご相談】〇〇株式会社様｜〇〇支援／サーキュレーション 担当者名
+（「様」と「｜」「／」の使い方は既存メール通りに統一）
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ ASIS/TOBE/GAPの書き方
+━━━━━━━━━━━━━━━━━━━━━━━━
+箇条書きで簡潔に。商談メモをそのまま落とし込む形でOK。
+背景が多い場合はASISを7〜10行まで増やしてOK。
+
+■ ご確認依頼事項の4点
+この4点は固定で毎回記載する。
+
+■ 担当者が複数の場合
+送信担当者名で送り、他メンバーをCcに入れる。
+例：「Cc：弊社 徳永」
+
+■ 稼働報酬
+相場感がある場合は「月額〇〇万円〜（応相談）」と記載してもよいが、
+クライアントとの調整前は「応相談」が無難。`
+      }
+    ]
+  },
+  propose: {
+    title: '提案書作成 — Claudeプロジェクト自動生成',
+    tabs: [
+      {
+        label: '🤖 Claudeプロジェクトを開く',
+        content: `【提案書自動生成 Claudeプロジェクト】
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ Claudeプロジェクト リンク
+━━━━━━━━━━━━━━━━━━━━━━━━
+https://claude.ai/project/019eb570-d6d7-71a2-92fc-31f72a4e5bf8
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ 使い方（インプット2点を貼るだけ）
+━━━━━━━━━━━━━━━━━━━━━━━━
+① GEM（要件整理AI）で生成した要件整理テキストをコピー
+② プロ人材の経歴書（PDF or テキスト）を用意
+③ 上記Claudeプロジェクトを開く
+④ 以下のプロンプトとともに貼り付ける：
+
+---
+【要件整理】
+（GEMで出力した内容をここに貼る）
+
+【プロ人材経歴書】
+（経歴書の内容をここに貼る）
+
+上記をもとに提案書PPTXを作成してください。
+---
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ アウトプット（自動生成されるもの）
+━━━━━━━━━━━━━━━━━━━━━━━━
+・提案書PPTX（スライドデッキ）
+  - プロジェクト概要
+  - マイルストーン
+  - プロジェクト体制
+  - 候補者比較
+  - プロ人材プロフィール
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ フロー（全体像）
+━━━━━━━━━━━━━━━━━━━━━━━━
+商談（Zoom）
+  ↓
+GEM（要件整理AI）で文字起こし→要件整理
+  ↓
+人選・ASSが経歴書を送付
+  ↓
+Claudeプロジェクトで提案書自動生成（← ここ）
+  ↓
+提案書PPTXを顧客にメール送付`
+      },
+      {
+        label: '📧 提案書送付メール',
+        content: `【テンプレート】提案書送付メール（顧客向け）
+
+件名：【ご提案】〇〇株式会社様｜〇〇支援 プロ人材ご提案／サーキュレーション 徳永
+
+●●株式会社 〇〇様
+
+いつも大変お世話になっております。
+サーキュレーションの徳永でございます。
+
+先日のお打ち合わせを踏まえ、今回ご支援いただけるプロ人材のご提案資料をお送りいたします。
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ ご提案内容
+━━━━━━━━━━━━━━━━━━━━━━━━
+今回は〇名のプロ人材をご提案いたします。
+各候補者の実績・稼働条件などを資料にまとめておりますので、
+ご確認いただけますと幸いです。
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ 次のステップ（ご提案後）
+━━━━━━━━━━━━━━━━━━━━━━━━
+・ご興味いただいた候補者がいらっしゃいましたら、
+  オンラインでの面談日程を調整させていただきます。
+・複数名とのご面談も可能ですので、お気軽にお申し付けください。
+
+ご不明な点やご質問がございましたら、いつでもお申し付けください。
+引き続き、どうぞよろしくお願いいたします。
+
+以上`
+      }
+    ]
+  },
+  contract: {
+    title: '契約手続き テンプレート集',
+    tabs: [
+      {
+        label: '📧 契約書送付メール',
+        content: `【テンプレート】契約合意後・契約書送付時メール（顧客向け）
+
+件名：【契約にあたりご確認とご案内】〇〇様｜●●株式会社 ××支援｜株式会社サーキュレーション 徳永
+
+●●株式会社 〇〇様
+
+いつも大変お世話になっております。
+サーキュレーションの徳永でございます。
+
+このたびはご契約のご合意をいただき、誠にありがとうございました。
+以下の通りご連絡申し上げますので、ご確認いただけますと幸いです。
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ 契約書のご確認
+━━━━━━━━━━━━━━━━━━━━━━━━
+添付の契約書ドラフトをご確認ください。
+内容に問題がなければ、電子契約の手続きを進めさせていただきます。
+修正・ご不明点などございましたら、お気軽にお申し付けください。
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ 業務報告・請求管理システム「PROBASE」へのご登録依頼
+━━━━━━━━━━━━━━━━━━━━━━━━
+弊社では、業務報告書および請求書の確認・ダウンロードに「PROBASE」というシステムをご利用いただいております。
+別途、システムよりご招待のご案内をお送りいたしますので、ご登録をお願いできますでしょうか。
+つきましては、以下の情報をご教示いただけますと幸いです。
+
+・PROBASEご登録用メールアドレス
+　└ 業務報告書：
+　└ 請求書：
+・貴社の締め日（月末締め、20日締めなど）：
+締め日をもとに、プロ人材への業務報告書の提出期限を設定させていただきます。
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ コミュニケーションツールのご確認・ご登録
+━━━━━━━━━━━━━━━━━━━━━━━━
+プロジェクト推進にあたって使用するコミュニケーションツール（Teams・Slack等）についてご確認させてください。
+プロ人材のアカウント招待が必要な場合は、早めに準備を進めたいと考えております。
+
+・ご利用予定のツール：
+・登録いただきたいアドレス：
+　└ プロ人材：XXXX@XXX
+　└ 当社：yudai.tokunaga@circu.co.jp
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ 支援メンバーの情報
+━━━━━━━━━━━━━━━━━━━━━━━━
+担当プロ人材および弊社担当のメールアドレスをお伝えいたします。
+
+・プロ人材：〇〇 様（メール：●●●@xxx.com、電話：0X0-XXXX-XXXX）
+・弊社担当：徳永 雄大（メール：yudai.tokunaga@circu.co.jp、電話：070-1305-8775）
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+■ キックオフまでの共有資料
+━━━━━━━━━━━━━━━━━━━━━━━━
+キックオフMTGまでにプロ人材がインプットできるよう、可能な範囲で以下の資料をご共有いただけますと幸いです。
+（例）組織図、業務フロー図、プロジェクト概要資料、課題整理資料 など
+
+お手数をおかけしますが、何卒よろしくお願い申し上げます。
+ご不明な点がございましたら、いつでもお気軽にお申し付けください。
+引き続き、どうぞよろしくお願いいたします。
+
+以上`
+      }
+    ]
+  },
+
+  ai_research: { title:'商談準備・企業リサーチ（AIプロンプト）', tabs:[ {label:'📋 プロンプト', content:`あなたはエンタープライズ担当の法人営業です。
 これから商談する企業について、事前準備の仮説を整理してください。
 
 # 対象
@@ -254,9 +674,20 @@ var AI=[
 
 # 条件
 - 断定せず「仮説」として提示する
-- 一般論ではなく、この企業・この部署に寄せる`},
-  {id:'minutes',ico:'ti-list-check',title:'議事録の要約・ネクスト整理',desc:'文字起こしから要点とToDoを抽出するプロンプト。',
-   body:`以下の商談の文字起こしを、営業が使いやすい形に整理してください。
+- 一般論ではなく、この企業・この部署に寄せる` } ] },
+  t_thanks: { title:'商談後のお礼メール', tabs:[ {label:'📧 本文', content:`{{お客様名}} 様
+
+本日はお忙しい中、貴重なお時間をいただき誠にありがとうございました。
+{{テーマ／課題}} について、現状と目指す姿を詳しくお伺いでき大変勉強になりました。
+
+本日のお話を踏まえ、{{ネクスト（例：ご支援イメージと候補となるプロ人材）}} を
+{{提出予定日}} までに整理し、改めてご提案させていただきます。
+
+引き続きどうぞよろしくお願いいたします。
+
+株式会社サーキュレーション
+{{氏名}}` } ] },
+  ai_minutes: { title:'議事録の要約・ネクスト整理（AIプロンプト）', tabs:[ {label:'📋 プロンプト', content:`以下の商談の文字起こしを、営業が使いやすい形に整理してください。
 
 # 文字起こし
 {{文字起こしを貼り付け}}
@@ -270,47 +701,123 @@ var AI=[
 6. フォローメールの下書き（お礼＋ネクスト確認）
 
 # 条件
-- 事実と解釈を分ける。推測には「（推測）」を付ける`}
+- 事実と解釈を分ける。推測には「（推測）」を付ける` } ] },
+  ai_proposal: { title:'提案書ドラフト作成（AIプロンプト）', tabs:[ {label:'📋 プロンプト', content:`あなたはプロ人材活用（プロシェアリング）の提案を作る優秀な法人営業です。
+以下の商談メモをもとに、提案書の骨子を作成してください。
+
+# 商談メモ
+{{商談メモ／議事録を貼り付け}}
+
+# 出力してほしい構成
+1. お客様の現状（AsIs）と目指す姿（ToBe）の整理
+2. 論点・課題の構造化（なぜ内製では難しいか含む）
+3. 提案の全体像（どのテーマに・どんなプロを・どの関与モデルで・どの期間）
+4. 想定体制図（社内 × プロ人材の役割分担）
+5. スケジュールとネクストアクション
+
+# 条件
+- 事実はメモの範囲で。不明点は「確認事項」として明示する
+- 抽象論を避け、お客様の言葉・固有名詞を使う
+- 各項目は箇条書き中心で簡潔に` } ] },
+  t_schedule: { title:'日程調整メール（面談）', tabs:[ {label:'📧 本文', content:`{{お客様名}} 様
+
+お世話になっております。サーキュレーションの{{氏名}}です。
+次回の面談（顧客×プロ人材×当社）について、下記日程で候補をお送りいたします。
+
+・{{候補1：MM/DD（曜）HH:MM〜}}
+・{{候補2：MM/DD（曜）HH:MM〜}}
+・{{候補3：MM/DD（曜）HH:MM〜}}
+
+いずれもオンライン（{{ツール}}）を想定しております。
+ご都合が合わない場合は、いくつか候補をいただけますと幸いです。
+
+何卒よろしくお願いいたします。
+
+株式会社サーキュレーション
+{{氏名}}` } ] }
+};
+
+const DOC_LINKS={}; // {slot:url} 資料フォーマットのリンクが決まったらここに設定
+
+const LIB=[
+ {group:'獲得・マーケ（前段）', ico:'ti-broadcast', accent:'#0079c0', cls:'doc', items:[
+   {key:'mkt_mail', role:'マーケ', desc:'月次テーマ配信の運用手順とテーマ資料。第一想起をつくる空中戦。'},
+ ]},
+ {group:'商談 → 受注（フェーズ 01–08）', ico:'ti-bolt', accent:'#7057a3', cls:'ai', phases:true, items:[
+   {ph:'01', phl:'商談', key:'ai_research', role:'FS', desc:'商談前の企業リサーチ・論点仮説を作る。'},
+   {ph:'01', phl:'商談', key:'t_thanks', role:'FS', desc:'商談当日〜翌日の御礼＋ネクスト確認。'},
+   {ph:'02', phl:'要件・人選', key:'sf', role:'FS', desc:'GEMで要件整理→SF入力。入力チェックリスト付き。'},
+   {ph:'02', phl:'要件・人選', key:'ai_minutes', role:'FS', desc:'文字起こしから要点・ToDo・案件化判定を抽出。'},
+   {ph:'02', phl:'要件・人選', key:'select', role:'ASS', desc:'プロ人材への案件打診メール。ASIS/TOBE/GAP枠付き。'},
+   {ph:'03', phl:'提案', key:'propose', role:'FS', desc:'Claudeで提案書PPTXを自動生成＋送付メール。'},
+   {ph:'03', phl:'提案', key:'ai_proposal', role:'FS', desc:'商談メモから提案の骨子を作る。'},
+   {ph:'04', phl:'面談', key:'t_schedule', role:'ASS', desc:'顧客×プロ×当社の3者面談 日程調整メール。'},
+   {ph:'05', phl:'見積', key:'gyomu_gem', role:'FS', desc:'面談議事録→契約書の業務詳細を4行で自動生成。', links:[{label:'見積書フォーマット', ico:'ti-table', url:'https://docs.google.com/spreadsheets/d/1bV77DJk6Ie_-WvG6ZsHY-NFo6AJq_P1rbH16FNEQZUo/edit?gid=1185974604#gid=1185974604'}]},
+   {ph:'07', phl:'契約', key:'contract', role:'FS', desc:'契約書送付メール等の契約手続きテンプレ集。', links:[{label:'業務詳細GEM', ico:'ti-robot', url:'https://gemini.google.com/gem/1N3NjZO_fsWpuVozCPFc4Xcnjpo_ecHzt?usp=sharing'}]},
+ ]},
+ {group:'受注後（カスタマーサクセス）', ico:'ti-star', accent:'#22a047', cls:'mail', items:[
+   {key:'cs_contact', role:'FS', desc:'キックオフでレビューMTGを予約し、深耕を仕組み化する。'},
+ ]},
+ {group:'共通フォーマット（資料）', ico:'ti-file-text', accent:'#0079c0', cls:'doc', items:[
+   {slot:'doc-format', title:'資料作成フォーマット', desc:'提案・報告資料の標準レイアウト（表紙・課題整理・提案・体制・スケジュール）。'},
+   {slot:'proposal-format', title:'提案書テンプレート', desc:'提案書スライド雛形。AsIs-ToBe・体制図・候補者ページを含む。'},
+ ]},
 ];
 
-/* ── 描画 ── */
-function cardHTML(t,cls){
-  return '<div class="tcard '+cls+'">'
-    +'<div class="tc-ico"><i class="ti '+t.ico+'"></i></div>'
-    +'<h3>'+t.title+'</h3><p>'+t.desc+'</p>'
-    +'<div class="tc-act">'
-    +'<button class="btn btn-view" onclick="openModal(\''+cls+'\',\''+t.id+'\')"><i class="ti ti-eye"></i> 見る</button>'
-    +'<button class="btn btn-copy" onclick="copyText(\''+cls+'\',\''+t.id+'\',this)"><i class="ti ti-copy"></i> コピー</button>'
-    +'</div></div>';
-}
-document.getElementById('grid-mail').innerHTML=MAIL.map(function(t){return cardHTML(t,'mail');}).join('');
-document.getElementById('grid-ai').innerHTML=AI.map(function(t){return cardHTML(t,'ai');}).join('');
-
-function find(cls,id){var arr=cls==='mail'?MAIL:AI;for(var i=0;i<arr.length;i++){if(arr[i].id===id)return arr[i];}return null;}
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-
-var curText='';
-function openModal(cls,id){
-  var t=find(cls,id); if(!t)return;
-  document.getElementById('m-ico').className='ti '+t.ico;
-  document.getElementById('m-title').textContent=t.title;
-  document.getElementById('m-desc').textContent=t.desc+(cls==='ai'?'（{{ }} の部分を埋めて使用）':'（{{ }} を実際の内容に置き換えてください）');
-  document.getElementById('m-body').innerHTML=esc(t.body).replace(/\{\{(.+?)\}\}/g,'<b>{{$1}}</b>');
-  curText=t.body;
-  document.getElementById('ov').classList.add('show');
+function slots(){var el=document.getElementById('lib');var h='';
+ LIB.forEach(function(g){
+   h+='<div class="group-h"><span class="gi" style="background:'+g.accent+'"><i class="ti '+g.ico+'"></i></span>'+g.group+'</div>';
+   if(g.phases){
+     var last=null;
+     g.items.forEach(function(it){
+       if(it.ph!==last){ if(last!==null)h+='</div>'; h+='<div class="ph-row"><span class="ph-badge">'+it.ph+'</span><span class="ph-name">'+it.phl+'</span><span class="ph-line"></span></div><div class="grid">'; last=it.ph; }
+       h+=card(it,g.cls);
+     });
+     if(last!==null)h+='</div>';
+   } else {
+     h+='<div class="grid">'+g.items.map(function(it){return card(it,g.cls);}).join('')+'</div>';
+   }
+ });
+ el.innerHTML=h;
 }
+function card(it,cls){
+  var t=it.key?TMPL_DATA[it.key]:null;
+  var title=it.title||(t?t.title:'');
+  var role=it.role?'<span class="role-tag '+it.role+'">'+it.role+'</span>':'';
+  var acts='';
+  if(it.key){
+    var single=t&&t.tabs.length===1;
+    acts+='<button class="btn btn-view" onclick="openModal(\''+it.key+'\')"><i class="ti ti-eye"></i> 見る</button>';
+    if(single)acts+='<button class="btn btn-copy" onclick="copyKey(\''+it.key+'\',0,this)"><i class="ti ti-copy"></i> コピー</button>';
+  }
+  if(it.links){it.links.forEach(function(l){acts+='<a class="btn btn-link" href="'+l.url+'" target="_blank" rel="noopener"><i class="ti '+l.ico+'"></i> '+l.label+'</a>';});}
+  if(it.slot){ var u=DOC_LINKS[it.slot]; if(u)acts+='<a class="btn btn-link" href="'+u+'" target="_blank" rel="noopener"><i class="ti ti-external-link"></i> 開く</a>'; else acts+='<span class="btn disabled"><i class="ti ti-external-link"></i> リンク設定待ち</span>'; }
+  return '<div class="tcard '+cls+'"><div class="tc-top">'+role+'</div><h3>'+title+'</h3><p>'+(it.desc||'')+'</p><div class="tc-act">'+acts+'</div></div>';
+}
+
+var _id=null,_tab=0;
+function openModal(id){var d=TMPL_DATA[id];if(!d)return;_id=id;_tab=0;
+  document.getElementById('m-title').textContent=d.title;
+  document.getElementById('m-tabs').innerHTML=d.tabs.map(function(t,i){return '<button class="m-tab'+(i===0?' active':'')+'" onclick="switchTab('+i+')">'+t.label+'</button>';}).join('');
+  document.getElementById('m-tabs').style.display=d.tabs.length>1?'flex':'none';
+  render(d.tabs[0].content);
+  document.getElementById('ov').classList.add('show');
+  resetCopy();
+}
+function switchTab(i){var d=TMPL_DATA[_id];_tab=i;render(d.tabs[i].content);
+  document.querySelectorAll('.m-tab').forEach(function(t,j){t.classList.toggle('active',j===i);});resetCopy();}
+function render(text){var el=document.getElementById('m-text');var re=/(https?:\/\/[^\s]+)/g;
+  el.innerHTML=esc(text).replace(/\{\{(.+?)\}\}/g,'<b>{{$1}}</b>').replace(re,function(u){return '<a href="'+u+'" target="_blank" rel="noopener">'+u+'</a>';});}
 function closeModal(){document.getElementById('ov').classList.remove('show');}
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
-
-function doCopy(text){
-  if(navigator.clipboard&&navigator.clipboard.writeText){return navigator.clipboard.writeText(text);}
-  return new Promise(function(res){var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);res();});
-}
+function resetCopy(){var b=document.getElementById('m-copy');b.classList.remove('copied');b.innerHTML='<i class="ti ti-copy"></i> コピー';}
+function doCopy(text){if(navigator.clipboard&&navigator.clipboard.writeText)return navigator.clipboard.writeText(text);return new Promise(function(res){var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);res();});}
 function toast(){var el=document.getElementById('toast');el.classList.add('show');setTimeout(function(){el.classList.remove('show');},1600);}
-function copyText(cls,id,btn){var t=find(cls,id);if(!t)return;doCopy(t.body).then(function(){toast();flash(btn);});}
-function copyFromModal(btn){doCopy(curText).then(function(){toast();flash(btn);});}
-function flash(btn){var o=btn.innerHTML;btn.innerHTML='<i class="ti ti-check"></i> コピー済み';setTimeout(function(){btn.innerHTML=o;},1400);}
-</script>
+function copyModal(){var d=TMPL_DATA[_id];doCopy(d.tabs[_tab].content).then(function(){toast();var b=document.getElementById('m-copy');b.classList.add('copied');b.innerHTML='<i class="ti ti-check"></i> コピー完了';});}
+function copyKey(id,i,btn){var d=TMPL_DATA[id];doCopy(d.tabs[i].content).then(function(){toast();var o=btn.innerHTML;btn.innerHTML='<i class="ti ti-check"></i> コピー済み';setTimeout(function(){btn.innerHTML=o;},1400);});}
 
+slots();
+</script>
 </body>
 </html>
